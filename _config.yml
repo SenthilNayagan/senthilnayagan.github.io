@@ -20,3 +20,5 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-archives
+
+exclude: [changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock]

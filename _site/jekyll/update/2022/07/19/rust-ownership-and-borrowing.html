@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Rust’s Ownership and Borrowing Enforce Memory Safety | Senthil Nayagan</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Rust’s Ownership and Borrowing Enforce Memory Safety" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Designed by Freepik" />
+<meta property="og:description" content="Designed by Freepik" />
+<link rel="canonical" href="http://localhost:4000/jekyll/update/2022/07/19/rust-ownership-and-borrowing.html" />
+<meta property="og:url" content="http://localhost:4000/jekyll/update/2022/07/19/rust-ownership-and-borrowing.html" />
+<meta property="og:site_name" content="Senthil Nayagan" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-07-19T13:50:10+05:30" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Rust’s Ownership and Borrowing Enforce Memory Safety" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-07-19T13:50:10+05:30","datePublished":"2022-07-19T13:50:10+05:30","description":"Designed by Freepik","headline":"Rust’s Ownership and Borrowing Enforce Memory Safety","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2022/07/19/rust-ownership-and-borrowing.html"},"url":"http://localhost:4000/jekyll/update/2022/07/19/rust-ownership-and-borrowing.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Senthil Nayagan" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Senthil Nayagan</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About me</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Rust’s Ownership and Borrowing Enforce Memory Safety</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2022-07-19T13:50:10+05:30" itemprop="datePublished">Jul 19, 2022
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/geqlrxa6a84auut8m5jz.jpeg" alt="Flat people with pets" />
+<a href="https://www.freepik.com/free-vector/flat-people-with-pets_15275949.htm#page=4&amp;query=owner&amp;position=17&amp;from_view=search">Designed by Freepik</a></p>
+
+<p>The Rust’s ownership and borrowing might be confusing if we don’t grasp what’s really going on. This is particularly true when applying a previously learned programming style to a new paradigm; we call this a paradigm shift. Ownership is a novel idea, yet tricky to understand at first, but it gets easier the more we work on it.</p>
+
+<p>Before we go further about Rust’s ownership and borrowing, let’s first understand what “memory safety” and “memory leak” are and how programming languages deal with them.</p>
+
+<h2 id="what-is-memorysafety">What is memory safety?</h2>
+
+<p>Memory safety refers to the state of a software application where memory pointers or references always refer to valid memory. Because memory corruption is a possibility, there are very few guarantees about a program’s behaviour if it is not memory safe. Simply put, if a program isn’t really memory safe, there are few assurances about its functionality. When dealing with a memory-unsafe program, a malicious party is able to use the flaw to read secrets or execute arbitrary code on someone else’s machine.</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/a3r0g7c0ycz5fc62zhsz.jpg" alt="Bag Theft" />
+<a href="https://www.freepik.com/free-vector/theft-bag-flat-composition-with-indoor-view-clothing-shop-woman-choosing-shirt-criminal-character-illustration_15481059.htm">Designed by Freepik</a></p>
+
+<p>Let’s use a pseudocode to see what valid memory is.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// pseudocode #1 - shows valid reference
+{ // scope starts here
+  int x = 5  
+  int y = &amp;x
+} // scope ends here
+</code></pre></div></div>
+
+<p>In the above pseudocode, we’ve created a variable <code class="language-plaintext highlighter-rouge">x</code> assigned with a value of <code class="language-plaintext highlighter-rouge">10</code>. We use the <code class="language-plaintext highlighter-rouge">&amp;</code> operator or keyword to create a reference. Thus, the <code class="language-plaintext highlighter-rouge">&amp;x</code> syntax lets us create a reference that refers to the value of <code class="language-plaintext highlighter-rouge">x</code>. To put it simply, we’ve created a variable <code class="language-plaintext highlighter-rouge">x</code> that owns <code class="language-plaintext highlighter-rouge">5</code> and a variable <code class="language-plaintext highlighter-rouge">y</code> that is a reference to <code class="language-plaintext highlighter-rouge">x</code>.</p>
+
+<p>Since both variables <code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">y</code> are in the same block or scope, variable <code class="language-plaintext highlighter-rouge">y</code> has a valid reference that refers to the value of <code class="language-plaintext highlighter-rouge">x</code>. As a result, variable <code class="language-plaintext highlighter-rouge">y</code> has a value of <code class="language-plaintext highlighter-rouge">5</code>.</p>
+
+<p>Take a look at the below pseudocode. As we can see, the scope of <code class="language-plaintext highlighter-rouge">x</code> is limited to the block in which it’s created. We get into dangling references when we try to access <code class="language-plaintext highlighter-rouge">x</code> outside of its scope. Dangling reference…? What exactly is it?</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// pseudocode #2 - shows invalid reference aka dangling reference
+{ // scope starts here
+  int x = 5
+} // scope ends here
+int y = &amp;x // can't access x from here; creates dangling reference
+</code></pre></div></div>
+
+<h3 id="dangling-reference">Dangling reference</h3>
+
+<p>A dangling reference is a pointer that points to a memory location that has been given to someone else or released (freed). If a program (aka <em>process</em>) refers to memory that has been released or wiped out, it might crash or cause non-deterministic results.</p>
+
+<p>Having said that, <em>memory unsafety</em> is a property of some programming languages that allows programmers to deal with invalid data. As a result, memory unsafety introduced a variety of problems that might cause the following major security vulnerabilities:</p>
+
+<ul>
+  <li><strong>Out-of-bounds Reads</strong></li>
+  <li><strong>Out-of-bounds Writes</strong></li>
+  <li><strong>Use-After-Free</strong></li>
+</ul>
+
+<p>Vulnerabilities caused by memory unsafety are at the root of many other serious security threats. Unfortunately, uncovering these vulnerabilities can be extremely challenging for developers.</p>
+
+<h2 id="what-is-a-memoryleak">What is a memory leak?</h2>
+
+<p>It’s important to understand what a memory leak is and what its consequences are.</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/e42e5d1ge2dioiq2ieuj.jpg" alt="Flooded house emergency" />
+<a href="https://www.freepik.com/free-vector/flooded-house-emergency-flat-cartoon-with-family-home-calling-plumber-fix-burst-pipes_6845858.htm">Designed by Freepik</a></p>
+
+<p>A <em>memory leak</em> is an unintentional form of memory consumption whereby the developer fails to free an allocated block of <em>heap</em> memory when it is no longer needed. It’s simply the opposite of memory safety. More on the different memory types later, but for now, just know that a <em>stack</em> stores fixed-length variables known at compile time, whereas the size of variables that may change later at runtime must be placed on the <em>heap</em>.</p>
+
+<p>When compared to heap memory allocation, stack memory allocation is considered to be safer since memory is automatically released when it is no longer relevant or necessary, either by the programmer or by the program-runtime itself.</p>
+
+<p>However, when programmers generate memory on the heap and fail to remove it in the absence of a garbage collector (in the case of C and C++), a memory leak develops. Also, if we lose all references to a chunk of memory without deallocating that memory, then we have a memory leak. Our program will continue to own that memory, but it has no way of ever using it again.</p>
+
+<blockquote>
+  <p>A little memory leak is not a problem, but if a program allocates a larger amount of memory and never deallocates it, the program’s memory footprint will continue to rise, resulting in Denial-of-Service.</p>
+</blockquote>
+
+<p>When a program exits, the operating system immediately recovers all of the memory it owns. As a result, a memory leak only affects a program while it’s running; it has no effect once the program has terminated.</p>
+
+<p>Let’s go over the key consequences of memory leaks.</p>
+
+<p>Memory leaks reduce the performance of the computer by reducing the amount of available memory (heap memory). It eventually causes the whole or a portion of the system to stop working correctly or to slow down severely. Crashes are commonly linked with memory leaks.</p>
+
+<p>Our approach to figuring out how to prevent memory leaks will vary depending on the programming language we’re using. Memory leaks might begin as a small and nearly “unnoticeable problem”, but they can escalate very quickly and overwhelm the systems they impact. Wherever feasible, we should be on the lookout for them and take action to rectify them rather than leave them to grow.</p>
+
+<h2 id="memory-unsafety-vs-memory-leaks">Memory unsafety vs. memory leaks</h2>
+
+<p>Memory leaks and memory unsafety are the two types of issues that have received the greatest attention in terms of prevention and remediation. It’s important to note that fixing one does not automatically fix the other.</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/z1f7affpg1s7d5w4m4j4.png" alt="Figure 1: Memory unsafety vs. memory leaks" /></p>
+
+<h2 id="various-types-of-memories-and-how-they-operate">Various types of memories and how they operate</h2>
+
+<p>Before we go any further, it’s important to understand the different types of memory that our code will use at runtime.</p>
+
+<p>There are two types of memory, as follows, and these memories are structured differently.</p>
+
+<ul>
+  <li><strong>Processor register</strong></li>
+  <li><strong>Static</strong></li>
+  <li><strong>Stack</strong></li>
+  <li><strong>Heap</strong></li>
+</ul>
+
+<p>Both <em>processor register</em> and <em>static</em> memory types are beyond the scope of this post.</p>
+
+<h3 id="stack-memory-and-how-it-works">Stack memory and how it works</h3>
+
+<p>The stack stores data in the order in which it is received and removes it in the reverse order. Items can be accessed from the stack in the <em>last in, first out</em> (LIFO) order. Adding data onto the stack is called “pushing,” and removing data off the stack is called “popping.”</p>
+
+<p>All data stored on the stack must have a known, fixed size. Data with an unknown size at compile time or a size that might change later on must be stored on the heap instead.</p>
+
+<p>As developers, we do not have to worry about stack memory <em>allocation</em> and <em>deallocation</em>; the allocation and deallocation of stack memory is “automatically done” by the compiler. It implies that when data on the stack is no longer relevant (out of scope), it is automatically deleted without the need for our intervention.</p>
+
+<p>This kind of memory allocation is also known as <em>temporary memory allocation</em>, because as soon as the function finishes its execution, all the data that belongs to that function is flushed out of the stack “automatically.”</p>
+
+<blockquote>
+  <p>All primitive types in Rust live on the stack. Types like numbers, characters, slices, booleans, fixed-size arrays, tuples containing primitives, and function pointers can all sit on the stack.</p>
+</blockquote>
+
+<h3 id="heap-memory-and-how-itworks">Heap memory and how it works</h3>
+
+<p>Unlike a stack, when we put data on the heap, we request a certain amount of space. The memory allocator locates a large enough unoccupied place in the heap, marks it as in use, and returns a reference to that location’s address. This is referred to as <em>allocating</em>.</p>
+
+<p>Allocating on the heap is slower than pushing to the stack because the allocator never has to hunt for an empty location to put new data. Furthermore, because we must follow a pointer to get to data on the heap, it is slower than accessing data on the stack. Unlike the stack, which is allocated and deallocated at compile time, heap memory is allocated and deallocated during the execution of a program’s instructions.</p>
+
+<p>In some programming languages, to allocate heap memory, we use the keyword <code class="language-plaintext highlighter-rouge">new</code>. This <code class="language-plaintext highlighter-rouge">new</code> keyword (aka <em>operator</em>) denotes a request for memory allocation on the heap. If sufficient memory is available on the heap, the <code class="language-plaintext highlighter-rouge">new</code> operator initialises the memory and returns the unique address of that newly allocated memory.</p>
+
+<p>It’s worth mentioning that heap memory is “explicitly” deallocated by the programmer or the runtime.</p>
+
+<h2 id="how-do-various-other-programming-languages-guarantee-memorysafety">How do various other programming languages guarantee memory safety?</h2>
+
+<p>When it comes to memory management, particularly heap memory, we’d prefer our programming languages to have the following characteristics:</p>
+
+<ul>
+  <li>We’d prefer to release memory as soon as possible when it’s no longer needed, with no runtime overhead.</li>
+  <li>We should never maintain a reference to a data that has been freed (aka a dangling reference). Otherwise, crashes and security issues might occur.</li>
+</ul>
+
+<p>Memory safety is ensured in different ways by programming languages by means of:</p>
+
+<ul>
+  <li><strong>Explicit memory deallocation</strong> (adopted by C, C++)</li>
+  <li><strong>Automatic or implicit memory deallocation</strong> (adopted by Java, Python, and C#)</li>
+  <li><strong>Region-based memory management</strong></li>
+  <li><strong>Linear or unique type systems</strong></li>
+</ul>
+
+<p>Both <em>region-based memory management</em> and <em>linear type systems</em> are beyond the scope of this post.</p>
+
+<h3 id="manual-or-explicit-memory-deallocation">Manual or explicit memory deallocation</h3>
+
+<p>Programmers must “manually” release or erase allocated memory when using explicit memory management. A “deallocation” operator (for instance, <code class="language-plaintext highlighter-rouge">delete</code> in C) exists in languages with explicit memory deallocation.</p>
+
+<blockquote>
+  <p>Garbage collection is too costly in systems languages like C and C++, therefore explicit memory allocation continues to exist.</p>
+</blockquote>
+
+<p>Leaving the responsibility of freeing memory to the programmer has the benefit of giving the programmer total control over the life cycle of the variable. However, if deallocation operators are used incorrectly, a software fault may occur during execution. In fact, this manual allocation and releasing process is prone to errors. Some common coding errors include:</p>
+
+<ul>
+  <li><strong>Dangling reference</strong></li>
+  <li><strong>Memory leak</strong></li>
+</ul>
+
+<p>Despite this, we preferred manual memory management over garbage collection since it gives us more control and provides better performance. Note that the goal of any system programming language is to get as “close to the metal” as possible. In other words, they favour better performance over convenience features in the tradeoff.</p>
+
+<blockquote>
+  <p>It’s entirely our (developers) responsibility to ensure that no pointer to the value we freed is ever used.</p>
+</blockquote>
+
+<p>In the recent past, there have been several proven patterns for avoiding these errors, but it all boils down to maintaining rigorous code discipline, which requires applying the right memory management method consistently.</p>
+
+<p>Key takeaways are:</p>
+
+<ul>
+  <li>Have greater control over memory management.</li>
+  <li>Less safety as a result of dangling references and memory leaks.</li>
+  <li>Results in a longer development time.</li>
+</ul>
+
+<h3 id="automatic-or-implicit-memory-deallocation">Automatic or implicit memory deallocation</h3>
+
+<p>Automatic memory management has become an essential feature of all modern programming languages, including Java.</p>
+
+<p>In the case of automatic memory deallocation, the <em>garbage collectors</em> serve as an automatic memory managers. These garbage collectors periodically go through the heap and recycle chunks of memory that are not being used. They manage the allocation and release of memory on our behalf. So we don’t have to write code to perform memory management tasks. That’s great since garbage collectors free us from the responsibility of memory management. Another advantage is that it reduces the development time.</p>
+
+<p>Garbage collection, on the other hand, has a number of drawbacks. During garbage collection, the program should pause and spend time determining what it needs to clean up before proceeding.</p>
+
+<p>Furthermore, automatic memory management has higher memory needs. This is due to the fact that a garbage collector performs memory deallocation for us, which consumes both memory and CPU cycles. As a result, automated memory management might degrade application performance, particularly in large applications with limited resources.</p>
+
+<p>Key takeaways are:</p>
+
+<ul>
+  <li>Eliminates the need for developers to release memory manually.</li>
+  <li>Provides efficient memory safety with no dangling references or memory leaks.</li>
+  <li>Simpler and straightforward code.</li>
+  <li>Faster development cycle.</li>
+  <li>Have less control over memory management.</li>
+  <li>Causes latency as it consumes both memory and CPU cycles.</li>
+</ul>
+
+<h2 id="how-does-rust-guarantee-memorysafety">How does Rust guarantee memory safety?</h2>
+
+<p>Some languages provide <em>garbage collection</em>, which looks for memory that is no longer in use while the program runs; others require the programmer to <em>explicitly allocate and release memory</em>. Both of these models have benefits and drawbacks. Garbage collection, though perhaps the most widely used, has some drawbacks; it makes life easy for developers at the expense of resources and performance.</p>
+
+<p>Having said that, one gives efficient memory management <em>control</em>, while the other provides higher <em>safety</em> by eliminating dangling references and memory leaks. Rust combines the benefits of both worlds.</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/db43zkao8a6yivti1d5u.png" alt="Figure 2: Rust has better control over memory management and provide higher safety with no memory issues" /></p>
+
+<p>Rust takes a different approach to things than the other two, based on an ownership model with a set of rules that the compiler verifies to ensure memory safety. The program will not compile if any of these rules are violated. In fact, ownership replaces runtime garbage collection with compile-time checks for memory safety.</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/s9a98dekos4krj9o6ikx.png" alt="Explicit memory management vs. Implicit memory management vs. Rust’s ownership model" /></p>
+
+<p>It takes some time to get used to ownership because it is a new concept for many programmers, like myself.</p>
+
+<h2 id="ownership">Ownership</h2>
+
+<p>At this point, we have a basic understanding of how data is stored in memory. Let’s look at <em>ownership</em> in Rust more closely. Rust’s biggest distinguishing feature is ownership, which ensures memory safety at compile-time.</p>
+
+<p>To begin, let’s define “ownership” in its most literal sense. Ownership is the state of “owning” and “controlling” legal possession of “something”. With that said, we must identify <em>who the owner is</em> and <em>what the owner owns and controls</em>. In Rust, each value has a variable called its <em>owner</em>. To put it simply, a variable is an owner, and the value of a variable is what the owner owns and controls.</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/y42938p6domnusq3h7ry.png" alt="Figure 3: Variable binding shows the owner and its value/resource" /></p>
+
+<p>With an ownership model, memory is automatically released (freed) once the variable that owns it goes out of scope. When values go out of scope or their lifetimes end for some other reason, their destructors are called. A destructor, particularly an automated destructor, is a function that removes traces of a value from the program by deleting references and frees up memory.</p>
+
+<h3 id="borrow-checker">Borrow checker</h3>
+
+<p>Rust implements ownership through the <em>borrow checker</em>, a <a href="https://en.wikipedia.org/wiki/Static_program_analysis">static analyzer</a>. The borrow checker is a component in the Rust compiler that keeps track of where data is used throughout the program, and by following ownership rules, it’s able to determine where data needs to be released. Furthermore, the borrow checker ensures that deallocated memory can never be accessed at runtime. It even eliminates the possibility of data races caused by concurrent mutation (modification).</p>
+
+<h3 id="ownership-rules">Ownership rules</h3>
+
+<p>As previously stated, the ownership model is built on a set of rules known as the <em>ownership rules</em>, and these rules are relatively straightforward. The Rust compiler (rustc) enforces these rules:</p>
+
+<ul>
+  <li>In Rust, each value has a variable called its owner.</li>
+  <li>There can only be one owner at a time.</li>
+  <li>When the owner goes out of scope, the value will be dropped.</li>
+</ul>
+
+<p>The following memory errors are protected by these compile-time checking ownership rules:</p>
+
+<ul>
+  <li><strong>Dangling references:</strong> This is where a reference points to a memory address that no longer contains the data to which the pointer was referring; this pointer points to null or random data.</li>
+  <li><strong>Use after frees:</strong> This is where memory is accessed once it has been freed, which can crash. This memory location can also be used by hackers to execute code.</li>
+  <li><strong>Double frees:</strong> This is where allocated memory is freed, and then freed again. This might cause the program to crash, potentially exposing sensitive information. This also allows a hacker to run whatever code they choose.</li>
+  <li><strong>Segmentation faults:</strong> This is where the program tries to access memory it’s not allowed to access.</li>
+  <li><strong>Buffer overrun:</strong> This is where the volume of data exceeds the storage capacity of the memory buffer, causing the program to crash.</li>
+</ul>
+
+<p>Before getting into the details of each ownership rule, it’s important to understand the distinctions between <strong>copy</strong>, <strong>move</strong>, and <strong>clone</strong>.</p>
+
+<h4 id="copy">copy</h4>
+
+<p>A type with a fixed size (particularly primitive types) can be stored on the <em>stack</em> and popped off when its scope ends, and may be quickly and easily copied to create a new, independent variable if another part of the code requires the same value in a different scope. Because copying stack memory is cheap and fast, primitive types with a fixed-size are said to have <em>copy</em> semantics. It cheaply creates a perfect replica (a duplicate).</p>
+
+<blockquote>
+  <p>It’s worth noting that primitive types with fixed-size implement the copy trait to make copies.</p>
+</blockquote>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="s">"hello"</span><span class="p">;</span>
+<span class="k">let</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+<span class="nd">println!</span><span class="p">(</span><span class="s">"{}"</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="c1">// hello</span>
+<span class="nd">println!</span><span class="p">(</span><span class="s">"{}"</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="c1">// hello</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>In Rust, there are two kinds of strings: <code class="language-plaintext highlighter-rouge">String</code> (heap allocated, and growable) and <code class="language-plaintext highlighter-rouge">&amp;str</code> (fixed size, and can’t be mutated).</p>
+</blockquote>
+
+<p>Because <code class="language-plaintext highlighter-rouge">x</code> is stored on the stack, copying its value to produce another copy for <code class="language-plaintext highlighter-rouge">y</code> is easier. This is not the case for a value that is stored on the heap. This is how the stack frame looks:</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/wnhcikqel9k4k4i6ke06.png" alt="Figure 4: Both x and y have their own data" /></p>
+
+<p>Duplicating data increases program runtime and memory consumption. Therefore, copying isn’t a good fit for large chunks of data.</p>
+
+<h4 id="move">move</h4>
+
+<p>In Rust terminology, “move” means the ownership of the memory is transferred to another owner. Consider the case of complex types that are stored on the heap.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">s1</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">from</span><span class="p">(</span><span class="s">"hello"</span><span class="p">);</span>
+<span class="k">let</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">s1</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>We might assume that the second line (i.e. <code class="language-plaintext highlighter-rouge">let s2 = s1;</code>) would make a copy of the value in <code class="language-plaintext highlighter-rouge">s1</code> and bind it to <code class="language-plaintext highlighter-rouge">s2</code>. But this is not the case.</p>
+
+<p>Take a look at the below one to see what’s happening to <code class="language-plaintext highlighter-rouge">String</code> under the hood. A String is made up of three parts, which are stored on the <em>stack</em>. The actual contents (hello, in this case) are stored on the <em>heap</em>.</p>
+
+<ul>
+  <li><strong>Pointer</strong> - points to the memory that holds the contents of the string.</li>
+  <li><strong>Length</strong> - it’s how much memory, in bytes, the contents of the <code class="language-plaintext highlighter-rouge">String</code> is currently using.</li>
+  <li><strong>Capacity</strong> - it’s the total amount of memory, in bytes, that the <code class="language-plaintext highlighter-rouge">String</code> has received from the allocator.</li>
+</ul>
+
+<p>To put it in other words, the metadata is kept on the stack while the actual data is kept on the heap.</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/u1mg93yh2ye4s2ij2had.png" alt="Figure 5: The stack holds the metadata while the heap holds the actual contents" /></p>
+
+<p>When we assign <code class="language-plaintext highlighter-rouge">s1</code> to <code class="language-plaintext highlighter-rouge">s2</code>, the <code class="language-plaintext highlighter-rouge">String</code> metadata is copied, meaning we copy the pointer, the length, and the capacity that are on the stack. We do not copy the data on the heap that the pointer refers to. The data representation in memory looks like the one below:</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/9xrq3zvr2gcp4bjmjzb4.png" alt="Figure 6: Variable `s2` gets a copy of the pointer, length, and capacity of `s1`" /></p>
+
+<p>It’s worth noting that the representation does <em>not</em> look like the one below, which is what memory would look like if Rust copied the heap data as well. If Rust performed this, the <code class="language-plaintext highlighter-rouge">s2 = s1</code> operation could be extremely slow in terms of runtime performance if the heap data were large.</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/64c9dg88ohy7bxb13onu.png" alt="Figure 7: If Rust copied the heap data, another possibility for what `let s2 = s1` might do is data replication. However, Rust does not copy by default" /></p>
+
+<p>Note that when complex types are no longer in scope, Rust will call the <code class="language-plaintext highlighter-rouge">drop</code> function to explicitly deallocate heap memory. However, both data pointers in Figure 6 are pointing to the same location, which is not how Rust works. We will get into the details shortly.</p>
+
+<p>As previously stated, when we assign <code class="language-plaintext highlighter-rouge">s1</code> to <code class="language-plaintext highlighter-rouge">s2</code>, variable <code class="language-plaintext highlighter-rouge">s2</code> receives a copy of <code class="language-plaintext highlighter-rouge">s1</code>’s metadata (pointer, length, and capacity). But what happens to <code class="language-plaintext highlighter-rouge">s1</code> once it’s been assigned to <code class="language-plaintext highlighter-rouge">s2</code>? Rust no longer considers <code class="language-plaintext highlighter-rouge">s1</code> to be valid. Yes, you read that correctly.</p>
+
+<p>Let’s think about this <code class="language-plaintext highlighter-rouge">let s2 = s1</code> assignment for a moment. Consider what happens if Rust still considers <code class="language-plaintext highlighter-rouge">s1</code> as valid after this assignment. When <code class="language-plaintext highlighter-rouge">s2</code> and <code class="language-plaintext highlighter-rouge">s1</code> go out of scope, they will both try to free the same memory. Uh-oh, that’s not good. This is referred to as a <em>double free error</em>, and it is one of the memory safety bugs. Memory corruption can result from freeing memory twice, posing a security risk.</p>
+
+<p>To ensure memory safety, Rust considered <code class="language-plaintext highlighter-rouge">s1</code> invalid after the line <code class="language-plaintext highlighter-rouge">let s2 = s1</code>. Therefore, when <code class="language-plaintext highlighter-rouge">s1</code> is no longer in scope, Rust does not need to release anything. Examine what happens if we try to use <code class="language-plaintext highlighter-rouge">s1</code> after <code class="language-plaintext highlighter-rouge">s2</code> has been created.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">s1</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">from</span><span class="p">(</span><span class="s">"hello"</span><span class="p">);</span>
+<span class="k">let</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">s1</span><span class="p">;</span>
+
+<span class="nd">println!</span><span class="p">(</span><span class="s">"{}, world!"</span><span class="p">,</span> <span class="n">s1</span><span class="p">);</span>  <span class="c1">// Won't compile. We'll get an error.</span>
+</code></pre></div></div>
+
+<p>We’ll get an error like the one below because Rust prevents you from using the invalidated reference:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cargo run
+   Compiling playground v0.0.1 (/playground)
+error[E0382]: borrow of moved value: `s1`
+ --&gt; src/main.rs:6:28
+  |
+3 |     let s1 = String::from("hello");
+  |         -- move occurs because `s1` has type `String`, which does not implement the `Copy` trait
+4 |     let s2 = s1;
+  |              -- value moved here
+5 | 
+6 |     println!("{}, world!", s1);
+  |                            ^^ value borrowed here after move
+  |
+  = note: this error originates in the macro `$crate::format_args_nl` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+For more information about this error, try `rustc --explain E0382`.
+</code></pre></div></div>
+
+<p>As Rust “moved” <code class="language-plaintext highlighter-rouge">s1</code>’s ownership of the memory to <code class="language-plaintext highlighter-rouge">s2</code> after the line <code class="language-plaintext highlighter-rouge">let s2 = s1</code>, it considered <code class="language-plaintext highlighter-rouge">s1</code> invalid. Here is the memory representation after s1 has been invalidated:</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ff5sbiro9x2khk76opfq.png" alt="Figure 8: Memory representation after `s1` has been invalidated" /></p>
+
+<p>When only <code class="language-plaintext highlighter-rouge">s2</code> remains valid, it alone will free the memory when it goes out of scope. As a result, the potential for a <em>double free error</em> is eliminated in Rust. That’s wonderful!</p>
+
+<h4 id="clone">clone</h4>
+
+<p>If we <em>do</em> want to deeply copy the heap data of the <code class="language-plaintext highlighter-rouge">String</code>, not just the stack data, we can use a method called <code class="language-plaintext highlighter-rouge">clone</code>. Here’s an example of how to use the clone method:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">s1</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">from</span><span class="p">(</span><span class="s">"hello"</span><span class="p">);</span>
+<span class="k">let</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">s1</span><span class="nf">.clone</span><span class="p">();</span>
+
+<span class="nd">println!</span><span class="p">(</span><span class="s">"s1 = {}, s2 = {}"</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>When using the clone method, the heap data does get copied into s2. This works perfectly and produces the following behaviour:</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/kjo2ogcqcmqgf8hxb2o5.png" alt="Figure 9: When using the clone method, the heap data does get copied into `s2`" /></p>
+
+<p>The use of the clone method has serious consequences; it not only copies the data, but it also does not synchronize any changes between the two. In general, clones should be planned carefully and with full awareness of the consequences.</p>
+
+<p>By now, we should be able to distinguish between copy, move, and clone. Let’s look at each ownership rule in more detail now.</p>
+
+<h3 id="ownership-rule-1">Ownership rule 1</h3>
+
+<p>Each value has a variable called its owner. It implies that all values are owned by variables. In the example below, variable <code class="language-plaintext highlighter-rouge">s</code> owns the pointer to our string, and in the second line, variable <code class="language-plaintext highlighter-rouge">x</code> owns a value 1.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">s</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">from</span><span class="p">(</span><span class="s">"Rule 1"</span><span class="p">);</span>
+<span class="k">let</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="ownership-rule-2">Ownership rule 2</h3>
+
+<p>There can only be one owner of a value at a given time. One can have many pets, but when it comes to the ownership model, there is only one value at any given moment :-)</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/sup47en7psplrgwyywsd.jpeg" alt="A guy walking with various dogs" />
+<a href="https://www.freepik.com/premium-vector/one-guy-walking-with-different-dogs-street-city-city-cafe-frontshop-colored-flat-cartoon-vector-illustration-modern-cityscape_20175570.htm">Designed by Freepik</a></p>
+
+<p>Let’s look at the example using <em>primitives</em>, which are fixed-size known at compile time.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="k">let</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+<span class="k">let</span> <span class="n">z</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>We have taken 10 and assigned it to <code class="language-plaintext highlighter-rouge">x</code>; in other words, <code class="language-plaintext highlighter-rouge">x</code> owns 10. Then we’re taking <code class="language-plaintext highlighter-rouge">x</code> and assigning it to <code class="language-plaintext highlighter-rouge">y</code> and we’re also assigning it to <code class="language-plaintext highlighter-rouge">z</code>. We know that there can only be one owner at a given time, but we’re not getting any errors here. So what’s going on here is that the compiler is making copies of <code class="language-plaintext highlighter-rouge">x</code> every time we assign it to a new variable.</p>
+
+<p>The stack frame for this would be as follows: <code class="language-plaintext highlighter-rouge">x = 10</code>, <code class="language-plaintext highlighter-rouge">y = 10</code> and <code class="language-plaintext highlighter-rouge">z = 10</code>. This, however, does not appear to be the case as this: <code class="language-plaintext highlighter-rouge">x = 10</code>, <code class="language-plaintext highlighter-rouge">y = x</code>, and <code class="language-plaintext highlighter-rouge">z = x</code>. As we know, <code class="language-plaintext highlighter-rouge">x</code> is the sole owner of this value 10, and neither <code class="language-plaintext highlighter-rouge">y</code> nor <code class="language-plaintext highlighter-rouge">z</code> can own this value.</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/b5x6yid44b6r3cxlyidj.png" alt="Figure 10: Compiler made copies of `x` to both `y` and `z`" /></p>
+
+<p>Because copying stack memory is cheap and fast, primitive types with a fixed-size are said to have <em>copy</em> semantics, whereas complex types <em>move</em> ownership, as previously stated. Thus, in this case, the compiler makes the <em>copies</em>.</p>
+
+<p>At this point, the behaviour of <em><a href="https://en.wikipedia.org/wiki/Name_binding">variable binding</a></em> is similar to that of other programming languages. To illustrate the rules of ownership, we need a complex data type.</p>
+
+<p>Let’s look at data that is stored on the heap and see how Rust understands when to clean it up; the String type is an excellent example for this use case. We’ll focus on String’s ownership-related behaviour; these principles, however, also apply to other complex data types.</p>
+
+<p>The complex type, as we know, manages data on the heap, and its contents are unknown at compile time. Let’s look at the same example we have seen before:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">s1</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">from</span><span class="p">(</span><span class="s">"hello"</span><span class="p">);</span>
+<span class="k">let</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">s1</span><span class="p">;</span>
+
+<span class="nd">println!</span><span class="p">(</span><span class="s">"{}, world!"</span><span class="p">,</span> <span class="n">s1</span><span class="p">);</span>  <span class="c1">// Won't compile. We'll get an error.</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>In the case of <code class="language-plaintext highlighter-rouge">String</code> type, the size might expand and be stored on the heap. This means:</p>
+
+  <ul>
+    <li>At runtime, the memory must be requested from the memory allocator (let’s call it first part).</li>
+    <li>When we’re done using our <code class="language-plaintext highlighter-rouge">String</code>, we need to return (release) this memory back to the allocator (let’s call it second part).</li>
+  </ul>
+
+  <p>We (developers) took care of the first part: when we call <code class="language-plaintext highlighter-rouge">String::from</code>, its implementation requests the memory it needs. This part is almost common across programming languages.</p>
+
+  <p>However, the second part is different. In languages with a garbage collector (GC), the GC keeps track of and cleans up memory that is no longer in use, and we don’t have to worry about it. In languages without a garbage collector, it’s our responsibility to identify when memory is no longer needed and call for it to be explicitly released. It has always been a challenging programming task to do this correctly:</p>
+
+  <ul>
+    <li>We will waste memory if we forget.</li>
+    <li>We will have an invalid variable if we do it too early.</li>
+    <li>We will get a bug if we do it twice.</li>
+  </ul>
+
+  <p>Rust handles memory deallocation in a novel way to make our lives easier: the memory is automatically returned once the variable that owns it goes out of scope.</p>
+</blockquote>
+
+<p>Let’s back to business. In Rust, for complex types, operations like assigning a value to a variable, passing it to a function, or returning it from a function don’t copy the value: <em>they move it</em>. To put it simply, complex types move ownership.</p>
+
+<blockquote>
+  <p>When complex types are no longer in scope, Rust will call the <code class="language-plaintext highlighter-rouge">drop</code> function to explicitly deallocate heap memory.</p>
+</blockquote>
+
+<h3 id="ownership-rule-3">Ownership rule 3</h3>
+
+<p>When the owner goes out of scope, the value will be dropped. Consider the preceding case again:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">s1</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">from</span><span class="p">(</span><span class="s">"hello"</span><span class="p">);</span>
+<span class="k">let</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">s1</span><span class="p">;</span>
+
+<span class="nd">println!</span><span class="p">(</span><span class="s">"{}, world!"</span><span class="p">,</span> <span class="n">s1</span><span class="p">);</span>  <span class="c1">// Won't compile. The value of s1 has already been dropped.</span>
+</code></pre></div></div>
+
+<p>The value of <code class="language-plaintext highlighter-rouge">s1</code> has dropped after <code class="language-plaintext highlighter-rouge">s1</code> is assigned to <code class="language-plaintext highlighter-rouge">s2</code> (in the <code class="language-plaintext highlighter-rouge">let s2 = s1</code> assignment statement). Thus, <code class="language-plaintext highlighter-rouge">s1</code> is no longer valid after this assignment. Here is the memory representation after s1 has been dropped:</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/bpdp7b95pj2d6q2x3a6v.png" alt="Figure 11: Memory representation after `s1` has been dropped" /></p>
+
+<h3 id="how-ownership-moves">How ownership moves</h3>
+
+<p>There are three ways to transfer ownership from one variable to another in a Rust program:</p>
+
+<ol>
+  <li>Assigning the value of one variable to another variable (it was already discussed).</li>
+  <li>Passing value to a function.</li>
+  <li>Returning from a function.</li>
+</ol>
+
+<h4 id="passing-value-to-a-function">Passing value to a function</h4>
+
+<p>Passing a value to a function has semantics that are similar to assigning a value to a variable. Just like assignment, passing a variable to a function causes it to move or copy. Take a look at this example, which shows both the <em>copy</em> and <em>move</em> use cases:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="n">s</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">from</span><span class="p">(</span><span class="s">"hello"</span><span class="p">);</span>  <span class="c1">// s comes into scope</span>
+
+    <span class="nf">move_ownership</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>              <span class="c1">// s's value moves into the function...</span>
+                                    <span class="c1">// so it's no longer valid from this </span>
+																		<span class="c1">// point forward</span>
+
+    <span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>                      <span class="c1">// x comes into scope</span>
+
+    <span class="nf">makes_copy</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>                  <span class="c1">// x would move into the function</span>
+                                    <span class="c1">// It follows copy semantics since it's </span>
+																		<span class="c1">// primitive, so we use x afterward</span>
+
+<span class="p">}</span> <span class="c1">// Here, x goes out of scope, then s. But because s's value was moved, nothing</span>
+  <span class="c1">// special happens.</span>
+
+
+<span class="k">fn</span> <span class="nf">move_ownership</span><span class="p">(</span><span class="n">some_string</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// some_string comes into scope</span>
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"{}"</span><span class="p">,</span> <span class="n">some_string</span><span class="p">);</span>
+<span class="p">}</span> <span class="c1">// Here, some_string goes out of scope and `drop` is called. </span>
+  <span class="c1">// The occupied memory is freed.</span>
+
+
+<span class="k">fn</span> <span class="nf">makes_copy</span><span class="p">(</span><span class="n">some_integer</span><span class="p">:</span> <span class="nb">i32</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// some_integer comes into scope</span>
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"{}"</span><span class="p">,</span> <span class="n">some_integer</span><span class="p">);</span>
+<span class="p">}</span> <span class="c1">// Here, some_integer goes out of scope. Nothing special happens.</span>
+</code></pre></div></div>
+
+<p>If we tried to use <code class="language-plaintext highlighter-rouge">s</code> after the call to <code class="language-plaintext highlighter-rouge">move_ownership</code>, Rust would throw a compile-time error.</p>
+
+<h4 id="returning-from-a-function">Returning from a function</h4>
+
+<p>Returning values can also transfer ownership. The example below shows a function that returns a value, with annotations identical to those in the previous example.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="n">s1</span> <span class="o">=</span> <span class="nf">gives_ownership</span><span class="p">();</span>         <span class="c1">// gives_ownership moves its return</span>
+                                        <span class="c1">// value into s1</span>
+
+    <span class="k">let</span> <span class="n">s2</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">from</span><span class="p">(</span><span class="s">"hello"</span><span class="p">);</span>     <span class="c1">// s2 comes into scope</span>
+
+    <span class="k">let</span> <span class="n">s3</span> <span class="o">=</span> <span class="nf">takes_and_gives_back</span><span class="p">(</span><span class="n">s2</span><span class="p">);</span>  <span class="c1">// s2 is moved into</span>
+                                        <span class="c1">// takes_and_gives_back, which also</span>
+                                        <span class="c1">// moves its return value into s3</span>
+<span class="p">}</span> <span class="c1">// Here, s3 goes out of scope and is dropped. s2 was moved, so nothing</span>
+  <span class="c1">// happens. s1 goes out of scope and is dropped.</span>
+
+
+<span class="k">fn</span> <span class="nf">gives_ownership</span><span class="p">()</span> <span class="k">-&gt;</span> <span class="nb">String</span> <span class="p">{</span>             <span class="c1">// gives_ownership will move its</span>
+                                             <span class="c1">// return value into the function</span>
+                                             <span class="c1">// that calls it</span>
+
+    <span class="k">let</span> <span class="n">some_string</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">from</span><span class="p">(</span><span class="s">"yours"</span><span class="p">);</span> <span class="c1">// some_string comes into scope</span>
+
+    <span class="n">some_string</span>                              <span class="c1">// some_string is returned and</span>
+                                             <span class="c1">// moves out to the calling</span>
+                                             <span class="c1">// function</span>
+<span class="p">}</span>
+
+
+<span class="c1">// This function takes a String and returns it</span>
+<span class="k">fn</span> <span class="nf">takes_and_gives_back</span><span class="p">(</span><span class="n">a_string</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nb">String</span> <span class="p">{</span> <span class="c1">// a_string comes into</span>
+                                                      <span class="c1">// scope</span>
+
+    <span class="n">a_string</span>  <span class="c1">// a_string is returned and moves out to the calling function</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The ownership of a variable always follows the same pattern: <em>a value is moved when it is assigned to another variable</em>. Unless ownership of the data has been moved to another variable, when a variable that includes data on the heap goes out of scope, the value will be cleaned away by <code class="language-plaintext highlighter-rouge">drop</code>.</p>
+
+<p>Hopefully, this gives us a basic understanding of what an <em>ownership</em> model is and how it influences the way Rust handles values, such as assigning them to one another and passing them into and out of functions.</p>
+
+<p>Hold on. One more thing…</p>
+
+<p>Rust’s ownership model, as with all good things, does have certain drawbacks. We quickly realize certain inconveniences once we begin working on Rust. We may have observed that taking ownership and then returning ownership with each function is a little inconvenient.</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/0w9b3q9r59wn7xj0oja2.png" alt="Woman going through nervous breakdown" />
+<a href="https://www.freepik.com/free-vector/woman-going-through-nervous-breakdown-bipolar-behavior-disorder-cartoon-illustration_12699889.htm">Designed by Freepik</a></p>
+
+<p>It’s annoying that everything we pass into a function must be returned if we want to use it again, in addition to any other data returned by that function. What if we want a function to use a value without taking ownership of it?</p>
+
+<p>Consider the following example. The below code will result in an error because variable, <code class="language-plaintext highlighter-rouge">v</code> can no longer be used by the <code class="language-plaintext highlighter-rouge">main</code> function (in <code class="language-plaintext highlighter-rouge">println!</code>) that initially owned it once the ownership is transferred to the <code class="language-plaintext highlighter-rouge">print_vector</code> function.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+   <span class="k">let</span> <span class="n">v</span> <span class="o">=</span> <span class="nd">vec!</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">];</span>
+   <span class="nf">print_vector</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+   <span class="nd">println!</span><span class="p">(</span><span class="s">"{}"</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="c1">// this line gives us an error</span>
+<span class="p">}</span>
+
+<span class="k">fn</span> <span class="nf">print_vector</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">Vec</span><span class="o">&lt;</span><span class="nb">i32</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+   <span class="nd">println!</span><span class="p">(</span><span class="s">"Inside print_vector function {:?}"</span><span class="p">,</span><span class="n">x</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Tracking ownership may seem easy enough, but it can get complicated when we start to deal with large and complex programs. So we need a way to transfer values without transferring ownership, which is where the concept of <em>borrowing</em> comes into play.</p>
+
+<h2 id="borrowing">Borrowing</h2>
+
+<p>Borrowing, in its literal sense, refers to receiving something with the promise of returning it. In the context of Rust, <em>borrowing</em> is a way of accessing value without claiming ownership of it, as it must be returned to its owner at some point.</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/xzb4l2f3jbb7uyqtfcoc.jpg" alt="A girl borrowing a book" />
+<a href="https://www.freepik.com/free-vector/man-stand-one-knee-giving-book-little-girl_6823040.htm">Designed by Freepik</a></p>
+
+<p>When we borrow a value, we reference its memory address with the <code class="language-plaintext highlighter-rouge">&amp;</code> operator. A <code class="language-plaintext highlighter-rouge">&amp;</code> is called a <em>reference</em>. The references themselves are nothing special—under the hood, they’re just addresses. For those familiar with C pointers, a reference is a <em>pointer</em> to memory that contains a value that belongs to (aka <em>owned</em> by) another variable. It’s worth noting that a reference can’t be null in Rust. In fact, a <em>reference is a pointer</em>; it’s the most basic type of pointer. There is just one type of pointer in most languages, but Rust has different kinds of pointers, rather than just one. Pointers and their various kinds are a different topic that will be discussed separately.</p>
+
+<p>To put it simply, Rust refers to creating a reference to some value as borrowing the value, which must eventually return to its owner.</p>
+
+<p>Let’s look at a simple example below:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="k">let</span> <span class="n">y</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">;</span>
+
+<span class="nd">println!</span><span class="p">(</span><span class="s">"Value y={}"</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+<span class="nd">println!</span><span class="p">(</span><span class="s">"Address of y={:p}"</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+<span class="nd">println!</span><span class="p">(</span><span class="s">"Deref of y={}"</span><span class="p">,</span> <span class="o">*</span><span class="n">y</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>The above produces the following output:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Value y=5
+Address of y=0x7fff6c0f131c
+Deref of y=5
+</code></pre></div></div>
+
+<p>Here, the <code class="language-plaintext highlighter-rouge">y</code> variable <em>borrows</em> the number <em>owned</em> by variable <code class="language-plaintext highlighter-rouge">x</code>, while <code class="language-plaintext highlighter-rouge">x</code> still owns the value. We call <code class="language-plaintext highlighter-rouge">y</code> a reference to <code class="language-plaintext highlighter-rouge">x</code>. The borrow ends when <code class="language-plaintext highlighter-rouge">y</code> goes out of scope, and because <code class="language-plaintext highlighter-rouge">y</code> does not own the value, it is not destroyed. To borrow a value, take a reference by the <code class="language-plaintext highlighter-rouge">&amp;</code> operator. The p formatting, <code class="language-plaintext highlighter-rouge">{:p}</code> output as a memory location presented as hexadecimal.</p>
+
+<blockquote>
+  <p><strong>Dereference:</strong> In the above code, “<em>” (i.e., an asterisk) is a *dereference</em> operator that operates on a reference variable. This dereferencing operator allows us to get the value stored in the memory address of a pointer.</p>
+</blockquote>
+
+<p>Let’s look at how a function can use a value without taking ownership through borrowing:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+   <span class="k">let</span> <span class="n">v</span> <span class="o">=</span> <span class="nd">vec!</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">];</span>
+   <span class="nf">print_vector</span><span class="p">(</span><span class="o">&amp;</span><span class="n">v</span><span class="p">);</span>
+   <span class="nd">println!</span><span class="p">(</span><span class="s">"{}"</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="c1">// can access v here as references can't move the value</span>
+<span class="p">}</span>
+
+<span class="k">fn</span> <span class="nf">print_vector</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="o">&amp;</span><span class="nb">Vec</span><span class="o">&lt;</span><span class="nb">i32</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+   <span class="nd">println!</span><span class="p">(</span><span class="s">"Inside print_vector function {:?}"</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>We are passing a reference (<code class="language-plaintext highlighter-rouge">&amp;v</code>) (aka <em>pass-by-reference</em>) to the <code class="language-plaintext highlighter-rouge">print_vector</code> function rather than transferring the ownership (i.e., <em>pass-by-value</em>). As a result, after calling the <code class="language-plaintext highlighter-rouge">print_vector</code> function in the main function, we can access <code class="language-plaintext highlighter-rouge">v</code>.</p>
+
+<h3 id="following-the-pointer-to-the-value-with-the-dereference-operator">Following the pointer to the value with the dereference operator</h3>
+
+<p>As stated previously, a reference is a kind of pointer, and a pointer may be thought of as an arrow pointing to a value stored elsewhere. Consider the below example:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="k">let</span> <span class="n">y</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">;</span>
+
+<span class="nd">assert_eq!</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+<span class="nd">assert_eq!</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="o">*</span><span class="n">y</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>In the above code, we create a reference to an <code class="language-plaintext highlighter-rouge">i32</code> type value and then use the dereference operator to follow the reference to the data. The variable <code class="language-plaintext highlighter-rouge">x</code> holds an <code class="language-plaintext highlighter-rouge">i32</code> type value, <code class="language-plaintext highlighter-rouge">5</code>. We set <code class="language-plaintext highlighter-rouge">y</code> equal to a reference to <code class="language-plaintext highlighter-rouge">x</code>.</p>
+
+<p>This is how the stack memory appears:</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/10628siuswaj4v4r4mj7.png" alt="Stack memory representation" /></p>
+
+<p>We can assert that <code class="language-plaintext highlighter-rouge">x</code> is equal to <code class="language-plaintext highlighter-rouge">5</code>. However, if we want to make an assertion on the value in <code class="language-plaintext highlighter-rouge">y</code>, we must follow the reference to the value it’s referring to using <code class="language-plaintext highlighter-rouge">*y</code> (hence dereference here). Once we dereference <code class="language-plaintext highlighter-rouge">y</code>, we have access to the integer value that <code class="language-plaintext highlighter-rouge">y</code> is pointing to, which we can compare to <code class="language-plaintext highlighter-rouge">5</code>.</p>
+
+<p>If we tried to write <code class="language-plaintext highlighter-rouge">assert_eq!(5, y);</code> instead, we would get this compilation error:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>error[E0277]: can't compare `{integer}` with `&amp;{integer}`
+  --&gt; src/main.rs:11:5
+   |
+11 |     assert_eq!(5, y);
+   |     ^^^^^^^^^^^^^^^^ no implementation for `{integer} == &amp;{integer}`
+</code></pre></div></div>
+
+<p>Because they’re different types, comparing a number and a reference to a number isn’t permitted. Hence, we must use the dereference operator to follow the reference to the value it’s pointing to.</p>
+
+<h3 id="references-are-immutable-by-default">References are immutable by default</h3>
+
+<p>Like variable, a reference is immutable by default—it can be made mutable with <code class="language-plaintext highlighter-rouge">mut</code>, but only if its owner is also mutable:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="k">mut</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="k">let</span> <span class="n">y</span> <span class="o">=</span> <span class="o">&amp;</span><span class="k">mut</span> <span class="n">x</span><span class="p">;</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Immutable references are also known as <em>shared references</em>, whereas mutable references are also known as <em>exclusive references</em>.</p>
+</blockquote>
+
+<p>Consider the below case. We’re granting read-only access to references since we’re using the <code class="language-plaintext highlighter-rouge">&amp;</code> operator instead of <code class="language-plaintext highlighter-rouge">&amp;mut</code>. Even if the source <code class="language-plaintext highlighter-rouge">n</code> is mutable, <code class="language-plaintext highlighter-rouge">ref_to_n</code>, and <code class="language-plaintext highlighter-rouge">another_ref_to_n</code> are not, as they are read-only n borrows.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="k">mut</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="k">let</span> <span class="n">ref_to_n</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">;</span>
+<span class="k">let</span> <span class="n">another_ref_to_n</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Borrow checker will give the below error:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>error[E0596]: cannot borrow `x` as mutable, as it is not declared as mutable
+ --&gt; src/main.rs:4:9
+  |
+3 | let x = 5;
+  |     - help: consider changing this to be mutable: `mut x`
+4 | let y = &amp;mut x;
+  |         ^^^^^^ cannot borrow as mutable
+</code></pre></div></div>
+
+<h3 id="borrowing-rules">Borrowing rules</h3>
+
+<p>One could question why a <em>borrowing</em> would not always be preferred over a <em>move</em>. If that’s the case, why does Rust even have <em>move</em> semantic, and why doesn’t it <em>borrow</em> by default? The reason is that borrowing a value in Rust is not always possible. Borrowing is only permitted in certain cases.</p>
+
+<p>Borrowing has its own set of rules, which the <em>borrow checker</em> strictly enforces during compile time. These rules were put in place to prevent <em>data races</em>. They are as follows:</p>
+
+<ol>
+  <li>The scope of the borrower cannot outlast the scope of the original owner.</li>
+  <li>There can be multiple immutable references, but only one mutable reference.</li>
+  <li>Owners can have immutable or mutable references, but not both at the same time.</li>
+  <li>All references must be valid (can’t be null).</li>
+</ol>
+
+<h4 id="reference-must-not-outlive-the-owner">Reference must not outlive the owner</h4>
+
+<p>A reference’s scope must be contained within the scope of the owner of the value. Otherwise, the reference may refer to a freed value, resulting in a <em>use-after-free</em> error.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">x</span><span class="p">;</span>
+<span class="p">{</span> 
+    <span class="k">let</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nd">println!</span><span class="p">(</span><span class="s">"{}"</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>The above program tries to dereference <code class="language-plaintext highlighter-rouge">x</code> after the owner <code class="language-plaintext highlighter-rouge">y</code> goes out of scope. Rust prevents this <em>use-after-free</em> error.</p>
+
+<h4 id="many-immutable-references-but-only-one-mutable-reference-allowed">Many immutable references, but only one mutable reference allowed</h4>
+
+<p>We can have as many immutable references (aka shared references) to a particular piece of data at a time, but only one mutable reference (aka exclusive reference) allowed at a moment. This rules exists to eliminate <em>data races</em>. When two references point to the same memory location at the same time, at least one of them is writing, and their actions are <em>not</em> synchronized, this is known as a data race.</p>
+
+<p>We may have as many immutable references as we like because they don’t change the data. Borrowing, on the other hand, restricts us to just keeping one mutable reference (<code class="language-plaintext highlighter-rouge">&amp;mut</code>) at a time to prevent the possibility of data races at compile time.</p>
+
+<p>Let’s look at this one:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="k">mut</span> <span class="n">s</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">from</span><span class="p">(</span><span class="s">"hello"</span><span class="p">);</span>
+
+    <span class="k">let</span> <span class="n">r1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="k">mut</span> <span class="n">s</span><span class="p">;</span>
+    <span class="k">let</span> <span class="n">r2</span> <span class="o">=</span> <span class="o">&amp;</span><span class="k">mut</span> <span class="n">s</span><span class="p">;</span>
+
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"{}, {}"</span><span class="p">,</span> <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The above code that attempts to create two mutable references (<code class="language-plaintext highlighter-rouge">r1</code> and <code class="language-plaintext highlighter-rouge">r2</code>) to <code class="language-plaintext highlighter-rouge">s</code> will fail:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>error[E0499]: cannot borrow `s` as mutable more than once at a time
+ --&gt; src/main.rs:6:14
+  |
+5 |     let r1 = &amp;mut s;
+  |              ------ first mutable borrow occurs here
+6 |     let r2 = &amp;mut s;
+  |              ^^^^^^ second mutable borrow occurs here
+7 | 
+8 |     println!("{}, {}", r1, r2);
+  |                        -- first borrow later used here
+</code></pre></div></div>
+
+<h2 id="closing-remarks">Closing remarks</h2>
+
+<p>Hopefully, this clarifies the concepts of ownership and borrowing. I also briefly touched on borrow checker, the backbone of ownership and borrowing. As I mentioned at the beginning, ownership is a novel idea that might be difficult to comprehend at first, even for seasoned developers, but gets easier and easier the more you work on it. This is just a rundown of how memory safety is enforced in Rust. I attempted to make this post as easy to understand as possible while yet providing enough information to grasp the concepts. For more details on Rust’s ownership feature, check out their online <a href="https://doc.rust-lang.org/book/ch04-00-understanding-ownership.html">documentation</a>.</p>
+
+<p>Rust is a great choice when performance matters and it solves pain points that bother many other languages, resulting in a significant step forward with a steep learning curve. For the sixth year in a row, <a href="https://insights.stackoverflow.com/survey/2021#section-most-loved-dreaded-and-wanted-programming-scripting-and-markup-languages">Rust has been Stack Overflow’s most loved language</a>, implying that many people who have had the chance to use it have fallen in love with it. The Rust community continues to grow.</p>
+
+<p><a href="https://blog.rust-lang.org/2022/02/15/Rust-Survey-2021.html#:~:text=89%25%20of%20respondents%20agreed%20that,risky%22%20choice%20for%20production%20use.">According to Rust Survey 2021 Results</a>: The year 2021 was undoubtedly one of the most momentous in Rust’s history. It saw the founding of the Rust Foundation, the 2021 edition, and a larger community than ever before. Rust appears to be on a strong road as we head into the future.</p>
+
+<p>Happy learning!</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/vaffqpjd81x8fheec5j8.jpeg" alt="Happy learning!" />
+<a href="https://www.freepik.com/free-vector/men-success-laptop-relieve-work-from-home-computer-great_12849227.htm">Designed by Freepik</a></p>
+
+  </div><a class="u-url" href="/jekyll/update/2022/07/19/rust-ownership-and-borrowing.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Senthil Nayagan</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Senthil Nayagan</li><li><a class="u-email" href="mailto:hello@senthilnayagan.com">hello@senthilnayagan.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/SenthilNayagan"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">SenthilNayagan</span></a></li><li><a href="https://www.twitter.com/SenthilNayagan"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">SenthilNayagan</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
