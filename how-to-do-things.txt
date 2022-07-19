@@ -4,7 +4,7 @@ How to build the site and make it available on a local server?
 
 Build the site using one of these commands:
 > jekyll build - Builds the site and outputs a static site to a directory called _site.
-> jekyll server - It does jekyll build and and runs it on a local web server at http://localhost:4000
+> jekyll serve - It does jekyll build and and runs it on a local web server at http://localhost:4000
 
 How to install missing gems?
 > bundle install
