@@ -21,6 +21,8 @@ github_username:  SenthilNayagan
 # Build settings
 theme: minima
 
+markdown: kramdown
+
 # Prefer color scheme setting.
 #
 # Note: Keep empty will follow the system prefer color by default,
@@ -40,5 +42,14 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-archives
+
+# Define defaults
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
 
 exclude: [changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock, how-to-do-things.txt]
