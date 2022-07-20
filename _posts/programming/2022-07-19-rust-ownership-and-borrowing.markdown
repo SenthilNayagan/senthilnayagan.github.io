@@ -2,7 +2,7 @@
 layout: post
 title:  "Rust’s Ownership and Borrowing Enforce Memory Safety"
 date:   2022-07-19 13:50:10 +0530
-categories: jekyll update
+categories: programming
 ---
 ![Flat people with pets](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/geqlrxa6a84auut8m5jz.jpeg)
 [Designed by Freepik](https://www.freepik.com/free-vector/flat-people-with-pets_15275949.htm#page=4&query=owner&position=17&from_view=search)
