@@ -16,7 +16,3 @@ In addition to conventional data sources, there are many digital sources nowaday
 
 # How can a data deluge be avoided?
 It is essential to combat the data deluge by gathering the right amount of data that not only saves money but also offers significant and valuable insights.
-
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/

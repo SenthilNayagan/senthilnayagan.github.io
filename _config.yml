@@ -1,21 +1,18 @@
+name: Senthil Nayagan
 title: Senthil Nayagan
 author:
   name: Senthil Nayagan
   email: hello@senthilnayagan.com
-first_name: Senthil
-middle_name:
-last_name: Nayagan
-email: hello@senthilnayagan.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+description: "Technical blog covers Data Engineering and Design Principles."
+logo: 'assets/images/logo.png'
+favicon: 'assets/images/logo.png'
+show_excerpts: false # set to true to show excerpts on the homepage
+baseurl: "/" # the subpath of your site, e.g. /blog
+include: ["_pages"]
 
-baseurl: "" # the subpath of your site, e.g. /blog
-
-url: https://senthilnayagan.github.io/
-twitter_username: SenthilNayagan
-github_username:  SenthilNayagan
+#url: https://senthilnayagan.github.io/
+#twitter_username: SenthilNayagan
+#github_username:  SenthilNayagan
 
 
 # Build settings

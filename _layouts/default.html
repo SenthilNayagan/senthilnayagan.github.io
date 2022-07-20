@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: "en" }}">
-
-  {%- include head.html -%}
-
-  <body>
-
-    {%- include header.html -%}
-
-    <main class="page-content" aria-label="Content">
+{%- include head.html -%}
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <link rel="icon" href="{{ site.baseurl }}/assets/images/logo.png">
+   <title>{{ page.title }} | {{site.name}}</title>
+   {% seo %}
+   <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">-->
+   <link href="{{ site.baseurl }}/assets/css/screen.css" rel="stylesheet">
+   <link href="{{ site.baseurl }}/assets/css/main.css" rel="stylesheet">
+   <script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>
+</head>
+<body>
+   {%- include header.html -%}
+   <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        {{ content }}
+         {{ content }}
       </div>
-    </main>
-
-    {%- include footer.html -%}
-
-  </body>
-
+   </main>
+   {%- include footer.html -%}
+</body>
 </html>
