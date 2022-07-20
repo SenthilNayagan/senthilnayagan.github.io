@@ -3,6 +3,7 @@ layout: post
 title:  "Anti-Pattern"
 date:   2022-07-20 11:24:20 +0530
 categories: dataengineering
+permalink: /:categories/:title
 ---
 ## What is an anti-pattern?
 The term "anti-pattern" was first used in 1995 by a computer programmer, Andrew Koenig, in an article called "Journal of Object-Oriented Programming."

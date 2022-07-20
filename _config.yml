@@ -41,4 +41,4 @@ plugins:
   - jekyll-seo-tag
   - jekyll-archives
 
-exclude: [changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock]
+exclude: [changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock, how-to-do-things.txt]
