@@ -22,3 +22,13 @@ How to install missing gems?
 Note: 
 If we are using Ruby version 3.0.0 or higher, step 5 may fail. We may fix it by adding webrick 
 to your dependencies: bundle add webrick
+---
+rbenv commands:
+rbenv install -l - List all versions of Ruby available, but aren't installed yet in our machine
+rbenv versions - List of the Ruby versions already installed on our machine
+rbenv version - Shows the current version of Ruby
+
+Global version numbers are stored in: ~/.rbenv/versions/
+
+Set the latest version of ruby to be the default version of ruby:
+rbenv global <version>
