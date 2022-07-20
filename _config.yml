@@ -1,8 +1,8 @@
 name: Senthil Nayagan
 title: Senthil Nayagan
 author:
-  name: Senthil Nayagan
-  email: hello@senthilnayagan.com
+  name: "Senthil Nayagan"
+  email: "hello@senthilnayagan.com"
 description: "Technical blog covers Data Engineering and Design Principles."
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/logo.png'
