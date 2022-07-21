@@ -1,7 +1,7 @@
 # Site
 name: Senthil Nayagan
 title: Senthil Nayagan
-description: "It’s my tech blog where I explore various data engineering concepts. I’m also making up stories about design and coding principles."
+subtitle: "It’s my tech blog where I explore various data engineering concepts. I’m also making up stories about design and coding principles."
 logo: "assets/images/logo.png"
 favicon: "assets/images/logo.png"
 baseurl: ""

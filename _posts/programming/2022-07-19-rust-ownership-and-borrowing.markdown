@@ -1,6 +1,8 @@
 ---
 layout: post
 title:  "Rust’s Ownership and Borrowing Enforce Memory Safety"
+subtitle: "How does Rust guarantee memory safety? Rust's ownership feature is a novel idea, yet tricky to understand at first, but it gets easier the more we work on it."
+author: senthil
 date:   2022-07-19 13:50:10 +0530
 tags: [ 'programming', 'rust', 'memory-management' ]
 categories: programming rust
@@ -24,7 +26,7 @@ Memory safety refers to the state of a software application where memory pointer
 
 Let’s use a pseudocode to see what valid memory is.
 
-```
+```text
 // pseudocode #1 - shows valid reference
 { // scope starts here
   int x = 5  
@@ -38,7 +40,7 @@ Since both variables `x` and `y` are in the same block or scope, variable `y` ha
 
 Take a look at the below pseudocode. As we can see, the scope of `x` is limited to the block in which it’s created. We get into dangling references when we try to access `x` outside of its scope. Dangling reference…? What exactly is it?
 
-```
+```text
 // pseudocode #2 - shows invalid reference aka dangling reference
 { // scope starts here
   int x = 5

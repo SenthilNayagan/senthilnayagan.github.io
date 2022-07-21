@@ -1,6 +1,8 @@
 ---
 layout: post
 title:  "Anti-Pattern"
+subtitle: "It's important to keep in mind that identifying bad practices can be as valuable as identifying good practices."
+author: senthil
 date:   2022-07-20 11:24:20 +0530
 tags: ['anti-pattern', 'design-patterns']
 categories: design-patterns
