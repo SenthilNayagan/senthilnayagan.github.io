@@ -1,119 +1,417 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Senthil Nayagan | Technical blog covers Data Engineering and Design Principles.</title>
-<meta name="generator" content="Jekyll v4.2.2" />
-<meta property="og:title" content="Senthil Nayagan" />
-<meta name="author" content="Senthil Nayagan" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="Technical blog covers Data Engineering and Design Principles." />
-<meta property="og:description" content="Technical blog covers Data Engineering and Design Principles." />
-<link rel="canonical" href="http://localhost:4000/" />
-<meta property="og:url" content="http://localhost:4000/" />
-<meta property="og:site_name" content="Senthil Nayagan" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Senthil Nayagan" />
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Senthil Nayagan"},"description":"Technical blog covers Data Engineering and Design Principles.","headline":"Senthil Nayagan","name":"Senthil Nayagan","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/images/logo.png"},"name":"Senthil Nayagan"},"url":"http://localhost:4000/"}</script>
-<!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Senthil Nayagan" /></head>
+<html lang="en">
 <head>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <link rel="icon" href="//assets/images/logo.png">
-   <title> | Senthil Nayagan</title>
+   <link rel="icon" href="/assets/images/logo.png">
+   <title>Home | Senthil Nayagan</title>
+
    <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Senthil Nayagan | Technical blog covers Data Engineering and Design Principles.</title>
+<title>Home | Senthil Nayagan</title>
 <meta name="generator" content="Jekyll v4.2.2" />
-<meta property="og:title" content="Senthil Nayagan" />
-<meta name="author" content="Senthil Nayagan" />
+<meta property="og:title" content="Home" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Technical blog covers Data Engineering and Design Principles." />
-<meta property="og:description" content="Technical blog covers Data Engineering and Design Principles." />
+<meta name="description" content="It’s my tech blog where I explore various data engineering concepts. I’m also making up stories about design and coding principles." />
+<meta property="og:description" content="It’s my tech blog where I explore various data engineering concepts. I’m also making up stories about design and coding principles." />
 <link rel="canonical" href="http://localhost:4000/" />
 <meta property="og:url" content="http://localhost:4000/" />
 <meta property="og:site_name" content="Senthil Nayagan" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Senthil Nayagan" />
+<meta property="twitter:title" content="Home" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Senthil Nayagan"},"description":"Technical blog covers Data Engineering and Design Principles.","headline":"Senthil Nayagan","name":"Senthil Nayagan","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/images/logo.png"},"name":"Senthil Nayagan"},"url":"http://localhost:4000/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","description":"It’s my tech blog where I explore various data engineering concepts. I’m also making up stories about design and coding principles.","headline":"Home","name":"Senthil Nayagan","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/images/logo.png"}},"url":"http://localhost:4000/"}</script>
 <!-- End Jekyll SEO tag -->
 
-   <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">-->
-   <link href="//assets/css/screen.css" rel="stylesheet">
-   <link href="//assets/css/main.css" rel="stylesheet">
-   <script src="//assets/js/jquery.min.js"></script>
+
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+   <link href="/assets/css/screen.css" rel="stylesheet">
+   
+   <link href="/assets/css/main.css" rel="stylesheet">
+   
+   <script src="/assets/js/jquery.min.js"></script>
+
 </head>
-<body><header class="site-header" role="banner">
-
-  <div class="wrapper"><a class="site-title" rel="author" href="/">Senthil Nayagan</a><nav class="site-nav">
-        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
-        <label for="nav-trigger">
-          <span class="menu-icon">
-            <svg viewBox="0 0 18 15" width="18px" height="15px">
-              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
-            </svg>
-          </span>
-        </label>
-
-        <div class="trigger"><a class="page-link" href="/about">About me</a><a class="page-link" href="/categories">Categories</a><a class="page-link" href="/tags">Tags</a></div>
-      </nav></div>
-</header>
-<main class="page-content" aria-label="Content">
-      <div class="wrapper">
-         <div class="home">
 
 
+<body class="layout-default">
+	<!-- defer loading of font and font awesome -->
+	<noscript id="deferred-styles">
+		<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	</noscript>
 
-  <ul class="post-list"><li>
-        <span class="post-meta">Jul 20, 2022</span>
-        <h3>
-          <a class="post-link" href="/dataengineering/anti-pattern">
-            Anti-Pattern
-          </a>
-        </h3></li><li>
-        <span class="post-meta">Jul 19, 2022</span>
-        <h3>
-          <a class="post-link" href="/programming/rust/rust-ownership-and-borrowing">
-            Rust’s Ownership and Borrowing Enforce Memory Safety
-          </a>
-        </h3></li><li>
-        <span class="post-meta">Jul 18, 2022</span>
-        <h3>
-          <a class="post-link" href="/dataengineering/data-deluge">
-            Data Deluge
-          </a>
-        </h3></li></ul>
 
-    </div>
-      </div>
-   </main><footer class="site-footer h-card">
-  <data class="u-url" href="/"></data>
+<!-- Begin Menu Navigation
+================================================== -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
 
-  <div class="wrapper">
+    <div class="container pr-0">
 
-    <h2 class="footer-heading">Senthil Nayagan</h2>
+    <!-- Begin Logo -->
+    <a class="navbar-brand" href="/">
+    <img src="/assets/images/logo.png" alt="Senthil Nayagan">
+    </a>
+    <!-- End Logo -->
 
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li class="p-name">{&quot;name&quot;=&gt;&quot;Senthil Nayagan&quot;, &quot;email&quot;=&gt;&quot;hello@senthilnayagan.com&quot;}</li></ul>
-      </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+    <div class="collapse navbar-collapse" id="navbarMediumish">
+
+        <!-- Begin Menu -->
+
+            <ul class="navbar-nav ml-auto">
+
+                
+                <li class="nav-item active">
+                
+                <a class="nav-link" href="/index.html">Blog</a>
+                </li>
+
+                <li class="nav-item">
+                <a class="nav-link" href="/about">About me</a>
+                </li>
+
+                <script src="/assets/js/lunr.js"></script>
+
+
+<style>
+    .lunrsearchresult .title {color: #d9230f;}
+    .lunrsearchresult .url {color: silver;}
+    .lunrsearchresult a {display: block; color: #777;}
+    .lunrsearchresult a:hover, .lunrsearchresult a:focus {text-decoration: none;}
+    .lunrsearchresult a:hover .title {text-decoration: underline;}
+</style>
+
+
+<form class="bd-search" onSubmit="return lunr_search(document.getElementById('lunrsearch').value);">
+    <input type="text" class="form-control text-small launch-modal-search" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Type and enter..."/>
+</form>
+
+<div id="lunrsearchresults">
+    <ul></ul>
 </div>
 
-      <div class="footer-col footer-col-3">
-        <p>Technical blog covers Data Engineering and Design Principles.</p>
-      </div>
+<script src="/assets/js/lunrsearchengine.js"></script>
+
+            </ul>
+
+        <!-- End Menu -->
+
     </div>
 
-  </div>
+    </div>
+</nav>
+<!-- End Navigation
+================================================== -->
 
+<div class="site-content">
+
+<div class="container">
+
+<!-- Site Title
+================================================== -->
+<div class="mainheading">
+    <h1 class="sitetitle">Senthil Nayagan</h1>
+    <p class="lead">
+        It’s my tech blog where I explore various data engineering concepts. I’m also making up stories about design and coding principles.
+    </p>
+</div>
+
+<!-- Content
+================================================== -->
+<div class="main-content">
+    
+
+<!-- Featured
+================================================== -->
+<section class="featured-posts">
+    <div class="section-title">
+        <h2><span>Featured</span></h2>
+    </div>
+    <div class="row">
+
+    
+
+        
+
+            <!-- begin post -->
+
+<div class="col-md-6 mb-30px">
+    <div class="listfeaturedtag h-100">
+        <div class="row h-100">
+            <div class="col-12 col-md-12 col-lg-5 pr-lg-0">
+                <div class="h-100">
+                    <div class="wrapthumbnail">
+                        <a href="/design-patterns/anti-pattern">
+                            
+                            <img class="featured-box-img-cover" src="/">
+                            
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-7">
+                <div class="h-100 card-group">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title">
+                                <a class="text-dark" href="/design-patterns/anti-pattern">Anti-Pattern</a>
+                                
+                            </h2>
+
+                            <h4 class="card-text">What is an anti-pattern? The term “anti-pattern” was first used in 1995 by a computer programmer, Andrew Koenig, in an article called “Journal of Object-Oriented...</h4>
+                        </div>
+                        <div class="card-footer b-0 bg-white mt-auto">
+                            <div class="wrapfooter">
+                                
+                                <span class="post-date">20 Jul 2022</span>
+                                </span>
+                                <span class="post-read-more"><a href="//design-patterns/anti-pattern" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end post -->
+
+        
+
+    
+
+        
+
+            <!-- begin post -->
+
+<div class="col-md-6 mb-30px">
+    <div class="listfeaturedtag h-100">
+        <div class="row h-100">
+            <div class="col-12 col-md-12 col-lg-5 pr-lg-0">
+                <div class="h-100">
+                    <div class="wrapthumbnail">
+                        <a href="/programming/rust/rust-ownership-and-borrowing">
+                            
+                            <img class="featured-box-img-cover" src="/">
+                            
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-7">
+                <div class="h-100 card-group">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title">
+                                <a class="text-dark" href="/programming/rust/rust-ownership-and-borrowing">Rust’s Ownership and Borrowing Enforce Memory Safety</a>
+                                
+                            </h2>
+
+                            <h4 class="card-text">
+Designed by Freepik
+</h4>
+                        </div>
+                        <div class="card-footer b-0 bg-white mt-auto">
+                            <div class="wrapfooter">
+                                
+                                <span class="post-date">19 Jul 2022</span>
+                                </span>
+                                <span class="post-read-more"><a href="//programming/rust/rust-ownership-and-borrowing" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end post -->
+
+        
+
+    
+
+        
+
+    
+
+    </div>
+</section>
+
+
+
+<!-- Posts Index
+================================================== -->
+<section class="recent-posts">
+
+    <div class="section-title">
+
+        <h2><span>All Stories</span></h2>
+
+    </div>
+
+    <div class="row listrecent">
+
+        
+
+        <!-- begin post -->
+
+
+<div class="col-lg-4 col-md-6 mb-30px card-group">
+    <div class="card h-100">
+        <div class="maxthumb">
+            <a href="/design-patterns/anti-pattern">
+                
+            </a>
+        </div>
+        <div class="card-body">
+            <h2 class="card-title">
+                <a class="text-dark" href="/design-patterns/anti-pattern">Anti-Pattern</a>
+                
+            </h2>
+            <h4 class="card-text">What is an anti-pattern?
+The term “anti-pattern” was first used in 1995 by a computer programmer, Andrew Koenig, in an article called “Journal of Object-Oriented Programming.”
+</h4>
+        </div>
+        <div class="card-footer bg-white">
+            <div class="wrapfooter">
+                
+                <span class="post-date">20 Jul 2022</span>
+                </span>
+                <span class="post-read-more"><a href="/design-patterns/anti-pattern" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end post -->
+
+        
+
+        <!-- begin post -->
+
+
+<div class="col-lg-4 col-md-6 mb-30px card-group">
+    <div class="card h-100">
+        <div class="maxthumb">
+            <a href="/programming/rust/rust-ownership-and-borrowing">
+                
+            </a>
+        </div>
+        <div class="card-body">
+            <h2 class="card-title">
+                <a class="text-dark" href="/programming/rust/rust-ownership-and-borrowing">Rust’s Ownership and Borrowing Enforce Memory Safety</a>
+                
+            </h2>
+            <h4 class="card-text">
+Designed by Freepik
+</h4>
+        </div>
+        <div class="card-footer bg-white">
+            <div class="wrapfooter">
+                
+                <span class="post-date">19 Jul 2022</span>
+                </span>
+                <span class="post-read-more"><a href="/programming/rust/rust-ownership-and-borrowing" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end post -->
+
+        
+
+        <!-- begin post -->
+
+
+<div class="col-lg-4 col-md-6 mb-30px card-group">
+    <div class="card h-100">
+        <div class="maxthumb">
+            <a href="/data-management/data-engineering/data-deluge">
+                
+            </a>
+        </div>
+        <div class="card-body">
+            <h2 class="card-title">
+                <a class="text-dark" href="/data-management/data-engineering/data-deluge">Data Deluge</a>
+                
+            </h2>
+            <h4 class="card-text">What is data deluge? The word “deluge” is pronounced as del-yooj and it literally means an enormous amount of anything. A data deluge is a situation in which the amount...</h4>
+        </div>
+        <div class="card-footer bg-white">
+            <div class="wrapfooter">
+                
+                <span class="post-date">18 Jul 2022</span>
+                </span>
+                <span class="post-read-more"><a href="/data-management/data-engineering/data-deluge" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end post -->
+
+        
+
+    </div>
+
+</section>
+
+<!-- Pagination
+================================================== -->
+<div class="bottompagination">
+<div class="pointerup"><i class="fa fa-caret-up"></i></div>
+<span class="navigation" role="navigation">
+    
+</span>
+</div>
+</div>
+
+
+    
+</div>
+
+<!-- Begin Footer
+================================================== -->
+<footer class="footer">
+   <div class="container">
+       <div class="row">
+           <div class="col-md-6 col-sm-6 text-center text-lg-left">
+               Copyright © 2022 Senthil Nayagan 
+           </div>
+           <div class="col-md-6 col-sm-6 text-center text-lg-right">    
+               <a target="_blank" href="https://www.wowthemes.net/mediumish-free-jekyll-template/">Mediumish Jekyll Theme</a> by WowThemes.net
+           </div>
+       </div>
+   </div>
 </footer>
+<!-- End Footer
+================================================== -->
+
+</div> <!-- /.site-content -->
+
+<!-- Scripts
+================================================== -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<script src="/assets/js/mediumish.js"></script>
+
+
+
+<script src="/assets/js/ie10-viewport-bug-workaround.js"></script> 
+
+
+
 </body>
 </html>

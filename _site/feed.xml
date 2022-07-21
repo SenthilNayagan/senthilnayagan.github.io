@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-07-20T22:15:45+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Senthil Nayagan</title><subtitle>Technical blog covers Data Engineering and Design Principles.</subtitle><author><name>Senthil Nayagan</name><email>hello@senthilnayagan.com</email></author><entry><title type="html">Anti-Pattern</title><link href="http://localhost:4000/dataengineering/anti-pattern" rel="alternate" type="text/html" title="Anti-Pattern" /><published>2022-07-20T11:24:20+05:30</published><updated>2022-07-20T11:24:20+05:30</updated><id>http://localhost:4000/dataengineering/anti-pattern</id><content type="html" xml:base="http://localhost:4000/dataengineering/anti-pattern"><![CDATA[<h2 id="what-is-an-anti-pattern">What is an anti-pattern?</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-07-21T09:22:33+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Senthil Nayagan</title><subtitle>It’s my tech blog where I explore various data engineering concepts. I’m also making up stories about design and coding principles.</subtitle><entry><title type="html">Anti-Pattern</title><link href="http://localhost:4000/design-patterns/anti-pattern" rel="alternate" type="text/html" title="Anti-Pattern" /><published>2022-07-20T11:24:20+05:30</published><updated>2022-07-20T11:24:20+05:30</updated><id>http://localhost:4000/design-patterns/anti-pattern</id><content type="html" xml:base="http://localhost:4000/design-patterns/anti-pattern"><![CDATA[<h2 id="what-is-an-anti-pattern">What is an anti-pattern?</h2>
 <p>The term “anti-pattern” was first used in 1995 by a computer programmer, Andrew Koenig, in an article called “Journal of Object-Oriented Programming.”</p>
 
 <blockquote>
@@ -25,7 +25,7 @@
   <p>The issue that the anti-pattern is attempting to solve already has a better alternative solution in place that is proven to be effective in contrast to the anti-pattern.</p>
 </blockquote>
 
-<p>Keep in mind that the same solution act as both a pattern and an anti-pattern depending on the situation.</p>]]></content><author><name>Senthil Nayagan</name><email>hello@senthilnayagan.com</email></author><category term="dataengineering" /><summary type="html"><![CDATA[What is an anti-pattern? The term “anti-pattern” was first used in 1995 by a computer programmer, Andrew Koenig, in an article called “Journal of Object-Oriented Programming.”]]></summary></entry><entry><title type="html">Rust’s Ownership and Borrowing Enforce Memory Safety</title><link href="http://localhost:4000/programming/rust/rust-ownership-and-borrowing" rel="alternate" type="text/html" title="Rust’s Ownership and Borrowing Enforce Memory Safety" /><published>2022-07-19T13:50:10+05:30</published><updated>2022-07-19T13:50:10+05:30</updated><id>http://localhost:4000/programming/rust/rust-ownership-and-borrowing</id><content type="html" xml:base="http://localhost:4000/programming/rust/rust-ownership-and-borrowing"><![CDATA[<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/geqlrxa6a84auut8m5jz.jpeg" alt="Flat people with pets" />
+<p>Keep in mind that the same solution act as both a pattern and an anti-pattern depending on the situation.</p>]]></content><author><name></name></author><category term="design-patterns" /><category term="#anti-pattern" /><category term="#design-patterns" /><summary type="html"><![CDATA[What is an anti-pattern? The term “anti-pattern” was first used in 1995 by a computer programmer, Andrew Koenig, in an article called “Journal of Object-Oriented Programming.”]]></summary></entry><entry><title type="html">Rust’s Ownership and Borrowing Enforce Memory Safety</title><link href="http://localhost:4000/programming/rust/rust-ownership-and-borrowing" rel="alternate" type="text/html" title="Rust’s Ownership and Borrowing Enforce Memory Safety" /><published>2022-07-19T13:50:10+05:30</published><updated>2022-07-19T13:50:10+05:30</updated><id>http://localhost:4000/programming/rust/rust-ownership-and-borrowing</id><content type="html" xml:base="http://localhost:4000/programming/rust/rust-ownership-and-borrowing"><![CDATA[<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/geqlrxa6a84auut8m5jz.jpeg" alt="Flat people with pets" />
 <a href="https://www.freepik.com/free-vector/flat-people-with-pets_15275949.htm#page=4&amp;query=owner&amp;position=17&amp;from_view=search">Designed by Freepik</a></p>
 
 <p>The Rust’s ownership and borrowing might be confusing if we don’t grasp what’s really going on. This is particularly true when applying a previously learned programming style to a new paradigm; we call this a paradigm shift. Ownership is a novel idea, yet tricky to understand at first, but it gets easier the more we work on it.</p>
@@ -41,12 +41,17 @@
 
 <p>Let’s use a pseudocode to see what valid memory is.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// pseudocode #1 - shows valid reference
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>// pseudocode #1 - shows valid reference
 { // scope starts here
   int x = 5  
   int y = &amp;x
 } // scope ends here
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>In the above pseudocode, we’ve created a variable <code class="language-plaintext highlighter-rouge">x</code> assigned with a value of <code class="language-plaintext highlighter-rouge">10</code>. We use the <code class="language-plaintext highlighter-rouge">&amp;</code> operator or keyword to create a reference. Thus, the <code class="language-plaintext highlighter-rouge">&amp;x</code> syntax lets us create a reference that refers to the value of <code class="language-plaintext highlighter-rouge">x</code>. To put it simply, we’ve created a variable <code class="language-plaintext highlighter-rouge">x</code> that owns <code class="language-plaintext highlighter-rouge">5</code> and a variable <code class="language-plaintext highlighter-rouge">y</code> that is a reference to <code class="language-plaintext highlighter-rouge">x</code>.</p>
 
@@ -54,12 +59,17 @@
 
 <p>Take a look at the below pseudocode. As we can see, the scope of <code class="language-plaintext highlighter-rouge">x</code> is limited to the block in which it’s created. We get into dangling references when we try to access <code class="language-plaintext highlighter-rouge">x</code> outside of its scope. Dangling reference…? What exactly is it?</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// pseudocode #2 - shows invalid reference aka dangling reference
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>// pseudocode #2 - shows invalid reference aka dangling reference
 { // scope starts here
   int x = 5
 } // scope ends here
 int y = &amp;x // can't access x from here; creates dangling reference
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <h3 id="dangling-reference">Dangling reference</h3>
 
@@ -275,11 +285,15 @@ int y = &amp;x // can't access x from here; creates dangling reference
   <p>It’s worth noting that primitive types with fixed-size implement the copy trait to make copies.</p>
 </blockquote>
 
-<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="s">"hello"</span><span class="p">;</span>
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="s">"hello"</span><span class="p">;</span>
 <span class="k">let</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
 <span class="nd">println!</span><span class="p">(</span><span class="s">"{}"</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="c1">// hello</span>
 <span class="nd">println!</span><span class="p">(</span><span class="s">"{}"</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="c1">// hello</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <blockquote>
   <p>In Rust, there are two kinds of strings: <code class="language-plaintext highlighter-rouge">String</code> (heap allocated, and growable) and <code class="language-plaintext highlighter-rouge">&amp;str</code> (fixed size, and can’t be mutated).</p>
@@ -295,9 +309,11 @@ int y = &amp;x // can't access x from here; creates dangling reference
 
 <p>In Rust terminology, “move” means the ownership of the memory is transferred to another owner. Consider the case of complex types that are stored on the heap.</p>
 
-<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">s1</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">from</span><span class="p">(</span><span class="s">"hello"</span><span class="p">);</span>
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="k">let</span> <span class="n">s1</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">from</span><span class="p">(</span><span class="s">"hello"</span><span class="p">);</span>
 <span class="k">let</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">s1</span><span class="p">;</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>We might assume that the second line (i.e. <code class="language-plaintext highlighter-rouge">let s2 = s1;</code>) would make a copy of the value in <code class="language-plaintext highlighter-rouge">s1</code> and bind it to <code class="language-plaintext highlighter-rouge">s2</code>. But this is not the case.</p>
 
@@ -329,15 +345,35 @@ int y = &amp;x // can't access x from here; creates dangling reference
 
 <p>To ensure memory safety, Rust considered <code class="language-plaintext highlighter-rouge">s1</code> invalid after the line <code class="language-plaintext highlighter-rouge">let s2 = s1</code>. Therefore, when <code class="language-plaintext highlighter-rouge">s1</code> is no longer in scope, Rust does not need to release anything. Examine what happens if we try to use <code class="language-plaintext highlighter-rouge">s1</code> after <code class="language-plaintext highlighter-rouge">s2</code> has been created.</p>
 
-<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">s1</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">from</span><span class="p">(</span><span class="s">"hello"</span><span class="p">);</span>
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="k">let</span> <span class="n">s1</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">from</span><span class="p">(</span><span class="s">"hello"</span><span class="p">);</span>
 <span class="k">let</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">s1</span><span class="p">;</span>
 
 <span class="nd">println!</span><span class="p">(</span><span class="s">"{}, world!"</span><span class="p">,</span> <span class="n">s1</span><span class="p">);</span>  <span class="c1">// Won't compile. We'll get an error.</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>We’ll get an error like the one below because Rust prevents you from using the invalidated reference:</p>
 
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cargo run
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="rouge-code"><pre>$ cargo run
    Compiling playground v0.0.1 (/playground)
 error[E0382]: borrow of moved value: `s1`
  --&gt; src/main.rs:6:28
@@ -353,7 +389,7 @@ error[E0382]: borrow of moved value: `s1`
   = note: this error originates in the macro `$crate::format_args_nl` (in Nightly builds, run with -Z macro-backtrace for more info)
 
 For more information about this error, try `rustc --explain E0382`.
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>As Rust “moved” <code class="language-plaintext highlighter-rouge">s1</code>’s ownership of the memory to <code class="language-plaintext highlighter-rouge">s2</code> after the line <code class="language-plaintext highlighter-rouge">let s2 = s1</code>, it considered <code class="language-plaintext highlighter-rouge">s1</code> invalid. Here is the memory representation after s1 has been invalidated:</p>
 
@@ -365,11 +401,15 @@ For more information about this error, try `rustc --explain E0382`.
 
 <p>If we <em>do</em> want to deeply copy the heap data of the <code class="language-plaintext highlighter-rouge">String</code>, not just the stack data, we can use a method called <code class="language-plaintext highlighter-rouge">clone</code>. Here’s an example of how to use the clone method:</p>
 
-<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">s1</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">from</span><span class="p">(</span><span class="s">"hello"</span><span class="p">);</span>
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="k">let</span> <span class="n">s1</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">from</span><span class="p">(</span><span class="s">"hello"</span><span class="p">);</span>
 <span class="k">let</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">s1</span><span class="nf">.clone</span><span class="p">();</span>
 
 <span class="nd">println!</span><span class="p">(</span><span class="s">"s1 = {}, s2 = {}"</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">);</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>When using the clone method, the heap data does get copied into s2. This works perfectly and produces the following behaviour:</p>
 
@@ -383,9 +423,11 @@ For more information about this error, try `rustc --explain E0382`.
 
 <p>Each value has a variable called its owner. It implies that all values are owned by variables. In the example below, variable <code class="language-plaintext highlighter-rouge">s</code> owns the pointer to our string, and in the second line, variable <code class="language-plaintext highlighter-rouge">x</code> owns a value 1.</p>
 
-<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">s</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">from</span><span class="p">(</span><span class="s">"Rule 1"</span><span class="p">);</span>
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="k">let</span> <span class="n">s</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">from</span><span class="p">(</span><span class="s">"Rule 1"</span><span class="p">);</span>
 <span class="k">let</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <h3 id="ownership-rule-2">Ownership rule 2</h3>
 
@@ -396,10 +438,13 @@ For more information about this error, try `rustc --explain E0382`.
 
 <p>Let’s look at the example using <em>primitives</em>, which are fixed-size known at compile time.</p>
 
-<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
 <span class="k">let</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
 <span class="k">let</span> <span class="n">z</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>We have taken 10 and assigned it to <code class="language-plaintext highlighter-rouge">x</code>; in other words, <code class="language-plaintext highlighter-rouge">x</code> owns 10. Then we’re taking <code class="language-plaintext highlighter-rouge">x</code> and assigning it to <code class="language-plaintext highlighter-rouge">y</code> and we’re also assigning it to <code class="language-plaintext highlighter-rouge">z</code>. We know that there can only be one owner at a given time, but we’re not getting any errors here. So what’s going on here is that the compiler is making copies of <code class="language-plaintext highlighter-rouge">x</code> every time we assign it to a new variable.</p>
 
@@ -415,11 +460,15 @@ For more information about this error, try `rustc --explain E0382`.
 
 <p>The complex type, as we know, manages data on the heap, and its contents are unknown at compile time. Let’s look at the same example we have seen before:</p>
 
-<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">s1</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">from</span><span class="p">(</span><span class="s">"hello"</span><span class="p">);</span>
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="k">let</span> <span class="n">s1</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">from</span><span class="p">(</span><span class="s">"hello"</span><span class="p">);</span>
 <span class="k">let</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">s1</span><span class="p">;</span>
 
 <span class="nd">println!</span><span class="p">(</span><span class="s">"{}, world!"</span><span class="p">,</span> <span class="n">s1</span><span class="p">);</span>  <span class="c1">// Won't compile. We'll get an error.</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <blockquote>
   <p>In the case of <code class="language-plaintext highlighter-rouge">String</code> type, the size might expand and be stored on the heap. This means:</p>
@@ -452,11 +501,15 @@ For more information about this error, try `rustc --explain E0382`.
 
 <p>When the owner goes out of scope, the value will be dropped. Consider the preceding case again:</p>
 
-<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">s1</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">from</span><span class="p">(</span><span class="s">"hello"</span><span class="p">);</span>
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="k">let</span> <span class="n">s1</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">from</span><span class="p">(</span><span class="s">"hello"</span><span class="p">);</span>
 <span class="k">let</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">s1</span><span class="p">;</span>
 
 <span class="nd">println!</span><span class="p">(</span><span class="s">"{}, world!"</span><span class="p">,</span> <span class="n">s1</span><span class="p">);</span>  <span class="c1">// Won't compile. The value of s1 has already been dropped.</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>The value of <code class="language-plaintext highlighter-rouge">s1</code> has dropped after <code class="language-plaintext highlighter-rouge">s1</code> is assigned to <code class="language-plaintext highlighter-rouge">s2</code> (in the <code class="language-plaintext highlighter-rouge">let s2 = s1</code> assignment statement). Thus, <code class="language-plaintext highlighter-rouge">s1</code> is no longer valid after this assignment. Here is the memory representation after s1 has been dropped:</p>
 
@@ -476,7 +529,33 @@ For more information about this error, try `rustc --explain E0382`.
 
 <p>Passing a value to a function has semantics that are similar to assigning a value to a variable. Just like assignment, passing a variable to a function causes it to move or copy. Take a look at this example, which shows both the <em>copy</em> and <em>move</em> use cases:</p>
 
-<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+</pre></td><td class="rouge-code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">let</span> <span class="n">s</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">from</span><span class="p">(</span><span class="s">"hello"</span><span class="p">);</span>  <span class="c1">// s comes into scope</span>
 
     <span class="nf">move_ownership</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>              <span class="c1">// s's value moves into the function...</span>
@@ -502,7 +581,7 @@ For more information about this error, try `rustc --explain E0382`.
 <span class="k">fn</span> <span class="nf">makes_copy</span><span class="p">(</span><span class="n">some_integer</span><span class="p">:</span> <span class="nb">i32</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// some_integer comes into scope</span>
     <span class="nd">println!</span><span class="p">(</span><span class="s">"{}"</span><span class="p">,</span> <span class="n">some_integer</span><span class="p">);</span>
 <span class="p">}</span> <span class="c1">// Here, some_integer goes out of scope. Nothing special happens.</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>If we tried to use <code class="language-plaintext highlighter-rouge">s</code> after the call to <code class="language-plaintext highlighter-rouge">move_ownership</code>, Rust would throw a compile-time error.</p>
 
@@ -510,7 +589,38 @@ For more information about this error, try `rustc --explain E0382`.
 
 <p>Returning values can also transfer ownership. The example below shows a function that returns a value, with annotations identical to those in the previous example.</p>
 
-<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+</pre></td><td class="rouge-code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">let</span> <span class="n">s1</span> <span class="o">=</span> <span class="nf">gives_ownership</span><span class="p">();</span>         <span class="c1">// gives_ownership moves its return</span>
                                         <span class="c1">// value into s1</span>
 
@@ -541,7 +651,7 @@ For more information about this error, try `rustc --explain E0382`.
 
     <span class="n">a_string</span>  <span class="c1">// a_string is returned and moves out to the calling function</span>
 <span class="p">}</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>The ownership of a variable always follows the same pattern: <em>a value is moved when it is assigned to another variable</em>. Unless ownership of the data has been moved to another variable, when a variable that includes data on the heap goes out of scope, the value will be cleaned away by <code class="language-plaintext highlighter-rouge">drop</code>.</p>
 
@@ -558,7 +668,16 @@ For more information about this error, try `rustc --explain E0382`.
 
 <p>Consider the following example. The below code will result in an error because variable, <code class="language-plaintext highlighter-rouge">v</code> can no longer be used by the <code class="language-plaintext highlighter-rouge">main</code> function (in <code class="language-plaintext highlighter-rouge">println!</code>) that initially owned it once the ownership is transferred to the <code class="language-plaintext highlighter-rouge">print_vector</code> function.</p>
 
-<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
    <span class="k">let</span> <span class="n">v</span> <span class="o">=</span> <span class="nd">vec!</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">];</span>
    <span class="nf">print_vector</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
    <span class="nd">println!</span><span class="p">(</span><span class="s">"{}"</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="c1">// this line gives us an error</span>
@@ -567,7 +686,7 @@ For more information about this error, try `rustc --explain E0382`.
 <span class="k">fn</span> <span class="nf">print_vector</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">Vec</span><span class="o">&lt;</span><span class="nb">i32</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
    <span class="nd">println!</span><span class="p">(</span><span class="s">"Inside print_vector function {:?}"</span><span class="p">,</span><span class="n">x</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>Tracking ownership may seem easy enough, but it can get complicated when we start to deal with large and complex programs. So we need a way to transfer values without transferring ownership, which is where the concept of <em>borrowing</em> comes into play.</p>
 
@@ -584,20 +703,29 @@ For more information about this error, try `rustc --explain E0382`.
 
 <p>Let’s look at a simple example below:</p>
 
-<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
 <span class="k">let</span> <span class="n">y</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">;</span>
 
 <span class="nd">println!</span><span class="p">(</span><span class="s">"Value y={}"</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
 <span class="nd">println!</span><span class="p">(</span><span class="s">"Address of y={:p}"</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
 <span class="nd">println!</span><span class="p">(</span><span class="s">"Deref of y={}"</span><span class="p">,</span> <span class="o">*</span><span class="n">y</span><span class="p">);</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>The above produces the following output:</p>
 
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Value y=5
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>Value y=5
 Address of y=0x7fff6c0f131c
 Deref of y=5
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>Here, the <code class="language-plaintext highlighter-rouge">y</code> variable <em>borrows</em> the number <em>owned</em> by variable <code class="language-plaintext highlighter-rouge">x</code>, while <code class="language-plaintext highlighter-rouge">x</code> still owns the value. We call <code class="language-plaintext highlighter-rouge">y</code> a reference to <code class="language-plaintext highlighter-rouge">x</code>. The borrow ends when <code class="language-plaintext highlighter-rouge">y</code> goes out of scope, and because <code class="language-plaintext highlighter-rouge">y</code> does not own the value, it is not destroyed. To borrow a value, take a reference by the <code class="language-plaintext highlighter-rouge">&amp;</code> operator. The p formatting, <code class="language-plaintext highlighter-rouge">{:p}</code> output as a memory location presented as hexadecimal.</p>
 
@@ -607,7 +735,16 @@ Deref of y=5
 
 <p>Let’s look at how a function can use a value without taking ownership through borrowing:</p>
 
-<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
    <span class="k">let</span> <span class="n">v</span> <span class="o">=</span> <span class="nd">vec!</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">];</span>
    <span class="nf">print_vector</span><span class="p">(</span><span class="o">&amp;</span><span class="n">v</span><span class="p">);</span>
    <span class="nd">println!</span><span class="p">(</span><span class="s">"{}"</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="c1">// can access v here as references can't move the value</span>
@@ -616,7 +753,7 @@ Deref of y=5
 <span class="k">fn</span> <span class="nf">print_vector</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="o">&amp;</span><span class="nb">Vec</span><span class="o">&lt;</span><span class="nb">i32</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
    <span class="nd">println!</span><span class="p">(</span><span class="s">"Inside print_vector function {:?}"</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>We are passing a reference (<code class="language-plaintext highlighter-rouge">&amp;v</code>) (aka <em>pass-by-reference</em>) to the <code class="language-plaintext highlighter-rouge">print_vector</code> function rather than transferring the ownership (i.e., <em>pass-by-value</em>). As a result, after calling the <code class="language-plaintext highlighter-rouge">print_vector</code> function in the main function, we can access <code class="language-plaintext highlighter-rouge">v</code>.</p>
 
@@ -624,12 +761,17 @@ Deref of y=5
 
 <p>As stated previously, a reference is a kind of pointer, and a pointer may be thought of as an arrow pointing to a value stored elsewhere. Consider the below example:</p>
 
-<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
 <span class="k">let</span> <span class="n">y</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">;</span>
 
 <span class="nd">assert_eq!</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
 <span class="nd">assert_eq!</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="o">*</span><span class="n">y</span><span class="p">);</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>In the above code, we create a reference to an <code class="language-plaintext highlighter-rouge">i32</code> type value and then use the dereference operator to follow the reference to the data. The variable <code class="language-plaintext highlighter-rouge">x</code> holds an <code class="language-plaintext highlighter-rouge">i32</code> type value, <code class="language-plaintext highlighter-rouge">5</code>. We set <code class="language-plaintext highlighter-rouge">y</code> equal to a reference to <code class="language-plaintext highlighter-rouge">x</code>.</p>
 
@@ -641,12 +783,17 @@ Deref of y=5
 
 <p>If we tried to write <code class="language-plaintext highlighter-rouge">assert_eq!(5, y);</code> instead, we would get this compilation error:</p>
 
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>error[E0277]: can't compare `{integer}` with `&amp;{integer}`
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>error[E0277]: can't compare `{integer}` with `&amp;{integer}`
   --&gt; src/main.rs:11:5
    |
 11 |     assert_eq!(5, y);
    |     ^^^^^^^^^^^^^^^^ no implementation for `{integer} == &amp;{integer}`
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>Because they’re different types, comparing a number and a reference to a number isn’t permitted. Hence, we must use the dereference operator to follow the reference to the value it’s pointing to.</p>
 
@@ -654,9 +801,11 @@ Deref of y=5
 
 <p>Like variable, a reference is immutable by default—it can be made mutable with <code class="language-plaintext highlighter-rouge">mut</code>, but only if its owner is also mutable:</p>
 
-<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="k">mut</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="k">let</span> <span class="k">mut</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
 <span class="k">let</span> <span class="n">y</span> <span class="o">=</span> <span class="o">&amp;</span><span class="k">mut</span> <span class="n">x</span><span class="p">;</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <blockquote>
   <p>Immutable references are also known as <em>shared references</em>, whereas mutable references are also known as <em>exclusive references</em>.</p>
@@ -664,21 +813,31 @@ Deref of y=5
 
 <p>Consider the below case. We’re granting read-only access to references since we’re using the <code class="language-plaintext highlighter-rouge">&amp;</code> operator instead of <code class="language-plaintext highlighter-rouge">&amp;mut</code>. Even if the source <code class="language-plaintext highlighter-rouge">n</code> is mutable, <code class="language-plaintext highlighter-rouge">ref_to_n</code>, and <code class="language-plaintext highlighter-rouge">another_ref_to_n</code> are not, as they are read-only n borrows.</p>
 
-<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="k">mut</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="k">let</span> <span class="k">mut</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
 <span class="k">let</span> <span class="n">ref_to_n</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">;</span>
 <span class="k">let</span> <span class="n">another_ref_to_n</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">;</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>Borrow checker will give the below error:</p>
 
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>error[E0596]: cannot borrow `x` as mutable, as it is not declared as mutable
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre>error[E0596]: cannot borrow `x` as mutable, as it is not declared as mutable
  --&gt; src/main.rs:4:9
   |
 3 | let x = 5;
   |     - help: consider changing this to be mutable: `mut x`
 4 | let y = &amp;mut x;
   |         ^^^^^^ cannot borrow as mutable
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <h3 id="borrowing-rules">Borrowing rules</h3>
 
@@ -697,13 +856,19 @@ Deref of y=5
 
 <p>A reference’s scope must be contained within the scope of the owner of the value. Otherwise, the reference may refer to a freed value, resulting in a <em>use-after-free</em> error.</p>
 
-<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">x</span><span class="p">;</span>
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="k">let</span> <span class="n">x</span><span class="p">;</span>
 <span class="p">{</span> 
     <span class="k">let</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
     <span class="n">x</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">y</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="nd">println!</span><span class="p">(</span><span class="s">"{}"</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>The above program tries to dereference <code class="language-plaintext highlighter-rouge">x</code> after the owner <code class="language-plaintext highlighter-rouge">y</code> goes out of scope. Rust prevents this <em>use-after-free</em> error.</p>
 
@@ -715,7 +880,15 @@ Deref of y=5
 
 <p>Let’s look at this one:</p>
 
-<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">let</span> <span class="k">mut</span> <span class="n">s</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">from</span><span class="p">(</span><span class="s">"hello"</span><span class="p">);</span>
 
     <span class="k">let</span> <span class="n">r1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="k">mut</span> <span class="n">s</span><span class="p">;</span>
@@ -723,11 +896,21 @@ Deref of y=5
 
     <span class="nd">println!</span><span class="p">(</span><span class="s">"{}, {}"</span><span class="p">,</span> <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>The above code that attempts to create two mutable references (<code class="language-plaintext highlighter-rouge">r1</code> and <code class="language-plaintext highlighter-rouge">r2</code>) to <code class="language-plaintext highlighter-rouge">s</code> will fail:</p>
 
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>error[E0499]: cannot borrow `s` as mutable more than once at a time
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre>error[E0499]: cannot borrow `s` as mutable more than once at a time
  --&gt; src/main.rs:6:14
   |
 5 |     let r1 = &amp;mut s;
@@ -737,7 +920,7 @@ Deref of y=5
 7 | 
 8 |     println!("{}, {}", r1, r2);
   |                        -- first borrow later used here
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <h2 id="closing-remarks">Closing remarks</h2>
 
@@ -750,7 +933,7 @@ Deref of y=5
 <p>Happy learning!</p>
 
 <p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/vaffqpjd81x8fheec5j8.jpeg" alt="Happy learning!" />
-<a href="https://www.freepik.com/free-vector/men-success-laptop-relieve-work-from-home-computer-great_12849227.htm">Designed by Freepik</a></p>]]></content><author><name>Senthil Nayagan</name><email>hello@senthilnayagan.com</email></author><category term="programming" /><category term="rust" /><category term="Programming" /><category term="Rust" /><summary type="html"><![CDATA[Designed by Freepik]]></summary></entry><entry><title type="html">Data Deluge</title><link href="http://localhost:4000/dataengineering/data-deluge" rel="alternate" type="text/html" title="Data Deluge" /><published>2022-07-18T20:04:24+05:30</published><updated>2022-07-18T20:04:24+05:30</updated><id>http://localhost:4000/dataengineering/data-deluge</id><content type="html" xml:base="http://localhost:4000/dataengineering/data-deluge"><![CDATA[<h1 id="what-is-data-deluge">What is data deluge?</h1>
+<a href="https://www.freepik.com/free-vector/men-success-laptop-relieve-work-from-home-computer-great_12849227.htm">Designed by Freepik</a></p>]]></content><author><name></name></author><category term="programming" /><category term="rust" /><category term="#programming" /><category term="#rust" /><category term="#memory-management" /><summary type="html"><![CDATA[Designed by Freepik]]></summary></entry><entry><title type="html">Data Deluge</title><link href="http://localhost:4000/data-management/data-engineering/data-deluge" rel="alternate" type="text/html" title="Data Deluge" /><published>2022-07-18T20:04:24+05:30</published><updated>2022-07-18T20:04:24+05:30</updated><id>http://localhost:4000/data-management/data-engineering/data-deluge</id><content type="html" xml:base="http://localhost:4000/data-management/data-engineering/data-deluge"><![CDATA[<h1 id="what-is-data-deluge">What is data deluge?</h1>
 <p>The word “deluge” is pronounced as del-yooj and it literally means an enormous amount of anything. A data deluge is a situation in which the amount of new data being produced is so enormous that organisations are unable to handle it. We have reached a point where the volume of data is expanding faster than the infrastructure and technologies that can support it. The granularity of the collected data intensifies the difficulty.</p>
 
 <blockquote>
@@ -762,4 +945,4 @@ Deref of y=5
 <p>In addition to conventional data sources, there are many digital sources nowadays, such as social media. It is challenging to efficiently gather, visualise, and analyse information given the enormous volumes of data available.</p>
 
 <h1 id="how-can-a-data-deluge-be-avoided">How can a data deluge be avoided?</h1>
-<p>It is essential to combat the data deluge by gathering the right amount of data that not only saves money but also offers significant and valuable insights.</p>]]></content><author><name>Senthil Nayagan</name><email>hello@senthilnayagan.com</email></author><category term="dataengineering" /><summary type="html"><![CDATA[What is data deluge? The word “deluge” is pronounced as del-yooj and it literally means an enormous amount of anything. A data deluge is a situation in which the amount of new data being produced is so enormous that organisations are unable to handle it. We have reached a point where the volume of data is expanding faster than the infrastructure and technologies that can support it. The granularity of the collected data intensifies the difficulty.]]></summary></entry></feed>
+<p>It is essential to combat the data deluge by gathering the right amount of data that not only saves money but also offers significant and valuable insights.</p>]]></content><author><name></name></author><category term="data-management" /><category term="data-engineering" /><category term="#data-management" /><category term="#data-engineering" /><summary type="html"><![CDATA[What is data deluge? The word “deluge” is pronounced as del-yooj and it literally means an enormous amount of anything. A data deluge is a situation in which the amount of new data being produced is so enormous that organisations are unable to handle it. We have reached a point where the volume of data is expanding faster than the infrastructure and technologies that can support it. The granularity of the collected data intensifies the difficulty.]]></summary></entry></feed>

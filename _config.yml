@@ -1,37 +1,24 @@
+# Site
 name: Senthil Nayagan
 title: Senthil Nayagan
-author:
-  name: "Senthil Nayagan"
-  email: "hello@senthilnayagan.com"
-description: "Technical blog covers Data Engineering and Design Principles."
-logo: 'assets/images/logo.png'
-favicon: 'assets/images/logo.png'
-show_excerpts: false # set to true to show excerpts on the homepage
-baseurl: "/" # the subpath of your site, e.g. /blog
+description: "It’s my tech blog where I explore various data engineering concepts. I’m also making up stories about design and coding principles."
+logo: "assets/images/logo.png"
+favicon: "assets/images/logo.png"
+baseurl: ""
+disqus: "senthilnayagan"
 include: ["_pages"]
+permalink: /:title
 
-#url: https://senthilnayagan.github.io/
-#twitter_username: SenthilNayagan
-#github_username:  SenthilNayagan
-
-
-# Build settings
-theme: minima
-
-markdown: kramdown
-
-# Prefer color scheme setting.
-#
-# Note: Keep empty will follow the system prefer color by default,
-# and there will be a toggle to switch the theme between dark and light
-# on the bottom left of the sidebar.
-#
-# Available options:
-#
-#     light  - Use the light color scheme
-#     dark   - Use the dark color scheme
-#
-theme_mode:   # [light|dark]
+# Authors
+authors:
+  senthil:
+    name: "Senthil Nayagan"
+    display_name: "Senthil Nayagan"
+    gravatar: 6fc127cda8cd99830932538a58dc6173
+    email: "hello@senthilnayagan.com"
+    web: https://senthilnayagan.com/
+    twitter: https://twitter.com/senthilnayagan
+    description: "I am a Data Engineer by profession, a Rustacean by interest, and an avid Content Creator."
 
 plugins:
   - jekyll-paginate
@@ -40,13 +27,30 @@ plugins:
   - jekyll-seo-tag
   - jekyll-archives
 
-# Define defaults
-defaults:
-  -
-    scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "post"
+# Archives
+jekyll-archives:
+  enabled:
+    - categories
+  layout: archive
+  permalinks:
+    category: '/category/:name/'
+    
+# Pagination 
+paginate: 6
+paginate_path: /page:num/
 
+# Other
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
+
+# Lazy Images ("enabled" or "disabled")
+lazyimages: "disabled"
+
+# Exclude metadata and development time dependencies 
 exclude: [changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock, how-to-do-things.txt]
