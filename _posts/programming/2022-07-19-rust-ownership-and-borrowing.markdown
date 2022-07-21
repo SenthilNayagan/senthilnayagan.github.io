@@ -2,7 +2,7 @@
 layout: post
 title:  "Rust’s Ownership and Borrowing Enforce Memory Safety"
 date:   2022-07-19 13:50:10 +0530
-tags: [ '#programming', '#rust', '#memory-management' ]
+tags: [ 'programming', 'rust', 'memory-management' ]
 categories: programming rust
 permalink: /:categories/:title
 featured: true

@@ -2,7 +2,7 @@
 layout: post
 title:  "Data Deluge"
 date:   2022-07-18 20:04:24 +0530
-tags: ["#data-management", "#data-engineering"]
+tags: ["data-management", "data-engineering"]
 categories: data-management data-engineering
 permalink: /:categories/:title
 featured: false

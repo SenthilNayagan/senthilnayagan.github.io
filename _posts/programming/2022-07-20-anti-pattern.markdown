@@ -2,7 +2,7 @@
 layout: post
 title:  "Anti-Pattern"
 date:   2022-07-20 11:24:20 +0530
-tags: ['#anti-pattern', '#design-patterns']
+tags: ['anti-pattern', 'design-patterns']
 categories: design-patterns
 permalink: /:categories/:title
 featured: true
