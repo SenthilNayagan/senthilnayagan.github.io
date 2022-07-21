@@ -1,4 +1,121 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-07-21T18:38:21+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Senthil Nayagan</title><entry><title type="html">Anti-Pattern</title><link href="http://localhost:4000/design-patterns/anti-pattern" rel="alternate" type="text/html" title="Anti-Pattern" /><published>2022-07-20T11:24:20+05:30</published><updated>2022-07-20T11:24:20+05:30</updated><id>http://localhost:4000/design-patterns/anti-pattern</id><content type="html" xml:base="http://localhost:4000/design-patterns/anti-pattern"><![CDATA[<h2 id="what-is-an-anti-pattern">What is an anti-pattern?</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-07-21T20:28:35+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Senthil Nayagan</title><entry><title type="html">Defining Variables Using the `def` Keyword in Scala</title><link href="http://localhost:4000/programming/scala/scala-def-vs-lazy-val" rel="alternate" type="text/html" title="Defining Variables Using the `def` Keyword in Scala" /><published>2022-07-21T20:11:10+05:30</published><updated>2022-07-21T20:11:10+05:30</updated><id>http://localhost:4000/programming/scala/scala-def-vs-lazy-val</id><content type="html" xml:base="http://localhost:4000/programming/scala/scala-def-vs-lazy-val"><![CDATA[<p>The title reads as follows: “<em>Defining Variables Using the def Keyword.</em>” Before we continue, let’s see if this title is appropriate. It’s not!</p>
+
+<p>Let’s first be clear that a <code class="language-plaintext highlighter-rouge">def</code> is not a variable declaration. It’s a declaration of a function or method instead.</p>
+
+<p>Consider the following code:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="rouge-code"><pre>scala&gt; def i <span class="o">=</span> 3
+def i: Int
+
+scala&gt; i.getClass
+val res0: Class[Int] <span class="o">=</span> int
+
+scala&gt; println<span class="o">(</span>i<span class="o">)</span>
+3
+
+scala&gt; val j <span class="o">=</span> 3
+val j: Int <span class="o">=</span> 3
+
+scala&gt; j.getClass
+val res1: Class[Int] <span class="o">=</span> int
+
+scala&gt; println<span class="o">(</span>j<span class="o">)</span>
+3
+
+scala&gt; i + j
+val res2: Int <span class="o">=</span> 6
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>As we see above, variable definition works using <code class="language-plaintext highlighter-rouge">def</code>. Unlike a <code class="language-plaintext highlighter-rouge">val</code> or <code class="language-plaintext highlighter-rouge">var</code> declaration, a <code class="language-plaintext highlighter-rouge">def</code> is not a variable declaration. It’s a function declaration. What we are doing is creating a function or method that returns a constant number 3. Having said that, both <code class="language-plaintext highlighter-rouge">i</code> and <code class="language-plaintext highlighter-rouge">j</code> are functions that do not take any arguments.</p>
+
+<p>Unless the <code class="language-plaintext highlighter-rouge">lazy</code> keyword is prefixed, variables declared with the <code class="language-plaintext highlighter-rouge">val</code> or <code class="language-plaintext highlighter-rouge">var</code> are evaluated immediately, whereas <code class="language-plaintext highlighter-rouge">def</code> is evaluated on call, which means it is lazy evaluated. Having said, <code class="language-plaintext highlighter-rouge">def</code> evaluation happens when called explicitly.</p>
+
+<blockquote>
+  <p>Note that Scala does not permit the creation of lazy variables, i.e., var. Only lazy values (val) are allowed.</p>
+</blockquote>
+
+<h1 id="difference-between-lazy-val-and-def">Difference between lazy <code class="language-plaintext highlighter-rouge">val</code> and <code class="language-plaintext highlighter-rouge">def</code></h1>
+
+<p><img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1658412816599/I9I25eUsl.jpeg?auto=compress,format&amp;format=webp" alt="Lazy Worker.jpeg" /><a href="https://www.freepik.com/free-vector/two-office-workers-looking-sleepy-colleagues-exhausted-employee-sleeping-workplace-flat-vector-illustration-lazy-worker-burnout_10173989.htm">Designed by Freepik</a></p>
+
+<p>Difference between <code class="language-plaintext highlighter-rouge">lazy val</code> and <code class="language-plaintext highlighter-rouge">def</code>:</p>
+
+<ul>
+  <li>When accessed for the first time,  <code class="language-plaintext highlighter-rouge">lazy</code> evaluates and caches the result.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">def</code> declaration is evaluated every time we call method name.</li>
+</ul>
+
+<p>Let’s see the difference between lazy val and def in action:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="rouge-code"><pre>scala&gt; lazy val a <span class="o">=</span> <span class="o">{</span> println<span class="o">(</span><span class="s2">"a value evaluated"</span><span class="o">)</span><span class="p">;</span> 1<span class="o">}</span>
+lazy val a: Int
+
+scala&gt; a
+a value evaluated
+val res0: Int <span class="o">=</span> 1
+
+scala&gt; a
+val res1: Int <span class="o">=</span> 1
+
+scala&gt; def b <span class="o">=</span> <span class="o">{</span> println<span class="o">(</span><span class="s2">"b function evaluated"</span><span class="o">)</span><span class="p">;</span> 2<span class="o">}</span>
+def b: Int
+
+scala&gt; a
+b <span class="k">function </span>evaluated
+val res3: Int <span class="o">=</span> 2
+
+scala&gt; a
+b <span class="k">function </span>evaluated
+val res4: Int <span class="o">=</span> 2
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>As we see above, <code class="language-plaintext highlighter-rouge">a</code> is <em>evaluated only once</em>, and any subsequent invocations of a return the cached result. This indicates that <code class="language-plaintext highlighter-rouge">lazy val</code> only needs to be evaluated once and then the result is stored forever.</p>
+
+<p>On the other hand, a <code class="language-plaintext highlighter-rouge">def</code> is <em>evaluated every time it is invoked</em>. In this case, we see <code class="language-plaintext highlighter-rouge">println</code> output every time we invoke the function.</p>
+
+<p>I hope this explains how <code class="language-plaintext highlighter-rouge">def</code> differs from <code class="language-plaintext highlighter-rouge">val</code> in terms of evaluation frequency.</p>
+
+<p>Happy learning!</p>]]></content><author><name>senthil</name></author><category term="programming" /><category term="scala" /><category term="programming" /><category term="scala" /><category term="functional-programming" /><summary type="html"><![CDATA[The title reads as follows: “Defining Variables Using the def Keyword.” Before we continue, let’s see if this title is appropriate. It’s not!]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/posts-cover-images/scala-def-vs-lazy-val.jpeg" /><media:content medium="image" url="http://localhost:4000/assets/images/posts-cover-images/scala-def-vs-lazy-val.jpeg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Anti-Pattern</title><link href="http://localhost:4000/design-patterns/anti-pattern" rel="alternate" type="text/html" title="Anti-Pattern" /><published>2022-07-20T11:24:20+05:30</published><updated>2022-07-20T11:24:20+05:30</updated><id>http://localhost:4000/design-patterns/anti-pattern</id><content type="html" xml:base="http://localhost:4000/design-patterns/anti-pattern"><![CDATA[<h2 id="what-is-an-anti-pattern">What is an anti-pattern?</h2>
 <p>The term “anti-pattern” was first used in 1995 by a computer programmer, Andrew Koenig, in an article called “Journal of Object-Oriented Programming.”</p>
 
 <blockquote>

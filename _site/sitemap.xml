@@ -13,6 +13,10 @@
 <lastmod>2022-07-20T11:24:20+05:30</lastmod>
 </url>
 <url>
+<loc>http://localhost:4000/programming/scala/scala-def-vs-lazy-val</loc>
+<lastmod>2022-07-21T20:11:10+05:30</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/about</loc>
 </url>
 <url>
@@ -38,5 +42,8 @@
 </url>
 <url>
 <loc>http://localhost:4000/category/design-patterns/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/category/scala/</loc>
 </url>
 </urlset>
