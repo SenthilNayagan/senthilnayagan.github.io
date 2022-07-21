@@ -11,8 +11,8 @@ permalink: /:categories/:title
 featured: true
 hidden: false
 ---
-![Flat people with pets](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/geqlrxa6a84auut8m5jz.jpeg)
-[Designed by Freepik](https://www.freepik.com/free-vector/flat-people-with-pets_15275949.htm#page=4&query=owner&position=17&from_view=search)
+<!--![Flat people with pets](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/geqlrxa6a84auut8m5jz.jpeg)
+[Designed by Freepik](https://www.freepik.com/free-vector/flat-people-with-pets_15275949.htm#page=4&query=owner&position=17&from_view=search)-->
 
 The Rust’s ownership and borrowing might be confusing if we don't grasp what's really going on. This is particularly true when applying a previously learned programming style to a new paradigm; we call this a paradigm shift. Ownership is a novel idea, yet tricky to understand at first, but it gets easier the more we work on it.
 

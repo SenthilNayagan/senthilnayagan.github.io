@@ -17,6 +17,14 @@
 <lastmod>2022-07-21T20:11:10+05:30</lastmod>
 </url>
 <url>
+<loc>http://localhost:4000/data-management/data-engineering/data-streaming/time-concepts-in-data-streaming</loc>
+<lastmod>2022-07-21T22:00:05+05:30</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/design-patterns/singleton-pattern/singleton-pattern-or-object</loc>
+<lastmod>2022-07-21T22:05:40+05:30</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/about</loc>
 </url>
 <url>
@@ -45,5 +53,11 @@
 </url>
 <url>
 <loc>http://localhost:4000/category/scala/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/category/data-streaming/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/category/singleton-pattern/</loc>
 </url>
 </urlset>
