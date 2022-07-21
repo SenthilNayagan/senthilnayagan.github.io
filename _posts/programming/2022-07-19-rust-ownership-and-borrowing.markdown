@@ -2,6 +2,7 @@
 layout: post
 title:  "Rust’s Ownership and Borrowing Enforce Memory Safety"
 subtitle: "How does Rust guarantee memory safety? Rust's ownership feature is a novel idea, yet tricky to understand at first, but it gets easier the more we work on it."
+image: assets/images/posts-cover-images/rust_ownership_borrowing.jpeg
 author: senthil
 date:   2022-07-19 13:50:10 +0530
 tags: [ 'programming', 'rust', 'memory-management' ]

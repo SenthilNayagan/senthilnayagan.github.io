@@ -2,6 +2,7 @@
 layout: post
 title:  "Anti-Pattern"
 subtitle: "It's important to keep in mind that identifying bad practices can be as valuable as identifying good practices."
+image: assets/images/posts-cover-images/antipattern.webp
 author: senthil
 date:   2022-07-20 11:24:20 +0530
 tags: ['anti-pattern', 'design-patterns']
@@ -9,6 +10,7 @@ categories: design-patterns
 permalink: /:categories/:title
 featured: true
 hidden: false
+rating: false
 ---
 ## What is an anti-pattern?
 The term "anti-pattern" was first used in 1995 by a computer programmer, Andrew Koenig, in an article called "Journal of Object-Oriented Programming."
