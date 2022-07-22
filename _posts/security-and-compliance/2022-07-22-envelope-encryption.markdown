@@ -8,7 +8,7 @@ date:   2022-07-22 18:00:40 +0530
 tags: ["envelope-encryption", "data-protection", "root-key", "data-key"]
 categories: security-and-compliance envelope-encryption
 permalink: /:categories/:title
-featured: false
+featured: true
 hidden: false
 ---
 # What is envelope encryption?
@@ -21,13 +21,14 @@ It's a two-step procedure:
 
 Having said that, the envelop encryption scheme generates two keys. The only key that is encrypted in this envelop encryption scheme is the data key; the root key is not. The root key has to be kept in plaintext so that it can be used to decrypt the data key.
 
-> This two-step procedure can be made longer by encrypting with another encryption key and then encrypting the resulting encrypted key with yet another encryption key, and so on, as shown below. But in the end, though, the top-level key must stay in plaintext so that we can decrypt the rest of the keys and our data. This top-level plaintext key is known as the *root key*.
+> This two-step procedure can be made longer by encrypting with another encryption key and then encrypting the resulting encrypted key with yet another encryption key, and so on, as shown below.<br><br>> *Root key --> Encryption-keyN --> ... Encryption-key1 --> Data key --> Data*<br><br>But in the end, though, the top-level key must stay in plaintext so that we can decrypt the rest of the keys and our data. This top-level plaintext key is known as the *root key*.
 
-> *Root key --> Encryption-keyN --> ... Encryption-key1 --> Data key --> Data*
+|![Envelope encryption flow.](/assets/images/posts/envelope-encryption.png)|
+|:-:|
+|<sub><sup>*Envelope encryption flow.*</sup></sub>|
 
-![Envelope encryption flow.](/assets/images/posts/envelope-encryption.png)
-
-The key vault safeguards our root keys by securely storing and managing them using cryptographic hardware with the highest level of security. In the case of AWS, the root keys are stored securely in the AWS KMS.
+# How can root keys generated in plaintext be protected?
+Thankfully, the key vault saved the day! The key vault safeguards our root keys by securely storing and managing them using specialised cryptographic hardware with the highest level of security. In the case of AWS, the root keys are stored securely in the AWS KMS.
 
 # Where to keep the data keys?
 We have just learnt that root keys are stored securely inside a key vault, but where are data keys stored securely? Can't the data keys be safely kept in the same vault as the root keys? We certainly can, but why is it necessary? Remember that the data keys are inherently protected by encryption. So we should not be concerned about where the data keys are kept. We can put them anywhere, but it's best to put them alongside the encrypted data.
