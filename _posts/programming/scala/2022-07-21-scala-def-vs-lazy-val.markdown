@@ -11,6 +11,7 @@ permalink: /:categories/:title
 featured: false
 hidden: false
 ---
+
 The title reads as follows: "*Defining Variables Using the def Keyword.*" Before we continue, let's see if this title is appropriate. It's not!
 
 Let's first be clear that a `def` is not a variable declaration. It's a declaration of a function or method instead. 

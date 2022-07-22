@@ -11,6 +11,7 @@ permalink: /:categories/:title
 featured: false
 hidden: false
 ---
+
 A singleton pattern limits the number of instances of a class to one. It falls under a *creational design pattern* because it deals with an object creation procedure. The singleton pattern ensures that a class has only one instance and provides a *global access point* to it.
 
 > **Design patterns:** In software engineering, a *design pattern* is a general, reusable solution to a commonly occurring problem in software design. It's not a fully finished design that can be put into source code right away. Instead, it serves as a description, model, or template for problem-solving that may be used in a variety of situations.

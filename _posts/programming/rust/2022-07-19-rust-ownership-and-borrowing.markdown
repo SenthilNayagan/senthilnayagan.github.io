@@ -14,6 +14,7 @@ featured: true
 hidden: false
 rating: 4.5
 ---
+
 The Rust’s ownership and borrowing might be confusing if we don't grasp what's really going on. This is particularly true when applying a previously learned programming style to a new paradigm; we call this a paradigm shift. Ownership is a novel idea, yet tricky to understand at first, but it gets easier the more we work on it.
 
 Before we go further about Rust’s ownership and borrowing, let’s first understand what “memory safety” and “memory leak” are and how programming languages deal with them.

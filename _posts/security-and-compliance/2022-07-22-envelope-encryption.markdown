@@ -11,6 +11,7 @@ permalink: /:categories/:title
 featured: true
 hidden: false
 ---
+
 # What is envelope encryption?
 When we encrypt our data using an encryption key, it is protected, but we also need to protect that encryption key. Envelope encryption is the method of first encrypting plaintext data using a data key and then encrypting that data key with a different key.
 

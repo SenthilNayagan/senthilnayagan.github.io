@@ -11,6 +11,7 @@ permalink: /:categories/:title
 featured: false
 hidden: false
 ---
+
 # What is data deluge?
 The word "deluge" is pronounced as del-yooj and it literally means an enormous amount of anything. A data deluge is a situation in which the amount of new data being produced is so enormous that organisations are unable to handle it. We have reached a point where the volume of data is expanding faster than the infrastructure and technologies that can support it. The granularity of the collected data intensifies the difficulty.
 
