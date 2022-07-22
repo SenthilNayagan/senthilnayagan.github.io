@@ -3,6 +3,8 @@ layout: post
 title:  "Rust’s Ownership and Borrowing Enforce Memory Safety"
 subtitle: "How does Rust guarantee memory safety? Rust's ownership feature is a novel idea, yet tricky to understand at first, but it gets easier the more we work on it."
 image: assets/images/posts-cover-images/rust_ownership_borrowing.jpeg
+beforetoc: "Rust is a great choice when performance matters and it solves pain points that bother many other languages, resulting in a significant step forward with a steep learning curve."
+toc: true
 author: senthil
 date:   2022-07-19 13:50:10 +0530
 tags: [ 'programming', 'rust', 'memory-management' ]
@@ -10,6 +12,7 @@ categories: programming rust
 permalink: /:categories/:title
 featured: true
 hidden: false
+rating: 4.5
 ---
 <!--![Flat people with pets](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/geqlrxa6a84auut8m5jz.jpeg)
 [Designed by Freepik](https://www.freepik.com/free-vector/flat-people-with-pets_15275949.htm#page=4&query=owner&position=17&from_view=search)-->

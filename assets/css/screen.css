@@ -50,7 +50,7 @@ pre {
 
 .site-content {
     min-height: 60vh;
-    padding-top: 1.5rem;
+    padding-top: 3.5rem;
     margin-top: 57px;
     transition: all 0.4s;
 }
@@ -300,7 +300,7 @@ span.post-read-more a:hover {
 }
 
 .mediumnavigation .navbar-brand img {
-    max-height: 30px;
+    max-height: 70px;
     margin-right: 5px;
 }
 
