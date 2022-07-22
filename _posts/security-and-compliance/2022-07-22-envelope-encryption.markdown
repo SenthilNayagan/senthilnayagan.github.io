@@ -21,7 +21,7 @@ It's a two-step procedure:
 
 Having said that, the envelop encryption scheme generates two keys. The only key that is encrypted in this envelop encryption scheme is the data key; the root key is not. The root key has to be kept in plaintext so that it can be used to decrypt the data key.
 
-> This two-step procedure can be made longer by encrypting with another encryption key and then encrypting the resulting encrypted key with yet another encryption key, and so on, as shown below.<br><br>> *Root key --> Encryption-keyN --> ... Encryption-key1 --> Data key --> Data*<br><br>But in the end, though, the top-level key must stay in plaintext so that we can decrypt the rest of the keys and our data. This top-level plaintext key is known as the *root key*.
+> This two-step procedure can be made longer by encrypting with another encryption key and then encrypting the resulting encrypted key with yet another encryption key, and so on, as shown below.<br><br>*Root key --> Encryption-keyN --> ... Encryption-key1 --> Data key --> Data*<br><br>But in the end, though, the top-level key must stay in plaintext so that we can decrypt the rest of the keys and our data. This top-level plaintext key is known as the *root key*.
 
 |![Envelope encryption flow.](/assets/images/posts/envelope-encryption.png)|
 |:-:|
