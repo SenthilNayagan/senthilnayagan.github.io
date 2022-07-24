@@ -7,7 +7,7 @@ beforetoc: "Rust is a great choice when performance matters and it solves pain p
 toc: true
 author: senthil
 date:   2022-07-19 13:50:10 +0530
-tags: [ 'programming', 'rust', 'memory-management' ]
+tags: [ "programming", "rust", "memory-management" ]
 categories: programming rust
 permalink: /:categories/:title
 featured: true
