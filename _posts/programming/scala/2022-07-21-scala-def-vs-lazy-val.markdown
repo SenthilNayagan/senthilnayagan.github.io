@@ -2,7 +2,7 @@
 layout: post
 title:  "Defining Variables Using the `def` Keyword in Scala"
 subtitle: "Difference between `lazy val` and `def`."
-image: assets/images/posts-cover-images/scala-def-vs-lazy-val.jpeg
+image: assets/images/posts-cover-images/scala_def_vs_lazy_val.jpeg
 author: senthil
 date:   2022-07-21 20:11:10 +0530
 tags: [ "programming", "scala", "functional-programming" ]
