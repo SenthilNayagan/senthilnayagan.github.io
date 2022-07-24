@@ -496,10 +496,11 @@ ul.tags li {
 }
 
 ul.tags li a {
-    background: rgba(0, 0, 0, .05);
+    background: rgba(238, 238, 228, .4);
     color: rgba(0, 0, 0, .6);
-    border-radius: 3px;
-    padding: 5px 10px;
+    border-radius: 2px;
+    padding: 5px 5px;
+    font-size: small;
 }
 
 ul.tags li a:hover {
