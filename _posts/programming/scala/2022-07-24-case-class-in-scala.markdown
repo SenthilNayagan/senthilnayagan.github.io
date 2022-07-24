@@ -2,7 +2,7 @@
 layout: post
 title:  "Case Class in Scala"
 subtitle: "The case class represents immutable data. It is a type of class that is often used for data storage."
-image: assets/images/posts-cover-images/scala_case_class.jpg
+image: assets/images/posts-cover-images/scala-case-class.jpg
 author: senthil
 date:   2022-07-24 13:40:00 +0530
 tags: [ "programming", "scala", "object-oriented-programming", "oops" ]

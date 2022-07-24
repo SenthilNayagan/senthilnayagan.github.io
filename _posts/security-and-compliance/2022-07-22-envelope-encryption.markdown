@@ -2,7 +2,7 @@
 layout: post
 title:  "Envelope Encryption"
 subtitle: "Envelope encryption is a way of encrypting plaintext data using a key and then encrypting that key using an another key. This strategy isn't meant to make things more secure; instead, it's meant to improve performance."
-image: assets/images/posts-cover-images/envelope_encryption.jpg
+image: assets/images/posts-cover-images/envelope-encryption.jpg
 author: senthil
 date:   2022-07-22 18:00:40 +0530
 tags: ["envelope-encryption", "data-protection", "root-key", "data-key"]

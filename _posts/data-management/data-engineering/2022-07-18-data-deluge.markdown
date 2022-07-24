@@ -2,7 +2,7 @@
 layout: post
 title:  "Data Deluge"
 subtitle: "When the granularity of data increases, its complexity also increases. At some point, we will reach a point where we cannot handle the volume of fresh data being generated."
-image: assets/images/posts-cover-images/data_deluge.webp
+image: assets/images/posts-cover-images/data-deluge.webp
 author: senthil
 date:   2022-07-18 20:04:24 +0530
 tags: ["data-management", "data-engineering"]

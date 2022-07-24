@@ -2,7 +2,7 @@
 layout: post
 title:  "Rust’s Ownership and Borrowing Enforce Memory Safety"
 subtitle: "How does Rust guarantee memory safety? Rust's ownership feature is a novel idea, yet tricky to understand at first, but it gets easier the more we work on it."
-image: assets/images/posts-cover-images/rust_ownership_borrowing.jpeg
+image: assets/images/posts-cover-images/rust-ownership-borrowing.jpeg
 beforetoc: "Rust is a great choice when performance matters and it solves pain points that bother many other languages, resulting in a significant step forward with a steep learning curve."
 toc: true
 author: senthil
@@ -25,7 +25,7 @@ Memory safety refers to the state of a software application where memory pointer
 
 |![Bag Theft](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/a3r0g7c0ycz5fc62zhsz.jpg)|
 |:-:|
-|[<sub><sup>*Designed by Freepik.*</sup></sub>](https://www.freepik.com/free-vector/theft-bag-flat-composition-with-indoor-view-clothing-shop-woman-choosing-shirt-criminal-character-illustration_15481059.htm)|
+|[<sub><sup>*Designed by Freepik.*</sup></sub>](https://www.freepik.com/free-vector/theft-bag-flat-composition-with-indoor-view-clothing-shop-woman-choosing-shirt-criminal-character-illustration_15481059.htm){:target="_blank"}|
 
 Let’s use a pseudocode to see what valid memory is.
 
@@ -69,7 +69,7 @@ It’s important to understand what a memory leak is and what its consequences a
 
 |![Flooded house emergency](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/e42e5d1ge2dioiq2ieuj.jpg)|
 |:-:|
-|[<sub><sup>*Designed by Freepik.*</sup></sub>](https://www.freepik.com/free-vector/flooded-house-emergency-flat-cartoon-with-family-home-calling-plumber-fix-burst-pipes_6845858.htm)|
+|[<sub><sup>*Designed by Freepik.*</sup></sub>](https://www.freepik.com/free-vector/flooded-house-emergency-flat-cartoon-with-family-home-calling-plumber-fix-burst-pipes_6845858.htm){:target="_blank"}|
 
 A *memory leak* is an unintentional form of memory consumption whereby the developer fails to free an allocated block of *heap* memory when it is no longer needed. It's simply the opposite of memory safety. More on the different memory types later, but for now, just know that a *stack* stores fixed-length variables known at compile time, whereas the size of variables that may change later at runtime must be placed on the *heap*.
 
@@ -378,7 +378,7 @@ There can only be one owner of a value at a given time. One can have many pets, 
 
 |![A guy walking with various dogs](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/sup47en7psplrgwyywsd.jpeg)|
 |:-:|
-|[<sub><sup>*Designed by Freepik.*</sup></sub>](https://www.freepik.com/premium-vector/one-guy-walking-with-different-dogs-street-city-city-cafe-frontshop-colored-flat-cartoon-vector-illustration-modern-cityscape_20175570.htm)|
+|[<sub><sup>*Designed by Freepik.*</sup></sub>](https://www.freepik.com/premium-vector/one-guy-walking-with-different-dogs-street-city-city-cafe-frontshop-colored-flat-cartoon-vector-illustration-modern-cityscape_20175570.htm){:target="_blank"}|
 
 Let’s look at the example using *primitives*, which are fixed-size known at compile time.
 
@@ -538,7 +538,7 @@ Rust's ownership model, as with all good things, does have certain drawbacks. We
 
 |![Woman going through nervous breakdown](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/0w9b3q9r59wn7xj0oja2.png)|
 |:-:|
-|[<sub><sup>*Designed by Freepik.*</sup></sub>](https://www.freepik.com/free-vector/woman-going-through-nervous-breakdown-bipolar-behavior-disorder-cartoon-illustration_12699889.htm)|
+|[<sub><sup>*Designed by Freepik.*</sup></sub>](https://www.freepik.com/free-vector/woman-going-through-nervous-breakdown-bipolar-behavior-disorder-cartoon-illustration_12699889.htm){:target="_blank"}|
 
 It's annoying that everything we pass into a function must be returned if we want to use it again, in addition to any other data returned by that function. What if we want a function to use a value without taking ownership of it?
 
@@ -564,7 +564,7 @@ Borrowing, in its literal sense, refers to receiving something with the promise 
 
 |![A girl borrowing a book](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/xzb4l2f3jbb7uyqtfcoc.jpg)|
 |:-:|
-|[<sub><sup>*Designed by Freepik.*</sup></sub>](https://www.freepik.com/free-vector/man-stand-one-knee-giving-book-little-girl_6823040.htm)|
+|[<sub><sup>*Designed by Freepik.*</sup></sub>](https://www.freepik.com/free-vector/man-stand-one-knee-giving-book-little-girl_6823040.htm){:target="_blank"}|
 
 When we borrow a value, we reference its memory address with the `&` operator. A `&` is called a *reference*. The references themselves are nothing special—under the hood, they're just addresses. For those familiar with C pointers, a reference is a *pointer* to memory that contains a value that belongs to (aka *owned* by) another variable. It's worth noting that a reference can't be null in Rust. In fact, a *reference is a pointer*; it's the most basic type of pointer. There is just one type of pointer in most languages, but Rust has different kinds of pointers, rather than just one. Pointers and their various kinds are a different topic that will be discussed separately. 
 
@@ -746,4 +746,4 @@ Happy learning!
 
 |![Happy learning!](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/vaffqpjd81x8fheec5j8.jpeg)|
 |:-:|
-|[<sub><sup>*Designed by Freepik.*</sup></sub>](https://www.freepik.com/free-vector/men-success-laptop-relieve-work-from-home-computer-great_12849227.htm)|
+|[<sub><sup>*Designed by Freepik.*</sup></sub>](https://www.freepik.com/free-vector/men-success-laptop-relieve-work-from-home-computer-great_12849227.htm){:target="_blank"}|
