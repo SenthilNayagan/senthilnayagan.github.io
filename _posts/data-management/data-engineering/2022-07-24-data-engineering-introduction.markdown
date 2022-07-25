@@ -13,7 +13,7 @@ hidden: false
 ---
 
 # What is data engineering?
-Data engineering is the process of designing and building systems for acquiring large amounts of raw operational data from various sources and formats, analysing it, transforming it, and storing it at scale. The management of the data infrastructure is a particular focus of data engineering.
+Data engineering is the process of designing and building systems for acquiring large amounts of raw operational data from various sources and formats, analysing it, transforming it, and storing it at scale. The management of the data infrastructure is a particular focus of data engineering. Data engineering is usually regarded as the primary support for present data analytics needs.
 
 Data is handled by various technologies and stored in a variety of forms and structures, making data analysis difficult. Hence, we need the right specialists (data engineers) and technology to unify various data sets so that they remain available and usable for further analysis by data analysts and scientists.
 
