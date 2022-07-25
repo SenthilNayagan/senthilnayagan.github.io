@@ -54,7 +54,7 @@ with DAG('setting_sla',
 > When a task exceeds its SLA, it is not cancelled. It's free to continue running till the end.
 
 The `timedelta` object is found in the Python's datetime library. It takes the following arguments:
-microseconds (not applicable to Airflow)
+- microseconds (not applicable to Airflow)
 - milliseconds (not applicable to Airflow)
 - seconds
 - minutes
