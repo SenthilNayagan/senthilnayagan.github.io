@@ -14,14 +14,14 @@ hidden: false
 
 Caching is a common approach for reusing certain computation in Apache Spark. It's one of the optimisation techniques in Spark. Among big data practitioners, caching receives a lot of consideration and discussion.
 
-The underlying data store is accessed each time an operation is performed in a Spark DataFrame, requiring the entire dataset to be sent across the network for each execution. When the same data is retrieved frequently, caching is immensely useful.
+The underlying data store is accessed each time an operation is performed in a Spark DataFrame, requiring the entire dataset to be sent across the network for each execution. When the same data is retrieved frequently, caching is immensely useful. The objective of caching is to *minimize disk I/O* and *retrieve data as quickly as possible* by storing it in RAM rather than on the disk.
 
 Caching helps in storing interim and partial results so they'll be utilised in subsequent computation stages. These intermediate results are kept either in memory (by default) or on disk and are stored as RDDs. Obviously, data that has been cached in memory is faster to access, but cache space is always limited.
 
 > **Run out of memory:** We will quickly exhaust our memory if we cache every RDD. We must thus carefully consider our options before choosing to cache an RDD.
 
 # The art of caching
-Caching frequently involves a lot of trial and error since it needs taking into account the number of available nodes, the importance of each RDD, and the amount of memory available for caching. As stated above, we will quickly exhaust our memory (aka out-of-memory) if we cache every RDD. We must thus carefully consider our options before choosing to cache an RDD.
+Caching frequently involves a lot of trial and error since it needs taking into account the number of available nodes, the importance of each RDD, and the amount of memory available for caching. As stated above, we will quickly exhaust our memory (resulting in an out-of-memory situation) if we cache every RDD. We must thus carefully consider our options before choosing to cache an RDD.
 
 # Caching a DataFrame
 In Spark, there are two functions that can be used to cache both RDD, DataFrame, and Dataset:

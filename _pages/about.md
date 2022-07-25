@@ -10,8 +10,8 @@ comments: true
     <div class="col-md-8 pr-5">
         <p>Hello there!</p>
         <p>I am Senthil Nayagan. It's a pleasure to meet you!</p>
-        <p>I am a seasoned IT professional with years of expertise in designing and building complex business solutions with open-source technologies. I've been working in the field of data engineering for the past few years. Simply said, I am a Data Engineer by profession, a Rustacean by interest, and an avid Content Creator.</p>
-        <p>It's my tech blog where I explore various data engineering concepts. I'm also making up stories about design and coding principles. I'm attempting to make all of my stories as clear as possible while yet providing enough detail for you to comprehend the ideas.</p>
+        <p>I am a seasoned IT professional with years of expertise in designing and building complex business solutions with open-source technologies. I've been working in the field of data engineering for the past few years. If I were to describe myself in a few words, I would say that I am a Data Engineer by profession, a Rustacean by interest, and an avid Content Creator at present.</p>
+        <p>This is my tech blog where I explore various data engineering concepts. I'm also making up stories about design and coding principles. I'm attempting to make all of my stories as clear as possible while yet providing enough detail for you to comprehend the ideas.</p>
         <p>If you like my stories or have suggestions for their improvement, please feel free to contact me at <a href="mailto:hello@senthilnayagan.com">hello@senthilnayagan.com</a>.</p>
         <p>All the best!</p>
     </div>
