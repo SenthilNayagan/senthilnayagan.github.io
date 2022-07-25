@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Bucketing and Partitions in Spark"
+title:  "Partitions and Bucketing in Spark"
 subtitle: "Partitioning and bucketing are used to improve the reading of data by reducing the cost of shuffles, the need for serialization, and the amount of network traffic."
 image: assets/images/posts-cover-images/spark-bucketing-and-partitions.jpg
 author: senthil
@@ -12,7 +12,9 @@ featured: false
 hidden: false
 ---
 
-# Bucketing
+Partitioning and bucketing are used to improve the reading of data by reducing the cost of shuffles, the need for serialization, and the amount of network traffic.
+
+# Bucketing in Spark
 Bucketing is an optimisation feature that Apache Spark (also in Apache Hive) has supported since version 2.0. It's a way to improve performance by dividing data into smaller, manageable portions called "buckets" to identify data partitioning as it's being written down. This feature is intended to improve the efficiency of reading same data. This efficiency improvement is mostly about getting rid of shuffles (also called exchanges) in join and aggregation queries.
 
 > Apache Hive popularised buckets, and Apache Spark added their support.
