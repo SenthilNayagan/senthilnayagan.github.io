@@ -232,6 +232,8 @@ span.author-meta {
 span.post-date,
 span.post-read {
     color: rgba(0, 0, 0, .44);
+    font-size: 12px;
+    letter-spacing: .5px;
 }
 
 span.post-read-more {
