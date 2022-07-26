@@ -6,6 +6,8 @@ permalink: "/privacy-policy.html"
 
 This blog takes your privacy seriously. To better protect your privacy we provide this privacy policy notice explaining the way your personal information is collected and used.
 
+Please do not hesitate to [contact us]({{site.baseurl}}/contact.html) if you have further concerns or seek extra information about our Privacy Policy.
+
 
 #### Collection of Routine Information
 
@@ -14,12 +16,7 @@ This website track basic information about their visitors. This information incl
 
 #### Cookies
 
-No cookies used.
-
-
-#### Advertisement and Other Third Parties
-
-Advertising partners and other third parties may use cookies, scripts and/or web beacons to track visitor activities on this website in order to display advertisements and other useful information. Such tracking is done directly by the third parties through their own servers and is subject to their own privacy policies. This website has no access or control over these cookies, scripts and/or web beacons that may be used by third parties. Learn how to [opt out of Google’s cookie usage](http://www.google.com/privacy_ads.html){:target="_blank"}.
+This website does not use cookies.
 
 
 #### Links to Third Party Websites
@@ -39,6 +36,6 @@ This Privacy Policy is effective and will remain in effect except with respect t
 We reserve the right to update or change our Privacy Policy at any time and you should check this Privacy Policy periodically. If we make any material changes to this Privacy Policy, we will notify you either through the email address you have provided us, or by placing a prominent notice on our website.
 
 
-#### Contact Information
+#### Consent
 
-For any questions or concerns regarding the privacy policy, please [contact us here]({{site.baseurl}}/contact.html).
+By using our website, you consent to and accept our Privacy Policy and its terms and conditions.

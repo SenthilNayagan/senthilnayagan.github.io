@@ -9,7 +9,7 @@ tags: ["data-engineering", "big-data", "data-lake", "lakehouse"]
 categories: data-engineering data-lake
 permalink: /:categories/:title
 featured: false
-hidden: false
+hidden: true
 ---
 
 # Data lake trade-offs

@@ -58,4 +58,9 @@ Before the ingested data is put to real use, it must undergo many actions, such 
 Depending on the business requirements, data transformation might be a fairly complicated process. The levels of difficulty depends on a variety of factors including the following:
 - Volume (size), variety (types), and breadth (how many) of data sources
 - Complexity of business requirements
-- Frequency of data ingestion 
+- Frequency of data ingestion
+
+### Presentation
+Presentation is the stage where transformation outcomes are stored. This stage could be one of the following:
+- **Intermediate** - This is where the intermediate results of the transformations are kept, and it is referred to as the *silver-layer* in data lakes and data warehouses.
+- **Final** - This is where the final outputs of the transformations are kept, and it is referred to as the *gold-layer* in data lakes and data warehouses.
