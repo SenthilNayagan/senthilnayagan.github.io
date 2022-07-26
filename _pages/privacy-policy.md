@@ -14,7 +14,7 @@ This website track basic information about their visitors. This information incl
 
 #### Cookies
 
-Where necessary, this website uses cookies to store information about a visitor’s preferences and history in order to better serve the visitor and/or present the visitor with customized content.
+No cookies used.
 
 
 #### Advertisement and Other Third Parties
