@@ -215,14 +215,6 @@ section.recent-posts {
     overflow: hidden !important;
 }
 
-span.reading-time {
-    background-color: #f1f2f6;
-    border-radius: 4px;
-    font-size: 12px;
-    display: inline-block;
-    padding: 2px 4px;
-}
-
 span.post-name,
 span.post-date,
 span.author-meta {
@@ -233,7 +225,6 @@ span.post-date,
 span.post-read {
     color: rgba(0, 0, 0, .44);
     font-size: 12px;
-    letter-spacing: .5px;
 }
 
 span.post-read-more {
