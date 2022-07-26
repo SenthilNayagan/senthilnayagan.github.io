@@ -25,11 +25,6 @@ The first step in data engineering is obtaining vast quantities of data from a v
 
 Let's explore each data engineering activity individually.
 
-## Data ingestion
-As stated before, data ingestion is the first stage in data engineering. It involves gathering data from many sources and storing it in a data lake or equivalent big data platform. Depending on the business needs, we can use either or both of the following ingestion types to bring in data into the big data platform:
-- Real-time ingestion
-- Batch ingestion
-
 ## What is a data pipeline?
 
 |![Data pipeline](/assets/images/posts/data-pipeline.jpg)|
@@ -39,3 +34,28 @@ As stated before, data ingestion is the first stage in data engineering. It invo
 A data pipeline is commonly constructed as part of data engineering to transfer data from a source to a destination. Data is transformed and optimised along the pipeline's journey, eventually reaching a state where it can be analysed and used to generate business insights. Many of the manual processes required in processing and optimising continuous data loads are now automated by modern data pipelines.
 
 Having stated that, data engineering's primary task is the creation of data pipelines. They provide a seamless, automatic flow of data from one stage to another and eliminate the most of manual steps from the process. To effectively meet analytics expectations, data engineers construct a series of operations into a data pipeline that consists of many phases.
+
+### Components of a data pipeline
+A data pipeline consists of several components. Each component does a specific function and contributes to the overall success of the source-to-destination data journey. The different components include:
+- Ingestion
+- Transformation
+- Presentation
+
+#### Ingestion
+The first step in a typical pipeline is obtaining data from various sources like databases, files, APIs, logs, and so on, and storing it in a data lake or equivalent big data platform. Depending on the data source and business needs, data engineers may need to choose between *batch* or *streaming* (real-time) ingestion, or both. The complexity of data ingestion is related to the nature of the data source, whether *static* or *dynamic*.
+
+> **Static data:** Static data that normally does not change over time once it has been recorded, or if it does, it changes infrequently. It is a fixed dataset, thus it does not need refreshing. A list of nations, cities, counties, etc., would be an example of static data.
+
+Ingestion from a static data source is straightforward, and we can get it using a scheduler-driven batch-ingestion procedure.
+
+> **Dynamic data:** The literal meaning of the term "dynamic" is change. When used to describe data, as in "dynamic data," the term refers to data that is subject to change as necessary. There are several reasons why data should be dynamic. Dynamic data is mostly transactional data that is often updated, meaning it changes as new information becomes available. On an e-commerce website, for instance, product information is kept in a database and updated in real-time.
+
+The true challenge of data ingestion emerges when such dynamic data is ingested. Data engineers must use effective *change data capture* (CDC) approaches to *incrementally* ingest data.
+
+### Transformation
+Before the ingested data is put to real use, it must undergo many actions, such as *cleansing*, *curation*, *standardization*, and finally *aggregation*. This collaborative process is known as *data transformation*. In other words, the data transformation process prepares data to the point where it can be readily and easily consumed for analytical processes.
+
+Depending on the business requirements, data transformation might be a fairly complicated process. The levels of difficulty depends on a variety of factors including the following:
+- Volume (size), variety (types), and breadth (how many) of data sources
+- Complexity of business requirements
+- Frequency of data ingestion 
