@@ -64,3 +64,5 @@ Depending on the business requirements, data transformation might be a fairly co
 Presentation is the stage where transformation outcomes are stored. This stage could be one of the following:
 - **Intermediate** - This is where the intermediate results of the transformations are kept, and it is referred to as the *silver-layer* in data lakes and data warehouses.
 - **Final** - This is where the final outputs of the transformations are kept, and it is referred to as the *gold-layer* in data lakes and data warehouses.
+
+> **The three layers of the data lake:**  Typically, the data lake has the following three layers: **Bronze**, **silver** and **gold**. Bronze represents unaltered raw data input from data sources, silver represents filtered and cleansed data, and gold represents business-level aggregates.
