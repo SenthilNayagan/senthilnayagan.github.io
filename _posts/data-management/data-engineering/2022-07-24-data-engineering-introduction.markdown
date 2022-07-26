@@ -38,4 +38,4 @@ As stated before, data ingestion is the first stage in data engineering. It invo
 
 A data pipeline is commonly constructed as part of data engineering to transfer data from a source to a destination. Data is transformed and optimised along the pipeline's journey, eventually reaching a state where it can be analysed and used to generate business insights. Many of the manual processes required in processing and optimising continuous data loads are now automated by modern data pipelines.
 
-Having stated that, data engineering's primary task is the creation of data pipelines. They provide a seamless, automatic flow of data from one stage to another and eliminate the most of manual steps from the process.
+Having stated that, data engineering's primary task is the creation of data pipelines. They provide a seamless, automatic flow of data from one stage to another and eliminate the most of manual steps from the process. To effectively meet analytics expectations, data engineers construct a series of operations into a data pipeline that consists of many phases.
