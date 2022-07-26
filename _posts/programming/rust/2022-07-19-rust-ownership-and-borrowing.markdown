@@ -220,7 +220,7 @@ With an ownership model, memory is automatically released (freed) once the varia
 
 ### Borrow checker
 
-Rust implements ownership through the *borrow checker*, a [static analyzer](https://en.wikipedia.org/wiki/Static_program_analysis). The borrow checker is a component in the Rust compiler that keeps track of where data is used throughout the program, and by following ownership rules, it’s able to determine where data needs to be released. Furthermore, the borrow checker ensures that deallocated memory can never be accessed at runtime. It even eliminates the possibility of data races caused by concurrent mutation (modification).
+Rust implements ownership through the *borrow checker*, a [static analyzer](https://en.wikipedia.org/wiki/Static_program_analysis){:target="_blank"}. The borrow checker is a component in the Rust compiler that keeps track of where data is used throughout the program, and by following ownership rules, it’s able to determine where data needs to be released. Furthermore, the borrow checker ensures that deallocated memory can never be accessed at runtime. It even eliminates the possibility of data races caused by concurrent mutation (modification).
 
 ### Ownership rules
 

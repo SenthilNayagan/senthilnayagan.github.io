@@ -12,7 +12,7 @@ featured: true
 hidden: false
 ---
 
-Data governance is a collection of processes, roles, policies, and standards that ensure data is secure, accurate, and available across the organisation. It defines who can take what actions based on what data, in what circumstances, and with what methods. The practice of data governance also includes adhering to external standards set by industry associations, government agencies, and other stakeholders. 
+Data governance is a collection of processes, roles, policies, and standards that ensure data is secure, accurate, and available across the organisation. It defines <mark>who can take what actions based on what data, in what circumstances, and with what methods</mark>. The practice of data governance also includes adhering to external standards set by industry associations, government agencies, and other stakeholders. 
 
 Regulations such as the GDPR and many others impose legal accountability and severe penalties on firms that fail to adhere to governance principles around data privacy, retention, and portability. 
 
@@ -28,3 +28,6 @@ Data governance is not only about managing the rules but also making data useful
 ## Data management
 - The goal of data management is to put all of the policies into practice.
 - It's a hands-on daily effort to make sure that the policies we put in place are being followed.
+
+# Roles
+The first thing we need to consider when it comes to data governance is who is engaged and what their roles are. There are usually several roles, but the most important one is *data owner* or *data sponsor*. These are the individuals who have ultimate decision-making authority over the data and are solely responsible for ensuring that the data is accurate and up to date. These individuals have a deeper understanding of the groundwork that's being done with the data. There could be many data owners or data sponsors. For instance, a sales data owner, an inventory data owner, etc.
