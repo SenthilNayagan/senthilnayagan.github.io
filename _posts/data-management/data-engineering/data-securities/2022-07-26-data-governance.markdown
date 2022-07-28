@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Data Governance"
-subtitle: "Data governance is the set of roles and policies that guarantee an organization's data is safe, private, accurate, and useful."
+subtitle: "Data governance is the process of defining security guidelines and policies and making sure they are followed by having authority and control over how data assets are managed."
 image: assets/images/posts-cover-images/data-governance.jpg
 author: senthil
 date:   2022-07-26 19:00:00 +0530
