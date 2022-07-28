@@ -5,7 +5,7 @@ subtitle: "Data governance is the process of defining security guidelines and po
 image: assets/images/posts-cover-images/data-governance.jpg
 author: senthil
 date:   2022-07-26 19:00:00 +0530
-tags: ["data-engineering", "big-data", "data-goverance"]
+tags: ["data-engineering", "big-data", "data-goverance", "data-security"]
 categories: data-management data-goverance
 permalink: /:categories/:title
 featured: true
