@@ -8,7 +8,7 @@ date:   2022-07-24 22:00:00 +0530
 tags: ["apache-spark", "cache", "data-caching"]
 categories: data-management data-engineering apache-spark
 permalink: /:categories/:title
-featured: false
+featured: true
 hidden: false
 ---
 
