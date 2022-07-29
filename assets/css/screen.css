@@ -348,10 +348,11 @@ p.subtitle {
 }
 
 blockquote {
-    border-left: 4px solid #00ab6b;
+    border-left: 4px solid rgb(52, 109, 219);
     padding: 0 20px;
     font-style: italic;
     color: rgba(0, 0, 0, .5);
+    background-color: rgba(245,247,249,1.00);
 }
 
 .article-post p,
