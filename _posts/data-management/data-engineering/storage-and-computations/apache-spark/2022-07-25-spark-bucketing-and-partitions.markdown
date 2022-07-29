@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Partitions and Bucketing in Spark"
+kicker: "Apache Spark Series"
 subtitle: "Partitioning and bucketing are used to improve the reading of data by reducing the cost of shuffles, the need for serialization, and the amount of network traffic."
 image: assets/images/posts-cover-images/spark-bucketing-and-partitions.jpg
 author: senthil

@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "How To Set SLA in Apache Airflow"
+kicker: "DevOps Series"
 subtitle: "A service-level agreement specifies the maximum completion time for a task or a DAG. Note that SLAs are set to the DAG execution date rather than the task start time."
 image: assets/images/posts-cover-images/airflow-seeting-sla.jpg
 author: senthil

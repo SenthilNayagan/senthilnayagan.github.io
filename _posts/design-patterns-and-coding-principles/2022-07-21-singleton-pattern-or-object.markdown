@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Singleton Pattern"
+kicker: "Design Patterns and Coding Principles Series"
 subtitle: "A singleton pattern limits the number of instances of a class to one."
 image: assets/images/posts-cover-images/singleton-pattern.jpg
 author: senthil

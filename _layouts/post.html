@@ -38,6 +38,11 @@ post_class: post-template
                 </div>
                 {% endif %}
 
+                <!-- Kicker -->
+                {% if page.kicker %}
+                    <h6 class="kicker">{{ page.kicker }}</h6>
+                {% endif %}
+
                 <!-- Post Title -->
                 <h1 class="posttitle">{{ page.title }}</h1>
 
@@ -63,11 +68,16 @@ post_class: post-template
 
             <!-- Post Content -->
             <div class="article-post">
+                <!-- Subtitle -->
+                {% if page.subtitle %}
+                    <p class="subtitle"><em>{{ page.subtitle }}</em></p>
+                {% endif %}
+                <!-- End Subtitle --> 
                 <!-- Toc if any -->
                 {% if page.toc %}
-                    {% if page.beforetoc %}
+                    <!--{% if page.beforetoc %}
                         <p><em>{{page.beforetoc}}</em></p>
-                    {% endif %}
+                    {% endif %}-->
                     <div class="toc mt-4 mb-4 lead">
                         <h3 class="font-weight-bold">Sections</h3>
                         {% include toc.html html=content %}

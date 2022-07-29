@@ -1,9 +1,9 @@
 ---
 layout: post
 title:  "Rust’s Ownership and Borrowing Enforce Memory Safety"
-subtitle: "How does Rust guarantee memory safety? Rust's ownership feature is a novel idea, yet tricky to understand at first, but it gets easier the more we work on it."
+kicker: "Rust Series"
+subtitle: "Rust's ownership and borrowing features prevent us from experiencing memory-related problems. Rust is a great choice when performance matters and it solves pain points that bother many other languages."
 image: assets/images/posts-cover-images/rust-ownership-borrowing.jpeg
-beforetoc: "Rust is a great choice when performance matters and it solves pain points that bother many other languages, resulting in a significant step forward with a steep learning curve."
 toc: true
 author: senthil
 date:   2022-07-19 13:50:10 +0530

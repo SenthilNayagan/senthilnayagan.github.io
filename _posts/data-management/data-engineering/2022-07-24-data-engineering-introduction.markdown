@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Introduction to Data Engineering"
+kicker: "Data Engineering Series"
 subtitle: "It's the process of designing and building systems for gathering vast quantities of raw operational data from a variety of sources and formats, analyzing, converting, and storing it at scale."
 image: assets/images/posts-cover-images/data-engineering-introduction.jpg
 author: senthil

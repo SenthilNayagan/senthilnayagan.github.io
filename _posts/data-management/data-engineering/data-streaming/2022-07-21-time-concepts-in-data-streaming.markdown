@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Time Concepts in Data Streaming"
+kicker: "Data Streaming Series"
 subtitle: "Timestamps, particularly event-times, are significant aspects of any data streaming application."
 image: assets/images/posts-cover-images/data-streaming-timestamps.jpg
 author: senthil

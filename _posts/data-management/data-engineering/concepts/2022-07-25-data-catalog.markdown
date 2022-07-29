@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Data Catalog"
+kicker: "Data Management Concepts"
 subtitle: "A data catalog is an inventory of an organization's data assets that enables rapid and efficient access to the most relevant data."
 image: assets/images/posts-cover-images/data-catalog.jpg
 author: senthil

@@ -1,7 +1,8 @@
 ---
 layout: post
 title:  "Introduction to Data Lake"
-subtitle: ""
+kicker: "Data Engineering Series"
+subtitle: "A data lake is a centralized repository containing a significant amount of data from several sources in a more flexible natural or raw format for analytical usage."
 image: assets/images/posts-cover-images/introduction-to-data-lake.jpg
 author: senthil
 date:   2022-07-25 19:00:00 +0530

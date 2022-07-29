@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Envelope Encryption"
+kicker: "Data Security and Compliance Series"
 subtitle: "Envelope encryption is a way of encrypting plaintext data using a key and then encrypting that key using an another key. This strategy isn't meant to make things more secure; instead, it's meant to improve performance."
 image: assets/images/posts-cover-images/envelope-encryption.jpg
 author: senthil
