@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Anti-Pattern"
-kicker: "Design Patterns and Coding Principles Series"
+kicker: "Design Patterns and Coding Principles"
 subtitle: "It's important to keep in mind that identifying bad practices can be as valuable as identifying good practices."
 image: assets/images/posts-cover-images/antipattern.webp
 author: senthil

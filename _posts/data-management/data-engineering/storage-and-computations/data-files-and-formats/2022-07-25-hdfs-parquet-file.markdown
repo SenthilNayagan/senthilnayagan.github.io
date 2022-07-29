@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Let’s Know About the Parquet File"
-kicker: "Data Engineering Series"
+kicker: "Data Engineering"
 subtitle: "An open source file format for Hadoop that provides columnar storage and is built from the ground up with complex nested data structures in mind."
 image: assets/images/posts-cover-images/hadoop-parquet-file.jpg
 author: senthil
