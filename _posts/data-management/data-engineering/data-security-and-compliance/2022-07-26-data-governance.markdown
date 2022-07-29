@@ -5,7 +5,8 @@ kicker: "Data Governance"
 subtitle: "Data governance is the process of defining security guidelines and policies and making sure they are followed by having authority and control over how data assets are managed."
 image: assets/images/posts-cover-images/data-governance.jpg
 author: senthil
-date:   2022-07-26 19:00:00 +0530
+date: 2022-07-26 19:00:00 +0530
+last_modified_at: 2022-07-29 00:00:00 +0530
 tags: ["data-engineering", "big-data", "data-goverance", "data-security"]
 categories: data-management data-goverance
 permalink: /:categories/:title

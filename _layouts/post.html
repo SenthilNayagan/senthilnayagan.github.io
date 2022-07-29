@@ -46,6 +46,15 @@ post_class: post-template
                 <!-- Post Title -->
                 <h1 class="posttitle">{{ page.title }}</h1>
 
+                <!-- Post Date -->
+                <h6 class="postdate" style="font-size: 70%">
+                    <time class="post-date" datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date_to_string }}
+                    {% if page.last_modified_at %}
+                        (Updated: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}" itemprop="dateModified">{{ page.last_modified_at | date: "%b %-d, %Y" }}</time>)
+                    {% endif %}
+                    {% assign words = content | number_of_words %}
+                    &nbsp;-&nbsp;{{ words | divided_by:180 }} MINS READ
+                </h6>
             </div>
 
             <!-- Adsense if enabled from _config.yml (change your pub id and slot) -->
@@ -93,29 +102,6 @@ post_class: post-template
                 <strong class="mr-1">Rating:</strong> {% include star_rating.html %}
             </div>
             {% endif %}
-
-            <!-- Post Date -->
-            <p>
-            <small>
-                <span class="post-date"><time class="post-date" datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date_to_string }}</time></span>           
-                {% if page.last_modified_at %}
-                (Updated: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}" itemprop="dateModified">{{ page.last_modified_at | date: "%b %-d, %Y" }}</time>)
-                {% endif %}
-                </small>
-            </p>
-
-            <!-- Post Categories -->
-            <!--<div class="after-post-cats">
-                <ul class="tags mb-4">
-                    {% assign sortedCategories = page.categories | sort %}
-                    {% for category in sortedCategories %}
-                    <li>
-                        <a class="smoothscroll" href="{{site.baseurl}}/categories#{{ category | replace: " ","-" }}">{{ category }}</a>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>-->
-            <!-- End Categories -->
 
             <!-- Post Tags -->
             <div class="after-post-tags">
