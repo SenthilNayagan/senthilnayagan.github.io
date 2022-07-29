@@ -7,12 +7,12 @@
 }
 
 a {
-    color: #00ab6b;
+    color: rgb(52, 109, 219);
     transition: all 0.2s;
 }
 
 a:hover {
-    color: #038252;
+    color: rgb(24, 58, 227);
     text-decoration: none;
 }
 
@@ -539,8 +539,8 @@ ul.tags li a:hover {
 }
 
 .btn.follow {
-    border-color: #02B875;
-    color: #1C9963;
+    border-color: rgb(52, 109, 219);
+    color: rgb(52, 109, 219);
     padding: 3px 10px;
     text-align: center;
     border-radius: 999em;
@@ -549,8 +549,8 @@ ul.tags li a:hover {
 }
 
 .btn.subscribe {
-    background-color: #1C9963;
-    border-color: #1C9963;
+    background-color: rgb(52, 109, 219);
+    border-color: rgb(52, 109, 219);
     color: rgba(255, 255, 255, 1);
     fill: rgba(255, 255, 255, 1);
     border-radius: 30px;
@@ -595,8 +595,8 @@ ul.tags li a:hover {
 }
 
 .alertbar input[type="submit"] {
-    background-color: #1C9963;
-    border: 1px solid #1C9963;
+    background-color: rgb(52, 109, 219);
+    border: 1px solid rgb(52, 109, 219);
     color: rgba(255, 255, 255, 1);
     fill: rgba(255, 255, 255, 1);
     font-size: 0.85rem;
