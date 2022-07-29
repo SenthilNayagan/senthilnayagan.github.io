@@ -1,8 +1,8 @@
 <span class="reading-time">
   {% assign words = post.content | number_of_words %}
   {% if words < 360 %}
-    1 min read
+    1 MIN READ
   {% else %}
-    {{ words | divided_by:180 }} mins read
+    {{ words | divided_by:180 }} MINS READ
   {% endif %}
 </span>

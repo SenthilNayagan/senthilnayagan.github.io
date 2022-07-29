@@ -215,16 +215,19 @@ section.recent-posts {
     overflow: hidden !important;
 }
 
+span.read-minutes,
 span.post-name,
 span.post-date,
 span.author-meta {
     display: inline-block;
 }
 
+span.read-minutes,
 span.post-date,
 span.post-read {
     color: rgba(0, 0, 0, .44);
-    font-size: 12px;
+    font-size: 10px;
+    text-transform: uppercase;
 }
 
 span.post-read-more {
@@ -489,6 +492,7 @@ ul.tags {
     list-style: none;
     padding-left: 0;
     margin: 0 0 3rem 0;
+    text-transform: lowercase;
 }
 
 ul.tags li {
@@ -499,7 +503,7 @@ ul.tags li {
 ul.tags li a {
     background: rgba(238, 238, 228, .4);
     color: rgba(0, 0, 0, .6);
-    border-radius: 2px;
+    border-radius: 5px;
     padding: 5px 5px;
     font-size: small;
 }
