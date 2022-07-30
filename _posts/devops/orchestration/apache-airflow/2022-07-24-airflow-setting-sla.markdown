@@ -2,7 +2,7 @@
 layout: post
 title:  "How To Set SLA in Apache Airflow"
 kicker: "DevOps"
-subtitle: "A service-level agreement specifies the maximum completion time for a task or a DAG. Note that SLAs are set to the DAG execution date rather than the task start time."
+subtitle: "Apache Airflow enables us to schedule tasks as code. In Airflow, a SLA determines the maximum completion time for a task or DAG. Note that SLAs are established based on the DAG execution date, not the task start time."
 image: assets/images/posts-cover-images/airflow-seeting-sla.jpg
 author: senthil
 date:   2022-07-24 20:00:01 +0530
@@ -13,6 +13,10 @@ featured: true
 hidden: false
 ---
 
+# A quick overview of Airflow
+Apache Airflow is, at its core, an open-source *batch* task scheduler. It's a platform for <mark>programmatically</mark> *authoring* (creating), *scheduling*, and *monitoring* workflows via Directed Acyclic Graphs (DAGs). Airflow is distinguished from other schedulers primarily by its ability to schedule *tasks as code*. It's gaining popularity, especially among developers, because it's written in Python and it's easy to create code-based orchestration with it. To put it all together, Airflow is a batch-oriented open-source framework that enables us to build data pipelines and monitor data workflows efficiently.
+
+# How to set SLA in Airflow
 SLA stands for service-level agreement. It's a contract between a service provider and its customer that outlines the level of service expected by the customer and guaranteed by the vendor. In the context of Airflow, an SLA is the maximum amount of time a task or a DAG should take to complete. It serves to notify us if our DAG or tasks are taking longer than expected to complete.
 
 > Note that SLAs are set to the DAG execution date rather than the task start time.
