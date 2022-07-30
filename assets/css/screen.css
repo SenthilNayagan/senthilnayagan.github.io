@@ -271,7 +271,7 @@ span.post-read-more a:hover {
 .mediumnavigation .form-inline .btn:hover,
 .mediumnavigation .form-inline .btn:active {
     background: transparent;
-    color: green;
+    color: rgb(52, 109, 219);
 }
 
 .mediumnavigation .navbar-brand {
