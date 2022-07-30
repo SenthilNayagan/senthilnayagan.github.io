@@ -5,7 +5,7 @@ kicker: "Data Engineering"
 subtitle: "An open source file format for Hadoop that provides columnar storage and is built from the ground up with complex nested data structures in mind."
 image: assets/images/posts-cover-images/hadoop-parquet-file.jpg
 author: senthil
-date:   2022-07-25 11:00:00 +0530
+published_on: 2022-07-25 11:00:00 +0530
 tags: ["apache-spark", "hadoop", "parquet", "columnar-format", "columnar-storage"]
 categories: hadoop parquet
 permalink: /:categories/:title

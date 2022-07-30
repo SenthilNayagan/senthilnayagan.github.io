@@ -6,7 +6,7 @@ subtitle: "Rust's ownership and borrowing features prevent us from experiencing 
 image: assets/images/posts-cover-images/rust-ownership-borrowing.jpeg
 toc: true
 author: senthil
-date:   2022-07-19 13:50:10 +0530
+published_on: 2022-07-19 13:50:10 +0530
 tags: [ "programming", "rust", "memory-management" ]
 categories: programming rust
 permalink: /:categories/:title

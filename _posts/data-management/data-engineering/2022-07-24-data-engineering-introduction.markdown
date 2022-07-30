@@ -5,7 +5,7 @@ kicker: "Data Engineering"
 subtitle: "It's the process of designing and building systems for gathering vast quantities of raw operational data from a variety of sources and formats, analyzing, converting, and storing it at scale."
 image: assets/images/posts-cover-images/data-engineering-introduction.jpg
 author: senthil
-date:   2022-07-24 21:30:00 +0530
+published_on: 2022-07-24 21:30:00 +0530
 tags: ["data-engineering", "big-data", "data-pipeline"]
 categories: data-engineering
 permalink: /:categories/:title

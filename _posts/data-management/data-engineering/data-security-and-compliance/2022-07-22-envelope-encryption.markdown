@@ -5,7 +5,7 @@ kicker: "Data Governance"
 subtitle: "Envelope encryption is a way of encrypting plaintext data using a key and then encrypting that key using an another key. This strategy is intended not just to make things more secure but also to enhance performance."
 image: assets/images/posts-cover-images/envelope-encryption.jpg
 author: senthil
-date:   2022-07-22 18:00:40 +0530
+published_on: 2022-07-22 18:00:40 +0530
 tags: ["envelope-encryption", "data-protection", "root-key", "data-key"]
 categories: security-and-compliance envelope-encryption
 permalink: /:categories/:title

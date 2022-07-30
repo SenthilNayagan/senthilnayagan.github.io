@@ -5,7 +5,7 @@ kicker: "Apache Spark"
 subtitle: "Caching is one of Spark's optimization strategies for reusing computations. It stores interim and partial results so they'll be utilised in subsequent computation stages."
 image: assets/images/posts-cover-images/spark-caching-data-in-memory.jpg
 author: senthil
-date:   2022-07-24 22:00:00 +0530
+published_on: 2022-07-24 22:00:00 +0530
 tags: ["apache-spark", "cache", "data-caching"]
 categories: data-management data-engineering apache-spark
 permalink: /:categories/:title

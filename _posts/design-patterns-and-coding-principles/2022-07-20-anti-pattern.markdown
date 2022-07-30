@@ -5,7 +5,7 @@ kicker: "Design Patterns and Coding Principles"
 subtitle: "It's important to keep in mind that identifying bad practices can be as valuable as identifying good practices."
 image: assets/images/posts-cover-images/antipattern.webp
 author: senthil
-date:   2022-07-20 11:24:20 +0530
+published_on: 2022-07-20 11:24:20 +0530
 tags: ["anti-pattern", "design-patterns"]
 categories: design-patterns
 permalink: /:categories/:title
