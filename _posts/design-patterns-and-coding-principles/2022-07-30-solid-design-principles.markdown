@@ -10,7 +10,7 @@ tags: ["design-patterns", "singleton-pattern", "coding-principles", "solid"]
 categories: design-patterns solid
 permalink: /:categories/:title
 featured: false
-hidden: false
+hidden: true
 ---
 
 The term "SOLID" in software engineering refers to a group of five design principles that are meant to improve the *readability*, *flexibility*, and *maintainability* of object-oriented designs.
