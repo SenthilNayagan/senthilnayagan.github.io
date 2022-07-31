@@ -47,13 +47,13 @@ post_class: post-template
                 <h1 class="posttitle">{{ page.title }}</h1>
 
                 <!-- Post Date -->
-                <h6 class="postdate" style="font-size: 70%">
-                    Published: <span>{{ page.published_on | date_to_string | date: "%d %B %Y"}}</span>
+                <h6 class="postdate" style="font-size: 80%">
+                    <i class="fa-solid fa-calendar-days"></i>&nbsp;<span>{{ page.published_on | date_to_string | date: "%d %B %Y"}}</span>
                     {% if page.last_modified_on %}
                         (Updated: <span>{{ page.last_modified_on | date_to_string | date: "%d %B %Y"}}</span>)
                     {% endif %}
                     {% assign words = content | number_of_words %}
-                    &nbsp;-&nbsp;{{ words | divided_by:180 }} MINS READ
+                    &nbsp;-&nbsp;<i class="fa-solid fa-clock"></i>&nbsp;{{ words | divided_by:180 }} MINS READ
                 </h6>
             </div>
 
