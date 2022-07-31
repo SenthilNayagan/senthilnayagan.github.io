@@ -7,8 +7,7 @@ image: assets/images/posts-cover-images/introduction-to-data-lake.jpg
 author: senthil
 published_on: 2022-07-25 19:00:00 +0530
 tags: ["data-engineering", "big-data", "data-lake", "lakehouse"]
-categories: data-engineering data-lake
-permalink: /:categories/:title
+categories: data-lake-and-lakehouse
 featured: false
 hidden: true
 ---

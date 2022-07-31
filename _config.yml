@@ -7,7 +7,7 @@ favicon: "assets/images/logo_solid_bg.png"
 baseurl: ""
 disqus: "senthilnayagan"
 include: ["_pages"]
-permalink: /:title
+permalink: /:categories/:year/:title
 
 # Authors
 authors:

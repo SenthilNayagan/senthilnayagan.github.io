@@ -7,8 +7,7 @@ image: assets/images/posts-cover-images/hadoop-parquet-file.jpg
 author: senthil
 published_on: 2022-07-25 11:00:00 +0530
 tags: ["apache-spark", "hadoop", "parquet", "columnar-format", "columnar-storage"]
-categories: hadoop parquet
-permalink: /:categories/:title
+categories: data-files-and-formats
 featured: false
 hidden: false
 ---

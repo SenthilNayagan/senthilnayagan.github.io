@@ -8,8 +8,7 @@ toc: true
 author: senthil
 published_on: 2022-07-19 13:50:10 +0530
 tags: [ "programming", "rust", "memory-management" ]
-categories: programming rust
-permalink: /:categories/:title
+categories: rust
 featured: true
 hidden: false
 rating: 4.5

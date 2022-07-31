@@ -7,8 +7,7 @@ image: assets/images/posts-cover-images/singleton-pattern.jpg
 author: senthil
 published_on: 2022-07-21 22:05:40 +0530
 tags: ["design-patterns", "singleton-pattern", "coding-principles"]
-categories: design-patterns singleton-pattern
-permalink: /:categories/:title
+categories: design-patterns-and-coding-principles
 featured: false
 hidden: false
 ---

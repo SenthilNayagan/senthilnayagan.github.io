@@ -7,8 +7,7 @@ image: assets/images/posts-cover-images/solid-design-principles.jpg
 author: senthil
 published_on: 2022-07-30 00:00:00 +0530
 tags: ["design-patterns", "singleton-pattern", "coding-principles", "solid"]
-categories: design-patterns solid
-permalink: /:categories/:title
+categories: design-patterns-and-coding-principles
 featured: false
 hidden: true
 ---

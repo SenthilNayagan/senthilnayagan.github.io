@@ -8,8 +8,7 @@ author: senthil
 published_on: 2022-07-26 19:00:00 +0530
 last_modified_on: 2022-07-29 00:00:00 +0530
 tags: ["data-engineering", "big-data", "data-goverance", "data-security"]
-categories: data-management data-goverance
-permalink: /:categories/:title
+categories: data-security-and-compliance
 featured: true
 hidden: false
 ---

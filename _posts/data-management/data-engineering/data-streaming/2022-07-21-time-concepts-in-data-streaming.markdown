@@ -7,7 +7,7 @@ image: assets/images/posts-cover-images/data-streaming-timestamps.jpg
 author: senthil
 published_on: 2022-07-21 22:00:05 +0530
 tags: ["data-management", "data-streaming", "data-engineering"]
-categories: data-management data-engineering data-streaming
+categories: data-streaming
 permalink: /:categories/:title
 featured: false
 hidden: true

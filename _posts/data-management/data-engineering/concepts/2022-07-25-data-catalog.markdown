@@ -8,7 +8,6 @@ author: senthil
 published_on: 2022-07-25 19:30:00 +0530
 tags: ["data-engineering", "big-data", "data-lake", "data-catalog", "data-inventory"]
 categories: data-management
-permalink: /:categories/:title
 featured: false
 hidden: false
 ---

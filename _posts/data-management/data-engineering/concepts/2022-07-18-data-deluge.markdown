@@ -7,8 +7,7 @@ image: assets/images/posts-cover-images/data-deluge.webp
 author: senthil
 published_on: 2022-07-18 20:04:24 +0530
 tags: ["data-management", "data-engineering"]
-categories: data-management data-engineering
-permalink: /:categories/:title
+categories: data-management
 featured: false
 hidden: false
 ---

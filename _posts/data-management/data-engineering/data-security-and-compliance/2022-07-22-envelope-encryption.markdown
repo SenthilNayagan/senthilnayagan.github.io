@@ -7,8 +7,7 @@ image: assets/images/posts-cover-images/envelope-encryption.jpg
 author: senthil
 published_on: 2022-07-22 18:00:40 +0530
 tags: ["envelope-encryption", "data-protection", "root-key", "data-key"]
-categories: security-and-compliance envelope-encryption
-permalink: /:categories/:title
+categories: data-security-and-compliance
 featured: true
 hidden: false
 ---

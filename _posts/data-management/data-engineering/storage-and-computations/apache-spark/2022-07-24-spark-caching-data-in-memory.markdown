@@ -7,8 +7,7 @@ image: assets/images/posts-cover-images/spark-caching-data-in-memory.jpg
 author: senthil
 published_on: 2022-07-24 22:00:00 +0530
 tags: ["apache-spark", "cache", "data-caching"]
-categories: data-management data-engineering apache-spark
-permalink: /:categories/:title
+categories: apache-spark
 featured: true
 hidden: false
 ---

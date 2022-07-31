@@ -6,9 +6,8 @@ subtitle: "Apache Airflow enables us to schedule tasks as code. In Airflow, a SL
 image: assets/images/posts-cover-images/airflow-seeting-sla.jpg
 author: senthil
 published_on: 2022-07-24 20:00:01 +0530
-tags: ["airflow", "sla", "service-level agreement"]
-categories: devops containers orchestration
-permalink: /:categories/:title
+tags: ["airflow", "sla", "service-level agreement", "workflow-engine"]
+categories: orchestration
 featured: true
 hidden: false
 ---

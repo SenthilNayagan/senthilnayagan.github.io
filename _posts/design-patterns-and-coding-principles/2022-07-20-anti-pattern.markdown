@@ -8,8 +8,7 @@ author: senthil
 published_on: 2022-07-20 11:24:20 +0530
 last_modified_on: 2022-07-30 00:00:00 +0530
 tags: ["anti-pattern", "design-patterns"]
-categories: design-patterns
-permalink: /:categories/:title
+categories: design-patterns-and-coding-principles
 featured: false
 hidden: false
 rating: false

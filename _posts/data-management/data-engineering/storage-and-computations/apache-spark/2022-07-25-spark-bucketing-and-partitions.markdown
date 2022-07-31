@@ -7,8 +7,7 @@ image: assets/images/posts-cover-images/spark-bucketing-and-partitions.jpg
 author: senthil
 published_on: 2022-07-25 15:00:00 +0530
 tags: ["apache-spark", "partition", "bucketing"]
-categories: data-engineering apache-spark partition-bucketing
-permalink: /:categories/:title
+categories: apache-spark
 featured: false
 hidden: false
 ---
