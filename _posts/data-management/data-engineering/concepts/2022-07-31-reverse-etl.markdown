@@ -12,5 +12,8 @@ featured: false
 hidden: true
 ---
 
+# Traditional approach
+ETL, which stands for extract, transformation, and load, is a *traditional* data integration method that collects data from several data sources, transforms it, and stores it in a single data store.
+
 # What is reverse ETL?
 We switched from ETL to ELT (Extract, Load, and Transform) as data volumes increased and we needed a faster way to load data into a data warehouse or data lake.

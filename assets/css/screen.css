@@ -319,7 +319,8 @@ p.subtitle {
     margin-bottom: 1rem;
 }
 
-.mainheading h6.postdate {
+.mainheading h6.postdate-readtime-tags {
+    color: rgba(0, 0, 0, .44);
     font-weight: 300;
     text-transform: uppercase;
     vertical-align: top;

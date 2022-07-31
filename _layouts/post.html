@@ -47,13 +47,26 @@ post_class: post-template
                 <h1 class="posttitle">{{ page.title }}</h1>
 
                 <!-- Post Date -->
-                <h6 class="postdate" style="font-size: 80%">
+                <h6 class="postdate-readtime-tags" style="font-size: 80%">
                     <i class="fa-solid fa-calendar-days"></i>&nbsp;<span>{{ page.published_on | date_to_string | date: "%d %B %Y"}}</span>
                     {% if page.last_modified_on %}
                         (Updated: <span>{{ page.last_modified_on | date_to_string | date: "%d %B %Y"}}</span>)
                     {% endif %}
                     {% assign words = content | number_of_words %}
                     &nbsp;-&nbsp;<i class="fa-solid fa-clock"></i>&nbsp;{{ words | divided_by:180 }} MINS READ
+                </h6>
+
+                <!-- Tags -->
+                <h6 class="postdate-readtime-tags" style="font-size: 80%">
+                    <ul class="tags">
+                        <i class="fa-solid fa-tags"></i>&nbsp;
+                        {% assign sortedTags = page.tags | sort %}
+                        {% for tag in sortedTags %}
+                        <li>
+                            <a class="smoothscroll" href="{{ site.baseurl }}/tags#{{ tag | replace: " ","-" }}">{{ tag }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
                 </h6>
             </div>
 
