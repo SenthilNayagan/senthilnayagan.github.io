@@ -9,7 +9,7 @@ published_on: 2022-07-31 00:00:00 +0530
 tags: ["data-engineering", "reverse-etl", "etl"]
 categories: data-engineering
 featured: false
-hidden: false
+hidden: true
 ---
 
 # What is reverse ETL?
