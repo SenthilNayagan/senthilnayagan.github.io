@@ -19,7 +19,6 @@ comments: true
             <a target="_blank" href="https://www.linkedin.com/in/senthilnayagan"><i class="fa-brands fa-linkedin"></i></a>&nbsp;&nbsp;
             <a target="_blank" href="https://github.com/SenthilNayagan"><i class="fa-brands fa-github"></i></a>
         </p>
-
     </div>
     <div class="col-md-4 share">
         <img style="border-radius: 2%;" src="https://www.gravatar.com/avatar/{{ author.gravatar }}?s=350" alt="{{ author.display_name }}">

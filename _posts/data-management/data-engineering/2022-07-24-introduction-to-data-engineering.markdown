@@ -54,8 +54,8 @@ The true challenge of data ingestion emerges when such dynamic data is ingested.
 
 #### Ingestion types
 There are two types of ingestion commonly used:
-- Batch ingestion
-- Event streaming (real-time ingestion)
+- **Batch ingestion**
+- **Event streaming** (real-time)
 
 ##### Batch ingestion
 TODO
