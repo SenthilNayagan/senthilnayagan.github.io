@@ -52,6 +52,17 @@ Ingestion from a static data source is straightforward, and we can get it using 
 
 The true challenge of data ingestion emerges when such dynamic data is ingested. Data engineers must use effective *change data capture* (CDC) approaches to *incrementally* ingest data.
 
+#### Ingestion types
+There are two types of ingestion commonly used:
+- Batch ingestion
+- Event streaming (real-time ingestion)
+
+##### Batch ingestion
+TODO
+
+##### Event streaming
+The event-streaming type of ingestion is occurring in real time and is gaining popularity and becoming more common. Note that there is no true real-time ingestion capability. When collecting data from several sources and delivering it to a destination system, there is a certain amount of inherent delay in every data pipeline. So a more appropriate term would be *near-real-time*. The pipeline processes events sequentially as they come. Event streaming ingestion is a *natural fit* for several modern data source types.
+
 ### Transformation
 Before the ingested data is put to real use, it must undergo many actions, such as *cleansing*, *curation*, *standardization*, and finally *aggregation*. This collaborative process is known as *data transformation*. In other words, the data transformation process prepares data to the point where it can be readily and easily consumed for analytical processes.
 
