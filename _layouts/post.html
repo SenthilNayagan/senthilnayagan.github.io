@@ -23,7 +23,7 @@ post_class: post-template
 
                 <!-- Author Box -->
                 {% if page.author %}
-                <div class="row post-top-meta">
+                <div class="article-post row post-top-meta">
                     <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0">
                         {% if author.avatar %}
                         <img class="author-thumb" src="{{site.baseurl}}/{{ author.avatar }}" alt="{{ author.display_name }}">
@@ -117,7 +117,7 @@ post_class: post-template
             {% endif %}
 
             <!-- Prev/Next -->
-            <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+            <div class="article-post row PageNavigation d-flex justify-content-between font-weight-regular" style="font-size: 90%">
                 {% if page.previous.url %}
                     <a class="prev d-block col-md-6" href="{{ site.baseurl }}{{ page.previous.url }}"> &laquo; {{page.previous.title}}</a>
                 {% endif %}

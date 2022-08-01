@@ -9,14 +9,9 @@ This blog takes your privacy seriously. To better protect your privacy we provid
 Please do not hesitate to [contact us]({{site.baseurl}}/contact.html) if you have further concerns or seek extra information about our Privacy Policy.
 
 
-#### Collection of Routine Information
-
-This website track basic information about their visitors. This information includes, but is not limited to, IP addresses, browser details, timestamps and referring pages. None of this information can personally identify specific visitor to this website. The information is tracked for routine administration and maintenance purposes.
-
-
 #### Cookies
 
-This website does not use cookies.
+This website <mark>does not</mark> use cookies.
 
 
 #### Links to Third Party Websites
