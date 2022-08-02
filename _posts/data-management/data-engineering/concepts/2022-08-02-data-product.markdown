@@ -12,8 +12,14 @@ featured: false
 hidden: false
 ---
 
+We live in a world full of data, but how can we best use it? It should come as no surprise that, when used wisely, *data is the most precious thing on the planet*.
+
+|![Worlf full of data!](/assets/images/posts/world-full-of-data.jpg)|
+|:-:|
+|<sub><sup>*Data everywhere!!*</sup></sub>|<br/><br/>
+
 # What is a data product?
-Data is now the most valuable resource on the planet. Data product is the *primary enabler* for accomplishing the product's end objective. This means that any digital product or feature that uses data to accomplish a goal might be called a *data product*.
+Data product is the *primary enabler* for accomplishing the product's end objective. This means that any digital product or feature that uses data to accomplish a goal might be called a *data product*.
 
 The former chief data scientist of the United States, DJ Patil, defined a data product in his 2012 book Data Jujitsu: The Art of Turning Data into Product as "*a product that facilitates an end goal though the use of data.*"
 
