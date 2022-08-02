@@ -1,5 +1,5 @@
 @media screen and (min-width:1500px) {
-    html { font-size:18px; } /* Increase the font size on higher resolutions */
+    html { font-size:17px; } /* Increase the font size on higher resolutions */
     .container {max-width:80%;}
 }
 
@@ -709,11 +709,7 @@ h3,
 h4,
 h5,
 h6 {
-    margin-bottom: 0.5rem;
     font-family: inherit;
-    font-weight: 500;
-    line-height: 1.2;
-    color: inherit;
 }
 
 .article-post .h1,
@@ -728,11 +724,9 @@ h6 {
 .article-post h4,
 .article-post h5,
 .article-post h6 {
-    margin-bottom: 0.5rem;
-    font-family: inherit;
+    margin-bottom: 0.8rem;
     font-weight: 500;
     line-height: 1.2;
-    color: inherit;
 }
 
 .article-post img.shadow {
