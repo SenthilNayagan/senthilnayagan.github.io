@@ -60,9 +60,10 @@ section.recent-posts {
 }
 
 .section-title h2 {
+    font-family: Merriweather;
     border-bottom: 1px solid rgba(0, 0, 0, .125);
     margin-bottom: 25px;
-    font-weight: 700;
+    font-weight: 550;
     font-size: 1.4rem;
     margin-bottom: 27px;
 }
@@ -138,15 +139,17 @@ section.recent-posts {
 
 .listfeaturedtag h2.card-title,
 .listrecent h2.card-title {
-    font-size: 1.3rem;
-    font-weight: 700;
+    font-family: Georgia,Times,"Times New Roman",serif;
+    font-size: 1.5rem;
+    font-weight: 450;
     line-height: 1.25;
 }
 
 .listfeaturedtag h4.card-text,
 .listrecent h4.card-text {
+    font-family: Merriweather;
     color: rgba(0, 0, 0, .44);
-    font-size: 0.95rem;
+    font-size: 0.90rem;
     line-height: 1.6;
     font-weight: 400;
 }

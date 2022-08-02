@@ -7,7 +7,7 @@ comments: true
 {% assign author = site.authors["senthil"] %}
 
 <div class="row justify-content-between">
-    <div class="col-md-8 pr-5">
+    <div class="col-md-8 pr-5" style="font-family: Merriweather;">
         <p>Hello there!</p>
         <p>I am Senthil Nayagan. It's a pleasure to meet you!</p>
         <p>I am a seasoned IT professional with years of expertise in designing and building complex business solutions with open-source technologies. I've been working in the field of data engineering for the past few years. If I were to describe myself in a few words, I would say that I am a Data Engineer by profession, a Rustacean by interest, and an avid Content Creator at present.</p>

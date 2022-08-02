@@ -11,7 +11,7 @@ Please do not hesitate to [contact us]({{site.baseurl}}/contact.html) if you hav
 
 #### Cookies
 
-This website <mark>does not</mark> use cookies.
+This website DOES NOT use cookies.
 
 
 #### Links to Third Party Websites
