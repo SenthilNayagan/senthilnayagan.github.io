@@ -2,7 +2,7 @@
 layout: post
 title:  "Reverse ETL"
 kicker: "Data Engineering"
-subtitle: "Reverse ETL refers to the process of feeding processed data from a data warehouse or data lake back into business applications, such as Salesforce, for use in business operations and forecasting."
+subtitle: "Reverse ETL is the process of feeding processed data (gold-layer tables) from a data warehouse or data lake back into business applications, primarily for use in operational analytics domains such as sales, marketing, etc., in order to enable business operations and forecasts."
 image: assets/images/posts-cover-images/reverse-etl.jpg
 author: senthil
 published_on: 2022-07-31 00:00:00 +0530
@@ -11,6 +11,10 @@ categories: data-engineering
 featured: false
 hidden: true
 ---
+
+Before we dive deep into the subject, let's clarify *operational analytics* briefly. Operational analytics is a subset of data analytics that aims to improve business operations. Business operations are the everyday activities businesses participate in to improve their value and generate a profit. 
+
+The primary distinction between operational analytics and other forms of analytics is that *operational analytics is analytics on the fly*, which means that data emerging from different segments of an organization is analyzed in real-time to feed back into the organization's immediate decision-making. Some people refer to operational analytics as *continuous analytics*, which is another way of highlighting the continuous digital feedback loop that can exist between different components of an organization.
 
 # Traditional approach
 ETL, which stands for *extract, transformation, and load*, is a *traditional* data integration approach that takes data from several data sources, transforms it, and stores it in a centralized data repository. This centralized data repository might be a data warehouse or a data lake, and it would serve as the only reliable source of truth.

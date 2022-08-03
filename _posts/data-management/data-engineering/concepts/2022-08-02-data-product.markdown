@@ -25,10 +25,7 @@ The former chief data scientist of the United States, DJ Patil, defined a data p
 
 In general, a data product is any tool or application that processes data and produces outcomes. These outcomes may provide businesses with valuable insights.
 
-# What value does it provide?
-Data products can help organisations in extracting insight from their data in order to make forecasts, optimize costs, and increase revenue.
-
-# Various types of data products 
+## Various types of data products 
 Typically, data products are categorized by type:
 
 - Raw data
@@ -37,9 +34,12 @@ Typically, data products are categorized by type:
 - Insights (Decision support)
 - Automated decision-making
 
-# Examples of data products
+## Examples of data products
 Examples of data products are:
 - Any online shopping page may be a data product if the featured products are dynamically displayed depending on my previous purchases and searches.
 - Google analytics is a data product since the insights it presents to the end user are derived from data.
 - A data warehouse - This data product is a mix of raw data, derived data and insights.
 - A self-driving car - It's of the type automated decision-making. 
+
+## What value does it provide?
+Data products can help organisations in extracting insight from their data in order to make forecasts, optimize costs, and increase revenue.
