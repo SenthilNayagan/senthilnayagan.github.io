@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Apache Spark - Caching Data in Memory"
+title:  "Need for Caching in Apache Spark"
 kicker: "Apache Spark"
 subtitle: "Caching is one of Spark's optimization strategies for reusing computations. It stores interim and partial results so they'll be utilised in subsequent computation stages."
 image: assets/images/posts-cover-images/spark-caching-data-in-memory.jpg
