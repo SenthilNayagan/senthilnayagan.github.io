@@ -18,9 +18,9 @@ We live in a world full of data, but how can we best use it? It should come as n
 |:-:|
 |<sub><sup>*Data everywhere!!*</sup></sub>|<br/><br/>
 
-Be aware that a data product is not the same as data as a product. We may hear the term "data as a product" often these days. One of the principles of the data mesh paradigm is to consider data as a product. This principle is sometimes shortened to "data products," which leads to a misunderstanding between data products and data as a product. 
+Be aware that a data product is not the same as data-as-a-product. We may hear the term "data as a product" often these days. One of the principles of the data mesh paradigm is to consider data as a product. This principle is sometimes shortened to "data product," which leads to a misunderstanding between data product and data as a product. 
 
-Let's explore the distinctions between these two notions.
+Let's explore the distinctions in detail between these two notions.
 
 # What is a data product?
 Any product is called a *data product* if data is the key enabler for its primary goal. This means that any digital product or feature that *relies on data* to achieve its ultimate purpose or goal may be referred to as a data product.
