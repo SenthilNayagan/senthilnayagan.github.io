@@ -12,6 +12,7 @@ comments: true
         <p>I am Senthil Nayagan. It's a pleasure to meet you!</p>
         <p>I am a seasoned IT professional with years of expertise in designing and building complex business solutions with open-source technologies. I've been working in the field of data engineering for the past few years. If I were to describe myself in a few words, I would say that I am a Data Engineer by profession, a Rustacean by interest, and an avid Content Creator at present.</p>
         <p>This is my tech blog where I explore various data engineering concepts. I'm also making up stories about design and coding principles. I'm attempting to make all of my stories as clear as possible while yet providing enough detail for you to comprehend the ideas.</p>
+        <p>Personally, I like writing blogs. Blogging is an excellent way that enables me to share my passion for technology with the rest of the world. Through blogging, I not only educate others who are interested in my areas of expertise, but also myself, in the most clear terms possible.</p>
         <p>If you like my stories or have suggestions for their improvement, please feel free to contact me at <a href="mailto:hello@senthilnayagan.com">hello@senthilnayagan.com</a>.</p>
         <p>Happy learning!</p>
         <p>
