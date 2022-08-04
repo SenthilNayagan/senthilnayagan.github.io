@@ -8,7 +8,7 @@ author: senthil
 published_on: 2022-08-02 00:00:00 +0530
 tags: ["data-engineering", "data-management", "data-product"]
 categories: data-management
-featured: false
+featured: true
 hidden: false
 ---
 
@@ -55,4 +55,12 @@ Data as a product. In other words, data as a first-class product. This implies t
 
 > The data referred to is organizational **shared data**, which is often shared across several users or applications while preserving data integrity for all entities consuming the data.
 
-Our goal is to make the domain's shared data *discoverable*, *addressable*, *trustworthy*, and *secure* so other teams can make good use of it. In other words, we consider the other teams to be our internal customers of our data, and we take on increased stewardship responsibilities for our data.
+Our goal is to make the shared data *discoverable*, *addressable*, *trustworthy*, and *secure* so other teams can make good use of it. In other words, we consider the other teams to be our internal customers of our data, and we take on increased stewardship responsibilities for our data.
+
+## An example of data as a product
+Well, what does data as a product look like? Consider data as a product to be a microservice for analytics or for the data world. Like a microservice, data as a product comprises the *code* (to perform data computation), its *data* and *metadata*, and the *infrastructure* required for its operation.
+
+---
+
+# Data product vs. data as a product
+After understanding each of these concepts, it becomes clear that they all substantially depend on meticulously derived data. However, "data product" is a broad term, while "data as a product" is a subset of all possible "data products". In other words, "data as a product" is formed from the data type "data product".

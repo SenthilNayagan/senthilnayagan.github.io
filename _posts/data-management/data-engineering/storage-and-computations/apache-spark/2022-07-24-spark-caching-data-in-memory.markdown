@@ -8,7 +8,7 @@ author: senthil
 published_on: 2022-07-24 22:00:00 +0530
 tags: ["apache-spark", "cache", "data-caching"]
 categories: apache-spark
-featured: true
+featured: false
 hidden: false
 ---
 

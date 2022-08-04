@@ -8,7 +8,7 @@ author: senthil
 published_on: 2022-07-24 21:30:00 +0530
 tags: ["data-engineering", "big-data", "data-pipeline"]
 categories: data-engineering
-featured: true
+featured: false
 hidden: false
 ---
 
