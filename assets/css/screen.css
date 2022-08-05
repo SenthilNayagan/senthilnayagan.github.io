@@ -524,7 +524,7 @@ ul.tags li {
 }
 
 ul.tags li a {
-    background: rgba(238, 238, 228, .4);
+    background: rgb(214, 234, 248);
     color: rgba(0, 0, 0, .6);
     border-radius: 5px;
     padding: 5px 5px;
@@ -532,7 +532,7 @@ ul.tags li a {
 }
 
 ul.tags li a:hover {
-    background: rgba(0, 0, 0, .07);
+    background: rgb(133, 193, 233);
     text-decoration: none;
 }
 
