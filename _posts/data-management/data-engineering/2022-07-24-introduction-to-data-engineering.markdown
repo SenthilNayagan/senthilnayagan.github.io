@@ -42,7 +42,7 @@ A data pipeline consists of several components. Each component does a specific f
 - Presentation
 
 #### Ingestion
-The first step in a typical pipeline is obtaining data from various sources like databases, files, APIs, logs, and so on, and storing it in a data lake or equivalent big data platform. Depending on the data source and business needs, data engineers may need to choose between *batch* or *streaming* (real-time) ingestion, or both. The complexity of data ingestion is related to the nature of the data source, whether *static* or *dynamic*.
+The first step in a typical pipeline is obtaining data from various sources like databases, files, APIs, logs, and so on, and storing it in a data lake or equivalent big data platform. The landing zone, which is essentially a dumping ground, is where data from multiple sources is first stored. Depending on the data source and business needs, data engineers may need to choose between *batch* or *streaming* (real-time) ingestion, or both. The complexity of data ingestion is related to the nature of the data source, whether *static* or *dynamic*.
 
 > **Static data:** Static data that normally does not change over time once it has been recorded, or if it does, it changes infrequently. It is a fixed dataset, thus it does not need refreshing. A list of nations, cities, counties, etc., would be an example of static data.
 
