@@ -23,6 +23,7 @@ Be aware that a "data product" is not the same as "data as a product". We might 
 Let's explore the distinctions in detail between these two notions.
 
 # What is a data product?
+
 Any product is called a *data product* if data is the key enabler for its primary goal. This means that any digital product or feature that *relies on data* to achieve its ultimate purpose or goal may be referred to as a data product.
 
 The former chief data scientist of the United States, DJ Patil, defined a data product in his 2012 book Data Jujitsu: The Art of Turning Data into Product as "*a product that facilitates an end goal though the use of data.*"
@@ -30,6 +31,7 @@ The former chief data scientist of the United States, DJ Patil, defined a data p
 In general, a data product is any tool or application that processes data and produces outcomes. These outcomes may provide businesses with valuable insights.
 
 ## Various types of data products 
+
 Typically, data products are categorized by type:
 
 - Raw data
@@ -39,6 +41,7 @@ Typically, data products are categorized by type:
 - Automated decision-making
 
 ## Examples of data products
+
 Examples of data products are:
 - Any online shopping page may be a data product if the featured products are dynamically displayed depending on my previous purchases and searches.
 - Google analytics is a data product since the insights it presents to the end user are derived from data.
@@ -46,11 +49,13 @@ Examples of data products are:
 - A self-driving car - It's of the type automated decision-making. 
 
 ## What value does it provide?
+
 Data products can help organisations extract insight from their data in order to develop more accurate forecasts, reduce expenses, and increase revenue.
 
 ---
 
 # Data as a product
+
 Data as a product. In other words, data as a first-class product. This implies that *data is considered as a true product*, as opposed to a by-product.
 
 > The data referred to is organizational **shared data**, which is often shared across several users or applications while preserving data integrity for all entities consuming the data.
@@ -58,9 +63,11 @@ Data as a product. In other words, data as a first-class product. This implies t
 Our goal is to make the shared data *discoverable*, *addressable*, *trustworthy*, and *secure* so other teams can make good use of it. In other words, we consider the other teams to be our internal customers of our data, and we take on increased stewardship responsibilities for our data.
 
 ## An example of data as a product
+
 Well, what does data as a product look like? Consider data as a product to be a microservice for analytics or for the data world. Like a microservice, data as a product comprises the *code* (to perform data computation), its *data* and *metadata*, and the *infrastructure* required for its operation.
 
 ---
 
 # Data product vs. data as a product
+
 After understanding each of these concepts, it becomes clear that they all substantially depend on meticulously derived data. However, "data product" is a broad term, while "data as a product" is a subset of all possible "data products". In other words, "data as a product" is formed from the data type "data product".
