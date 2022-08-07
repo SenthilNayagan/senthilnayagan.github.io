@@ -12,6 +12,8 @@ featured: false
 hidden: true
 ---
 
+The necessity for data distribution over several computers arises from either the data being too massive to store on a single machine or the computation being too long to accomplish on a single machine.
+
 # Spark architecture
 
 Spark is built on a *master-slave architecture*, which we refer to as the *Spark cluster*. Spark cluster is made up of one master node and one or more worker nodes. Each worker node has at least one *executor*.
@@ -20,8 +22,10 @@ Spark is built on a *master-slave architecture*, which we refer to as the *Spark
 |:-:|
 |<sub><sup>*Apache Spark Architecture.*</sup></sub>|<br/><br/>
 
+> **Note:** From Spark 2.0 onwards we can access SparkContext object through SparkSession.
+
 ## Spark driver
-The Spark driver is a Java process that runs the main() function of the user program. In other words, the user program’s main() function executes in the driver process. It runs on the master node of the Spark cluster. It is the core of a Spark Application and stores all relevant information during the application's lifetime. 
+The Spark driver is a Java process that runs the main() function of the user program. In other words, the user program’s main() function executes in the driver process. It runs on the master node of the Spark cluster. It is the core of a Spark Application and stores all relevant information during the application's lifetime. When we’re working with a Spark shell, the driver is part of the shell.
 
 The driver is responsible for:
 - Maintaining information about the Spark application.
@@ -53,7 +57,9 @@ Spark features a *local* mode in addition to its cluster mode. In local mode, th
 
 # Spark's APIs
 
-
+Spark has two core sets of APIs:
+- Low-level APIs
+- High-level APIs
 
 # What is fault tolerance in Spark RDD?
 
