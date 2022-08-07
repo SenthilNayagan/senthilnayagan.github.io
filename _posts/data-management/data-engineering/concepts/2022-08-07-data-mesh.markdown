@@ -8,7 +8,7 @@ author: senthil
 published_on: 2022-08-07 00:00:00 +0530
 tags: ["data-engineering", "data-mesh", "data-as-a-product"]
 categories: data-engineering
-featured: true
+featured: false
 hidden: true
 ---
 
