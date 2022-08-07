@@ -61,7 +61,23 @@ Spark has two core sets of APIs:
 - Low-level APIs
 - High-level APIs
 
-# What is fault tolerance in Spark RDD?
+# Partitions
+
+In order to enable each executor to run in parallel, Spark splits the data into chunks called partitions. A partition is a collection of rows that are stored on a single physical machine in a Spark cluster. The number of executors and partitions influences Spark's parallel processing capability.
+
+- Many executors but only one partition = No parallism.
+- Many partitions but only one executor = No parallism.
+- Many executors with more than one partition = Parallism.
+
+It is important to note that with DataFrames, we do not (for the most part) manually manipulate partitions. We merely specify high-level data transformations in the physical partitions. Spark determines how the tasks will be executed in parallel on the cluster.
+
+# Resilient Distributed Datasets (RDDs)
+
+Spark is built around the concept of a *resilient distributed dataset* (RDD), which is a fault-tolerant collection of data that can be processed in parallel. There are two ways to create RDDs:
+- Parallelizing an existing collection in our driver program
+- Referencing a dataset in an external storage system such as a shared filesystem, HDFS, Amazon S3, etc.
+
+## What is fault tolerance in Spark RDD?
 
 Fault refers to failure or defect or flaw. Fault tolerance is the ability of a system to continue working normally in the event of the failure of one or more of its components.
 
@@ -69,3 +85,34 @@ RDDs have the capability of automatically recovering from failures. Traditionall
 
 The operations carried out in an RDD are a set of Scala functions that are run on that partition of the RDD. This set of operations is combined to form a DAG. RDD tracks the graph of transformations (in DAG) that was used to build it and reruns these operations on base data to reconstruct any lost partitions.
 
+# Transformation
+
+On RDDs, Spark uses two types of operations: *transformation* and *action*. Transformation is an operation that produces new RDD from the existing RDDs. Since RDDs are immutable in nature, each transformation operation always results in a new RDD instead of changing an existing one. Having said that, it takes RDD as input and produces one or more RDD as output.
+
+Because RDD is immutable, Spark generates an RDD lineage that will be used to perform transformations on base data to recover any lost RDD. Also, it's important to note that *transformations are lazy*. This means Spark will not act on transformations until we call an *action*.
+
+Let's do a simple transformation to identify all the even integers in our current DataFrame.
+
+```python
+>>> nums = spark.range(5)
+>>> mums.collect()
+[Row(id=0), Row(id=1), Row(id=2), Row(id=3), Row(id=4)]
+>>> even_nums = nums.where("id % 2 = 0")
+>>> even_nums.collect()
+[Row(id=0), Row(id=2), Row(id=4)]
+```
+
+## Types of transformations
+
+There are two types of transformations:
+
+- **Narrow dependencies aka narrow transformation**
+- **Wide dependencies aka wide transformation**
+
+### Narrow transformation
+
+Transformations with narrow dependencies have each input partition contributing to just one output partition.
+
+### Wide transformation
+
+Multiple input partitions contribute to many output partitions in a wide dependency style transformation. Wider transformations are the result of the `groupByKey` and `reduceByKey` functions, which compute data that spans many partitions. This type of transformation is also known as "shuffle transformations" since it shuffles the data. Wider transformations are more costly than narrow transformations due to shuffling.
