@@ -6,7 +6,7 @@ subtitle: "A data product is not the same as data as a product. A data product a
 image: assets/images/posts-cover-images/data-product.jpg
 author: senthil
 published_on: 2022-08-02 00:00:00 +0530
-tags: ["data-engineering", "data-management", "data-product"]
+tags: ["data-engineering", "data-management", "data-product", "data-as-a-product"]
 categories: data-management
 featured: true
 hidden: false

@@ -1,0 +1,19 @@
+---
+layout: post
+title:  "Data Mesh"
+kicker: "Data Engineering"
+subtitle: "Data mesh is a socio-technical way to build a decentralized data architecture that enables domain teams to do cross-domain data analysis on their own."
+image: assets/images/posts-cover-images/data-mesh.jpg
+author: senthil
+published_on: 2022-08-07 00:00:00 +0530
+tags: ["data-engineering", "data-mesh", "data-as-a-product"]
+categories: data-engineering
+featured: true
+hidden: true
+---
+
+Data Mesh is a new approach for acquiring, maintaining, and accessing data for large-scale analytical use cases. The kind of data that we are referring to is analytical data.
+
+> **Analytical data:** It's a collection of data used for decision-making and research. It is historical data that is curated and optimised for data analysis.
+
+Data mesh demands a fundamental transformation in our assumptions, design, technical solutions, and social structure of our organisations in terms of how we handle, utilise, and own analytical data. It shifts the organisation's data ownership model *from centralised to decentralised*. Typically, the centralised data model is administered by data platform management specialists. This change returns data ownership and accountability to the business domains from where it originated.
