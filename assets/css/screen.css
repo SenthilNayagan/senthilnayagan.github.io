@@ -139,8 +139,8 @@ section.recent-posts {
 
 .listfeaturedtag h2.card-title,
 .listrecent h2.card-title {
-    font-family: Georgia,Times,"Times New Roman",serif;
-    font-size: 1.5rem;
+    font-family: Merriweather;
+    font-size: 1.8rem;
     font-weight: 500;
     line-height: 1.25;
 }
@@ -149,7 +149,7 @@ section.recent-posts {
 .listrecent h4.card-text {
     font-family: Merriweather;
     color: rgba(0, 0, 0, .44);
-    font-size: 0.90rem;
+    font-size: 1.00rem;
     line-height: 1.6;
     font-weight: 400;
 }
