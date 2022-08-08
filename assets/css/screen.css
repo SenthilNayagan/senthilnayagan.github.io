@@ -1,5 +1,5 @@
 @media screen and (min-width:1500px) {
-    html { font-size:17px; } /* Increase the font size on higher resolutions */
+    html { font-size:18px; } /* Increase the font size on higher resolutions */
     .container {max-width:80%;}
 }
 
