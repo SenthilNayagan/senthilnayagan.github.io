@@ -16,7 +16,7 @@ We live in a world full of data, but how can we best use it? It should come as n
 
 |![Worlf full of data!](/assets/images/posts/world-full-of-data.jpg)|
 |:-:|
-|<sub><sup>*Data everywhere!!*</sup></sub>|<br/><br/>
+|<sub><sup>*Data everywhere!*</sup></sub>|<br/><br/>
 
 Be aware that a "data product" is not the same as "data as a product". We might hear the term "data as a product" more often these days due to the current hot trend in the data industry known as "data mesh," which claims to be able to solve many of the problems of its predecessors. One of the principles of the data mesh paradigm is to consider data as a product. This principle is sometimes shortened to "data product," which leads to a misunderstanding between data product and data as a product. 
 

@@ -12,17 +12,11 @@ title: Home
         <h2><span style="color:#A9CCE3;">|&nbsp;&nbsp;</span><span>Featured</span></h2>
     </div>
     <div class="row">
-
-    {% for post in site.posts %}
-
-        {% if post.featured == true %}
-
-            {% include featuredbox.html %}
-
-        {% endif %}
-
-    {% endfor %}
-
+        {% for post in site.posts %}
+            {% if post.featured == true and post.hidden == false %}
+                {% include featuredbox.html %}
+            {% endif %}
+        {% endfor %}
     </div>
 </section>
 
@@ -31,23 +25,14 @@ title: Home
 <!-- Posts Index
 ================================================== -->
 <section class="recent-posts">
-
     <div class="section-title">
-
-        <h2><span style="color:#A9CCE3;">|&nbsp;&nbsp;</span><span>Stories</span></h2>
-
+        <h2><span style="color:#A9CCE3;">|&nbsp;&nbsp;</span><span>All Stories</span></h2>
     </div>
-
     <div class="row listrecent">
-
         {% for post in paginator.posts %}
-
-        {% include postbox.html %}
-
+            {% include postbox.html %}
         {% endfor %}
-
     </div>
-
 </section>
 
 <!-- Pagination
