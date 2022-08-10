@@ -2,7 +2,7 @@
 layout: post
 title:  "Data Mesh"
 kicker: "Data Engineering"
-subtitle: "Data mesh is a socio-technical way to build a decentralized data architecture that enables domain teams to do cross-domain data analysis on their own."
+subtitle: 'Data mesh is a "sociotechnical" way to build a decentralized data architecture that enables domain teams to do cross-domain data analysis on their own.'
 image: assets/images/posts-cover-images/data-mesh.jpg
 author: senthil
 published_on: 2022-08-07 00:00:00 +0530
@@ -12,8 +12,39 @@ featured: false
 hidden: true
 ---
 
-Data Mesh is a new approach for acquiring, maintaining, and accessing data for large-scale analytical use cases. The kind of data that we are referring to is analytical data.
+# Painpoints of the data warehouse
+
+- It does not scale well to an increasing variety of data sources.
+- The effort required for central cleaning and quality control increases in lockstep with the growing amount of data.
+
+# Existing painpoints
+
+Existing centralized analytical data repositories, such as data warehouses and data lakes, create distance and anonymity between data producers and data consumers.
+
+# Why are we not yet ready to adopt data mesh? 
+
+Data mesh is generating both excitement and concern at the moment. Some of us aren't brave enough to change the current centralized data paradigm because we need a holistic view of data.
+
+# What is data mesh?
+
+Data mesh is more than just another version of a centralization-based analytics data architecture. Rather, it is a new approach for acquiring, maintaining, and accessing data for large-scale analytical use cases. The kind of data that we are referring to is analytical data.
 
 > **Analytical data:** It's a collection of data used for decision-making and research. It is historical data that is curated and optimised for data analysis.
 
+**Zhamak Dehghani** came up with the term "data mesh" in 2019. It is based on four basic principles that bring together well-known concepts:
+- Decentralized domain ownership
+- Data as a product
+- Self-serve data infrastructure platform
+- Federated computational data governance
+
 Data mesh demands a fundamental transformation in our assumptions, design, technical solutions, and social structure of our organisations in terms of how we handle, utilise, and own analytical data. It shifts the organisation's data ownership model *from centralised to decentralised*. Typically, the centralised data model is administered by data platform management specialists. This change returns data ownership and accountability to the business domains from where it originated.
+
+# Data consolidation
+
+Enterprises manage a wide variety of data from various sources to run their operations effectively. As enterprises expand, the size of their data stores grows, resulting in data silos inside them. In such enterprises, data is often siloed among departments or domains, making it difficult to get overall visibility while making business-critical decisions.
+
+One way to get comprehensive visibility of the data is through "data consolidation". Data consolidation is the act of gathering data from several systems and storing it in a single repository, where it may be utilized as the foundation for business analytics to derive strategic and operational insights. This method is most commonly associated with data warehousing. However, more modern variations on this concept include the data lake, which is best suited for storing unstructured data that presents itself more easily for analysis using AI and ML technologies. Unfortunately, the data consolidation approach is incapable of providing real-time insight into what is going on in the organization.
+
+# Data federation
+
+Data federation takes a different approach. Instead of bringing data from various sources together in one place, federation leaves an organization’s *data where it is* but *gives a unified view* of all through virtualization.
