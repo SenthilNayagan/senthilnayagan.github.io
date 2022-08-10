@@ -26,12 +26,8 @@
 	<noscript id="deferred-styles">
         <!-- Google Fonts-->
 		<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
-        <!--<link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner&family=Oswald:wght@300&family=Roboto:wght@100&display=swap" rel="stylesheet">-->
 		
         <!-- Font Awesome Icons -->
-        <!--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">-->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 	</noscript>
 
@@ -62,6 +58,14 @@
                     <a class="nav-link" href="{{ site.baseurl }}/index.html">Home</a>
                     </li>
 
+                    {% if page.url == "/tags" %}
+                    <li class="nav-item active">
+                    {% else %}
+                    <li class="nav-item">
+                    {% endif %}
+                    <a class="nav-link" href="{{ site.baseurl }}/tags">Tags</a>
+                    </li>                    
+                    
                     {% if page.url == "/about" %}
                     <li class="nav-item active">
                     {% else %}
@@ -102,7 +106,7 @@
 ================================================== -->
 <div class="alertbar">
 	<div class="container text-center">
-		<span><img src="{{ site.baseurl }}/{{ site.logo }}" alt="{{site.title}}"> &nbsp; Never miss a <b>story</b> from us, subscribe to our newsletter</span>
+		<span><!--<img src="{{ site.baseurl }}/{{ site.logo }}" alt="{{site.title}}">-->&nbsp;Do you find my posts interesting? If you don't want to miss out on new posts, subscribe to my newsletter.</span>
         <form action="{{site.mailchimp-list}}" method="post" name="mc-embedded-subscribe-form" class="wj-contact-form validate" target="_blank" novalidate>
             <div class="mc-field-group">
             <input type="email" placeholder="Email" name="EMAIL" class="required email" id="mce-EMAIL" autocomplete="on" required>
