@@ -47,18 +47,35 @@ It defines ***who** can take **what actions** based on **what data**, under **wh
 
 The practice of data governance also includes adhering to external standards set by industry associations, government agencies, and other stakeholders. Regulations such as the GDPR and many others impose legal accountability and severe penalties on firms that fail to adhere to governance principles around data privacy, retention, and portability. 
 
-# Why is data governance important?
+## Why is data governance important?
+
 Data governance is not only about managing the rules but also making data useful. Effective data governance implementation ensures that high-quality data must be efficiently available to the right people throughout the organisation.
 
-# Data governance vs. data management
-## Data governance
+## Data governance vs. data management
+
+### Data governance
+
 - Data governance describes the general structure that need to be in place.
 - It has policies, procedures, and accountability.
 - It's more about what should happen and how things should happen.
 
-## Data management
+### Data management
+
 - The goal of data management is to put all of the policies into practice.
 - It's a hands-on daily effort to make sure that the policies we put in place are being followed.
 
-# Roles
+## Data encryption
+
+Data encryption adds another level of protection. Only the systems or users who have the keys can make sense of the data. There are several data encryption implementations available. However, the *envelope encryption* technique offers the best security while also performing well.
+
+## Identity and access management (IAM)
+
+Access control is based on who the user is (called "authentication") and whether or not the user is allowed to access certain data (called "authorization"). 
+
+Authorization is based on a set of permissions and roles that are tied to a user's or service's identity. Authorization decides whether or not the user is allowed to access or perform any activity on the data in question.
+
+Authentication is typically handled by providing a password associated with the individual seeking access. The obvious weakness of this approach is that anybody who has obtained access to the password may access whatever that person has access to. So we must add extra layers of protection to the authentication process by making it more difficult for attackers to acquire access-we can enhance it even further by adding *two-factor authentication*. If possible, we may include *biometric data in the authentication request*.
+
+## Roles
+
 The first thing we need to consider when it comes to data governance is who is engaged and what their roles are. There are usually several roles, but the most important one is *data owner* or *data sponsor*. These are the individuals who have ultimate decision-making authority over the data and are solely responsible for ensuring that the data is accurate and up to date. These individuals have a deeper understanding of the groundwork that's being done with the data. There could be many data owners or data sponsors. For instance, a sales data owner, an inventory data owner, etc.
