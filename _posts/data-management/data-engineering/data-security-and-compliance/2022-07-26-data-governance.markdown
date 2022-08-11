@@ -22,7 +22,7 @@ The goal of data governance is to increase *trust in data*. Trustworthy data is 
 
 No matter how large the organization is or the volume of data, the principles of data governance remain the same. However, data governance practitioners make decisions about tools and ways to implement them based on practical factors that are affected by the environment in which they work.
 
-> It is important to note that data governance is not just about data security; it is more than that. Data must be trustworthy, and data quality and integrity are equally crucial.
+> It is important to note that data governance is not just about data security; it is more than that. Data governance guarantees that data is trustworthy while also maintaining its quality and integrity.
 
 # Enhancing trust in data
 
@@ -31,8 +31,19 @@ As noted before, the ultimate goal of data governance is to establish trust in d
 - **Security**
 - **Accountability**
 
+# Data quality
 
-Data governance is a collection of processes, roles, policies, and standards that ensure data is secure, accurate, and available across the organisation. In other words, it is the process of defining security guidelines and policies and making sure they are followed by having authority and control over how data assets are managed. It defines <mark>who can take what actions based on what data, in what circumstances, and with what methods</mark>.
+We can accomplish data quality by using data governance. Data quality is focused on making sure that the data complies to our data quality dimensions such as *accuracy*, *completeness*, *validity*, *timeliness*, *consistency*, and so on. To put it simply, data quality guarantees that we have high-quality data.
+
+We can figure out the data quality by looking at its source, i.e., where it came from (e.g., was it entered by humans, who often make mistakes?). A *sense of ownership* is one method for improving data quality—making sure the business unit responsible for generating the data also owns the quality of that data. 
+
+The organization can set up a *data acceptance process* that states that data cannot be used until the people who own it demonstrate that it meets the organization's quality criteria.
+
+# What is data governance?
+
+Data governance is a collection of *processes*, *roles*, *policies*, *responsibilities* and *standards* that ensure data is *secure*, *accurate*, and *available as an asset* across the organization. In other words, it is the process of defining security guidelines and policies and making sure they are followed by having authority and control over how data assets are managed. 
+
+It defines ***who** can take **what actions** based on **what data**, under **what conditions**, and using **what methods**.*
 
 The practice of data governance also includes adhering to external standards set by industry associations, government agencies, and other stakeholders. Regulations such as the GDPR and many others impose legal accountability and severe penalties on firms that fail to adhere to governance principles around data privacy, retention, and portability. 
 
