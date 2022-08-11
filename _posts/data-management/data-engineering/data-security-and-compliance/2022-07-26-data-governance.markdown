@@ -10,8 +10,27 @@ last_modified_on: 2022-07-29 00:00:00 +0530
 tags: ["data-engineering", "big-data", "data-goverance", "data-security"]
 categories: data-security-and-compliance
 featured: true
-hidden: false
+hidden: true
 ---
+
+What do we mean when we claim the data is secure? It means:
+- Data is only accessible to authorized users in authorized ways.
+- Data is auditable, which means that all accesses, including modifications, are logged.
+- Data complies with all regulations.
+
+The goal of data governance is to increase *trust in data*. Trustworthy data is required to enable decision making and risk assessment. 
+
+No matter how large the organization is or the volume of data, the principles of data governance remain the same. However, data governance practitioners make decisions about tools and ways to implement them based on practical factors that are affected by the environment in which they work.
+
+> It is important to note that data governance is not just about data security; it is more than that. Data must be trustworthy, and data quality and integrity are equally crucial.
+
+# Enhancing trust in data
+
+As noted before, the ultimate goal of data governance is to establish trust in data. To ensure data trust, a data governance strategy must address three key aspects:
+- **Discoverability**
+- **Security**
+- **Accountability**
+
 
 Data governance is a collection of processes, roles, policies, and standards that ensure data is secure, accurate, and available across the organisation. In other words, it is the process of defining security guidelines and policies and making sure they are followed by having authority and control over how data assets are managed. It defines <mark>who can take what actions based on what data, in what circumstances, and with what methods</mark>.
 

@@ -339,7 +339,7 @@ span.subtitle {
 hr.grey_line {
     height: 1px;
     width: 100%;
-    background: #E5E8E8;
+    background: rgb(52, 109, 219);
     border: none;
 }
 
@@ -735,7 +735,7 @@ h6 {
 .article-post h4,
 .article-post h5,
 .article-post h6 {
-    margin-bottom: 0.8rem;
+    margin-bottom: 1.0rem;
     font-weight: 600;
     line-height: 1.0;
 }
