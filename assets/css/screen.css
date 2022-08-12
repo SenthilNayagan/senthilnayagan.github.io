@@ -339,8 +339,9 @@ span.subtitle {
 hr.grey_line {
     height: 1px;
     width: 100%;
-    background: rgb(52, 109, 219);
+    background: #D6DBDF;
     border: none;
+    margin-bottom: 50px;
 }
 
 .footer {
