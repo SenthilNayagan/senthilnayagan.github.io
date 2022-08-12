@@ -37,7 +37,7 @@ A data catalog, at its core, is a *collection of metadata* combined with data ma
 
 We mentioned in the definition of a data catalog that it is *an "organized" inventory of all data assets*. When it says "organized," it signifies that the data catalog's metadata is well organized based on domains and other parameters.
 
-A domain is a collection of data assets that are conceptually related. Finance, sales, inventories, and so forth are examples of domains.
+A domain is a collection of data assets that are conceptually related. Finance, sales, inventories, and so forth are examples of domains. It is up to the domain owners to specify which data assets get into their domain in a data catalog.
 
 ## Data catalog doesn't reveal actual data
 
@@ -70,4 +70,9 @@ A data catalog has various roles built into it, such as data steward, data owne
 
 ## Searchable data catalog
 
-Search is one of the most important features of a data catalog.
+Search is one of the most important features of a data catalog. A data catalog enables all data specialists in an organization to search for any data.
+
+> **Data discovery:** Searching and finding relevant data is called data discovery. It determines if the data exists or not, not what is contained inside it.
+
+
+
