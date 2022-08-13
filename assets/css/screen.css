@@ -736,6 +736,7 @@ h6 {
 .article-post h4,
 .article-post h5,
 .article-post h6 {
+    margin-top: 3.0rem;
     margin-bottom: 1.0rem;
     font-weight: 600;
     line-height: 1.0;

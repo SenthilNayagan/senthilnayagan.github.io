@@ -1,0 +1,24 @@
+---
+layout: post
+title:  "AWS Command Line Interface (AWS CLI)"
+kicker: "AWS"
+subtitle: "AWS CLI is an open source tool that allows us to interact with AWS services using command-line shell commands."
+image: assets/images/posts-cover-images/aws_cli.jpg
+author: senthil
+published_on: 2022-08-13 00:00:00 +0530
+tags: ["aws", "aws-cli"]
+categories: aws
+featured: false
+hidden: false
+---
+
+# AWS Command Line Interface (AWS CLI)
+
+The AWS Command Line Interface (AWS CLI) is an open source tool that allows us to interact with AWS services (S3, EC2, etc.) using commands in our command-line shell. It's an interface between users and AWS services. The AWS CLI lets us start running commands that do the same things as the browser-based AWS Management Console from the command prompt in our terminal application with minimal configuration. The AWS CLI provides direct access to the public APIs of AWS services.
+
+## AWS CLI version 2
+
+The AWS CLI version 2 is the most current major version and supports all of the most recent features. Some features included in version 2 are not backported to version 1, and we must update to use them.
+
+> **Note:** The AWS CLI version 2 is only available as a packaged installer. While it may be available via package managers, these are unsupported and unofficial packages that are not produced or maintained by AWS.
+
