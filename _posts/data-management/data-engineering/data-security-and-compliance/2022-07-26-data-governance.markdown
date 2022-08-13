@@ -24,7 +24,7 @@ Data governance is a collection of *processes*, *roles*, *policies*, *responsibi
 
 It defines ***who** can take **what actions** based on **what data**, under **what conditions**, and using **what methods**.*
 
-The practice of data governance also includes adhering to external standards set by industry associations, government agencies, and other stakeholders. Regulations such as the GDPR and many others impose legal accountability and severe penalties on firms ([*in the case of GDPR, the penalty may be up to 4% of global revenue*](https://gdpr.eu/fines/)) that fail to adhere to governance principles around data privacy, retention, and portability. 
+The practice of data governance also includes adhering to external standards set by industry associations, government agencies, and other stakeholders. Regulations such as the GDPR and many others impose legal accountability and severe penalties on firms ([*in the case of GDPR, the penalty may be up to 4% of global revenue*](https://gdpr.eu/fines/){:target="_blank"}) that fail to adhere to governance principles around data privacy, retention, and portability. 
 
 No matter how large the organization is or the volume of data, the principles of data governance remain the same. However, data governance practitioners make decisions about tools and ways to implement them based on practical factors that are affected by the environment in which they work.
 
