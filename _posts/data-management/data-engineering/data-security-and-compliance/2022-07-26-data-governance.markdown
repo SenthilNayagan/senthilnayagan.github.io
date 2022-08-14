@@ -13,8 +13,7 @@ featured: true
 hidden: false
 ---
 
-> **Writing in progress:** If you have any suggestions for improving the content or notice any inaccuracies, please email me at [hello@senthilnayagan.com](mailto:hello@senthilnayagan.com).
-
+> **Writing in progress:** If you have any suggestions for improving the content or notice any inaccuracies, please email me at [hello@senthilnayagan.com](mailto:hello@senthilnayagan.com).<br/><br/>Thanks!
 
 What do we mean when we claim the data is secure? It means:
 - Data is only *accessible to authorized users* in authorized ways.

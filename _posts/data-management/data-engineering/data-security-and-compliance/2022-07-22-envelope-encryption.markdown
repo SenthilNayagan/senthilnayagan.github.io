@@ -8,11 +8,11 @@ author: senthil
 published_on: 2022-07-22 18:00:40 +0530
 tags: ["envelope-encryption", "data-protection", "root-key", "data-key"]
 categories: data-security-and-compliance
-featured: false
+featured: true
 hidden: false
 ---
 
-Before we get into *envelop encryption*, let's go over some of the fundamentals of encryption.
+Before we get into *envelop encryption*, let's go over some of the fundamentals of encryption/decyption.
 
 #### Key material
 
@@ -20,9 +20,14 @@ A key material is a random sequence of bits that is used in a cryptographic algo
 
 #### Key
 
-A *key*, which is just another short name for an *encryption key*, has a *key-id* or *alias*, *key material*, and *other information about it*, such as who created it and so on.
+A *key*, which is just a short name for an *encryption key*, has a *key-id* or *alias*, *key material*, and *other information about it*, such as who created it and so on.
 
-`Encryption formula: Plaintext + Key = Ciphertext`
+```plain
+Plaintext + Key = Ciphertext
+Ciphertext - Key = Plaintext
+
+Note: + and - signs indicate encryption and decryption actions, respectively.
+```
 
 The image below shows what a key is composed of in general: 
 
@@ -71,7 +76,7 @@ This strategy isn't meant to make things more secure; instead, it's meant to imp
 
 ## Key rotation
 
-Key rotation is the process of retiring an encryption key and replacing it with a new cryptographic key. Changing the keys on a regular basis helps us meet industry standards and best practices for cryptography.
+Key rotation is the process of retiring an encryption key and replacing it with a new cryptographic key. Changing the keys on a regular basis helps us meet industry standards and best practices for cryptography. A good security practice is to rotate keys on a regular and automated basis. Key rotation is required by several industrial requirements.
 
 It is important to note that key rotation changes *only* the key material, which is used in encryption or decryption operations. Regardless of how many times the key material changes, the *key id remains unchanged*. So every time we rotate the key, a new key material is created.
 
@@ -79,9 +84,11 @@ It is important to note that key rotation changes *only* the key material, which
 |:-:|
 |<sub>*Figure 3: Key rotation.*</sub>|<br/><br/>
 
-In general, key-vault tools *safely* keep all old versions of the key material *forever*, so we can decrypt any data that was encrypted with that key and do not delete any rotated old key materials until we delete the keys. When we use a rotated key to encrypt data, the key-vault uses the current key material. When we use the rotated key to decrypt ciphertext, key-vault uses the key material version that was used to encrypt it.
+In general, key-vault tools *safely keep all old versions of the key material forever*, so we can decrypt any data that was encrypted with that key and do not delete any rotated old key materials until we delete the keys. When we use a rotated key to encrypt data, the key-vault uses the current key material. When we use the rotated key to decrypt ciphertext, key-vault uses the key material version that was used to encrypt it.
 
 ### Automatic key rotation
+
+It's recommended to rotate keys automatically on a regular schedule. The frequency of rotation is defined by a rotation schedule. The rotation schedule may be determined by the *age of the key* or the *amount or volume of messages encrypted with a certain key version*.
 
 We may enable automatic key rotation for an existing key depending on the key-vault tool we use. When we set up automatic key rotation for the keys, key-vault tools usually make new key materials for those keys on a regular basis, like once a year.
 
