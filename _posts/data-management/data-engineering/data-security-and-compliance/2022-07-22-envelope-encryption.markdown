@@ -8,9 +8,35 @@ author: senthil
 published_on: 2022-07-22 18:00:40 +0530
 tags: ["envelope-encryption", "data-protection", "root-key", "data-key"]
 categories: data-security-and-compliance
-featured: true
+featured: false
 hidden: false
 ---
+
+Before we get into *envelop encryption*, let's go over some of the fundamentals of encryption.
+
+#### Key material
+
+A key material is a random sequence of bits that is used in a cryptographic algorithm to convert plaintext to ciphertext (encrypted text) and vice versa. To prevent the ciphertext from being decoded back to plaintext, this key material must be kept secret. Note that *public key cryptography*, also known as *asymmetric cryptography*, employs *both* public and private key materials, with the public key material intended to be shared.
+
+#### Key
+
+A *key*, which is just another short name for an *encryption key*, has a *key-id* or *alias*, *key material*, and *other information about it*, such as who created it and so on.
+
+`Encryption formula: Plaintext + Key = Ciphertext`
+
+The image below shows what a key is composed of in general: 
+
+|![Figure 1: Key with key material](/assets/images/posts/key-material.png)|
+|:-:|
+|<sup>*Figure 1: A key with key id, key material and other metadata.*</sup>|<br/><br/>
+
+```plan
+key
+ |
+ |--- Key ID: 5d414
+ |--- Key Material: ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad
+ |--- Other Metadata: [Created By: User1, Created On: 08-01-2022, Modified By: User1, Modified On: 08-01-2022,...]
+```
 
 # What is envelope encryption?
 
@@ -29,7 +55,7 @@ Having said that, the envelop encryption scheme generates two keys. The only key
 
 |![Envelope encryption flow.](/assets/images/posts/envelope-encryption.png)|
 |:-:|
-|<sub><sup>*Envelope encryption flow.*</sup></sub>|<br/><br/>
+|<sub>*Figure 2: Envelope encryption flow.*</sub>|<br/><br/>
 
 ## How can root keys generated in plaintext be protected?
 
@@ -42,3 +68,20 @@ We have just learnt that root keys are stored securely inside a key vault, but w
 ## Motivation
 
 This strategy isn't meant to make things more secure; instead, it's meant to improve performance. Public-key algorithms are often sluggish and use asymmetric algorithms. In contrast, symmetric algorithms are very fast. So, the data, considerably very large in size, is quickly encrypted with a symmetric algorithm using a random key. The random key is subsequently encrypted using a public-key scheme. This approach combines the benefits of public-key scheme with the efficiency of symmetric encryption.
+
+## Key rotation
+
+Key rotation is the process of retiring an encryption key and replacing it with a new cryptographic key. Changing the keys on a regular basis helps us meet industry standards and best practices for cryptography.
+
+It is important to note that key rotation changes *only* the key material, which is used in encryption or decryption operations. Regardless of how many times the key material changes, the *key id remains unchanged*. So every time we rotate the key, a new key material is created.
+
+|![Key rotation](/assets/images/posts/key-rotation.png)|
+|:-:|
+|<sub>*Figure 3: Key rotation.*</sub>|<br/><br/>
+
+In general, key-vault tools *safely* keep all old versions of the key material *forever*, so we can decrypt any data that was encrypted with that key and do not delete any rotated old key materials until we delete the keys. When we use a rotated key to encrypt data, the key-vault uses the current key material. When we use the rotated key to decrypt ciphertext, key-vault uses the key material version that was used to encrypt it.
+
+### Automatic key rotation
+
+We may enable automatic key rotation for an existing key depending on the key-vault tool we use. When we set up automatic key rotation for the keys, key-vault tools usually make new key materials for those keys on a regular basis, like once a year.
+

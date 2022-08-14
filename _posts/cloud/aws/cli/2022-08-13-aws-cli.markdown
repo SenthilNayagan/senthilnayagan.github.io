@@ -14,7 +14,9 @@ hidden: false
 
 # AWS command line interface
 
-The AWS command line interface (AWS CLI) is an open-source tool that allows us to interact with AWS services (S3, EC2, etc.) using commands in our command-line shell. It's an interface between users and AWS services. The AWS CLI lets us start running commands that do the same things as the browser-based *AWS Management Console* from the command prompt in our terminal application with minimal configuration. The AWS CLI provides direct access to the public APIs of AWS services.
+The AWS command line interface (AWS CLI) is an open-source tool that allows us to interact with AWS services (S3, EC2, etc.) using commands in our command-line shell. It's an interface between users and AWS services. 
+
+The AWS CLI lets us start running commands that do the same things as the browser-based *AWS Management Console* from the command prompt in our terminal application with minimal configuration. The AWS CLI provides direct access to the public APIs of AWS services.
 
 ## AWS CLI version 2
 
@@ -36,10 +38,10 @@ Let's take a look at how to quickly configure the basic settings that the AWS CL
 
 When we enter this (`aws configure`) command with no arguments, the AWS CLI prompts us for four pieces of information:
 
-- **Access key ID** (sensitive information)
-- **Secret access key** (sensitive information)
-- **AWS Region** (non-sensitive information)
-- **Output format** (non-sensitive information)
+- **Access key ID** (*sensitive information*)
+- **Secret access key** (*sensitive information*)
+- **AWS Region** (*non-sensitive information*)
+- **Output format** (*non-sensitive information*)
 
 The AWS CLI stores *sensitive* credential information that we specify with `aws configure` command in a local file named `credentials`, in a folder named `.aws` in our home directory-the default location is `~/.aws/credentials`. 
 
@@ -50,6 +52,8 @@ $ ls -ltr ~/.aws
 -rw-------  1 user  staff  116 Sep 24 18:02 credentials
 -rw-------  1 user  staff   10 Sep 24 18:02 config
 ```
+
+### Configure AWS CLI to connect to AWS
 
 Here is how we configure the AWS CLI to connect to our AWS account. These are only sample values. Replace them with our own values.
 
@@ -79,11 +83,11 @@ output = table
 
 > **Profile:** A profile is a collection of settings that include access key id, secret access key, region name and output format. By default, when we run an AWS CLI command that doesn't say which profile to use, the information in the `[default]` profile is used.
 
-### Multiple AWS accounts
+### Managing multiple AWS accounts
 
-If we have multiple AWS accounts to connect using AWS CLI, we may use the `—-profile` parameter to create a named profile. We can specify a `--profile profilename` and use the credentials and settings stored under that name.
+If we have multiple AWS accounts to connect using AWS CLI from a single computer, we may use the `—-profile` parameter to create a named profile. We can specify a `--profile profilename` and use the credentials and settings stored under that name.
 
-#### How to create a new named profile?
+#### Creating a new named profile
 
 The following example creates a profile named `guestuser`:
 

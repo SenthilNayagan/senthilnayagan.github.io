@@ -10,8 +10,11 @@ last_modified_on: 2022-07-29 00:00:00 +0530
 tags: ["data-engineering", "big-data", "data-goverance", "data-security"]
 categories: data-security-and-compliance
 featured: true
-hidden: true
+hidden: false
 ---
+
+> **Writing in progress:** If you have any suggestions for improving the content or notice any inaccuracies, please email me at [hello@senthilnayagan.com](mailto:hello@senthilnayagan.com).
+
 
 What do we mean when we claim the data is secure? It means:
 - Data is only *accessible to authorized users* in authorized ways.

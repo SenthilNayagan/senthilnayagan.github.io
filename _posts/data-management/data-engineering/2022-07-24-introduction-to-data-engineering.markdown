@@ -29,7 +29,7 @@ Let's explore each data engineering activity individually.
 
 |![Data pipeline](/assets/images/posts/data-pipeline.jpg)|
 |:-:|
-|[<sub><sup>*Designed by Freepik.*</sup></sub>](https://www.freepik.com/free-vector/pipeline-maintenance-concept-illustration_13717669.htm){:target="_blank"}|
+|[<sub>*Designed by Freepik.*</sub>](https://www.freepik.com/free-vector/pipeline-maintenance-concept-illustration_13717669.htm){:target="_blank"}|
 
 A data pipeline is commonly constructed as part of data engineering to transfer data from a source to a destination. Data is transformed and optimised along the pipeline's journey, eventually reaching a state where it can be analysed and used to generate business insights. Many of the manual processes required in processing and optimising continuous data loads are now automated by modern data pipelines.
 
