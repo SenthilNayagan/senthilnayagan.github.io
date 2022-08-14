@@ -26,7 +26,7 @@ Memory safety refers to the state of a software application where memory pointer
 
 |![Bag Theft](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/a3r0g7c0ycz5fc62zhsz.jpg)|
 |:-:|
-|[<sub><sup>*Designed by Freepik.*</sup></sub>](https://www.freepik.com/free-vector/theft-bag-flat-composition-with-indoor-view-clothing-shop-woman-choosing-shirt-criminal-character-illustration_15481059.htm){:target="_blank"}|<br/><br/>
+|[<sup>*Designed by Freepik.*</sup>](https://www.freepik.com/free-vector/theft-bag-flat-composition-with-indoor-view-clothing-shop-woman-choosing-shirt-criminal-character-illustration_15481059.htm){:target="_blank"}|<br/><br/>
 
 Let’s use a pseudocode to see what valid memory is.
 
@@ -72,7 +72,7 @@ It’s important to understand what a memory leak is and what its consequences a
 
 |![Flooded house emergency](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/e42e5d1ge2dioiq2ieuj.jpg)|
 |:-:|
-|[<sub><sup>*Designed by Freepik.*</sup></sub>](https://www.freepik.com/free-vector/flooded-house-emergency-flat-cartoon-with-family-home-calling-plumber-fix-burst-pipes_6845858.htm){:target="_blank"}|<br/><br/>
+|[<sup>*Designed by Freepik.*</sup>](https://www.freepik.com/free-vector/flooded-house-emergency-flat-cartoon-with-family-home-calling-plumber-fix-burst-pipes_6845858.htm){:target="_blank"}|<br/><br/>
 
 A *memory leak* is an unintentional form of memory consumption whereby the developer fails to free an allocated block of *heap* memory when it is no longer needed. It's simply the opposite of memory safety. More on the different memory types later, but for now, just know that a *stack* stores fixed-length variables known at compile time, whereas the size of variables that may change later at runtime must be placed on the *heap*.
 
@@ -98,7 +98,7 @@ Memory leaks and memory unsafety are the two types of issues that have received 
 
 |![Figure 1: Memory unsafety vs. memory leaks](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/z1f7affpg1s7d5w4m4j4.png)|
 |:-:|
-|<sub><sup>*Figure 1: Memory unsafety vs. memory leaks.*</sup></sub>|<br/><br/>
+|<sup>*Figure 1: Memory unsafety vs. memory leaks.*</sup>|<br/><br/>
 
 ---
 
@@ -207,13 +207,13 @@ Having said that, one gives efficient memory management *control*, while the oth
 
 |![Figure 2: Rust has better control over memory management and provide higher safety with no memory issues](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/db43zkao8a6yivti1d5u.png)|
 |:-:|
-|<sub><sup>*Figure 2: Rust has better control over memory management and provide higher safety with no memory issues.*</sup></sub>|<br/><br/>
+|<sup>*Figure 2: Rust has better control over memory management and provide higher safety with no memory issues.*</sup>|<br/><br/>
 
 Rust takes a different approach to things than the other two, based on an ownership model with a set of rules that the compiler verifies to ensure memory safety. The program will not compile if any of these rules are violated. In fact, ownership replaces runtime garbage collection with compile-time checks for memory safety.
 
 |![Explicit memory management vs. Implicit memory management vs. Rust’s ownership model](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/s9a98dekos4krj9o6ikx.png)|
 |:-:|
-|<sub><sup>*Explicit memory management vs. Implicit memory management vs. Rust’s ownership model.*</sup></sub>|<br/><br/>
+|<sup>*Explicit memory management vs. Implicit memory management vs. Rust’s ownership model.*</sup>|<br/><br/>
 
 It takes some time to get used to ownership because it is a new concept for many programmers, like myself.
 
@@ -227,7 +227,7 @@ To begin, let's define “ownership” in its most literal sense. Ownership is t
 
 |![Figure 3: Variable binding shows the owner and its value/resource](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/y42938p6domnusq3h7ry.png)|
 |:-:|
-|<sub><sup>*Figure 3: Variable binding shows the owner and its value/resource.*</sup></sub>|<br/><br/>
+|<sup>*Figure 3: Variable binding shows the owner and its value/resource.*</sup>|<br/><br/>
 
 With an ownership model, memory is automatically released (freed) once the variable that owns it goes out of scope. When values go out of scope or their lifetimes end for some other reason, their destructors are called. A destructor, particularly an automated destructor, is a function that removes traces of a value from the program by deleting references and frees up memory.
 
@@ -272,7 +272,7 @@ Because `x` is stored on the stack, copying its value to produce another copy fo
 
 |![Figure 4: Both x and y have their own data](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/wnhcikqel9k4k4i6ke06.png)|
 |:-:|
-|<sub><sup>*Figure 4: Both `x` and `y` have their own data.*</sup></sub>|<br/><br/>
+|<sup>*Figure 4: Both `x` and `y` have their own data.*</sup>|<br/><br/>
 
 Duplicating data increases program runtime and memory consumption. Therefore, copying isn't a good fit for large chunks of data.
 
@@ -297,19 +297,19 @@ To put it in other words, the metadata is kept on the stack while the actual dat
 
 |![Figure 5: The stack holds the metadata while the heap holds the actual contents](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/u1mg93yh2ye4s2ij2had.png)|
 |:-:|
-|<sub><sup>*Figure 5: The stack holds the metadata while the heap holds the actual contents.*</sup></sub>|<br/><br/>
+|<sup>*Figure 5: The stack holds the metadata while the heap holds the actual contents.*</sup>|<br/><br/>
 
 When we assign `s1` to `s2`, the `String` metadata is copied, meaning we copy the pointer, the length, and the capacity that are on the stack. We do not copy the data on the heap that the pointer refers to. The data representation in memory looks like the one below:
 
 |![Figure 6: Variable `s2` gets a copy of the pointer, length, and capacity of `s1`](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/9xrq3zvr2gcp4bjmjzb4.png)|
 |:-:|
-|<sub><sup>*Figure 6: Variable `s2` gets a copy of the pointer, length, and capacity of `s1`.*</sup></sub>|<br/><br/>
+|<sup>*Figure 6: Variable `s2` gets a copy of the pointer, length, and capacity of `s1`.*</sup>|<br/><br/>
 
 It's worth noting that the representation does *not* look like the one below, which is what memory would look like if Rust copied the heap data as well. If Rust performed this, the `s2 = s1` operation could be extremely slow in terms of runtime performance if the heap data were large.
 
 |![Figure 7: If Rust copied the heap data, another possibility for what `let s2 = s1` might do is data replication. However, Rust does not copy by default](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/64c9dg88ohy7bxb13onu.png)|
 |:-:|
-|<sub><sup>*Figure 7: If Rust copied the heap data, another possibility for what `let s2 = s1` might do is data replication. However, Rust does not copy by default.*</sup></sub>|<br/><br/>
+|<sup>*Figure 7: If Rust copied the heap data, another possibility for what `let s2 = s1` might do is data replication. However, Rust does not copy by default.*</sup>|<br/><br/>
 
 Note that when complex types are no longer in scope, Rust will call the `drop` function to explicitly deallocate heap memory. However, both data pointers in Figure 6 are pointing to the same location, which is not how Rust works. We will get into the details shortly.
 
@@ -351,7 +351,7 @@ As Rust "moved" `s1`'s ownership of the memory to `s2` after the line `let s2 = 
 
 |![Figure 8: Memory representation after `s1` has been invalidated](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ff5sbiro9x2khk76opfq.png)|
 |:-:|
-|<sub><sup>*Figure 8: Memory representation after `s1` has been invalidated.*</sup></sub>|<br/><br/>
+|<sup>*Figure 8: Memory representation after `s1` has been invalidated.*</sup>|<br/><br/>
 
 When only `s2` remains valid, it alone will free the memory when it goes out of scope. As a result, the potential for a *double free error* is eliminated in Rust. That's wonderful!
 
@@ -370,7 +370,7 @@ When using the clone method, the heap data does get copied into s2. This works p
 
 |![Figure 9: When using the clone method, the heap data does get copied into `s2`](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/kjo2ogcqcmqgf8hxb2o5.png)|
 |:-:|
-|<sub><sup>*Figure 9: When using the clone method, the heap data does get copied into `s2`.*</sup></sub>|<br/><br/>
+|<sup>*Figure 9: When using the clone method, the heap data does get copied into `s2`.*</sup>|<br/><br/>
 
 The use of the clone method has serious consequences; it not only copies the data, but it also does not synchronize any changes between the two. In general, clones should be planned carefully and with full awareness of the consequences.
 
@@ -391,7 +391,7 @@ There can only be one owner of a value at a given time. One can have many pets, 
 
 |![A guy walking with various dogs](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/sup47en7psplrgwyywsd.jpeg)|
 |:-:|
-|[<sub><sup>*Designed by Freepik.*</sup></sub>](https://www.freepik.com/premium-vector/one-guy-walking-with-different-dogs-street-city-city-cafe-frontshop-colored-flat-cartoon-vector-illustration-modern-cityscape_20175570.htm){:target="_blank"}|<br/><br/>
+|[<sup>*Designed by Freepik.*</sup>](https://www.freepik.com/premium-vector/one-guy-walking-with-different-dogs-street-city-city-cafe-frontshop-colored-flat-cartoon-vector-illustration-modern-cityscape_20175570.htm){:target="_blank"}|<br/><br/>
 
 Let’s look at the example using *primitives*, which are fixed-size known at compile time.
 
@@ -407,7 +407,7 @@ The stack frame for this would be as follows: `x = 10`, `y = 10` and `z = 10`. T
 
 |![Figure 10: Compiler made copies of `x` to both `y` and `z`](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/b5x6yid44b6r3cxlyidj.png)|
 |:-:|
-|<sub><sup>*Figure 10: Compiler made copies of `x` to both `y` and `z`.*</sup></sub>|<br/><br/>
+|<sup>*Figure 10: Compiler made copies of `x` to both `y` and `z`.*</sup>|<br/><br/>
 
 Because copying stack memory is cheap and fast, primitive types with a fixed-size are said to have *copy* semantics, whereas complex types *move* ownership, as previously stated. Thus, in this case, the compiler makes the *copies*. 
 
@@ -458,7 +458,7 @@ The value of `s1` has dropped after `s1` is assigned to `s2` (in the `let s2 = s
 
 |![Figure 11: Memory representation after `s1` has been dropped](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/bpdp7b95pj2d6q2x3a6v.png)|
 |:-:|
-|<sub><sup>*Figure 11: Memory representation after `s1` has been dropped.*</sup></sub>|<br/><br/>
+|<sup>*Figure 11: Memory representation after `s1` has been dropped.*</sup>|<br/><br/>
 
 ## How ownership moves
 
@@ -551,7 +551,7 @@ Rust's ownership model, as with all good things, does have certain drawbacks. We
 
 |![Woman going through nervous breakdown](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/0w9b3q9r59wn7xj0oja2.png)|
 |:-:|
-|[<sub><sup>*Designed by Freepik.*</sup></sub>](https://www.freepik.com/free-vector/woman-going-through-nervous-breakdown-bipolar-behavior-disorder-cartoon-illustration_12699889.htm){:target="_blank"}|<br/><br/>
+|[<sup>*Designed by Freepik.*</sup>](https://www.freepik.com/free-vector/woman-going-through-nervous-breakdown-bipolar-behavior-disorder-cartoon-illustration_12699889.htm){:target="_blank"}|<br/><br/>
 
 It's annoying that everything we pass into a function must be returned if we want to use it again, in addition to any other data returned by that function. What if we want a function to use a value without taking ownership of it?
 
@@ -579,7 +579,7 @@ Borrowing, in its literal sense, refers to receiving something with the promise 
 
 |![A girl borrowing a book](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/xzb4l2f3jbb7uyqtfcoc.jpg)|
 |:-:|
-|[<sub><sup>*Designed by Freepik.*</sup></sub>](https://www.freepik.com/free-vector/man-stand-one-knee-giving-book-little-girl_6823040.htm){:target="_blank"}|<br/><br/>
+|[<sup>*Designed by Freepik.*</sup>](https://www.freepik.com/free-vector/man-stand-one-knee-giving-book-little-girl_6823040.htm){:target="_blank"}|<br/><br/>
 
 When we borrow a value, we reference its memory address with the `&` operator. A `&` is called a *reference*. The references themselves are nothing special—under the hood, they're just addresses. For those familiar with C pointers, a reference is a *pointer* to memory that contains a value that belongs to (aka *owned* by) another variable. It's worth noting that a reference can't be null in Rust. In fact, a *reference is a pointer*; it's the most basic type of pointer. There is just one type of pointer in most languages, but Rust has different kinds of pointers, rather than just one. Pointers and their various kinds are a different topic that will be discussed separately. 
 
@@ -642,7 +642,7 @@ This is how the stack memory appears:
 
 |![Stack memory representation](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/10628siuswaj4v4r4mj7.png)|
 |:-:|
-|<sub><sup>*Stack memory representation.*</sup></sub>|<br/><br/>
+|<sup>*Stack memory representation.*</sup>|<br/><br/>
 
 We can assert that `x` is equal to `5`. However, if we want to make an assertion on the value in `y`, we must follow the reference to the value it's referring to using `*y` (hence dereference here). Once we dereference `y`, we have access to the integer value that `y` is pointing to, which we can compare to `5`.
 
@@ -763,4 +763,4 @@ Happy learning!
 
 |![Happy learning!](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/vaffqpjd81x8fheec5j8.jpeg)|
 |:-:|
-|[<sub><sup>*Designed by Freepik.*</sup></sub>](https://www.freepik.com/free-vector/men-success-laptop-relieve-work-from-home-computer-great_12849227.htm){:target="_blank"}|
+|[<sup>*Designed by Freepik.*</sup>](https://www.freepik.com/free-vector/men-success-laptop-relieve-work-from-home-computer-great_12849227.htm){:target="_blank"}|

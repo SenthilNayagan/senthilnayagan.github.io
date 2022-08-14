@@ -60,7 +60,7 @@ Having said that, the envelop encryption scheme generates two keys. The only key
 
 |![Envelope encryption flow.](/assets/images/posts/envelope-encryption.png)|
 |:-:|
-|<sub>*Figure 2: Envelope encryption flow.*</sub>|<br/><br/>
+|<sup>*Figure 2: Envelope encryption flow.*</sup>|<br/><br/>
 
 ## How can root keys generated in plaintext be protected?
 
@@ -82,13 +82,30 @@ It is important to note that key rotation changes *only* the key material, which
 
 |![Key rotation](/assets/images/posts/key-rotation.png)|
 |:-:|
-|<sub>*Figure 3: Key rotation.*</sub>|<br/><br/>
+|<sup>*Figure 3: Key rotation.*</sup>|<br/><br/>
 
 In general, key-vault tools *safely keep all old versions of the key material forever*, so we can decrypt any data that was encrypted with that key and do not delete any rotated old key materials until we delete the keys. When we use a rotated key to encrypt data, the key-vault uses the current key material. When we use the rotated key to decrypt ciphertext, key-vault uses the key material version that was used to encrypt it.
 
 ### Automatic key rotation
 
-It's recommended to rotate keys automatically on a regular schedule. The frequency of rotation is defined by a rotation schedule. The rotation schedule may be determined by the *age of the key* or the *amount or volume of messages encrypted with a certain key version*.
+It's recommended to rotate keys automatically on a regular schedule. The frequency of rotation is defined by a rotation schedule. 
+
+The rotation schedule may be determined by: 
+
+- Age of the key
+- Number or volume of data encrypted with a certain key version
 
 We may enable automatic key rotation for an existing key depending on the key-vault tool we use. When we set up automatic key rotation for the keys, key-vault tools usually make new key materials for those keys on a regular basis, like once a year.
 
+### How often should the keys be rotated? 
+
+Key rotations should ideally occur every few months, but once every three months is recommended. If we want to perform this more often, we:
+
+- Have a large amount of data.
+- Have a high-value data.
+- Have a shared-environment.
+
+### Benefits of key rotation
+
+- Key rotation reduces the amount of data encrypted with the same key version, making assaults less likely.
+- Regular key rotation ensures that our system is capable of handling manual key rotation, whether due to a security breach or for any other reason.
