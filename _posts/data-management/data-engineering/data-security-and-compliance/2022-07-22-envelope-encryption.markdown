@@ -70,9 +70,11 @@ Thankfully, the key vault saved the day! The key vault safeguards our root keys 
 
 We have just learnt that root keys are stored securely inside a key vault, but where are data keys stored securely? Can't the data keys be safely kept in the same vault as the root keys? We certainly can, but why is it necessary? Remember that the data keys are inherently protected by encryption. So we should not be concerned about where the data keys are kept. We can put them anywhere, but it's best to put them alongside the encrypted data.
 
-## Motivation
+## Benefits of envelop encryption
 
-This strategy isn't meant to make things more secure; instead, it's meant to improve performance. Public-key algorithms are often sluggish and use asymmetric algorithms. In contrast, symmetric algorithms are very fast. So, the data, considerably very large in size, is quickly encrypted with a symmetric algorithm using a random key. The random key is subsequently encrypted using a public-key scheme. This approach combines the benefits of public-key scheme with the efficiency of symmetric encryption.
+This strategy isn't meant to make things more secure; instead, it's meant to improve performance. Public-key algorithms are often sluggish and use asymmetric algorithms. In contrast, symmetric algorithms are very fast. So, the data, considerably very large in size, is quickly encrypted with a symmetric algorithm using a random key. The random key is subsequently encrypted using a public-key scheme. This approach *combines the benefits of public-key scheme with the efficiency of symmetric encryption*.
+
+Envelope encryption reduces the network load since only the request and delivery of the considerably smaller data key go over the network. The data key is used locally in our application, so we don't have to send the whole block of data to encrypt or decrypt it, which would cause network latency.
 
 ## Key rotation
 
