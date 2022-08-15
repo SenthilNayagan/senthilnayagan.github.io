@@ -12,6 +12,8 @@ featured: false
 hidden: false
 ---
 
+> **Writing in progress:** If you have any suggestions for improving the content or notice any inaccuracies, please email me at [hello@senthilnayagan.com](mailto:hello@senthilnayagan.com).<br/><br/>Thanks!
+
 # Parquet Motivation
 Parquet was created to make the benefits of compressed, efficient columnar data representation available to all Hadoop ecosystems. It's an open source file format. As stated, it's a *columnar storage* format for data that is not necessarily tubular (rows and columns), such as data with complex nested structures. In columnar storage, data in a single column is stored contiguously as shown below:
 

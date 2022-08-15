@@ -12,6 +12,8 @@ featured: false
 hidden: false
 ---
 
+> **Writing in progress:** If you have any suggestions for improving the content or notice any inaccuracies, please email me at [hello@senthilnayagan.com](mailto:hello@senthilnayagan.com).<br/><br/>Thanks!
+
 # What is a data catalog?
 A catalog, in its literal sense, refers to a book or document containing a complete list of things, usually arranged *systematically*. A data catalog, in the context of data management, is an organised inventory of all *data assets* inside an organisation to help data professionals quickly and easily locate the most relevant data with the aim of gaining business insights. 
 
