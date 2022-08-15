@@ -23,7 +23,7 @@ The first step in data engineering is obtaining vast quantities of data from a v
 
 |![Data engineering activities](/assets/images/posts/data-engineering-activities.png)|
 |:-:|
-|<sub><sup>*Data engineering activities at a high level - By Author.*</sup></sub>|
+|<sup>*Data engineering activities at a high level - By Author.*</sup>|
 
 Let's explore each data engineering activity individually.
 
@@ -31,7 +31,7 @@ Let's explore each data engineering activity individually.
 
 |![Data pipeline](/assets/images/posts/data-pipeline.jpg)|
 |:-:|
-|[<sub>*Designed by Freepik.*</sub>](https://www.freepik.com/free-vector/pipeline-maintenance-concept-illustration_13717669.htm){:target="_blank"}|
+|[<sup>*Designed by Freepik.*</sup>](https://www.freepik.com/free-vector/pipeline-maintenance-concept-illustration_13717669.htm){:target="_blank"}|
 
 A data pipeline is commonly constructed as part of data engineering to transfer data from a source to a destination. Data is transformed and optimised along the pipeline's journey, eventually reaching a state where it can be analysed and used to generate business insights. Many of the manual processes required in processing and optimising continuous data loads are now automated by modern data pipelines.
 
