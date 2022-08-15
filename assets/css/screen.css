@@ -60,12 +60,14 @@ section.recent-posts {
 }
 
 .section-title h2 {
-    font-family: Merriweather;
+    font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
     border-bottom: 1px solid rgba(0, 0, 0, .125);
     margin-bottom: 25px;
     font-weight: 550;
     font-size: 1.4rem;
     margin-bottom: 27px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .section-title span {
@@ -96,6 +98,11 @@ section.recent-posts {
 
 @media (min-width:992px) {
     .navbar-expand-lg .navbar-nav .nav-link {
+        font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 11px;
+        color: #222222;        
         padding-right: 0.8rem;
         padding-left: 0.8rem;
     }
