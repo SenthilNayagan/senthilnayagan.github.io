@@ -23,7 +23,7 @@ The first step in data engineering is obtaining vast quantities of data from a v
 
 |![Data engineering activities](/assets/images/posts/data-engineering-activities.png)|
 |:-:|
-|<sup>*Data engineering activities at a high level - By Author.*</sup>|
+|<sup>*Data engineering activities at a high level - By Author.*</sup>|<br/><br/>
 
 Let's explore each data engineering activity individually.
 

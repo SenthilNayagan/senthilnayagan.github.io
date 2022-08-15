@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Data Mesh"
-kicker: "Data Engineering"
+title:  "Data Mesh (WIP)"
+kicker: "Data Mesh"
 subtitle: 'Data mesh is a "sociotechnical" way to build a decentralized data architecture that enables domain teams to do cross-domain data analysis on their own.'
 image: assets/images/posts-cover-images/data-mesh.jpg
 author: senthil
@@ -9,19 +9,20 @@ published_on: 2022-08-07 00:00:00 +0530
 tags: ["data-engineering", "data-mesh", "data-as-a-product"]
 categories: data-engineering
 featured: false
-hidden: true
+hidden: false
 ---
 
-# Painpoints of the data warehouse
+> **Writing in progress:** If you have any suggestions for improving the content or notice any inaccuracies, please email me at [hello@senthilnayagan.com](mailto:hello@senthilnayagan.com).<br/><br/>Thanks!
 
-- It does not scale well to an increasing variety of data sources.
+Before we go any farther in defining *data mesh*, let's first understand why it's necessary.
+
+### Existing data warehouse or data lake pain points
+
+- It does not scale well to an increasing variety of data sources (addressed in data lake).
 - The effort required for central cleaning and quality control increases in lockstep with the growing amount of data.
+- Existing centralized analytical data repositories, such as data warehouses and data lakes, create distance and anonymity between data producers and data consumers.
 
-# Existing painpoints
-
-Existing centralized analytical data repositories, such as data warehouses and data lakes, create distance and anonymity between data producers and data consumers.
-
-# Why are we not yet ready to adopt data mesh? 
+### Why are we not yet ready to adopt data mesh? 
 
 Data mesh is generating both excitement and concern at the moment. Some of us aren't brave enough to change the current centralized data paradigm because we need a holistic view of data.
 
@@ -32,6 +33,7 @@ Data mesh is more than just another version of a centralization-based analytics 
 > **Analytical data:** It's a collection of data used for decision-making and research. It is historical data that is curated and optimised for data analysis.
 
 **Zhamak Dehghani** came up with the term "data mesh" in 2019. It is based on four basic principles that bring together well-known concepts:
+
 - Decentralized domain ownership
 - Data as a product
 - Self-serve data infrastructure platform
