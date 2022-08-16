@@ -102,7 +102,7 @@ section.recent-posts {
         text-transform: uppercase;
         letter-spacing: 2px;
         font-size: 11px;
-        color: #222222;        
+        color: #222222;
         padding-right: 0.8rem;
         padding-left: 0.8rem;
     }
@@ -261,10 +261,11 @@ span.post-read-more a:hover {
 }
 
 .mediumnavigation .form-control {
+    font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
     font-size: 0.8rem;
-    border-radius: 30px;
+    border-radius: 10px;
     overflow: hidden;
-    border: 1px solid rgba(0, 0, 0, 0.09);
+    border: 2px solid rgba(0, 0, 0, 0.09);
     min-width: 180px;
 }
 
@@ -944,4 +945,11 @@ iframe {
 .lazyimg[data-srcset] {
     opacity: 0;
     transition: opacity .25s;
+}
+
+.accessibility-text {
+    position: absolute;
+    width: 0;
+    overflow: hidden;
+    opacity: 0;
 }
