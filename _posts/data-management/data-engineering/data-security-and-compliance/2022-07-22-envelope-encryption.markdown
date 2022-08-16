@@ -88,7 +88,7 @@ It is important to note that key rotation changes *only* the key material, which
 
 |![Key rotation](/assets/images/posts/key-rotation.png)|
 |:-:|
-|<sup>*Figure 3: Key rotation.*</sup>|<br/><br/>
+|<sup>*Figure 4: Key rotation.*</sup>|<br/><br/>
 
 In general, key-vault tools *safely keep all old versions of the key material forever*, so we can decrypt any data that was encrypted with that key and do not delete any rotated old key materials until we delete the keys. When we use a rotated key to encrypt data, the key-vault uses the current key material. When we use the rotated key to decrypt ciphertext, key-vault uses the key material version that was used to encrypt it.
 
