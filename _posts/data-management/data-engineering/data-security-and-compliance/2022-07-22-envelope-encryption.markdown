@@ -38,8 +38,8 @@ The image below shows what a key is composed of in general:
 ```plan
 key
  |
- |--- Key ID: 5d414
- |--- Key Material: ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad
+ |--- Key ID: 12t9c
+ |--- Key Material: 010101110101100
  |--- Other Metadata: [Created By: User1, Created On: 08-01-2022, Modified By: User1, Modified On: 08-01-2022,...]
 ```
 
