@@ -31,7 +31,7 @@ Note: + and - signs indicate encryption and decryption actions, respectively.
 
 The image below shows what a key is composed of in general: 
 
-|![Figure 1: Key with key material](/assets/images/posts/key-material.png)|
+|![Figure 1: Key with key material](/assets/images/posts/key-material.png "Created by Author")|
 |:-:|
 |<sup>*Figure 1: A key with key id, key material and other metadata.*</sup>|<br/><br/>
 
@@ -58,7 +58,7 @@ Having said that, the envelop encryption scheme generates two keys. The only key
 
 > This two-step procedure can be made longer by encrypting with another encryption key and then encrypting the resulting encrypted key with yet another encryption key, and so on, as shown below.<br><br>*Root key --> Encryption-keyN --> ... Encryption-key1 --> Data key --> Data*<br><br>But in the end, though, the top-level key must stay in plaintext so that we can decrypt the rest of the keys and our data. This top-level plaintext key is known as the *root key*.
 
-|![Envelope encryption high-level flow.](/assets/images/posts/envelope-encryption.png)|
+|![Envelope encryption high-level flow.](/assets/images/posts/envelope-encryption.png "Created by Author")|
 |:-:|
 |<sup>*Figure 2: Envelope encryption high-level flow.*</sup>|<br/><br/>
 
@@ -70,7 +70,7 @@ Thankfully, the key vault saved the day! The key vault safeguards our root keys 
 
 We have just learnt that root keys are stored securely inside a key vault, but where are data keys stored securely? Can't the data keys be safely kept in the same vault as the root keys? We certainly can, but why is it necessary? Remember that the data keys are inherently protected by encryption. So we should not be concerned about where the data keys are kept. We can put them anywhere, but it's best to put them alongside the encrypted data.
 
-|![Envelope encryption flow.](/assets/images/posts/envelope-encryption-flow.png)|
+|![Envelope encryption flow.](/assets/images/posts/envelope-encryption-flow.png "Created by Author")|
 |:-:|
 |<sup>*Figure 3: Envelope encryption flow.*</sup>|<br/><br/>
 
@@ -86,7 +86,7 @@ Key rotation is the process of retiring an encryption key and replacing it with 
 
 It is important to note that key rotation changes *only* the key material, which is used in encryption or decryption operations. Regardless of how many times the key material changes, the *key id remains unchanged*. So every time we rotate the key, a new key material is created.
 
-|![Key rotation](/assets/images/posts/key-rotation.png)|
+|![Key rotation](/assets/images/posts/key-rotation.png "Created by Author")|
 |:-:|
 |<sup>*Figure 4: Key rotation.*</sup>|<br/><br/>
 

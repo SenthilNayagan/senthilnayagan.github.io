@@ -17,7 +17,7 @@ Kubernetes is a Google-developed open source *container orchestration platform* 
 
 When developers want to deploy an application on multiple computers, they use Kubernetes rather than deploying the application on each computer individually. Kubernetes provides *an abstraction layer on top of the underlying infrastructure* (computers, networks, etc.) for both consumers and applications. Kubernetes hides the infrastructure underneath from the applications, making development and configuration simpler.
 
-|![Figure 1: Kubernetes provides an abstraction on top of underlying infrastructure](/assets/images/posts/kubernetes-basics.png)|
+|![Figure 1: Kubernetes provides an abstraction on top of underlying infrastructure](/assets/images/posts/kubernetes-basics.png "Created by Author")|
 |:-:|
 |<sup>*Figure 1: Kubernetes provides an abstraction on top of underlying infrastructure.*</sup>|<br/><br/>
 
