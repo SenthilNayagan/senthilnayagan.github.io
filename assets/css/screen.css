@@ -109,8 +109,10 @@ section.recent-posts {
 }
 
 .listfeaturedtag {
-    border: 1px solid rgba(0, 0, 0, .125);
     border-radius: .25rem;
+    border: 1px solid #eee;
+    box-shadow: 0 8px 46px -13px #35436126;
+    background-color: #fff;    
     transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
 }
 
@@ -128,6 +130,7 @@ section.recent-posts {
 .listfeaturedtag .card,
 .card-footer {
     border: 0;
+    box-shadow: 1px 8px 46px -13px #35436126;
 }
 
 .listfeaturedtag .thumbnail {
