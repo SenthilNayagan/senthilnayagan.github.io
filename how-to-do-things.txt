@@ -42,5 +42,6 @@ GitHub Pages does not support server-side languages such as PHP, Ruby, or Python
 
 Liked fonts:
 https://cloudcannon.com/blog/why-the-web-is-turning-away-from-wordpress/
+https://docs.github.com/en/get-started/quickstart/github-flow
 
 Copy URL: https://www.redhat.com/en/topics/automation/what-is-infrastructure-as-code-iac

@@ -50,13 +50,39 @@ We have full traceability of the changes made to each configuration because we c
 
 Terraform is an open-source *infrastructure as a code* tool from HashiCorp. It enables us to define both cloud and on-premises resources in *human-readable declarative definition files* that can be *versioned*, *reused*, and *shared*. These definition files contain the steps required to provision and maintain our infrastructure. We can edit, review, and version these definition files *just like code*.
 
-### Terraform providers
+## Terraform providers
 
 Terraform makes use of *providers* to connect the Terraform engine to the supported cloud platform. A provider is a *Terraform plugin* that serves as a *translation layer*, allowing Terraform to communicate with a variety of cloud providers, databases, and services.
 
+## Command line interface
+
+We can use the Terraform command line interface (CLI) to manage infrastructure, and interact with Terraform *state*, *providers*, *configuration files*, and *Terraform Cloud*.
+
+## HashiCorp Configuration Language (HCL)
+
+The HashiCorp Configuration Language (HCL) is a one-of-a-kind *configuration language* created by HashiCorp. HCL was created to work with HashiCorp tools, specifically Terraform. The configuration syntax of HCL is simple to read and write. When compared to other well-known configuration languages, such as YAML and JSON, it was designed to have a more clearly visible and defined structure. The file extension of the configuration file written in HCL syntax is `.tf`.
+
+As previously stated, this configuration language is declarative, which means that we only describe the infrastructure we want, and Terraform will figure out how to build it. Terraform can create infrastructure on a variety of cloud platforms such as AWS, Azure, Google Cloud, etc.
+
+## CDK for Terraform
+
+The Cloud Development Kit for Terraform (CDKTF) enables us to define and provision infrastructure using familiar *programming languages*. You might wonder why we need CDKTF when HCL can do the same thing. As mentioned above, CDKTF enables us to define and provision infrastructure using familiar programming languages other than HCL.
+
+At the time of writing this post, Terraform supports the following programming languages:
+
+- Typescript
+- Python
+- Java
+- C#
+- Go
+
+### How does CDK for Terraform work?
+
+As a first step, define the infrastructure we want to provision on or more providers using any of the supported programming languages. 
+
 ## Download and install
 
-Terraform distribution consists of a single binary file, which can be obtained for free from Hashicorp's [download](https://www.terraform.io/downloads){:target="_blank"} page. There are no dependencies, so we can just copy the executable binary to a folder of our choice and run it from there.
+Terraform distribution consists of a single binary file, which can be obtained for free from Hashicorp's [download](https://www.terraform.io/downloads){:target="_blank"} page. There are no dependencies, so we can just copy the executable binary to a folder of our choice and run it from there. HashiCorp also offers a managed solution known as [Terraform Cloud](https://cloud.hashicorp.com/products/terraform){:target="_blank"}.
 
 After we finish the installation, we can run the following command to ensure that everything is working properly:
 
@@ -69,3 +95,7 @@ on darwin_amd64
 ## How does Terraform work?
 
 Terraform uses definition files to create and manage resources on cloud or on-premises platforms, as well as other services via their APIs.
+
+### Definition files
+
+Terraform requires infrastructure configuration files written in either HashiCorp Configuration Language (HCL) or JSON syntax. 
