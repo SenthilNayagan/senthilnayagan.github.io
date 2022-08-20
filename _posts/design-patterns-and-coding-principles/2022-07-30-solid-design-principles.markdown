@@ -12,9 +12,12 @@ featured: false
 hidden: true
 ---
 
+> **Writing in progress:** If you have any suggestions for improving the content or notice any inaccuracies, please email me at [hello@senthilnayagan.com](mailto:hello@senthilnayagan.com). Thanks!
+
 The term "SOLID" in software engineering refers to a group of five design principles that are meant to improve the *readability*, *flexibility*, and *maintainability* of object-oriented designs.
 
 The SOLID design principle includes the following five principles:
+
 - **S**ingle-responsibility principle
 - **O**pen-closed principle
 - **L**iskov substitution principle
@@ -24,6 +27,7 @@ The SOLID design principle includes the following five principles:
 American software engineer and instructor Robert C. Martin (aka Uncle Bob) explains and promotes these design principles. We will examine each of them to learn how these principles can aid in the creation of software that is well-designed.
 
 # Single-Responsibility Principle (SRP)
+
 Robert C. Martin, the originator of this principle, put it this way: "*A class should have only one reason to change.*" It means that every module, class, or function should only have one (single) responsibility.
 
 |![Single-Reponsibility Principle](/assets/images/posts/solid-srp.jpg)|
@@ -36,4 +40,3 @@ Martin defines *responsibility* as a *reason to change* and concludes that a cla
 A class with multiple responsibilities has a higher chance of having bugs since altering one of those responsibilities might have unintended effects (side-effects) on the others. Utilising this principle makes code easier to test and maintain.
 
 ## Motivation
-- 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Data Mesh (WIP)"
+title:  "Data Mesh"
 kicker: "Data Mesh"
 subtitle: 'Data mesh is a "sociotechnical" way to build a decentralized data architecture that enables domain teams to do cross-domain data analysis on their own.'
 image: assets/images/posts-cover-images/data-mesh.jpg
@@ -12,7 +12,7 @@ featured: false
 hidden: false
 ---
 
-> **Writing in progress:** If you have any suggestions for improving the content or notice any inaccuracies, please email me at [hello@senthilnayagan.com](mailto:hello@senthilnayagan.com).<br/><br/>Thanks!
+> **Writing in progress:** If you have any suggestions for improving the content or notice any inaccuracies, please email me at [hello@senthilnayagan.com](mailto:hello@senthilnayagan.com). Thanks!
 
 Before we go any farther in defining *data mesh*, let's first understand why it's necessary.
 

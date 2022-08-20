@@ -12,5 +12,7 @@ featured: false
 hidden: true
 ---
 
+> **Writing in progress:** If you have any suggestions for improving the content or notice any inaccuracies, please email me at [hello@senthilnayagan.com](mailto:hello@senthilnayagan.com). Thanks!
+
 # What is shuffling in Spark?
 

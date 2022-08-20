@@ -9,8 +9,10 @@ published_on: 2022-08-20 00:00:00 +0530
 tags: ["terraform", "infrastructure-as-code", "iac"]
 categories: terraform
 featured: false
-hidden: true
+hidden: false
 ---
+
+> **Writing in progress:** If you have any suggestions for improving the content or notice any inaccuracies, please email me at [hello@senthilnayagan.com](mailto:hello@senthilnayagan.com). Thanks!
 
 # Introducing infrastructure as code (IaC)
 
@@ -42,13 +44,25 @@ The first major benefit of IaC is its speed. We can quickly set up your entire i
 
 Manual processes are prone to errors. Infrastructure as a code solves this problem by making the configuration files the single source of truth. That way, we can be certain that the same configurations will be deployed repeatedly and without error.
 
-### Traceability
+### Traceability with the help of verison control system
 
 We have full traceability of the changes made to each configuration because we can version IaC configuration files like any other source code file, which allows us to save time troubleshooting the problem.
 
 # Introduction to Terraform
 
 Terraform is an open-source *infrastructure as a code* tool from HashiCorp. It enables us to define both cloud and on-premises resources in *human-readable declarative definition files* that can be *versioned*, *reused*, and *shared*. These definition files contain the steps required to provision and maintain our infrastructure. We can edit, review, and version these definition files *just like code*.
+
+## Download and install
+
+Terraform distribution consists of a single binary file, which can be obtained for free from Hashicorp's [download](https://www.terraform.io/downloads){:target="_blank"} page. There are no dependencies, so we can just copy the executable binary to a folder of our choice and run it from there. HashiCorp also offers a managed solution known as [Terraform Cloud](https://cloud.hashicorp.com/products/terraform){:target="_blank"}.
+
+After we finish the installation, we can run the following command to ensure that everything is working properly:
+
+```shell
+$ terraform -v
+Terraform v1.2.7
+on darwin_amd64
+```
 
 ## Terraform providers
 
@@ -60,11 +74,57 @@ We can use the Terraform command line interface (CLI) to manage infrastructure, 
 
 ## HashiCorp Configuration Language (HCL)
 
-The HashiCorp Configuration Language (HCL) is a one-of-a-kind *configuration language* created by HashiCorp. HCL was created to work with HashiCorp tools, specifically Terraform. The configuration syntax of HCL is simple to read and write. When compared to other well-known configuration languages, such as YAML and JSON, it was designed to have a more clearly visible and defined structure. The file extension of the configuration file written in HCL syntax is `.tf`.
+The HashiCorp Configuration Language (HCL) is a one-of-a-kind *configuration language* created by HashiCorp. HCL was created to work with HashiCorp tools, specifically Terraform. The Terraform language's primary function is to declare resources, which represent infrastructure artifacts.
+
+The configuration syntax of HCL is simple to read and write. When compared to other well-known configuration languages, such as YAML and JSON, it was designed to have a more clearly visible and defined structure. The file extension of the configuration file written in HCL syntax is `.tf`.
 
 As previously stated, this configuration language is declarative, which means that we only describe the infrastructure we want, and Terraform will figure out how to build it. Terraform can create infrastructure on a variety of cloud platforms such as AWS, Azure, Google Cloud, etc.
 
-## CDK for Terraform
+The configuration files we write in the Terraform configuration language tell Terraform:
+
+- What plugins to install?
+- What infrastructure to create?
+- What data to fetch?
+
+The Terraform language also allows us to define *resource dependencies*. A configuration can consist of multiple files and directories.
+
+The syntax of the Terraform language consists of only a few basic elements:
+
+- **Blocks** 
+- **Arguments**
+- **Expressions**
+
+### Blocks
+
+Block are *containers* for other content, and they typically represent the configuration of an object, such as a *resource*.
+
+Blocks have:
+
+- A *block type*
+- Zero or more *labels*
+- A *body* that contains any number of arguments and nested blocks. Top-level blocks in a configuration file control the majority of Terraform's features.
+
+```plain
+resource "aws_instance" "example" {
+  ami = "abc123"
+
+  network_interface {
+    # ...
+  }
+}
+```
+
+In the above example, a block has a *type* as `resource`.
+
+### Arguments
+
+Arguments assign a value to a name. They can be found within *blocks*.
+
+### Expressions
+
+Expressions represent a value in one of two ways: directly or by referencing and combining other values.
+
+## CDK for Terraform (CDKTF)
 
 The Cloud Development Kit for Terraform (CDKTF) enables us to define and provision infrastructure using familiar *programming languages*. You might wonder why we need CDKTF when HCL can do the same thing. As mentioned above, CDKTF enables us to define and provision infrastructure using familiar programming languages other than HCL.
 
@@ -80,22 +140,10 @@ At the time of writing this post, Terraform supports the following programming l
 
 As a first step, define the infrastructure we want to provision on or more providers using any of the supported programming languages. 
 
-## Download and install
-
-Terraform distribution consists of a single binary file, which can be obtained for free from Hashicorp's [download](https://www.terraform.io/downloads){:target="_blank"} page. There are no dependencies, so we can just copy the executable binary to a folder of our choice and run it from there. HashiCorp also offers a managed solution known as [Terraform Cloud](https://cloud.hashicorp.com/products/terraform){:target="_blank"}.
-
-After we finish the installation, we can run the following command to ensure that everything is working properly:
-
-```shell
-$ terraform -v
-Terraform v1.2.7
-on darwin_amd64
-```
-
 ## How does Terraform work?
 
 Terraform uses definition files to create and manage resources on cloud or on-premises platforms, as well as other services via their APIs.
 
-### Definition files
+### Definition or configuration files
 
-Terraform requires infrastructure configuration files written in either HashiCorp Configuration Language (HCL) or JSON syntax. 
+Terraform requires infrastructure configuration or definition files written in either HashiCorp Configuration Language (HCL) or JSON syntax. 

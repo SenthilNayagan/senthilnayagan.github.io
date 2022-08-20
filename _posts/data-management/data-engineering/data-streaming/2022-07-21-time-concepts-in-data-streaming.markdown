@@ -13,4 +13,6 @@ featured: false
 hidden: true
 ---
 
+> **Writing in progress:** If you have any suggestions for improving the content or notice any inaccuracies, please email me at [hello@senthilnayagan.com](mailto:hello@senthilnayagan.com). Thanks!
+
 Timestamps, particularly event-times, are significant aspects of any data streaming application. The entity that produces events sets the timestamp as part of the event itself.

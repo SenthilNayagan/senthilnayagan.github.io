@@ -21,10 +21,13 @@ Except for the special creation method (magic method in Python), the singleton p
 > **Dunder methods:** The dunder methods are special methods that start and end with double underscores. These double underscores are referred by the acronym "dunder."
 
 # Use cases
+
 Who would want to limit the number of instances a class has? The most common justification for this is to manage access to a shared resource, such a file or database.
 
 # Creation of a singleton object
+
 ## Singleton in Python
+
 The following shows the creation of a singleton object in Python. Here, `__new__` is a special or magic method (aka the dunder method). This method is invoked every time a class is instantiated. Note that the `__new__` method is invoked before the `__init__` method gets called.
 
 > When we attempt to create an object inside of the `__new__` method in the usual way `(ClassName())`, it runs recursively. It loops back on itself until the maximum recursion depth is reached and a `RecursionError` error is thrown.
