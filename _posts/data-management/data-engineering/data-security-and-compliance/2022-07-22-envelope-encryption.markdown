@@ -8,7 +8,7 @@ author: senthil
 published_on: 2022-07-22 18:00:40 +0530
 tags: ["envelope-encryption", "data-protection", "root-key", "data-key"]
 categories: data-security-and-compliance
-featured: true
+featured: false
 hidden: false
 ---
 
