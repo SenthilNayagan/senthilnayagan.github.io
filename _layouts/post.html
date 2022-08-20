@@ -68,13 +68,18 @@ post_class: post-template
                         {% endfor %}
                     </ul>
                 </h6>
-            </div>
 
-            <!-- Adsense if enabled from _config.yml (change your pub id and slot) -->
-            {% if site.adsense == "enabled" %}
-                {% include adsense-under-header.html %}
-            {% endif %}
-            <!-- End Adsense -->
+                <!-- Subtitle -->
+                <div class="article-post">
+                    
+                    {% if page.subtitle %}
+                        <span class="subtitle"><em>{{ page.subtitle }}</em></span>
+                        <hr class="grey_line"></hr>
+                    {% endif %}
+                </div>
+                <!-- End Subtitle --> 
+
+            </div>
 
             <!-- Post Featured Image -->
             {% if page.image %}
@@ -88,12 +93,6 @@ post_class: post-template
 
             <!-- Post Content -->
             <div class="article-post">
-                <!-- Subtitle -->
-                {% if page.subtitle %}
-                    <span class="subtitle"><em>{{ page.subtitle }}</em></span>
-                    <hr class="grey_line"></hr>
-                {% endif %}
-                <!-- End Subtitle --> 
                 <!-- Toc if any -->
                 {% if page.toc %}
                     <!--{% if page.beforetoc %}
