@@ -78,6 +78,14 @@ Terraform's most popular providers, including major cloud providers:
 - Kubernetes
 - Oracle Cloud Infrastructure
 
+Each provider adds a set of *resource types* and/or *data sources* that Terraform can manage. Every resource type is implemented by a provider; Terraform cannot manage any infrastructure without providers.
+
+### Where providers come from?
+
+The [Terraform Registry](https://registry.terraform.io/browse/providers){:target="_blank"} is the primary directory of publicly available Terraform providers, hosting providers for the majority of major infrastructure platforms.
+
+### Provider syntax
+
 The general syntax is as follows:
 
 ```plain
@@ -116,6 +124,14 @@ Following shows some of the Terraform CLIs:
 ## Modules
 
 Modules are small, *reusable Terraform configurations* that allow us to manage a collection of related resources as if they were one.
+
+## State
+
+Terraform must keep track of what infrastructure it created in a `terraform.tfstate` Terraform state file. Terraform uses this state to map real-world resources to our configuration. Terraform state is stored locally by default, but it can also be stored remotely, which is preferable in a team environment.
+
+This state file contains a custom JSON format that records a mapping from the Terraform resources in our templates to their real-world representation.
+
+Terraform makes use of this local state to create plans and modify our infrastructure. Terraform performs a refresh prior to any operation to update the state with the real infrastructure.
 
 ## Policy libraries
 
@@ -276,16 +292,156 @@ A Terraform working directory typically contains:
 - A hidden **`.terraform` directory**, which Terraform uses to manage cached provider plugins and modules, record which workspace is currently active, and record the last known backend configuration in case it needs to migrate state on the next run. This directory is automatically managed by Terraform, and is created during initialization.
 - **State data**, if the configuration uses the default `local` backend. This is managed by Terraform in a `terraform.tfstate` file (if the directory only uses the default workspace) or a `terraform.tfstate.d` directory (if the directory uses multiple workspaces).
 
-### Initializing working directories
+The following shows all the files in a working directory, including the hidden ones:
 
-A working directory must be *initialized* before Terraform can perform any operations on it, such as provisioning infrastructure or changing state.
+```shell
+$ tree -a
 
-The `terraform init` command initializes a working directory. After initialization, we will be able to perform other commands, like `terraform plan` and `terraform apply`.
+├── .terraform
+│   └── providers
+│       └── registry.terraform.io
+│           └── hashicorp
+│               └── local
+│                   └── 1.4.0
+│                       └── darwin_amd64
+│                           └── terraform-provider-local_v1.4.0_x4
+├── .terraform.lock.hcl
+├── hello.txt
+├── main.tf
+└── terraform.tfstate
+```
 
 ### Provisioning infrastructure with Terraform
 
-The provisioning workflow in Terraform is based on three commands:
+The provisioning workflow in Terraform is based on the following commands:
 
+- `init`
 - `plan`
 - `apply`
 - `destroy`
+
+#### Init - Initializing working directories
+
+A working directory must be *initialized* before Terraform can perform any operations on it, such as provisioning infrastructure or changing state.
+
+Why do we need to initialize the working directory, and what happens during initialization? The `terraform` binary contains the basic functionality of Terraform, but it does not include the code for any of the providers (e.g., the AWS provider, Azure provider, GCP provider, and so on), so when we first start using Terraform, we must run the `terraform init` command to instruct Terraform to scan the code (configuration file), determine which providers we are using, and download the code from the [Terraform Registry](https://registry.terraform.io/browse/providers){:target="_blank"}. The provider code is downloaded by default into a `.terraform` directory.
+
+> **Note:** It's safe to run init multiple times because the command is idempotent.
+
+After initialization, we will be able to perform other commands, like `terraform plan` and `terraform apply`.
+
+#### Plan
+
+After we've initialized the working directory, we'll use the plan command to see what actions Terraform will take to create our resources. This step works similar to the "dry run" feature found in other build systems.
+
+```shell
+$ terraform plan
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # local_file.hello will be created
+  + resource "local_file" "hello" {
+      + content              = "Hello, Terraform"
+      + directory_permission = "0777"
+      + file_permission      = "0777"
+      + filename             = "hello.txt"
+      + id                   = (known after apply)
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+```
+
+Terraform's `plan` output indicates that it needs to create a new resource, which is expected given that it does not yet exist. We can also see the provided values that we've specified, as well as a pair of permission attributes. Because we did not include them in our resource definition, the provider will use the default values.
+
+#### Apply
+
+We can now use the `apply` command to create actual resources:
+
+```shell
+$ terraform apply
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # local_file.hello will be created
+  + resource "local_file" "hello" {
+      + content              = "Hello, Terraform"
+      + directory_permission = "0777"
+      + file_permission      = "0777"
+      + filename             = "hello.txt"
+      + id                   = (known after apply)
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+╷
+│ Warning: Version constraints inside provider configuration blocks are deprecated
+│
+│   on main.tf line 2, in provider "local":
+│    2:   version = "~> 1.4"
+│
+│ Terraform 0.13 and earlier allowed provider version constraints inside the provider configuration block, but that is now deprecated and
+│ will be removed in a future version of Terraform. To silence this warning, move the provider version constraint into the
+│ required_providers block.
+╵
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+local_file.hello: Creating...
+local_file.hello: Creation complete after 0s [id=392b5481eae4ab2178340f62b752297f72695d57]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+```
+
+We can now confirm that the file was created with the desired content:
+
+```shell
+$ cat hello.txt
+Hello, Terraform
+```
+
+Also, after running `terraform apply`, the `terraform.tfstate` file has been created with the following content:
+
+```shell
+$ cat terraform.tfstate
+
+{
+  "version": 4,
+  "terraform_version": "1.2.7",
+  "serial": 1,
+  "lineage": "bd8530c6-6781-a52a-2c26-dd1164afc7cd",
+  "outputs": {},
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "local_file",
+      "name": "hello",
+      "provider": "provider[\"registry.terraform.io/hashicorp/local\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "content": "Hello, Terraform",
+            "content_base64": null,
+            "directory_permission": "0777",
+            "file_permission": "0777",
+            "filename": "hello.txt",
+            "id": "392b5481eae4ab2178340f62b752297f72695d57",
+            "sensitive_content": null
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA=="
+        }
+      ]
+    }
+  ]
+}
+```
