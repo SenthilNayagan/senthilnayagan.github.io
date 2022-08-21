@@ -106,6 +106,13 @@ resource "aws_instance" "demo" {
 
 We can use the Terraform command line interface (CLI) to manage infrastructure, and interact with Terraform *state*, *providers*, *configuration files*, and *Terraform Cloud*.
 
+### Terraform CLI commands
+
+Following shows some of the Terraform CLIs:
+
+- `terraform version`
+- `terraform init [option]` - This command is used to *initialize a working directory* containing Terraform configuration files and *install the required plugin*. 
+
 ## Modules
 
 Modules are small, *reusable Terraform configurations* that allow us to manage a collection of related resources as if they were one.
@@ -199,7 +206,7 @@ CDKTF uses the Cloud Development Kit from AWS, which provides a set of language-
 
 We can install CDKTF with `npm` on most operating systems. We can also install CDKTF with Homebrew on MacOS.
 
-#### Install CDKTF with `npm`
+#### Install CDKTF with npm
 
 To install the most recent stable release of CDKTF, use `npm install` with the `@latest` tag as shown below:
 
@@ -243,10 +250,42 @@ Convert a local file:
 cat main.tf | cdktf convert > imported.ts
 ```
 
+### CDKTF CLI commands
+
+The following are some of the CDKTF CLI commands:
+
+- `cdktf version`
+
 ## How does Terraform work?
 
-As stated above, Terraform uses definition files to create and manage resources on cloud or on-premises platforms, as well as other services via their APIs.
+As stated above, Terraform uses definition files to create and manage resources on cloud or on-premises platforms, as well as other services via their APIs. Terraform's primary function is to *create*, *modify*, and *destroy* infrastructure resources as described in a Terraform configuration.
 
 ### Definition or configuration files
 
 Terraform requires infrastructure configuration or definition files written in either HashiCorp Configuration Language (HCL) or JSON syntax. 
+
+### Working directories
+
+Terraform expects to be invoked from a *working directory* containing Terraform language configuration files. Terraform uses configuration content from this working directory to store *settings*, *cached plugins and modules*, and occasionally *state data*.
+
+#### Working directory contents
+
+A Terraform working directory typically contains:
+
+- A **Terraform configuration** that defines the resources that Terraform should manage. This configuration is likely to change over time.
+- A hidden **`.terraform` directory**, which Terraform uses to manage cached provider plugins and modules, record which workspace is currently active, and record the last known backend configuration in case it needs to migrate state on the next run. This directory is automatically managed by Terraform, and is created during initialization.
+- **State data**, if the configuration uses the default `local` backend. This is managed by Terraform in a `terraform.tfstate` file (if the directory only uses the default workspace) or a `terraform.tfstate.d` directory (if the directory uses multiple workspaces).
+
+### Initializing working directories
+
+A working directory must be *initialized* before Terraform can perform any operations on it, such as provisioning infrastructure or changing state.
+
+The `terraform init` command initializes a working directory. After initialization, we will be able to perform other commands, like `terraform plan` and `terraform apply`.
+
+### Provisioning infrastructure with Terraform
+
+The provisioning workflow in Terraform is based on three commands:
+
+- `plan`
+- `apply`
+- `destroy`
