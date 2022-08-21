@@ -332,7 +332,13 @@ After initialization, we will be able to perform other commands, like `terraform
 
 #### Plan
 
-After we've initialized the working directory, we'll use the plan command to see what actions Terraform will take to create our resources. This step works similar to the "dry run" feature found in other build systems.
+After we've initialized the working directory, we'll use the `plan` command to see what actions Terraform will take to create our resources. This step works similar to the "dry run" feature found in other build systems. This is an excellent way to double-check our changes before releasing them.
+
+The plan command's output is similar to the diff command's output: 
+
+- Resources with a plus sign (`+`) will be created.
+- Resources with a minus sign (`-`) will be deleted.
+- Resources with a tilde sign (`~`) will be modified in-place.
 
 ```shell
 $ terraform plan
