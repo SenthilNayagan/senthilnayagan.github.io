@@ -329,7 +329,7 @@ $ tree -a
 
 ## Provisioning infrastructure with Terraform
 
-The provisioning workflow in Terraform is based on the following commands:
+The provisioning workflow (Terraform's life cycle) in Terraform is based on the following commands:
 
 - `init`
 - `plan`
