@@ -22,6 +22,6 @@ When organisations are unable to handle the volume of new data being produced, i
 
 In addition to conventional data sources, there are many digital sources nowadays, such as social media. It is challenging to efficiently gather, visualise, and analyse information given the enormous volumes of data available.
 
-# How can a data deluge be avoided?
+## How can a data deluge be avoided?
 
 It is essential to combat the data deluge by gathering the right amount of data that not only saves money but also offers significant and valuable insights.
