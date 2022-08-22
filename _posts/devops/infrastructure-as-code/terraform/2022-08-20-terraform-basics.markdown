@@ -72,7 +72,7 @@ Below are the core Terraform concepts:
 
 ### Providers
 
-Terraform makes use of *providers* to connect the Terraform engine to the supported cloud platform. A provider can be a number of things other than the cloud. 
+Terraform makes use of *providers* to connect the Terraform engine to the supported cloud platform. Other than a cloud platform, there are other things that can be considered a provider, such as platform-as-a-service (PaaS) (e.g., Kubernetes) and other software-as-a-service (SaaS). 
 
 It's a *Terraform plugin* that serves as a *translation layer*, allowing Terraform to communicate with a variety of cloud providers, databases, and services.
 
