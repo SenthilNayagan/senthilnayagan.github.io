@@ -389,6 +389,10 @@ The provisioning workflow (Terraform's life cycle) in Terraform is based on the 
 - `apply`
 - `destroy`
 
+|![Terraform life cycle](/assets/images/posts/terraform-lifecycle.png "Created by Author")|
+|:-:|
+|<sup>*Terraform life cycle.*</sup>|<br/><br/>
+
 ### Init
 
 Init command initializes the working directories. A working directory must be *initialized* before Terraform can perform any operations on it, such as provisioning infrastructure or changing state.
