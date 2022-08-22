@@ -400,7 +400,7 @@ blockquote {
 }
 
 .share {
-    text-align: center;
+    text-align: center; 
 }
 
 .share p {
@@ -415,7 +415,7 @@ blockquote {
 
 .share ul {
     padding-left: 0;
-    margin-left: 0;
+    margin-left: 0;    
 }
 
 .share ul li i.fa {
@@ -424,7 +424,7 @@ blockquote {
     height: 30px;
     line-height: 30px;
     text-align: center;
-    border-radius: 50%;
+    border-radius: 50%;  
 }
 
 .svgIcon {

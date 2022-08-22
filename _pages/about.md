@@ -7,7 +7,7 @@ comments: true
 {% assign author = site.authors["senthil"] %}
 
 <div class="row justify-content-between">
-    <div class="col-md-8 pr-5" style="font-family: Merriweather;">
+    <div class="col-md-9 pr-5" style="font-family: Merriweather;">
         <p>Hello there!</p>
         <p>I am Senthil Nayagan. It's a pleasure to meet you!</p>
         <p>I am a seasoned IT professional with years of expertise in designing and building complex business solutions with open-source technologies. I've been working in the field of data engineering for the past few years. If I were to describe myself in a few words, I would say that I am a Data Engineer by profession, a Rustacean by interest, and an avid Content Creator at present.</p>
@@ -15,13 +15,16 @@ comments: true
         <p>Personally, I like writing blogs. Blogging is an excellent way that enables me to share my passion for technology with the rest of the world. Through blogging, I not only educate others who are interested in my areas of expertise, but also myself, in the most clear terms possible.</p>
         <p>If you like my stories or have suggestions for their improvement, please feel free to contact me at <a href="mailto:hello@senthilnayagan.com">hello@senthilnayagan.com</a>.</p>
         <p>Happy learning!</p>
-        <p>
-            <a target="_blank" href="https://twitter.com/SenthilNayagan"><i class="fa-brands fa-twitter"></i></a>&nbsp;&nbsp;
-            <a target="_blank" href="https://www.linkedin.com/in/senthilnayagan"><i class="fa-brands fa-linkedin"></i></a>&nbsp;&nbsp;
-            <a target="_blank" href="https://github.com/SenthilNayagan"><i class="fa-brands fa-github"></i></a>
-        </p>
     </div>
-    <div class="col-md-4 share">
-        <img style="border-radius: 2%;" src="https://www.gravatar.com/avatar/{{ author.gravatar }}?s=350" alt="{{ author.display_name }}">
+    <div class="col-md-3 pr-0 share">
+        <span><img style="border-radius: 2%;" src="https://www.gravatar.com/avatar/{{ author.gravatar }}?s=350" alt="{{ author.display_name }}"></span>
+        <span>
+            <p></p>
+            <p style="font-size: 25px;">
+                <a target="_blank" href="https://twitter.com/SenthilNayagan"><i class="fa-brands fa-twitter"></i></a>&nbsp;&nbsp;
+                <a target="_blank" href="https://www.linkedin.com/in/senthilnayagan"><i class="fa-brands fa-linkedin"></i></a>&nbsp;&nbsp;
+                <a target="_blank" href="https://github.com/SenthilNayagan"><i class="fa-brands fa-github"></i></a>
+            </p>
+        </span>
     </div>
 </div>
