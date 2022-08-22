@@ -5,14 +5,13 @@ kicker: "Terraform"
 subtitle: "Terraform is an open source infrastructure-as-code tool that allows us to programmatically provision the physical resources required for an application to run."
 image: assets/images/posts-cover-images/terraform_basics.jpg
 author: senthil
+toc: true
 published_on: 2022-08-20 00:00:00 +0530
 tags: ["terraform", "infrastructure-as-code", "iac"]
 categories: terraform
-featured: false
+featured: true
 hidden: false
 ---
-
-> **Writing in progress:** If you have any suggestions for improving the content or notice any inaccuracies, please email me at [hello@senthilnayagan.com](mailto:hello@senthilnayagan.com). Thanks!
 
 # Introducing infrastructure as code (IaC)
 
@@ -127,11 +126,28 @@ Modules are small, *reusable Terraform configurations* that allow us to manage a
 
 ## State
 
-Terraform must keep track of what infrastructure it created in a `terraform.tfstate` Terraform state file. Terraform uses this state to map real-world resources to our configuration. Terraform state is stored locally by default, but it can also be stored remotely, which is preferable in a team environment.
+Terraform must keep track of what infrastructure it created in a `terraform.tfstate` Terraform state file. Terraform uses this state to map real-world resources to our configuration. Terraform *state is stored locally by default*, but it can also be stored remotely, which is preferable in a team environment.
 
 This state file contains a custom JSON format that records a mapping from the Terraform resources in our templates to their real-world representation.
 
 Terraform makes use of this local state to create plans and modify our infrastructure. Terraform performs a refresh prior to any operation to update the state with the real infrastructure.
+
+### Remote state
+
+When working with Terraform in a team, using a local file complicates Terraform usage because each user must ensure that they always have the most recent state data before running Terraform and that no one else runs Terraform at the same time.
+
+A *remote state* comes to our aid. Terraform writes the state data to a remote data store, which can then be shared by all team members.
+
+Terraform can store state in a variety of storage platforms, including, but not limited to:
+
+- Terraform Cloud
+- HashiCorp Consul
+- Amazon S3
+- Azure Blob Storage
+- Google Cloud Storage
+- Alibaba Cloud OSS
+
+Remote state is implemented by a [backend](https://www.terraform.io/language/settings/backends/configuration){:target="_blank"} or by Terraform Cloud, both of which can be configured in the root module of our configuration.
 
 ## Policy libraries
 
@@ -252,7 +268,7 @@ On a high level, we will follow these steps:
 
 #### CDKTF to HCL
 
-The `cdktf synth` command synthesizes (generate of code/configuration) Terraform configuration for the given app. CDKTF stores the synthesized configuration in the `cdktf.out` directory, unless you use the `--output` flag to specify a different location.
+The `cdktf synth` command synthesizes (generate code/configuration) Terraform configuration for the given app. CDKTF stores the synthesized configuration in the `cdktf.out` directory, unless you use the `--output` flag to specify a different location.
 
 The output folder is ephemeral (short lived) and might be erased for each `synth` that we run manually or that happens automatically when we run `deploy`, `diff`, or `destroy`.
 
@@ -272,19 +288,19 @@ The following are some of the CDKTF CLI commands:
 
 - `cdktf version`
 
-## How does Terraform work?
+# How does Terraform work?
 
 As stated above, Terraform uses definition files to create and manage resources on cloud or on-premises platforms, as well as other services via their APIs. Terraform's primary function is to *create*, *modify*, and *destroy* infrastructure resources as described in a Terraform configuration.
 
-### Definition or configuration files
+## Definition or configuration files
 
 Terraform requires infrastructure configuration or definition files written in either HashiCorp Configuration Language (HCL) or JSON syntax. 
 
-### Working directories
+## Working directories
 
 Terraform expects to be invoked from a *working directory* containing Terraform language configuration files. Terraform uses configuration content from this working directory to store *settings*, *cached plugins and modules*, and occasionally *state data*.
 
-#### Working directory contents
+### Working directory contents
 
 A Terraform working directory typically contains:
 
@@ -311,7 +327,7 @@ $ tree -a
 └── terraform.tfstate
 ```
 
-### Provisioning infrastructure with Terraform
+## Provisioning infrastructure with Terraform
 
 The provisioning workflow in Terraform is based on the following commands:
 
@@ -320,9 +336,9 @@ The provisioning workflow in Terraform is based on the following commands:
 - `apply`
 - `destroy`
 
-#### Init - Initializing working directories
+### Init
 
-A working directory must be *initialized* before Terraform can perform any operations on it, such as provisioning infrastructure or changing state.
+Init initializes the working directories. A working directory must be *initialized* before Terraform can perform any operations on it, such as provisioning infrastructure or changing state.
 
 Why do we need to initialize the working directory, and what happens during initialization? The `terraform` binary contains the basic functionality of Terraform, but it does not include the code for any of the providers (e.g., the AWS provider, Azure provider, GCP provider, and so on), so when we first start using Terraform, we must run the `terraform init` command to instruct Terraform to scan the code (configuration file), determine which providers we are using, and download the code from the [Terraform Registry](https://registry.terraform.io/browse/providers){:target="_blank"}. The provider code is downloaded by default into a `.terraform` directory.
 
@@ -330,7 +346,7 @@ Why do we need to initialize the working directory, and what happens during init
 
 After initialization, we will be able to perform other commands, like `terraform plan` and `terraform apply`.
 
-#### Plan
+### Plan
 
 After we've initialized the working directory, we'll use the `plan` command to see what actions Terraform will take to create our resources. This step works similar to the "dry run" feature found in other build systems. This is an excellent way to double-check our changes before releasing them.
 
@@ -362,7 +378,7 @@ Plan: 1 to add, 0 to change, 0 to destroy.
 
 Terraform's `plan` output indicates that it needs to create a new resource, which is expected given that it does not yet exist. We can also see the provided values that we've specified, as well as a pair of permission attributes. Because we did not include them in our resource definition, the provider will use the default values.
 
-#### Apply
+### Apply
 
 We can now use the `apply` command to create actual resources:
 
@@ -451,3 +467,21 @@ $ cat terraform.tfstate
   ]
 }
 ```
+
+### Destroy
+
+When we're finished experimenting with Terraform, we should delete all of the resources we created so the cloud service provider doesn't charge us for them. 
+
+Cleanup is simple because Terraform keeps track of what resources we created. All we have to do is execute the destroy command.
+
+```shell
+$ terraform destroy
+```
+
+When we type "yes" and press enter, Terraform will create the dependency graph and delete all the resources in the correct order, using as much parallelism as possible.
+
+# Conclusion
+
+This should help you understand the fundamentals of Terraform and how infrastructure as code can be set up quickly and efficiently. The declarative language simplifies the process of describing the infrastructure we intend to build, as opposed to describing how to build it. Before putting our changes into action, we use the `plan` command to test them and look for potential bugs.
+
+This is merely a summary of how efficiently infrastructure as code can be implemented with Terraform. I attempted to make this post as clear as possible while still providing sufficient detail for you to understand the ideas. For more details, check out their online [documentation](https://learn.hashicorp.com/terraform){:target="_blank"}.
