@@ -4,6 +4,7 @@ title:  "Terraform Basics"
 kicker: "Terraform"
 subtitle: "Terraform is an open source infrastructure-as-code tool that allows us to programmatically provision the physical resources required for an application to run."
 image: assets/images/posts-cover-images/terraform_basics.jpg
+featured_image: assets/images/featured-images/terraform_basics.jpg
 author: senthil
 toc: true
 published_on: 2022-08-20 00:00:00 +0530
