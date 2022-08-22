@@ -65,9 +65,15 @@ Terraform v1.2.7
 on darwin_amd64
 ```
 
-## Terraform providers
+## Terraform core concepts
 
-Terraform makes use of *providers* to connect the Terraform engine to the supported cloud platform. A provider is a *Terraform plugin* that serves as a *translation layer*, allowing Terraform to communicate with a variety of cloud providers, databases, and services.
+Below are the core Terraform concepts:
+
+### Providers
+
+Terraform makes use of *providers* to connect the Terraform engine to the supported cloud platform. A provider can be a number of things other than the cloud. 
+
+It's a *Terraform plugin* that serves as a *translation layer*, allowing Terraform to communicate with a variety of cloud providers, databases, and services.
 
 Terraform's most popular providers, including major cloud providers:
 
@@ -79,11 +85,11 @@ Terraform's most popular providers, including major cloud providers:
 
 Each provider adds a set of *resource types* and/or *data sources* that Terraform can manage. Every resource type is implemented by a provider; Terraform cannot manage any infrastructure without providers.
 
-### Where providers come from?
+#### Where providers come from?
 
 The [Terraform Registry](https://registry.terraform.io/browse/providers){:target="_blank"} is the primary directory of publicly available Terraform providers, hosting providers for the majority of major infrastructure platforms.
 
-### Provider syntax
+#### Provider syntax
 
 The general syntax is as follows:
 
@@ -109,30 +115,27 @@ resource "aws_instance" "demo" {
 }
 ```
 
-## Command line interface
+### Variables and outputs
 
-We can use the Terraform command line interface (CLI) to manage infrastructure, and interact with Terraform *state*, *providers*, *configuration files*, and *Terraform Cloud*.
+Variables in Terraform are an excellent way to define centrally managed, reusable values. Information contained in Terraform variables is stored independently of deployment plans. Terraform supports multiple variable formats. Based on their usage, the variables are generally divided into: 
 
-### Terraform CLI commands
+- **Input variables** - They serve as parameters for a Terraform module, allowing users to modify behavior without having to edit the source code. 
+- **Output values** - They serve as return values for a Terraform module.
+- **Local values** - They are a convenience feature for assigning a short name to an expression.
 
-Following shows some of the Terraform CLIs:
+### Modules
 
-- `terraform version`
-- `terraform init [option]` - This command is used to *initialize a working directory* containing Terraform configuration files and *install the required plugin*. 
+Modules are small, *reusable Terraform configurations* that allow us to manage a collection of related resources as if they were one. A module serves as a container for multiple resources that are used together. It is a method for packaging and reusing configurations of resources.
 
-## Modules
+### State
 
-Modules are small, *reusable Terraform configurations* that allow us to manage a collection of related resources as if they were one.
-
-## State
-
-Terraform must keep track of what infrastructure it created in a `terraform.tfstate` Terraform state file. Terraform uses this state to map real-world resources to our configuration. Terraform *state is stored locally by default*, but it can also be stored remotely, which is preferable in a team environment.
+Terraform must keep track of what infrastructure it creates in a `terraform.tfstate` Terraform state file-local state stored on the provisioning machine. Terraform uses this state to map real-world resources to our configuration. Terraform *state is stored locally by default*, but it can also be stored remotely, which is preferable in a team environment.
 
 This state file contains a custom JSON format that records a mapping from the Terraform resources in our templates to their real-world representation.
 
 Terraform makes use of this local state to create plans and modify our infrastructure. Terraform performs a refresh prior to any operation to update the state with the real infrastructure.
 
-### Remote state
+#### Remote state
 
 When working with Terraform in a team, using a local file complicates Terraform usage because each user must ensure that they always have the most recent state data before running Terraform and that no one else runs Terraform at the same time.
 
@@ -149,10 +152,59 @@ Terraform can store state in a variety of storage platforms, including, but not 
 
 Remote state is implemented by a [backend](https://www.terraform.io/language/settings/backends/configuration){:target="_blank"} or by Terraform Cloud, both of which can be configured in the root module of our configuration.
 
-## Policy libraries
+### Data sources
+
+Terraform can use data sources to get information about resources that are *set up outside of Terraform* and use that information to set up Terraform resources. It's a way of getting data from the outside world and making it available to your Terraform configuration.
+
+A data source is accessed through a special type of resource called a *data resource*, which is declared using a `data` block.
+
+#### Data source example
+
+```terraform
+data "azurerm_role_definition" "example" {
+  name = "Developer"
+}
+
+resource "azurerm_role_assignment" "example" {
+  role_definition_id = data.azurerm_role_definition.example.id
+}
+```
+
+In the above example, we have defined two blocks: *data* and *resource* blocks. We are sending the data from the data source directly into a role assignment resource.
+
+#### Refresshing data sources
+
+By default, before creating a *plan*, Terraform will refresh all data sources. Additionally, we can explicitly refresh all data sources by executing `terraform refresh` command.
+
+### Resources
+
+The most important element of the Terraform language is resources. Each resource block describes one or more infrastructure objects, such as virtual networks, compute instances, and so on.
+
+#### Resource syntax
+
+```terraform
+resource "aws_instance" "web" {
+  ami           = "ami-a1b2c3d4"
+  instance_type = "t2.micro"
+}
+```
+
+In the above example, a `resource` block declares a resource of a given *type* (`aws_instance`) with a given local *name* (`web`). The name is used to refer to this resource from within the same Terraform module, but it has no significance outside of the module. The combination of the resource type and name serves as an identifier for a given resource and must therefore be unique within a module.
+
+### Command line interface
+
+We can use the Terraform command line interface (CLI) to manage infrastructure, and interact with Terraform *state*, *providers*, *configuration files*, and *Terraform Cloud*.
+
+#### Terraform CLI commands
+
+Following shows some of the Terraform CLIs:
+
+- `terraform version`
+- `terraform init [option]` - This command is used to *initialize a working directory* containing Terraform configuration files and *install the required plugin*. 
+
+### Policy libraries
 
 A library of policies that can be used within Terraform Cloud to accelerate our adoption of *policy as code*.
-
 
 ## HashiCorp Configuration Language (HCL)
 
