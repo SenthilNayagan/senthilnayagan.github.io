@@ -7,7 +7,7 @@ comments: true
 {% assign author = site.authors["senthil"] %}
 
 <div class="row justify-content-between">
-    <div class="col-md-9 pr-5" style="font-family: Merriweather;">
+    <div class="col-md-8 pr-5" style="font-family: Merriweather;">
         <p>Hello there!</p>
         <p>I am Senthil Nayagan. It's a pleasure to meet you!</p>
         <p>I am a seasoned IT professional with years of expertise in designing and building complex business solutions with open-source technologies. I've been working in the field of data engineering for the past few years. If I were to describe myself in a few words, I would say that I am a Data Engineer by profession, a Rustacean by interest, and an avid Content Creator at present.</p>
@@ -16,7 +16,7 @@ comments: true
         <p>If you like my stories or have suggestions for their improvement, please feel free to contact me at <a href="mailto:hello@senthilnayagan.com">hello@senthilnayagan.com</a>.</p>
         <p>Happy learning!</p>
     </div>
-    <div class="col-md-3 pr-0 share">
+    <div class="col-md-4 pr-0 share">
         <span><img style="border-radius: 2%;" src="https://www.gravatar.com/avatar/{{ author.gravatar }}?s=350" alt="{{ author.display_name }}"></span>
         <span>
             <p></p>
