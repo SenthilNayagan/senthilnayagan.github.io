@@ -70,6 +70,53 @@ on darwin_amd64
 
 Below are the core Terraform concepts:
 
+### Blocks
+
+Block are *containers* for other content, and they typically represent the configuration of an object, such as a *resource*. The block body is delimited by the `{` and `}` characters.
+
+Blocks have:
+
+- A *block type*
+- Zero or more *labels*
+- A *body* that contains any number of arguments and nested blocks. Top-level blocks in a configuration file control the majority of Terraform's features.
+
+#### Block syntax
+
+This is the Terraform block syntax:
+
+```shell
+<BLOCK TYPE> "<BLOCK NAME>" "<BLOCK LABEL>" {
+  # Block body
+  <IDENTIFIER> = <EXPRESSION> # Argument
+}
+```
+
+These are some of the Terraform blocks:
+
+- **providers**
+- **resources**
+- **variable**
+- **output**
+- **local**
+- **module**
+- **data**
+
+#### Block example
+
+```plain
+resource "aws_instance" "demo" {
+  ami = "ami-1fc93908a9403"
+
+  network_interface {
+    # ...
+  }
+}
+```
+
+In the above example, a block has a *type* as `resource`. The `resource` block type in our case expects two labels: `aws_instance` and `demo`.
+
+The Terraform language uses a limited number of top-level block types, which are blocks that can appear outside of any other block in a configuration file. The majority of Terraform's features, such as resources, input variables, output values, data sources, and so on, are implemented as top-level blocks.
+
 ### Providers
 
 Terraform makes use of *providers* to connect the Terraform engine to the supported cloud platform. Other than a cloud platform, there are other things that can be considered a provider, such as platform-as-a-service (PaaS) (e.g., Kubernetes) and other software-as-a-service (SaaS). 
@@ -234,30 +281,6 @@ The syntax of the Terraform language consists of only a few basic elements:
 - **Blocks** 
 - **Arguments**
 - **Expressions**
-
-#### Blocks
-
-Block are *containers* for other content, and they typically represent the configuration of an object, such as a *resource*. The block body is delimited by the `{` and `}` characters.
-
-Blocks have:
-
-- A *block type*
-- Zero or more *labels*
-- A *body* that contains any number of arguments and nested blocks. Top-level blocks in a configuration file control the majority of Terraform's features.
-
-```plain
-resource "aws_instance" "demo" {
-  ami = "ami-1fc93908a9403"
-
-  network_interface {
-    # ...
-  }
-}
-```
-
-In the above example, a block has a *type* as `resource`. The `resource` block type in our case expects two labels: `aws_instance` and `demo`.
-
-The Terraform language uses a limited number of top-level block types, which are blocks that can appear outside of any other block in a configuration file. The majority of Terraform's features, such as resources, input variables, output values, data sources, and so on, are implemented as top-level blocks.
 
 #### Arguments
 
@@ -536,6 +559,12 @@ $ terraform destroy
 ```
 
 When we type "yes" and press enter, Terraform will create the dependency graph and delete all the resources in the correct order, using as much parallelism as possible.
+
+# Terraform in action
+
+In this section, let's perform a series of exercises.
+
+## Exercise #1 - Authentication with AWS
 
 # Conclusion
 
