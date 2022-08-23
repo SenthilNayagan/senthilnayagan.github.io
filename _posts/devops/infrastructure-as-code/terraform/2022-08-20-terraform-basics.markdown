@@ -619,6 +619,37 @@ In this exercise, a compute engine instance will be created.
 - Create a key for the service account so that Terraform can connect to GCP using this key. Use the following command for the same: `gcloud iam service-accounts keys create google-key.json --iam-account <service account email id>`. This would create a new key file named `google-key.json` in the current directory. We can also generate key via Google Cloud web console.
 - We must enable *Compute Engine API* by visiting the Google Cloud console's Compute Engine page.
 
+Create a Terraform configuration file with the content as shown below and save it in the `main.tf` file:
+
+```terraform
+provider "google" {
+	credentials = file("proud-sweep-359704-f460da53c31e.json")
+	project = "proud-sweep-359704"
+	region = "us-central1"
+	zone = "us-central1-c"
+}
+
+resource "google_compute_network" "vpc_network" {
+	name = "demo-network"
+}
+
+resource "google_compute_instance" "dev_instance" {
+	name = "dev-instance"
+	machine_type = "f1-micro"
+	zone = "us-central1-c"
+	boot_disk {
+		initialize_params {
+			image = "centos-cloud/centos-7"
+		}	
+	}
+	network_interface {
+		network = "default"  // This enable private IP address
+		access_config {  // This enable private IP address
+		}
+	}
+}
+```
+
 To create a Compute Engine instance (it's a VM) in GCP, the following steps will be performed:
 
 - **Step 1:** `terraform init`.
