@@ -181,6 +181,8 @@ Terraform must keep track of what infrastructure it creates in a `terraform.tfst
 
 This state file contains a custom JSON format that records a mapping from the Terraform resources in our templates to their real-world representation.
 
+> **Avoid directly manipulating the state file!** The state file is meant only for internal use within Terraform. This implies that we should never manually edit the Terraform state files or write code that directly reads them. If for some reason we need to manipulate the state file, use the `terraform import` or `terraform state` commands.
+
 Terraform makes use of this local state to create plans and modify our infrastructure. Terraform performs a refresh prior to any operation to update the state with the real infrastructure.
 
 #### Remote state
