@@ -595,6 +595,8 @@ The following steps will be performed in order to create an EC2 instance:
 - **Step 2:** Perform a dry run to see what changes occur when the command `terraform plan` is executed.
 - **Step 3:** Execute Terraform by running the command `terraform apply`. This is the *actual execution step* where Terraform, after successfully authenticating, creates an EC2 instance.
 
+> **Note:** As previously mentioned, Terraform keeps track of the infrastructure it creates in a state file called `terraform.tfstate`, which is stored locally on the provisioning machine by default. This state file is generated during the execution of Terraform, i.e., when the `apply` command is executed.
+
 Once Terraform has been successfully executed, a new EC2 instance is created in our AWS account as shown below.
 
 |![New EC2 instance created](/assets/images/posts/terraform-new-ec2-instance-created.png)|
