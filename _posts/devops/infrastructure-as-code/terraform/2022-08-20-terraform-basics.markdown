@@ -278,9 +278,13 @@ The configuration files we write in the Terraform configuration language tell Te
 
 The syntax of the Terraform language consists of only a few basic elements:
 
-- **Blocks** 
+- **Blocks**
 - **Arguments**
 - **Expressions**
+
+#### Blocks
+
+Refer [above](http://localhost:4000/terraform/2022/terraform-basics#blocks) for more details.
 
 #### Arguments
 
@@ -560,11 +564,44 @@ $ terraform destroy
 
 When we type "yes" and press enter, Terraform will create the dependency graph and delete all the resources in the correct order, using as much parallelism as possible.
 
-# Terraform in action
+## Terraform in action
 
 In this section, let's perform a series of exercises.
 
-## Exercise #1 - Authentication with AWS
+### Exercise #1 - Create an AWS EC2 instance
+
+Following shows our definition file:
+
+```terraform
+provider "aws" {
+  profile    = "default"
+  region     = "us-east-1"
+}
+
+resource "aws_instance" "example" {
+  ami           = "ami-2757f631"
+  instance_type = "t2.micro"
+}
+```
+The above definition file uses two blocks: *provider* followed by *resource* blocks. 
+
+In the provider block, we use AWS as our cloud provider and the default AWS profile, which indicates the use of the default credentials (ACCESS KEY ID and SECRET ACCESS KEY) from the `/.aws/credentials` file.
+
+In the resource block, the AWS resource (resource type) to be created has been specified. In this example, we specified `aws_instance`, which represents the EC2 instance. Also, we specified additional parameters such as `ami` and `instance_type` that might be required for the creation of an EC2 instance.  
+
+The following steps will be performed in order to create an EC2 instance:
+
+- **Step 1:** Initialize the working directory by executing the command `terraform init`.
+- **Step 2:** Perform a dry run to see what changes occur when the command `terraform plan` is executed.
+- **Step 3:** Execute Terraform by running the command `terraform apply`. This is the *actual execution step* where Terraform, after successfully authenticating, creates an EC2 instance.
+
+Once Terraform has been successfully executed, a new EC2 instance is created in our AWS account as shown below.
+
+|![New EC2 instance created](/assets/images/posts/terraform-new-ec2-instance-created.png)|
+|:-:|
+|<sup>*New EC2 instance created.*</sup>|<br/><br/>
+
+As shown in the screenshot, an EC2 instance was created with the given instance type `t2.mirco` and the AMI ID specified in our definition file.
 
 # Conclusion
 
