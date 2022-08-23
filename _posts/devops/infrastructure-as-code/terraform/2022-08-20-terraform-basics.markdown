@@ -570,7 +570,7 @@ In this section, let's perform a series of exercises.
 
 ### Exercise #1 - Create an AWS EC2 instance
 
-Following shows our definition file:
+Create a Terraform configuration file with the content as shown below and save it in the `main.tf` file:
 
 ```terraform
 provider "aws" {
@@ -592,18 +592,46 @@ In the resource block, the AWS resource (resource type) to be created has been s
 The following steps will be performed in order to create an EC2 instance:
 
 - **Step 1:** Initialize the working directory by executing the command `terraform init`.
-- **Step 2:** Perform a dry run to see what changes occur when the command `terraform plan` is executed.
-- **Step 3:** Execute Terraform by running the command `terraform apply`. This is the *actual execution step* where Terraform, after successfully authenticating, creates an EC2 instance.
+- **Step 2:** (Optional) Validate the configuration file (`main.tf`) by executing the command `terraform validate`.
+- **Step 3:** Perform a dry run to see what changes occur when the command `terraform plan` is executed.
+- **Step 4:** Execute Terraform by running the command `terraform apply`. This is the *actual execution step* where Terraform, after successfully authenticating, creates an EC2 instance.
+- **Step 5:** (Optional) Destroys the instance we created in the above step by executing the command `terraform destroy -target aws_instance.example`.
 
 > **Note:** As previously mentioned, Terraform keeps track of the infrastructure it creates in a state file called `terraform.tfstate`, which is stored locally on the provisioning machine by default. This state file is generated during the execution of Terraform, i.e., when the `apply` command is executed.
 
-Once Terraform has been successfully executed, a new EC2 instance is created in our AWS account as shown below.
+Once Terraform has been successfully executed, a new EC2 instance is created in our AWS account as shown below:
 
 |![New EC2 instance created](/assets/images/posts/terraform-new-ec2-instance-created.png)|
 |:-:|
-|<sup>*New EC2 instance created.*</sup>|<br/><br/>
+|<sup>* A new EC2 instance created.*</sup>|<br/><br/>
 
 As shown in the screenshot, an EC2 instance was created with the given instance type `t2.mirco` and the AMI ID specified in our definition file.
+
+### Exercise #2 - Create a compute engine in GCP
+
+In this exercise, a compute engine instance will be created.
+
+#### Pre-requisites
+
+- GCP account
+- `gcloud` CLI must be installed.
+- Ensure we have a IAM *service account* with role as *Owner*. To verify, use the following command to list the service-accounts: `gcloud iam service-accounts list`
+- Create a key for the service account so that Terraform can connect to GCP using this key. Use the following command for the same: `gcloud iam service-accounts keys create google-key.json --iam-account <service account email id>`. This would create a new key file named `google-key.json` in the current directory. We can also generate key via Google Cloud web console.
+- We must enable *Compute Engine API* by visiting the Google Cloud console's Compute Engine page.
+
+To create a Compute Engine instance (it's a VM) in GCP, the following steps will be performed:
+
+- **Step 1:** `terraform init`.
+- **Step 2:** (Optional) `terraform validate`.
+- **Step 3:** `terraform plan`.
+- **Step 4:** `terraform apply`. 
+- **Step 5:** (Optional) `terraform destroy -target google_compute_instance.dev_instance`. 
+
+Once Terraform has been successfully executed, a new Google Compute Engine (GCE) instance is created in our GCP account as shown below:
+
+|![New EC2 instance created](/assets/images/posts/terraform-new-gce-instance-created.png)|
+|:-:|
+|<sup>*A new GCE instance created in GCP.*</sup>|<br/><br/>
 
 # Conclusion
 
