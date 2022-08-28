@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Algorithms and Data Structures"
+title:  "An Introduction to Algorithms and Data Structures"
 kicker: "Algorithms and Data Structures"
 subtitle: "An algorithm is a series of instructions in a particular order for performing a specific task."
 image: assets/images/posts-cover-images/algorithms-and-data-structures.jpg
@@ -9,7 +9,7 @@ published_on: 2022-08-26 00:00:00 +0530
 tags: ["algorithms-and-data-structures", "algorithms", "data-structures"]
 categories: algorithms-and-data-structures
 featured: false
-hidden: true
+hidden: false
 ---
 
 # What is an algorithm?
@@ -30,20 +30,31 @@ These guidelines not only aid in defining what an algorithm is, but also in vali
 
 ## Algorithm efficiency
 
+A problem can be solved in more than one way. So, it is possible to come up with more than one solution algorithm for a given problem. We must compare them to find the efficient one.
+
 There are two measures of efficiency when it comes to algorithms:
 
 - **Time**
 - **Space**
 
-### Time complexity
+### Time complexity (Speed)
 
-The efficiency measured in terms of time is known as time complexity. Time complexity is a measure of how long an algorithm takes to execute.
+The efficiency measured in terms of time is known as time complexity. Time complexity is a measure of how long an algorithm takes to execute. Time complexity is defined as a *function of the input size `n` using Big-O notation as `O(n)`*, where `n` is the size of the input and `O` is the growth rate function for the worst-case scenario.
 
-### Space complexity
+> **Big-O notation:** The Big-O notation enables a standard comparison of the worst-case performance (aka upper bound) of our algorithms.
+
+#### Constant time complexity
+
+If an algorithm's time complexity is *constant*, its execution time remains the same regardless of the *input size* and the *number of times it is executed*.
+
+
+### Space complexity (Memory)
 
 Space complexity is primarily a computer area of concern. It corresponds to the amount of memory a computer uses.
 
 An effective algorithm must strike a balance between these two measures. For example, it might not matter if we have a super-fast algorithm if it uses up all the memory we have.
+
+> **Ideal efficiency:** The most efficient algorithm could be one that performs all of its operations in the shortest time possible and uses the least amount of memory.
 
 ## Linear search algorithm
 
@@ -51,7 +62,7 @@ For a given value of `n`, linear search will require `n` attempts to locate the 
 
 # What is data structure?
 
-A data structure is a way to *manage*, *organize*, and *store data* that makes it *easy* to access its values and change them.
+A data structure is a way to *organize*, *manage*, and *store data* that makes it *easy* to access its values and change them. To efficiently access or utilize data, we must first store it efficiently.
 
 ## Types of data structure
 
@@ -62,4 +73,16 @@ Generally, data structures fall into two categories:
 
 ### Linear data structure
 
-Elements are arranged sequentially in linear data structures. These elements can be ordered by any sort. Each element in a linear data structure must have an element preceding it and may have an element following it if it is not the final element.
+Data elements are arranged *sequentially* in a linear data structure. These elements can be *ordered in any manner* (ascending or descending). In a linear data structure, each element must have an element before it, and if it is not the last element, it may also have an element after it. 
+
+### Non-linear data structure
+
+TODO
+
+## Asymptotic analysis
+
+## FAQ
+
+### Array vs. linked list
+
+Inserting an element at the beginning of the sequential list is way faster in the *linked list* than in the *array*.
