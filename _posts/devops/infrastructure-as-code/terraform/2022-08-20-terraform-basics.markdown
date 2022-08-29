@@ -44,7 +44,7 @@ The first major benefit of IaC is its speed. We can quickly set up your entire i
 
 Manual processes are prone to errors. Infrastructure as a code solves this problem by making the configuration files the single source of truth. That way, we can be certain that the same configurations will be deployed repeatedly and without error.
 
-### Traceability with the help of verison control system
+### Traceability with the help of version control system
 
 We have full traceability of the changes made to each configuration because we can version IaC configuration files like any other source code file, which allows us to save time troubleshooting the problem.
 
@@ -222,7 +222,7 @@ resource "azurerm_role_assignment" "example" {
 
 In the above example, we have defined two blocks: *data* and *resource* blocks. We are sending the data from the data source directly into a role assignment resource.
 
-#### Refresshing data sources
+#### Refreshing data sources
 
 By default, before creating a *plan*, Terraform will refresh all data sources. Additionally, we can explicitly refresh all data sources by executing `terraform refresh` command.
 

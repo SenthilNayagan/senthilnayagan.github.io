@@ -28,9 +28,13 @@ If we have ever written code before, we have written an algorithm. The code can 
 
 These guidelines not only aid in defining what an algorithm is, but also in validating its correctness.
 
+## Big-O notation
+
+Big O notation uses algebraic terms to describe the *complexity of our code*.
+
 ## Algorithm efficiency
 
-A problem can be solved in more than one way. So, it is possible to come up with more than one solution algorithm for a given problem. We must compare them to find the efficient one.
+A problem can be solved in more than one way. So, it is possible to come up with more than one solution (algorithm) for a given problem. We must compare them to find the efficient one.
 
 There are two measures of efficiency when it comes to algorithms:
 
@@ -45,7 +49,7 @@ The efficiency measured in terms of time is known as time complexity. Time compl
 
 #### Constant time complexity
 
-If an algorithm's time complexity is *constant*, its execution time remains the same regardless of the *input size* and the *number of times it is executed*.
+If an algorithm's time complexity is *constant*, its execution time remains the same regardless of the *input size* and the *number of times it is executed*. The constant time is denoted by `O(1)` in Big-O notation. If we can create an algorithm that solves the problem in `O(1)`, we are likely at our top performance. Note that `O(1)` has the least complexity.
 
 
 ### Space complexity (Memory)
@@ -63,6 +67,8 @@ For a given value of `n`, linear search will require `n` attempts to locate the 
 # What is data structure?
 
 A data structure is a way to *organize*, *manage*, and *store data* that makes it *easy* to access its values and change them. To efficiently access or utilize data, we must first store it efficiently.
+
+Data structures are essential ingredients in creating fast and powerful algorithms. They make code cleaner and easier to understand.
 
 ## Types of data structure
 
@@ -86,3 +92,9 @@ TODO
 ### Array vs. linked list
 
 Inserting an element at the beginning of the sequential list is way faster in the *linked list* than in the *array*.
+
+### O(1) vs. O(log(n))
+
+`O(log(n))` is more complex than `O(1)`. `O(1)` indicates that the execution time of an algorithm is *independent* of the size of the input, whereas `O(log n)` denotes that as input size `n` increases exponentially, the running time increases linearly.
+
+In some instances, `O(log(n))` may be faster than `O(1)`, but `O(1)` will outperform `O(log(n))` as `n` grows, because `O(1)` is independent of the input size `n`.
