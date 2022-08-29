@@ -9,7 +9,7 @@ published_on: 2022-08-26 00:00:00 +0530
 tags: ["algorithms-and-data-structures", "algorithms", "data-structures"]
 categories: algorithms-and-data-structures
 featured: false
-hidden: false
+hidden: true
 ---
 
 # What is an algorithm?
@@ -31,6 +31,18 @@ These guidelines not only aid in defining what an algorithm is, but also in vali
 ## Big-O notation
 
 Big O notation uses algebraic terms to describe the *complexity of our code*.
+
+No mathematical knowledge is necessary to understand Big-O notation. Each Big-O notation defines a curve's (XY graph) shape. The shape of the curve represents the relationship between the *size* of a dataset (amount of data) and the *time* it takes to process that data.
+
+The performance of the following Big-O notations is ranked from best (`O(1)`) to worst (`O(n!)`):
+
+- **O(1)**
+- **O(log(n))**
+- **O(n)**
+- **O(n log(n))**
+- **O(n^2)**
+- **O(2^n)**
+- **O(n!)**
 
 ## Algorithm efficiency
 
