@@ -82,6 +82,14 @@ A data structure is a way to *organize*, *manage*, and *store data* that makes i
 
 Data structures are essential ingredients in creating fast and powerful algorithms. They make code cleaner and easier to understand.
 
+The following five operations are commonly performed on any data structure:
+
+- **Insertion**
+- **Deletion**
+- **Traversal**
+- **Searching**
+- **Sorting**
+
 ## Types of data structure
 
 Generally, data structures fall into two categories:
@@ -99,7 +107,7 @@ TODO
 
 ## Asymptotic analysis
 
-## FAQ
+## Frequently asked questions (FAQ)
 
 ### Array vs. linked list
 
@@ -110,3 +118,50 @@ Inserting an element at the beginning of the sequential list is way faster in th
 `O(log(n))` is more complex than `O(1)`. `O(1)` indicates that the execution time of an algorithm is *independent* of the size of the input, whereas `O(log n)` denotes that as input size `n` increases exponentially, the running time increases linearly.
 
 In some instances, `O(log(n))` may be faster than `O(1)`, but `O(1)` will outperform `O(log(n))` as `n` grows, because `O(1)` is independent of the input size `n`.
+
+### What is asymptotic analysis?
+
+Asymptotic analysis is the process of calculating the execution or nunning time of an algorithm in mathematical units in order to determine the program's limitations or run-time performance. Using asymptotic analysis, we can determine the *worst case*, *average case*, and *best case* execution times of an algorithm.
+
+Following are the asymptotic notations for each of the three execution time cases:
+
+- **Worst case** is represented by `Ο(n)` notation; represents *upper bound*.
+- **Average case** is represented by `Θ(n)` notation aka *Big-Theta*; represents *tight bound*.
+- **Best case** is represented by `Ω(n)` notation aka *Big-Omega*; represents *lower bound*.
+
+### What are the common approaches for developing algorithms?
+
+There are three common approaches for developing algorithms:
+
+- **Greedy approach**
+    - It's  a *simple and straightforward approach*.
+    - Identifying a solution by selecting the *next component* that provides the most obvious and immediate benefit, i.e. the next-best option.
+    - It identifies the feasible solution, which *may or may not be the optimal solution*.
+    - In this method, a decision is made *based on the information currently available*, without consideration for the long-term consequences.
+- **Divide and conquer approach**
+    - The *divide* strategy involves dividing the problem into smaller subproblems until those subproblems are simple enough to be solved directly.
+    - The *conquer* strategy solves subproblems by calling recursively until all subproblems have been resolved.
+    - After resolving all subproblems, *combine* them to arrive at the final solution for the entire problem.
+    - The divide-and-conquer approach is often *used to find an optimal solution* to a problem.
+    - The standard algorithms that follow the divide and conquer algorithm/approach are listed below:
+        - **Binary search**
+        - **Quicksort**
+        - **Merge sort**
+        - **Closest pair of points**
+        - **Strassen’s algorithm**
+        - **Cooley–tukey fast fourier transform (FFT) algorithm**
+        - **The karatsuba algorithm**
+- **Dynamic programming**
+    - It is similar to the divide and conquer strategy because it divides the problem into smaller sub-problems.
+    - In dynamic programming, *sub-problems are interdependent*; therefore, the *results of subproblems are stored for future use* so that they do not need to be recalculated.
+    - Before calculating the solution to a current subproblem, the *previous solutions are examined*. If any of the previously solved sub-problems are similar to the current one, the result of that sub-problem is utilized. Finally, the solution to the original problem is obtained by combining the solutions to the subproblems.
+
+### What operations are available for stacks?
+
+The operations listed below can be performed on a stack:
+
+- **push()** - Adds an item to stack
+- **pop()** - Removes the top item in the stack
+- **peek()** - Gives top item's value without removing it
+- **isempty()** - Checks if stack is empty
+- **isfull()** - Checks if stack is full
