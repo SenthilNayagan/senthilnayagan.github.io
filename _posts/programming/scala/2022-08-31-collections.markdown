@@ -23,6 +23,8 @@ Scala has a very rich collections library, located under the `scala.collection` 
 - **Mutable collections**
 - **Immutable collections**
 
+> **Scala collections vs Java collections:** Scala collections are notably distinct from Java collections. For example, the Scala `List` class differs significantly from the Java `List` classes, including the immutable nature of the Scala `List`.
+
 ## Mutable collections
 
 A mutable collection can be *modified* or *extended* in place. This means that we can modify, add, or remove elements from a collection *with side effects*. All mutable collection classes are present in the `scala.collection.mutable` package.
@@ -30,3 +32,5 @@ A mutable collection can be *modified* or *extended* in place. This means that w
 ## Immutable collections
 
 In contrast, immutable collections *never change*. There are still operations that simulate additions, deletions, and updates, but each of these operations *returns a new collection and leaves the original collection unchanged*. All immutable collections are present under `scala.collection.immutable`. 
+
+The collections in `scala.collection` are supertypes of `scala.collection.mutable` and `scala.collection.immutable`. The base operations are added to the types in the `scala.collection` package, while the immutable and mutable operations are added to the types in the other two packages.
