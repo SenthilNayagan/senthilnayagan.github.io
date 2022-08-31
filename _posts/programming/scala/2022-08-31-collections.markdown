@@ -45,7 +45,7 @@ TODO
 
 ## Frequently asked questions (FAQ)
 
-What is `InPlace` transformation operation?
+### What is `InPlace` transformation operation?
 
 Instead of *always returning a new collection* after a `map` or `filter` operation, mutable collections have a couple of new operations (`filterInPlace` and `mapInPlace`) that let us *change the elements right where they are* (in-place). These *new operations change the source collection*.
 
@@ -58,4 +58,14 @@ val buf2 = ArrayBuffer(0, 1, 2, 3, 5, 6, 8, 9)
 buf2.mapInPlace(_ * 2)
 buf2 // ArrayBuffer(0, 2, 4, 6, 10, 12, 16, 18)
 ```
+
+### What are *trasnformer* methods?
+
+Transformer methods are collection methods that transform an input collection into a new output collection based on an algorithm we provide.
+
+The transformer methods are as follows:
+
+- **`map`**
+- **`filter`**
+- **`reverse`**
 
