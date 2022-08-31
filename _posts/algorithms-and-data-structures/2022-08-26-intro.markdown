@@ -121,7 +121,7 @@ In some instances, `O(log(n))` may be faster than `O(1)`, but `O(1)` will outper
 
 ### What is asymptotic analysis?
 
-Asymptotic analysis is the process of calculating the execution or nunning time of an algorithm in mathematical units in order to determine the program's limitations or run-time performance. Using asymptotic analysis, we can determine the *worst case*, *average case*, and *best case* execution times of an algorithm.
+Asymptotic analysis is the process of *calculating the execution or running time of an algorithm in mathematical units* in order to determine the program's limitations or run-time performance. Using asymptotic analysis, we can determine the *worst case*, *average case*, and *best case* execution times of an algorithm.
 
 Following are the asymptotic notations for each of the three execution time cases:
 
