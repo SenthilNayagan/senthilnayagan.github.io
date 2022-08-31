@@ -34,3 +34,28 @@ A mutable collection can be *modified* or *extended* in place. This means that w
 In contrast, immutable collections *never change*. There are still operations that simulate additions, deletions, and updates, but each of these operations *returns a new collection and leaves the original collection unchanged*. All immutable collections are present under `scala.collection.immutable`. 
 
 The collections in `scala.collection` are supertypes of `scala.collection.mutable` and `scala.collection.immutable`. The base operations are added to the types in the `scala.collection` package, while the immutable and mutable operations are added to the types in the other two packages.
+
+## A high-level view of the Scala collections
+
+TODO
+
+## Collections table
+
+![](/assets/images/posts/scala-collections-characteristics-table.png)
+
+## Frequently asked questions (FAQ)
+
+What is `InPlace` transformation operation?
+
+Instead of *always returning a new collection* after a `map` or `filter` operation, mutable collections have a couple of new operations (`filterInPlace` and `mapInPlace`) that let us *change the elements right where they are* (in-place). These *new operations change the source collection*.
+
+```scala
+val buf1 = ArrayBuffer(0, 1, 2, 3, 5, 6, 8, 9)
+buf1.filterInPlace(_ % 2 == 0) 
+buf1 // ArrayBuffer(0, 2, 6, 8)
+
+val buf2 = ArrayBuffer(0, 1, 2, 3, 5, 6, 8, 9)
+buf2.mapInPlace(_ * 2)
+buf2 // ArrayBuffer(0, 2, 4, 6, 10, 12, 16, 18)
+```
+
