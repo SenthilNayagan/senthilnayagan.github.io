@@ -4,8 +4,11 @@ layout: default
 permalink: "/tags.html"
 ---
 
-{% for tag in site.tags %}
+{% assign sortedTags = site.tags | sort %}
+
+{% for tag in sortedTags %}
     <h4 class="mt-5 mb-neg-30" id="{{ tag[0] | replace: " ","-" }}"><span class="text-lowercase text-small badge badge-primary">{{ tag[0] }}</span></h4>
+
     <div class="blog-grid-container">
         {% assign pages_list = tag[1] %}
         {% for post in pages_list %}

@@ -7,7 +7,7 @@ image: assets/images/posts-cover-images/scala-collections.jpg
 author: senthil
 date: 2022-08-31 00:00:00 +0530
 tags: [ "scala-collections", "scala" ]
-categories: scala-collections
+categories: scala
 featured: false
 hidden: true
 ---
