@@ -13,7 +13,7 @@ This is my tech blog where I explore various programming concepts. I'm also maki
 
 Personally, I like writing blogs. Blogging is an excellent way that enables me to share my passion for technology with the rest of the world. Through blogging, I not only educate others who are interested in my areas of expertise, but also myself, in the most clear terms possible.
 
-If you like my stories or have suggestions for their improvement, please feel free to contact me.
+If you like my stories or have suggestions for their improvement, please feel free to [contact me]({{ site.baseurl }}/contact).
 
 **Email:** [hello@senthilnayagan.com](mailto:hello@senthilnayagan.com)<br/>
 **Twitter:** [SenthilNayagan](https://twitter.com/SenthilNayagan){:target="_blank"}<br/>
