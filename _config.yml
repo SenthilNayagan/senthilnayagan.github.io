@@ -10,6 +10,7 @@ mailchimp-list: 'https://gmail.us17.list-manage.com/subscribe?u=155954fdd35cc37f
 include: ["_pages"]
 permalink: /:categories/:year/:title
 email: hello@senthilnayagan.com
+contact-me: https://formspree.io/f/xzbwdbnl
 
 # Authors
 authors:
