@@ -15,12 +15,12 @@ Personally, I like writing technical blogs. Blogging has been an excellent way t
 
 If you like my stories or have suggestions for their improvement, please feel free to [contact me]({{ site.baseurl }}/contact).
 
+Happy learning!
+
 **Email:** [hello@senthilnayagan.com](mailto:hello@senthilnayagan.com)<br/>
 **Twitter:** [SenthilNayagan](https://twitter.com/SenthilNayagan){:target="_blank"}<br/>
 **LinkedIn:** [senthilnayagan](https://www.linkedin.com/in/senthilnayagan){:target="_blank"}<br/>
 **GitHub:** [SenthilNayagan](https://github.com/SenthilNayagan){:target="_blank"}
-
-Happy learning!
 
 <!--
 <a target="_blank" href="https://bootstrapstarter.com/jekyll-theme-memoirs/" class="btn btn-dark"> Get Memoirs for Jekyll &rarr;</a>
