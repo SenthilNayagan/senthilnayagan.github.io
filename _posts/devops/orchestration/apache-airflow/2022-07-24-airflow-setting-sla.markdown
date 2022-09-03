@@ -5,6 +5,7 @@ kicker: "DevOps"
 subtitle: "Apache Airflow enables us to schedule tasks as code. In Airflow, a SLA determines the maximum completion time for a task or DAG. Note that SLAs are established based on the DAG execution date, not the task start time."
 image: assets/images/posts-cover-images/airflow-setting-sla.jpg
 featured_image: assets/images/featured-images/airflow-setting-sla.jpg
+imageshadow: true
 author: senthil
 date: 2022-07-24 20:00:01 +0530
 tags: ["airflow", "sla", "service-level-agreement", "workflow-engine"]
