@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Hello there! It's a pleasure to meet you! 
+title: Hello there! 
 permalink: /about
 comments: false
 image: https://www.gravatar.com/avatar/6fc127cda8cd99830932538a58dc6173?s=350
