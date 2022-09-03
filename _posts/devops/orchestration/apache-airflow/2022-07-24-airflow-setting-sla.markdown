@@ -6,8 +6,8 @@ subtitle: "Apache Airflow enables us to schedule tasks as code. In Airflow, a SL
 image: assets/images/posts-cover-images/airflow-setting-sla.jpg
 featured_image: assets/images/featured-images/airflow-setting-sla.jpg
 author: senthil
-published_on: 2022-07-24 20:00:01 +0530
-tags: ["airflow", "sla", "service-level agreement", "workflow-engine"]
+date: 2022-07-24 20:00:01 +0530
+tags: ["airflow", "sla", "service-level-agreement", "workflow-engine"]
 categories: orchestration
 featured: true
 hidden: false
@@ -46,7 +46,7 @@ There are several ways to define an SLA that include:
 
 Note that defining SLAs for a task is optional. As a result, in a DAG with several tasks, some tasks may have SLAs and others may not. To set an SLA for a task, pass a `datetime.timedelta` object to the task/operator’s `sla` parameter as shown below:
 
-```python
+{% highlight python %}
 from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
 from datetime import datetime, timedelta
@@ -61,7 +61,7 @@ with DAG('setting_sla',
         bash_command='sleep 10',
         sla=timedelta(seconds=5)  # SLA for the task
     )
-```
+{% endhighlight %}
 
 > When a task exceeds its SLA, it is not cancelled. It's free to continue running till the end.
 

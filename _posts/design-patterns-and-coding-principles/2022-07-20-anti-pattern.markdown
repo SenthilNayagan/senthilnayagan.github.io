@@ -5,7 +5,7 @@ kicker: "Design Patterns and Coding Principles"
 subtitle: "Anti-patterns at first seem to be quick and reasonable, they typically have adverse effects in the future. They are design and code smells. It affects our software badly and adds technical debt. We should avoid them at all costs."
 image: assets/images/posts-cover-images/antipattern.webp
 author: senthil
-published_on: 2022-07-20 11:24:20 +0530
+date: 2022-07-20 11:24:20 +0530
 last_modified_on: 2022-07-30 00:00:00 +0530
 tags: ["anti-pattern", "design-patterns"]
 categories: design-patterns-and-coding-principles
@@ -18,7 +18,7 @@ rating: false
 
 The term "anti-pattern" was first used in 1995 by a computer programmer, Andrew Koenig, in an article called "Journal of Object-Oriented Programming."
 
-> **An antipattern is just like a pattern, except that instead of a solution it gives something that looks superficially like a solution but isn't one. - Andrew Koenig**
+> An antipattern is just like a pattern, except that instead of a solution it gives something that looks superficially like a solution but isn't one. - **Andrew Koenig**
 
 Anti-patterns in software engineering are a commonly used, simple-to-implement solution to recurring issues that is often inefficient and has the potential of being incredibly counterproductive. It demonstrates how to go from a problem to a bad solution. We just call these *bad ideas* or *design smells*. Avoid them at all costs!
 

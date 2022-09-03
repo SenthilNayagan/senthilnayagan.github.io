@@ -5,7 +5,7 @@ kicker: "Algorithms and Data Structures"
 subtitle: "An algorithm is a series of instructions in a particular order for performing a specific task."
 image: assets/images/posts-cover-images/algorithms-and-data-structures.jpg
 author: senthil
-published_on: 2022-08-26 00:00:00 +0530
+date: 2022-08-26 00:00:00 +0530
 tags: ["algorithms-and-data-structures", "algorithms", "data-structures"]
 categories: algorithms-and-data-structures
 featured: false

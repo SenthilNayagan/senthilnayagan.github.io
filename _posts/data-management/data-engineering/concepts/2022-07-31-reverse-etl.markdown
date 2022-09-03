@@ -5,7 +5,7 @@ kicker: "Data Engineering"
 subtitle: "Reverse ETL is the process of feeding processed data (gold-layer tables) from a data warehouse or data lake back into business applications, primarily for use in operational analytics domains such as sales, marketing, etc., in order to enable business operations and forecasts."
 image: assets/images/posts-cover-images/reverse-etl.jpg
 author: senthil
-published_on: 2022-07-31 00:00:00 +0530
+date: 2022-07-31 00:00:00 +0530
 tags: ["data-engineering", "reverse-etl", "etl"]
 categories: data-engineering
 featured: false

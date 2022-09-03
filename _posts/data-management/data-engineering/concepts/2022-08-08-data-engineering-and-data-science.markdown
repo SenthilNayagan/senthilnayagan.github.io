@@ -5,7 +5,7 @@ kicker: "Data Engineering"
 subtitle: "Data engineering and data science are not sub-disciplines of each other. They complement one another but do not rely on each other."
 image: assets/images/posts-cover-images/data-engieering-vs-data-science.jpg
 author: senthil
-published_on: 2022-08-02 00:00:00 +0530
+date: 2022-08-02 00:00:00 +0530
 tags: ["data-engineering", "data-science"]
 categories: data-management
 featured: true

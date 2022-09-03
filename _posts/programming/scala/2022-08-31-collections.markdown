@@ -5,7 +5,7 @@ kicker: "Scala"
 subtitle: "In programming, a collection is an object that groups multiple elements into a single unit. A collection is like a container that can store a variety of items."
 image: assets/images/posts-cover-images/scala-collections.jpg
 author: senthil
-published_on: 2022-08-31 00:00:00 +0530
+date: 2022-08-31 00:00:00 +0530
 tags: [ "scala-collections", "scala" ]
 categories: scala-collections
 featured: false

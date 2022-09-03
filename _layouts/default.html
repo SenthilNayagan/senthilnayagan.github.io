@@ -1,157 +1,129 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+<html lang="en">
 <head>
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <!--<link rel="icon" href="{{ site.baseurl }}/assets/images/logo.png">-->
-   <link rel="icon" href="{{ site.favicon }}">
-   <title>{{ page.title }} | {{ site.name }}</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-   {% seo %}
+<link rel="icon" href="{{ site.baseurl }}/assets/images/logo.png">
 
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<title>{{ page.title }} | {{site.name}}</title>
+
+{% seo %}
     
-   <link href="{{ site.baseurl }}/assets/css/screen.css" rel="stylesheet">
-   
-   <link href="{{ site.baseurl }}/assets/css/main.css" rel="stylesheet">
-   
-   <script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>
-   
-   <script src="https://kit.fontawesome.com/a04651ccb8.js" crossorigin="anonymous"></script>
+<link href="{{ site.baseurl }}/assets/css/prism.css" rel="stylesheet">
+
+<link href="{{ site.baseurl }}/assets/css/theme.css" rel="stylesheet">
+
+<script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>
+
 </head>
 
+{% if jekyll.environment == 'production' %}
+<!-- change your GA id in _config.yml -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{site.google_analytics}}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '{{site.google_analytics}}');
+</script>
+{% endif %}
+
 {% capture layout %}{% if page.layout %}layout-{{ page.layout }}{% endif %}{% endcapture %}
-<body class="{{layout}}">
+<body>
 	<!-- defer loading of font and font awesome -->
 	<noscript id="deferred-styles">
-        <!-- Google Fonts-->
-		<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
-		
-        <!-- Font Awesome Icons -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+		<link href="https://fonts.googleapis.com/css?family=Sen:400,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 	</noscript>
 
-
-<!-- Begin Menu Navigation
-================================================== -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
-
-    <div class="container pr-0">
-        <!-- Begin Logo -->
-        <a class="navbar-brand" href="{{ site.baseurl }}/">
-            <img src="{{ site.baseurl }}/{{ site.logo }}" alt="{{ site.name }}">
-        </a>
-        <!-- End Logo -->
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarMediumish" style="font-family: Merriweather;">
-            <!-- Begin Menu -->
-                <ul class="navbar-nav ml-auto">
-                    {% if page.url == "/" %}
-                    <li class="nav-item active">
-                    {% else %}
-                    <li class="nav-item">
-                    {% endif %}
-                    <a class="nav-link" href="{{ site.baseurl }}/index.html">Home</a>
-                    </li>
-
-                    {% if page.url == "/tags" %}
-                    <li class="nav-item active">
-                    {% else %}
-                    <li class="nav-item">
-                    {% endif %}
-                    <a class="nav-link" href="{{ site.baseurl }}/tags">Tags</a>
-                    </li>                    
-                    
-                    {% if page.url == "/about" %}
-                    <li class="nav-item active">
-                    {% else %}
-                    <li class="nav-item">
-                    {% endif %}
-                    <a class="nav-link" href="{{ site.baseurl }}/about">About me</a>
-                    </li>
-                    {% include search-lunr.html %}
-                </ul>
-            <!-- End Menu -->
-        </div>
-    </div>
+<!-- Begin Sidebar Navigation -->
+<div class="sidebar">    
+</div>   
+<div class="nav-icon">
+    <div class="hamburger-bar"></div>
+</div>
+<div id="blackover-nav" class="blackover"></div>
+<nav id="menu">
+    <ul>
+        <h3>Navigation</h3>
+        <li><a href="{{ site.baseurl }}/">Home</a></li>
+        <li><a href="{{ site.baseurl }}/about">About me</a></li>
+        <li><a href="{{ site.baseurl }}/tags">Tags</a></li>
+        <!--<li><a href="{{ site.baseurl }}/authors">Contributors <span class="badge badge-primary">new</span></a></li>-->
+        <li><a href="{{ site.baseurl }}/contact">Contact</a></li>       
+    </ul>   
 </nav>
-<!-- End Navigation
-================================================== -->
 
-<div class="site-content">
+{% include search-lunr.html %}
+<!-- End Sidebar Navigation -->
+
+<div class="site-content {% if page.url == '/' %} firstpage {% endif %}">
 
 <div class="container">
 
-<!-- Site Title
-================================================== -->
-<!--<div class="mainheading">
-    <h1 class="sitetitle">{{ site.name }}</h1>
-    <p class="lead">
-        {{ site.description }}
-    </p>
-</div>-->
+    <!-- Site Logo/Name
+    ================================================== -->
+   
+    <a class="navbar-brand" href="{{ site.baseurl }}/">
+        <img src="{{ site.baseurl }}/{{ site.logo }}" alt="{{ site.name }}">
+    </a>  
+   
 
-<!-- Content
-================================================== -->
-<div class="main-content">
-    {{ content }}
-</div>
+    <!-- Site Tag -->
+    {% if page.url == '/' %}
+        <p class="sitetag">
+            {{ site.description }}
+        </p>
+    {% endif %}
 
-{% if site.mailchimp-list %}
-<!-- Bottom Alert Bar
-================================================== -->
-<div class="alertbar">
-	<div class="container text-center">
-		<span><!--<img src="{{ site.baseurl }}/{{ site.logo }}" alt="{{site.title}}">-->&nbsp;Do you find my posts interesting? If you don't want to miss out on new posts, subscribe to my newsletter.</span>
+    <!-- Content -->
+    <div class="main-content">
+        {{ content }}
+    </div>
+
+    {% if site.mailchimp-list %}
+    <!-- Newsletter -->
+    <div class="newsletter text-center">
+        <span class="h4"><!--<img src="{{ site.baseurl }}/{{ site.logo }}" class="newsletter-logo" alt="{{site.title}}"> &nbsp;-->If you like my <b>posts</b> and don't want to miss any of them, sign up for my newsletter.</span>
         <form action="{{site.mailchimp-list}}" method="post" name="mc-embedded-subscribe-form" class="wj-contact-form validate" target="_blank" novalidate>
-            <div class="mc-field-group">
-            <input type="email" placeholder="Email" name="EMAIL" class="required email" id="mce-EMAIL" autocomplete="on" required>
+            <div class="mc-field-group d-inline-flex">
+            <input type="email" placeholder="Your e-mail" name="EMAIL" class="required email" id="mce-EMAIL" autocomplete="on" required>
             <input type="submit" value="Subscribe" name="subscribe" class="heart">
             </div>
         </form>
-	</div>
-</div>
-{% endif %}
+    </div>
+    {% endif %}
     
 </div>
 
-<!-- Begin Footer
-================================================== -->
+<!-- Begin Footer -->
 <footer class="footer">
-   <div class="container">
+    <div class="container">
         <div class="row">
-           <div class="col-md-6 col-sm-6 text-center text-lg-left">
-               Copyright © {{ site.time | date: "%Y" }} {{ site.name }} | <a href="{{ site.baseurl }}/privacy-policy.html">Privacy Policy</a> | Powered by GitHub Pages and Jekyll | This website DOES NOT use cookies
-           </div>
-           <div class="col-md-6 col-sm-6 text-center text-lg-right">    
-            The vector graphics used here are designed by <a target="_blank" href="https://www.freepik.com">Freepik</a>
-           </div>
-       </div>
-   </div>
+            <div class="col-md-6 col-sm-12 text-center text-lg-left">
+                Copyright © {{ site.time | date: "%Y" }} {{ site.name }} | <a href="{{ site.baseurl }}/privacy-policy.html">Privacy Policy</a> | Powered by GitHub Pages and Jekyll | This website DOES NOT use cookies
+            </div>
+            <div class="col-md-6 col-sm-12 text-center text-lg-right">    
+                The vector graphics used here are designed by <a target="_blank" href="https://www.freepik.com">Freepik</a>
+            </div>
+        </div>
+    </div>
 </footer>
-<!-- End Footer
-================================================== -->
+<!-- End Footer -->
 
 </div> <!-- /.site-content -->
 
-<!-- Scripts
-================================================== -->
+<!-- Scripts (if you need bootstrap.js, please add it yourself. I didn't use it for performance reasons, it was not needed in this theme) -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="{{ site.baseurl }}/assets/js/prism.js"></script>
 
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-
-<script src="{{ site.baseurl }}/assets/js/mediumish.js"></script>
+<script src="{{ site.baseurl }}/assets/js/theme.js"></script>
 
 {% if site.lazyimages == "enabled" %}
 <script src="{{ site.baseurl }}/assets/js/lazyload.js"></script>
 {% endif %}
-
-<script src="{{ site.baseurl }}/assets/js/ie10-viewport-bug-workaround.js"></script> 
 
 {% if page.layout == 'post' %}
 <script id="dsq-count-scr" src="//{{site.disqus}}.disqus.com/count.js"></script>

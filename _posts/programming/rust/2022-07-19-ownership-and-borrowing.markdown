@@ -6,7 +6,7 @@ subtitle: "Rust's ownership and borrowing features prevent us from experiencing 
 image: assets/images/posts-cover-images/rust-ownership-borrowing.jpeg
 toc: true
 author: senthil
-published_on: 2022-07-19 13:50:10 +0530
+date: 2022-07-19 13:50:10 +0530
 tags: [ "programming", "rust", "memory-management" ]
 categories: rust
 featured: true
@@ -96,7 +96,7 @@ Our approach to figuring out how to prevent memory leaks will vary depending on 
 
 Memory leaks and memory unsafety are the two types of issues that have received the greatest attention in terms of prevention and remediation. It's important to note that fixing one does not automatically fix the other.
 
-|![Figure 1: Memory unsafety vs. memory leaks](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/z1f7affpg1s7d5w4m4j4.png)|
+|![Figure 1: Memory unsafety vs. memory leaks](/assets/images/posts/memory-unsafety-vs-memory-leaks.png)|
 |:-:|
 |<sup>*Figure 1: Memory unsafety vs. memory leaks.*</sup>|<br/><br/>
 
@@ -205,7 +205,7 @@ Some languages provide *garbage collection*, which looks for memory that is no l
 
 Having said that, one gives efficient memory management *control*, while the other provides higher *safety* by eliminating dangling references and memory leaks. Rust combines the benefits of both worlds.
 
-|![Figure 2: Rust has better control over memory management and provide higher safety with no memory issues](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/db43zkao8a6yivti1d5u.png)|
+|![Figure 2: Rust has better control over memory management and provide higher safety with no memory issues](/assets/images/posts/rust-stands-out.png)|
 |:-:|
 |<sup>*Figure 2: Rust has better control over memory management and provide higher safety with no memory issues.*</sup>|<br/><br/>
 
@@ -301,7 +301,7 @@ To put it in other words, the metadata is kept on the stack while the actual dat
 
 When we assign `s1` to `s2`, the `String` metadata is copied, meaning we copy the pointer, the length, and the capacity that are on the stack. We do not copy the data on the heap that the pointer refers to. The data representation in memory looks like the one below:
 
-|![Figure 6: Variable `s2` gets a copy of the pointer, length, and capacity of `s1`](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/9xrq3zvr2gcp4bjmjzb4.png)|
+|![Figure 6: Variable `s2` gets a copy of the pointer, length, and capacity of `s1`](/assets/images/posts/rust-ownership-fig-6.png)|
 |:-:|
 |<sup>*Figure 6: Variable `s2` gets a copy of the pointer, length, and capacity of `s1`.*</sup>|<br/><br/>
 

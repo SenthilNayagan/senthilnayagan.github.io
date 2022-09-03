@@ -5,7 +5,7 @@ kicker: "AWS"
 subtitle: "AWS CLI is an open-source tool that allows us to interact with AWS services using command-line shell commands."
 image: assets/images/posts-cover-images/aws_cli.jpg
 author: senthil
-published_on: 2022-08-13 00:00:00 +0530
+date: 2022-08-13 00:00:00 +0530
 tags: ["aws", "aws-cli"]
 categories: aws
 featured: false

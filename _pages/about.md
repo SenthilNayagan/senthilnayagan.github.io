@@ -1,30 +1,28 @@
 ---
 layout: page
-title: About me
+title: Hello there! It's a pleasure to meet you! 
 permalink: /about
-comments: true
+comments: false
+image: https://www.gravatar.com/avatar/6fc127cda8cd99830932538a58dc6173?s=350
+imageshadow: true
 ---
-{% assign author = site.authors["senthil"] %}
 
-<div class="row justify-content-between">
-    <div class="col-md-8 pr-5" style="font-family: Merriweather;">
-        <p>Hello there!</p>
-        <p>I am Senthil Nayagan. It's a pleasure to meet you!</p>
-        <p>I am a seasoned IT professional with years of expertise in designing and building complex business solutions with open-source technologies. I've been working in the field of data engineering for the past few years. If I were to describe myself in a few words, I would say that I am a Data Engineer by profession, a Rustacean by interest, and an avid Content Creator at present.</p>
-        <p>This is my tech blog where I explore various data engineering concepts. I'm also making up stories about design and coding principles. I'm attempting to make all of my stories as clear as possible while yet providing enough detail for you to comprehend the ideas.</p>
-        <p>Personally, I like writing blogs. Blogging is an excellent way that enables me to share my passion for technology with the rest of the world. Through blogging, I not only educate others who are interested in my areas of expertise, but also myself, in the most clear terms possible.</p>
-        <p>If you like my stories or have suggestions for their improvement, please feel free to contact me at <a href="mailto:hello@senthilnayagan.com">hello@senthilnayagan.com</a>.</p>
-        <p>Happy learning!</p>
-    </div>
-    <div class="col-md-4 pr-0 share">
-        <span><img style="border-radius: 2%;" src="https://www.gravatar.com/avatar/{{ author.gravatar }}?s=350" alt="{{ author.display_name }}"></span>
-        <span>
-            <p></p>
-            <p style="font-size: 25px;">
-                <a target="_blank" href="https://twitter.com/SenthilNayagan"><i class="fa-brands fa-twitter"></i></a>&nbsp;&nbsp;
-                <a target="_blank" href="https://www.linkedin.com/in/senthilnayagan"><i class="fa-brands fa-linkedin"></i></a>&nbsp;&nbsp;
-                <a target="_blank" href="https://github.com/SenthilNayagan"><i class="fa-brands fa-github"></i></a>
-            </p>
-        </span>
-    </div>
-</div>
+I am **Senthil Nayagan**. I am a seasoned IT professional with years of expertise in designing and building complex business solutions with open-source technologies. I've been working in the field of data engineering for the past few years. If I were to describe myself in a few words, I would say that I am a Data Engineer by profession, a Rustacean by interest, and an avid Content Creator at present.
+
+This is my tech blog where I explore various programming concepts. I'm also making up stories about design and coding principles. I'm attempting to make all of my stories as clear as possible while yet providing enough detail for you to comprehend the ideas.
+
+Personally, I like writing blogs. Blogging is an excellent way that enables me to share my passion for technology with the rest of the world. Through blogging, I not only educate others who are interested in my areas of expertise, but also myself, in the most clear terms possible.
+
+If you like my stories or have suggestions for their improvement, please feel free to contact me.
+
+**Email:** [hello@senthilnayagan.com](mailto:hello@senthilnayagan.com)<br/>
+**Twitter:** [SenthilNayagan](https://twitter.com/SenthilNayagan){:target="_blank"}<br/>
+**LinkedIn:** [senthilnayagan](https://www.linkedin.com/in/senthilnayagan){:target="_blank"}<br/>
+**GitHub:** [SenthilNayagan](https://github.com/SenthilNayagan){:target="_blank"}
+
+Happy learning!
+
+<!--
+<a target="_blank" href="https://bootstrapstarter.com/jekyll-theme-memoirs/" class="btn btn-dark"> Get Memoirs for Jekyll &rarr;</a>
+-->
+

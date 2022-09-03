@@ -7,7 +7,7 @@ image: assets/images/posts-cover-images/terraform_basics.jpg
 featured_image: assets/images/featured-images/terraform_basics.jpg
 author: senthil
 toc: true
-published_on: 2022-08-20 00:00:00 +0530
+date: 2022-08-20 00:00:00 +0530
 tags: ["terraform", "infrastructure-as-code", "iac"]
 categories: terraform
 featured: true

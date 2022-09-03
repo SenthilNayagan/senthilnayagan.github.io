@@ -5,7 +5,7 @@ kicker: "Design Patterns and Coding Principles"
 subtitle: "SOLID is a mnemonic acronym that refers to a set of design principles developed for object-oriented programming languages. It makes our code more readable, extensible, and manageable when correctly implemented."
 image: assets/images/posts-cover-images/solid-design-principles.jpg
 author: senthil
-published_on: 2022-07-30 00:00:00 +0530
+date: 2022-07-30 00:00:00 +0530
 tags: ["design-patterns", "singleton-pattern", "coding-principles", "solid"]
 categories: design-patterns-and-coding-principles
 featured: false

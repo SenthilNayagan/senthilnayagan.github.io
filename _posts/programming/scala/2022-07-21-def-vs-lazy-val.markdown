@@ -5,7 +5,7 @@ kicker: "Scala"
 subtitle: "Difference between `lazy val` and `def`."
 image: assets/images/posts-cover-images/scala-def-vs-lazy-val.jpeg
 author: senthil
-published_on: 2022-07-21 20:11:10 +0530
+date: 2022-07-21 20:11:10 +0530
 tags: [ "programming", "scala", "functional-programming" ]
 categories: scala
 featured: false

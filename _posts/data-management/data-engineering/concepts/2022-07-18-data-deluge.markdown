@@ -5,7 +5,7 @@ kicker: "Data Management"
 subtitle: "When the granularity of data increases, its complexity also increases. At some point, we will reach a point where we cannot handle the volume of fresh data being generated."
 image: assets/images/posts-cover-images/data-deluge.webp
 author: senthil
-published_on: 2022-07-18 20:04:24 +0530
+date: 2022-07-18 20:04:24 +0530
 tags: ["data-management", "data-engineering"]
 categories: data-management
 featured: false

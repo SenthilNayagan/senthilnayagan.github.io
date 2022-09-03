@@ -5,166 +5,112 @@ archive: false
 post_class: post-template
 ---
 
-<!-- Begin Article
-================================================== -->
-<div class="container">
-    <div class="row">
+<div class="entry-header">
+    <!-- Kicker -->
+    {% if page.kicker %}
+        <h6 class="kicker">{{ page.kicker }}</h6>
+    {% endif %}
 
-        <!-- Post Share -->
-        <div class="col-md-2 pl-0">
-            {% include share.html %}
-        </div>
+    <!-- Post Title -->
+    <h1 class="posttitle">{{ page.title }}</h1>
 
-        <!-- Post -->
-        {% assign author = site.authors[page.author] %}
-
-        <div class="col-md-9 flex-first flex-md-unordered">
-            <div class="mainheading">
-
-                <!-- Author Box -->
-                {% if page.author %}
-                <div class="article-post row post-top-meta">
-                    <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0">
-                        {% if author.avatar %}
-                        <img class="author-thumb" src="{{site.baseurl}}/{{ author.avatar }}" alt="{{ author.display_name }}">
-                        {% else %}
-                        <img class="author-thumb" src="https://www.gravatar.com/avatar/{{ author.gravatar }}?s=250&d=mm&r=x" alt="{{ author.display_name }}">
-                        {% endif %}
-                    </div>
-                    <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left">
-                        <a target="_blank" class="link-dark" href="{{ author.web }}">{{ author.display_name }}</a><a target="_blank" href="{{ author.twitter }}" class="btn follow">Follow</a>
-                        <span class="author-description">{{ author.description }}</span>
-                    </div>
-                </div>
-                {% endif %}
-
-                <!-- Kicker -->
-                {% if page.kicker %}
-                    <h6 class="kicker">{{ page.kicker }}</h6>
-                {% endif %}
-
-                <!-- Post Title -->
-                <h1 class="posttitle">{{ page.title }}</h1>
-
-                <!-- Post Date -->
-                <h6 class="postdate-readtime-tags" style="font-size: 80%">
-                    <i class="fa-solid fa-calendar-days"></i>&nbsp;<span>{{ page.published_on | date_to_string | date: "%d %B %Y"}}</span>
-                    {% if page.last_modified_on %}
-                        (Updated: <span>{{ page.last_modified_on | date_to_string | date: "%d %B %Y"}}</span>)
-                    {% endif %}
-                    {% assign words = content | number_of_words %}
-                    &nbsp;-&nbsp;<i class="fa-solid fa-clock"></i>&nbsp;{{ words | divided_by:180 }} MINS READ
-                </h6>
-
-                <!-- Tags -->
-                <h6 class="postdate-readtime-tags" style="font-size: 80%">
-                    <ul class="tags">
-                        <i class="fa-solid fa-tags"></i>&nbsp;
-                        {% assign sortedTags = page.tags | sort %}
-                        {% for tag in sortedTags %}
-                        <li>
-                            <a class="smoothscroll" href="{{ site.baseurl }}/tags#{{ tag | replace: " ","-" }}">{{ tag }}</a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </h6>
-
-                <!-- Subtitle -->
-                <div class="article-post">
-                    
-                    {% if page.subtitle %}
-                        <span class="subtitle"><em>{{ page.subtitle }}</em></span>
-                        <hr class="grey_line"></hr>
-                    {% endif %}
-                </div>
-                <!-- End Subtitle --> 
-
-            </div>
-
-            <!-- Post Featured Image -->
-            {% if page.image %}
-                {% if site.lazyimages == "enabled" %}
-                <img class="featured-image img-fluid lazyimg" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAACCAQAAAA3fa6RAAAADklEQVR42mNkAANGCAUAACMAA2w/AMgAAAAASUVORK5CYII=" data-src="{% if page.image contains "://" %}{{ page.image }}{% else %}{{ site.baseurl }}/{{ page.image }}{% endif %}" alt="{{ page.title }}">
-                {% else %}
-                <img class="featured-image img-fluid" src="{% if page.image contains "://" %}{{ page.image }}{% else %}{{ site.baseurl }}/{{ page.image }}{% endif %}" alt="{{ page.title }}">
-                {% endif %}
+    <!-- Author and Date -->
+    {% assign author = site.authors[page.author] %}
+    {% if page.author %}
+    <div class="d-flex align-items-center mt-4">
+        <div>
+            {% if author.avatar %}
+            <img class="author-thumb" src="{{site.baseurl}}/{{ author.avatar }}" alt="{{ author.display_name }}">
+            {% else %}
+            <img class="author-thumb" src="https://www.gravatar.com/avatar/{{ author.gravatar }}?s=250&d=mm&r=x" alt="{{ author.display_name }}">
             {% endif %}
-            <!-- End Featured Image -->
-
-            <!-- Post Content -->
-            <div class="article-post">
-                <!-- Toc if any -->
-                {% if page.toc %}
-                    <div class="toc mt-4 mb-4">
-                        <h3 class="font-weight-bold">Sections</h3>
-                        {% include toc.html html=content %}
-                    </div>
-                {% endif %}
-                <!-- End Toc -->
-                {{ content }}
-            </div>
-
-            <!-- Rating -->
-            {% if page.rating %}
-            <div class="rating mb-4 d-flex align-items-center">
-                <strong class="mr-1">Rating:</strong> {% include star_rating.html %}
-            </div>
+        </div>            
+        <div>
+            Written by {{ author.display_name }} on 
+            <span class="post-date"><time class="post-date" datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date_to_string }}</time></span>           
+            {% if page.last_modified_at %}
+            (Updated: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}" itemprop="dateModified">{{ page.last_modified_at | date: "%b %-d, %Y" }}</time>)
             {% endif %}
-
-            <!-- Prev/Next -->
-            <div class="article-post row PageNavigation d-flex justify-content-between font-weight-regular" style="font-size: 90%">
-                {% if page.previous.url %}
-                    <a class="prev d-block col-md-6" href="{{ site.baseurl }}{{ page.previous.url }}"> &laquo; {{page.previous.title}}</a>
-                {% endif %}
-                {% if page.next.url %}
-                    <a class="next d-block col-md-6 text-lg-right" href="{{ site.baseurl }}{{ page.next.url }}">{{page.next.title}} &raquo; </a>
-                {% endif %}
-                <div class="clearfix"></div>
-            </div>
-            <!-- End Categories -->
-        </div>
-        <!-- End Post -->
+            {% assign words = content | number_of_words %}
+            &nbsp;-&nbsp;{{ words | divided_by:180 }} Mins Read
+        </div>            
     </div>
+    {% endif %}
 </div>
-<!-- End Article
-================================================== -->
 
-<!-- Begin Comments
-================================================== -->
-{% if page.comments != false %}
-    <div class="container">
-        <div id="comments" class="row justify-content-center mb-5">
-            <div class="col-md-8">
-                {% include disqus.html %}
-            </div>
-        </div>
-    </div>
+<!-- Adsense under title if enabled from _config.yml (change your pub id and slot) -->
+<!--{% if site.adsense == "enabled" %}
+    {% include adsense-under-header.html %}
+{% endif %}-->
+
+<!-- Tags -->
+<div class="article-post">
+    <ul class="tags">
+        {% assign sortedTags = page.tags | sort %}
+        {% for tag in sortedTags %}
+        <li>
+            <a class="smoothscroll" href="{{ site.baseurl }}/tags#{{ tag | replace: " ","-" }}">{{ tag }}</a>
+        </li>
+        {% endfor %}
+    </ul>                    
+</div>
+
+<!-- Subtitle -->
+<div class="article-post">
+{% if page.subtitle %}
+    <p></p>
+    <span style="font-weight: 50;">{{ page.subtitle }}</span>
+    <hr class="grey_line"></hr>
 {% endif %}
-<!--End Comments
-================================================== -->
+</div>
+
+<!-- Featured Image -->
+{% include featured-image.html %}
+
+<!-- Content -->
+{% include article.html %}
+
+<!-- Rating -->
+{% if page.rating %}
+<div class="rating mt-4 mb-4 d-flex align-items-center">
+    <strong class="mr-1">Rating:</strong> {% include star_rating.html %}
+</div>
+{% endif %}
+
+<!-- Author Box if enabled from _config.yml -->
+{% include author-box.html %}
+
+<!-- Comments if not disabled with comments: false -->
+{% include comments.html %}
+
+<!-- Share -->
+{% include share.html %}
+
+<!-- Related Post -->
+{% include related-posts.html %}
 
 <!-- Review with LD-JSON, adapt it for your needs if you like, but make sure you test the generated HTML source code first: 
 https://search.google.com/structured-data/testing-tool/u/0/
 ================================================== -->
 {% if page.rating %}
-<script type="application/ld+json">
-{
-  "@context": "http://schema.org/",
-  "@type": "Review",
-  "itemReviewed": {
+    <script type="application/ld+json">
+    {
+    "@context": "http://schema.org/",
+    "@type": "Review",
+    "itemReviewed": {
     "@type": "Thing",
     "name": "{{ page.title }}"
-  },
-  "author": {
+    },
+    "author": {
     "@type": "Person",
     "name": "{{ author.display_name }}"
-  },
-  "datePublished": "{{ page.date | date:"%Y-%m-%d" }}",
-  "reviewRating": {
+    },
+    "datePublished": "{{ page.date | date:"%Y-%m-%d" }}",
+    "reviewRating": {
     "@type": "Rating",
     "ratingValue": "{{ page.rating }}",
     "bestRating": "5"
-  }
-}
-</script>
+    }
+    }
+    </script>
 {% endif %}

@@ -5,7 +5,7 @@ kicker: "Kubernetes"
 subtitle: "Kubernetes is a Google-developed open source container orchestration platform for managing microservices or containerized applications across a distributed cluster of nodes."
 image: assets/images/posts-cover-images/kubernetes-basics.jpg
 author: senthil
-published_on: 2022-08-17 00:00:00 +0530
+date: 2022-08-17 00:00:00 +0530
 tags: ["kubernetes", "container-orchestration", "container-management"]
 categories: kubernetes
 featured: false

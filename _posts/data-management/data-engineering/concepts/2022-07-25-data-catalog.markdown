@@ -5,7 +5,7 @@ kicker: "Data Management"
 subtitle: "A data catalog is an ordered inventory of an organization's data assets that makes it easy to find the most relevant data quickly."
 image: assets/images/posts-cover-images/data-catalog.jpg
 author: senthil
-published_on: 2022-07-25 19:30:00 +0530
+date: 2022-07-25 19:30:00 +0530
 tags: ["data-engineering", "big-data", "data-lake", "data-catalog", "data-inventory"]
 categories: data-management
 featured: false

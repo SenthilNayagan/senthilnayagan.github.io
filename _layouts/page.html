@@ -1,20 +1,18 @@
 ---
 layout: default
 ---
-<div class="mainheading">
-  <div class="posttitle">
-    <h1 class="posttitle">{{ page.title | escape }}</h1>    
-  </div>
 
-  <div class="article-post" style="font-family: Merriweather;">
-    {{ content }}
-  </div>
-
-  {% if page.comments == true %}
-    <div id="comments" class="row mb-5">
-      <div class="col-md-8">
-      {% include disqus.html %}
-      </div>
+<div class="page-single">
+    <div class="entry-header">       
+        <h1 class="posttitle">{{ page.title }}</h1>        
     </div>
-  {% endif %}
 </div>
+
+<!-- Featured Image -->
+{% include featured-image.html %}
+
+<!-- Content -->
+{% include article.html %}
+
+<!-- Comments if not disabled with comments: false -->
+{% include comments.html %}
