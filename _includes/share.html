@@ -8,18 +8,39 @@
                 <i class="fab fa-twitter"></i>
             </a>
         </li>
-
-        <li class="ml-1 mr-1">
+        <!--<li class="ml-1 mr-1">
             <a target="_blank" href="https://facebook.com/sharer.php?u={{ page.url | absolute_url }}" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
                 <i class="fab fa-facebook-f"></i>
             </a>
-        </li>
-
+        </li>-->
         <li class="ml-1 mr-1">
             <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url={{ page.url | absolute_url }}" onclick="window.open(this.href, 'width=550,height=435');return false;">
                 <i class="fab fa-linkedin-in"></i>
             </a>
         </li>
-
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="http://news.ycombinator.com/submitlink?u={{ page.url | absolute_url }}" onclick="window.open(this.href, 'width=550,height=435');return false;">
+                <i class="fab fa-y-combinator"></i>
+            </a>
+        </li>
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="http://www.reddit.com/submit?url={{ page.url | absolute_url }}&title={{ page.title }}" onclick="window.open(this.href, 'width=550,height=435');return false;">
+                <i class="fab fa-reddit"></i>
+            </a>
+        </li>                 
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://api.whatsapp.com/send?text={{ page.title }}%20{{ page.url | absolute_url }}" onclick="window.open(this.href, 'width=550,height=435');return false;">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </li> 
+        <!--
+        {% if page.comments != false %}
+            <ul>
+                <li>
+                <a class="small" href="#disqus_thread"></a>
+                </li>
+            </ul>
+        {% endif %}   
+        -->
     </ul>
 </div>
