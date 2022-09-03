@@ -605,7 +605,7 @@ Once Terraform has been successfully executed, a new EC2 instance is created in 
 
 |![New EC2 instance created](/assets/images/posts/terraform-new-ec2-instance-created.png)|
 |:-:|
-|<sup>* A new EC2 instance created.*</sup>|<br/><br/>
+|<sup>*A new EC2 instance created.*</sup>|<br/><br/>
 
 As shown in the screenshot, an EC2 instance was created with the given instance type `t2.mirco` and the AMI ID specified in our definition file.
 
