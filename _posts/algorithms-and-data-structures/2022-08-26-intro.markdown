@@ -46,12 +46,12 @@ The performance of the following Big-O notations is ranked from best (`O(1)`) to
 
 ## Algorithm efficiency
 
-A problem can be solved in more than one way. So, it is possible to come up with more than one solution (algorithm) for a given problem. We must compare them to find the efficient one.
+A problem can be solved in more than one way. So, it is possible to come up with more than one solution or algorithm for a given problem. In such a case, we must compare them to determine which is the most effective.
 
 There are two measures of efficiency when it comes to algorithms:
 
-- **Time**
-- **Space**
+- **Time** (aka time complexity)
+- **Space** (aka space complexity)
 
 ### Time complexity (Speed)
 

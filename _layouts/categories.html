@@ -10,7 +10,7 @@ permalink: "/categories.html"
 {% assign sortedCategories = site.categories | sort %}
 
 {% for category in sortedCategories %}
-    <h4 class="mt-5 mb-neg-30" id="{{ category[0] | replace: " ","-" }}"><span class="text-capitalize badge badge-primary text-small">{{ category[0] }}</span></h4>
+    <h4 class="mt-5 mb-neg-30" id="{{ category[0] | replace: " ","-" }}"><span class="text-uppercase badge badge-primary text-small">{{ category[0] | replace: "-"," " }}</span></h4>
 
     <div class="blog-grid-container">
         {% assign pages_list = category[1] %}
