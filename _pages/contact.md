@@ -5,6 +5,9 @@ permalink: /contact
 comments: false
 ---
 
+<!-- Home Icon -->
+{% include home-icon.html %}
+
 <form action="{{ site.contact-me }}" method="POST">    
     <p class="mb-4">Please feel free to send your message to me. I will respond as soon as I can.</p>
     <div class="form-group row">

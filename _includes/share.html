@@ -1,15 +1,12 @@
 <div class="share">
     <ul>
         <li class="ml-1 mr-1">
-            <a href="{{ site.baseurl }}/" >
-                <i class="fas fa-home"></i>
-            </a>
+            <a href="{{ site.baseurl }}/" ><i class="fas fa-home"></i></a>
         </li>
     </ul>
     <hr>
-    <p>
-        Share
-    </p>
+    <!--{% unless page.url contains "contact" or page.url contains "about" %}-->
+    <p>Share</p>
     <ul>
         <li class="ml-1 mr-1">
             <a target="_blank" href="https://twitter.com/intent/tweet?text={{ page.title }}&url={{ page.url | absolute_url }}" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
@@ -51,4 +48,5 @@
         {% endif %}   
         -->
     </ul>
+    <!--{% endunless %}-->
 </div>
