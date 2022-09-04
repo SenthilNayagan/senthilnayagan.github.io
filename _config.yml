@@ -31,6 +31,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-archives
   - jekyll-figure
+  #- flatify
     
 # Archives
 jekyll-archives:
