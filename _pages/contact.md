@@ -6,7 +6,7 @@ comments: false
 ---
 
 <form action="{{ site.contact-me }}" method="POST">    
-    <p class="mb-4">Please send your message to {{site.name}}. We will reply as soon as possible!</p>
+    <p class="mb-4">Please feel free to send your message to me. I will respond as soon as I can.</p>
     <div class="form-group row">
     <div class="col-md-6">
     <input class="form-control" type="text" name="name" placeholder="Name*" required>

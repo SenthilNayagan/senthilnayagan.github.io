@@ -1,7 +1,7 @@
 # Site
 name: "Senthil Nayagan"
 title: "Senthil Nayagan"
-description: "It’s my tech blog where I explore various programming concepts. I’m also making up stories about design and coding principles."
+description: "This is my tech blog where I explore various programming concepts. I’m also making up stories about design and coding principles. I'm striving to make all of my stories as simple as possible while yet offering sufficient information for you to grasp the concepts."
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/logo_solid_bg.png'
 baseurl: ""
