@@ -6,6 +6,7 @@ $brown: #B59F62;
 $teal: #40FFDC;
 $blue: #346DDB;
 $black: #111;
+$author: $blue;
 $primary: $blue;
 $dark:    $black;
 $enable-rounded: false;
@@ -428,10 +429,10 @@ img, img:hover {
 }
 .entry-header {
     .author-thumb {
-        width: 50px;
+        width: 60px;
         border-radius: 50%;
         margin-right: 10px;
-        border: 2px solid darken($primary,20%);
+        border: 2px solid darken($author, 20%);
         padding: 2px;
     }
     .kicker {
