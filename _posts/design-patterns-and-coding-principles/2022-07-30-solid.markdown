@@ -30,14 +30,16 @@ We will examine each of them to learn how these principles can aid in the creati
 
 # Single-Responsibility Principle (SRP)
 
-Robert C. Martin, the originator of this principle, put it this way: "*A class should have only one reason to change.*" It means that every module, class, or function should only have one (single) responsibility or job.
+Robert C. Martin, the originator of this principle, put it this way: "*A class should have only one reason to change.*" It means that every module, class, or method should only have one (single) responsibility or job.
 
 |![Single-Reponsibility Principle](/assets/images/posts/solid-srp.jpg)|
 |:-:|
 |<sub>*SOLID - Single-Reponsibility Principle.*</sub>|
 
 
-Martin defines *responsibility* as a *reason to change* and concludes that a class or module should have a single and unique reason to change. The idea is that each class or function is responsible for a *single part of the product's functionality*, i.e., each class or function does just one job. This keeps the design as simple as possible and makes it easier and less disruptive to make changes in the future.
+Uncle Bob defines *responsibility* as a *reason to change*, and he suggests breaking down components such as classes, modules, and methods until each has a **single reason** to change. 
+
+Why do we need to do this, and *what benefits will be gained* by breaking a component into subcomponents where each must have a single responsibility? The idea is that each class or method is responsible for a single part of the product's functionality, i.e., each class or method does just **one job**. This *keeps the design as simple as possible* and makes it easier and less disruptive to make changes in the future. Furthermore, it improves the quality of the codebase in general.
 
 What if our class has multiple responsibilities to fulfill? A class with multiple responsibilities has a higher chance of having bugs since altering one of those responsibilities might have unintended effects (side-effects) on the others. 
 
