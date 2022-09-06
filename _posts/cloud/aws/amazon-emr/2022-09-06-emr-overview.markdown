@@ -9,7 +9,7 @@ date: 2022-09-06 00:00:00 +0530
 tags: ["aws", "amazon-emr"]
 categories: amazon-emr
 featured: false
-hidden: false
+hidden: true
 ---
 
 # What is Amazon EMR?
