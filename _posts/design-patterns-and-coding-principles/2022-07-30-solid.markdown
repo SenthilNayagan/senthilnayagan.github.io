@@ -34,8 +34,7 @@ Robert C. Martin, the originator of this principle, put it this way: "*A class s
 
 |![Single-Reponsibility Principle](/assets/images/posts/solid-srp.jpg)|
 |:-:|
-|<sub>*SOLID - Single-Reponsibility Principle.*</sub>|
-
+|<sub>*SOLID - Single-Reponsibility Principle.*</sub>|<br/><br/>
 
 Uncle Bob defines *responsibility* as a *reason to change*, and he suggests breaking down components such as classes, modules, and methods until each has a **single reason** to change. 
 
