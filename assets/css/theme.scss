@@ -10,7 +10,7 @@ $bluish-cyan: #257D98;
 $orangy-red: #fa735d;
 $primary: $blue;
 $dark:    $black;
-$author: $primary;
+$author: #90b4ff;
 $enable-rounded: false;
 
 @import "bootstrap/functions";
@@ -454,9 +454,9 @@ img, img:hover {
         font-size: 16px;
     }
     .author-thumb {
-        width: 70px;
+        width: 100px;
         border-radius: 50%;
-        border: 5px solid darken($author, 0%);
+        border: 8px solid darken($author, 0%);
         padding: 2px;
     }
 }
