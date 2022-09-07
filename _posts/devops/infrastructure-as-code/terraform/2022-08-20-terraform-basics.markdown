@@ -174,7 +174,35 @@ Variables in Terraform are an excellent way to define centrally managed, reusabl
 
 ### Modules
 
-Modules are small, *reusable Terraform configurations* that allow us to manage a collection of related resources as if they were one. A module serves as a container for multiple resources that are used together. It is a method for packaging and reusing configurations of resources.
+Modules are *small*, *reusable Terraform configurations* that allow us to manage a *collection* of related resources as if *they were one*. A module serves as a *container* for multiple resources that are used together. To put it simply, a module is a set of Terraform configuration files (`.tf` files) in a *single directory* as shown below: 
+
+```bash
+.
+├── main.tf
+├── outputes.tf
+└── variables.tf
+```
+
+Even a single Terraform configuration file (.tf) in a directory becomes a module. When Terraform commands are executed directly from such a directory, the contents of that directory are considered the *root* module. 
+
+Having said that, a module is a method for *packaging* and *reusing* configurations of resources.
+
+#### What does a module do?
+
+A module enables us to group related resources together and reuse them in the future, multiple times. 
+
+Let's assume we need to repeatedly create a virtual machine with a set of resources such as IP, firewall, storage, etc. This is where modules come in handy; we don't want to repeatedly write the same configuration code over and over again.
+
+The below example demonstrates how our "server" module may be invoked. Here, we create *two* instances of "server" using a single set of configurations:
+
+```terraform
+module "server" {
+  count = 2
+  source = "./module/server"
+  ...
+  ...
+}
+```
 
 ### State
 
