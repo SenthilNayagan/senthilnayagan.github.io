@@ -17,28 +17,28 @@ toc: true
 
 Before we proceed, let's know what access modifiers are in object-oriented programming.
 
-Access modifiers, also known as *access specifiers*, determine the accessibility and scope of *classes*, *methods*, and *other members*. The encapsulation principle of object-oriented programming is managed through the use of access modifiers.
+Access modifiers, also known as *access specifiers*, determine the **accessibility** and **scope** of *classes*, *methods*, and *other members*. The encapsulation principle of object-oriented programming is managed through the use of access modifiers.
 
-In general, access specifiers are stated using the following keywords:
+In general, access modifiers are stated using the following keywords:
 
 - **Public**
 - **Private**
 - **Protected**
 - **Package**
 
-Note that if we try to refer to an inaccessible member, we'll usually get a compile-time error!
+Note that if we try to refer to an *inaccessible* member, we'll usually get a compile-time error!
 
 # Access modifiers in Scala
 
-Scala's access modifiers closely resemble those of Java, yet there are some distinctions.
+Scala's access modifiers closely resemble those of Java, although they provide more *granular* and *powerful* visibility control than Java.
 
 ## Public
 
-There is *no explicit modifier for public members* in Scala. Any member that is not labeled as private or protected is public, making all members *public by default*. Public members are accessible from any anywhere.
+There is *no explicit* modifier for *public members* in Scala. Any member that is not labeled as *private* or *protected* is public, making all members *public by default*. Public members are accessible from any anywhere.
 
 ## Private
 
-Private Scala members are treated similarly to private Java members. A *private* member is only accessible to the current class or instance and also other instances of the same class in which it is specified.
+Private Scala members are treated similarly to private Java members. A *private* member is only accessible to the current class or instance and also other instances of the same class in which it is specified. This implies that private members of a parent class are *not available* to sub-classes (aka derived classes).
 
 ```scala
 class MyClass {
@@ -58,11 +58,15 @@ class MySubClass extends MyClass {
 
 ## Object-private
 
-Scala's object-private *goes beyond private scope* to make fields and methods object-private, extending the level of privacy. A definition labelled `private[this]` is accessible only from within the same object that contains the definition.
+Scala's object-private *goes beyond private scope* to make fields and methods object-private, extending the level of privacy. **It's the most restrictive access**. 
+
+Mark a method as object-private by placing the access modifier `private[this]` before the method declaration:
 
 ```scala
 private[this] def isMaxVal = true
 ```
+
+This makes the method accessible **only** from within the same object that contains the definition; other instances of the same class cannot access the method.
 
 Note that the other instances of the same class cannot access them:
 
@@ -83,7 +87,7 @@ class Cat {
 
 ## Protected
 
-Accessing protected members in Scala is a bit more restrictive than in Java. In Java, protected members can be accessed by other classes in the same package, but this is not applicable to Scala.
+Accessing protected members in Scala is a bit more restrictive than in Java. In Java, protected members can be accessed by other classes in the same package, but this is *not true* in Scala.
 
 In Scala, protected members can be accessible from:
 
@@ -107,6 +111,22 @@ class MySubClass extends MyBaseClass {
   }
 }
 ```
+
+The following code won't compile even though both the classes are in the same package:
+
+```scala
+package planet {
+    class Bird {
+        protected def fly {}
+    }
+    class Forest {
+        val bird = new Bird
+        bird.fly   // error: this line won't compile
+    }
+}
+```
+
+The above code won’t compile because the `Forest` class can’t access the `fly` method of the `Bird` class, even though they’re in the same package.
 
 ## Package or private[package]
 

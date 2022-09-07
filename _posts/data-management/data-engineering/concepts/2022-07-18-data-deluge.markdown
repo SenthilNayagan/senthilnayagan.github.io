@@ -14,7 +14,9 @@ hidden: false
 
 # What is data deluge?
 
-The word "deluge" is pronounced as del-yooj and it literally means an enormous amount of anything. A data deluge is a situation in which the amount of new data being produced is so enormous that organisations are unable to handle it. We have reached a point where the volume of data is expanding faster than the infrastructure and technologies that can support it. The granularity of the collected data intensifies the difficulty.
+The word "deluge" is pronounced as *del-yooj* and it literally means an *enormous amount of anything*. 
+
+A data deluge is a situation in which the amount of new data being produced is so enormous that organisations are unable to handle it. We have reached a point where the volume of data is expanding faster than the infrastructure and technologies that can support it. The granularity of the collected data intensifies the difficulty.
 
 > **Data Granularity:** When data is split, it becomes more granular. It grew more specific and its complexity increased. A good example of data granularity is the subdivision of an address field into street, city, and zip code. Nevertheless, granularity grows when the unit is subdivided more.
 
