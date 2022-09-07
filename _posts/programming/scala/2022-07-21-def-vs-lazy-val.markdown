@@ -47,7 +47,7 @@ Unless the `lazy` keyword is prefixed, variables declared with the `val` or `var
 
 > Note that Scala does not permit the creation of lazy variables, i.e., var. Only lazy values (val) are allowed.
 
-# Difference between lazy `val` and `def`
+# Difference between lazy val and def
 
 |![Lazy Worker.jpeg](https://cdn.hashnode.com/res/hashnode/image/upload/v1658412816599/I9I25eUsl.jpeg?auto=compress,format&format=webp)|
 |:-:|
