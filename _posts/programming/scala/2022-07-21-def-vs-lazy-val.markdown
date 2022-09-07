@@ -51,7 +51,7 @@ Unless the `lazy` keyword is prefixed, variables declared with the `val` or `var
 
 |![Lazy Worker.jpeg](https://cdn.hashnode.com/res/hashnode/image/upload/v1658412816599/I9I25eUsl.jpeg?auto=compress,format&format=webp)|
 |:-:|
-|[<sub><sup>*Envelope encryption flow.*</sup></sub>](https://www.freepik.com/free-vector/two-office-workers-looking-sleepy-colleagues-exhausted-employee-sleeping-workplace-flat-vector-illustration-lazy-worker-burnout_10173989.htm)|
+|[<sup>*Designed by Freepik.*</sup>](https://www.freepik.com/free-vector/two-office-workers-looking-sleepy-colleagues-exhausted-employee-sleeping-workplace-flat-vector-illustration-lazy-worker-burnout_10173989.htm)|
 
 Difference between `lazy val` and `def`:
 - When accessed for the first time,  `lazy` evaluates and caches the result.
