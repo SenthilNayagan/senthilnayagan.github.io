@@ -96,6 +96,8 @@ There are *three* types of nodes in an EMR cluster:
 - **Core node** (one or more core nodes)
 - **Task node** (optional i.e., zero or more task nodes)
 
+Let's go over each node type in detail.
+
 #### Master node
 
 The master node supervises the cluster and typically runs master application components of distributed applications. For instance, the master node runs the **YARN ResourceManager** service to manage application resources. It also runs the **HDFS NameNode** service, tracks the status of jobs submitted to the cluster, and monitors the health of the instances.
@@ -136,6 +138,20 @@ We can utilize task nodes *to increase the processing capability of parallel com
 
 ## What is termination protection?
 
-When termination protection is enabled, the cluster cannot be terminated. Before terminating the cluster, termination protection must first be removed explicitly. This helps ensure that EC2 instances are not accidentally terminated.
+When termination protection is enabled, the cluster cannot be terminated. Before terminating the cluster, termination protection must first be removed explicitly. This helps ensure that EC2 instances are not accidentally terminated. It *prevents accidental termination* of the cluster. Having said, to shut down the cluster, we must turn off termination protection.
 
-Termination protection is especially helpful if our cluster stores data on local disks that we need to retrieve back before we terminate the instances. 
+Termination protection is especially helpful if our cluster stores data on local disks that we need to retrieve back before we terminate the instances.
+
+## What is auto-termination?
+
+With auto-termination, we can set a timer to terminate the cluster after a period of inactivity. This would allow us to save cost on unsed instances.
+
+## Archiving Amazon EMR cluster log files
+
+We an configure a cluster to periodically archive the log files stored on the master node to **Amazon S3**. This guarantees that the log files are available after the cluster has terminated, whether normally or as a result of an error. 
+
+Amazon EMR archives the log files to Amazon S3 at *5 minute intervals*. To have the log files archived to Amazon S3, we must enable this feature when we launch the cluster:
+
+|![Amazon EMR - Archiving cluster logs to S3](/assets/images/posts/amazon-emr-archiving-cluster-logs-to-S3.png "Amazon EMR - Archiving cluster logs to S3")|
+|:-:|
+|<sup>*Figure 3: Amazon EMR - Archiving cluster logs to S3.*</sup>|<br/><br/>

@@ -2,7 +2,7 @@
 layout: post
 title:  "Access Modifiers in Scala"
 kicker: "Scala"
-subtitle: "Access modifiers, also known as access specifiers, determine the accessibility and scope of classes, methods, and other members."
+subtitle: "Access modifiers, also known as access specifiers, determine the accessibility and scope of classes, methods, and other members. Scala's access modifiers closely resemble those of Java, although they provide more *granular* and *powerful* visibility control than Java."
 image: assets/images/posts-cover-images/access-modifiers-in-scala.jpg
 author: senthil
 date: 2022-09-06 00:00:00 +0530

@@ -6,9 +6,11 @@ $brown: #B59F62;
 $teal: #40FFDC;
 $blue: #346DDB;
 $black: #111;
-$author: $blue;
+$bluish-cyan: #257D98;
+$orangy-red: #fa735d;
 $primary: $blue;
 $dark:    $black;
+$author: $primary;
 $enable-rounded: false;
 
 @import "bootstrap/functions";
@@ -432,7 +434,7 @@ img, img:hover {
         width: 60px;
         border-radius: 50%;
         margin-right: 10px;
-        border: 2px solid darken($author, 20%);
+        border: 2px solid darken($author, 0%);
         padding: 2px;
     }
     .kicker {
@@ -443,13 +445,14 @@ img, img:hover {
 .authorbox {
     margin-top: 50px;
     margin-bottom: 50px;
+    border-radius: 10px;
     .author-description {
         font-size: 16px;
     }
     .author-thumb {
         width: 70px;
         border-radius: 50%;
-        border: 2px solid darken($primary,20%);
+        border: 5px solid darken($author, 0%);
         padding: 2px;
     }
 }
