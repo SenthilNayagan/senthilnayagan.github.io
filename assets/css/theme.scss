@@ -254,7 +254,8 @@ img, img:hover {
         margin-right: 7px;
     }
     .card {
-        border:0;
+        border: 0;
+        border-radius: 10px;
         &:hover {           
            .card-title a { 
                 background-size: 100% 100%;
@@ -286,6 +287,7 @@ img, img:hover {
         font-size: 14px;
         border-top: 0;
         padding: 1rem 1.25rem;
+        border-radius: 10px;
         a {
             color: inherit;
             font-weight: 700;
@@ -300,6 +302,8 @@ img, img:hover {
         height:240px;
         width:100%;
         object-position:top;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
     }
 }
 .firstpage {

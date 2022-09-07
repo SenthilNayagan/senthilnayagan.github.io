@@ -15,7 +15,15 @@ toc: true
 
 # What is Amazon EMR?
 
-Amazon EMR, formerly known as Amazon Elastic MapReduce, is a *managed cluster platform* that makes it simpler to process and analyze massive volumes of data on AWS using big data frameworks such as **Apache Hadoop** and **Apache Spark**. Using these big data frameworks and related open-source projects, we can process data for analytics purposes and business intelligence applications.
+Amazon EMR, formerly known as Amazon Elastic MapReduce, is a *managed cluster platform* that makes it simpler to process and analyze massive volumes of data (big data) on AWS using big data frameworks such as **Apache Hadoop** and **Apache Spark**. Using these big data frameworks and related open-source projects, we can process data for analytics purposes and business intelligence applications.
+
+Using Amazon EMR, we can deploy our workloads (applications) using:
+
+- **Amazon EC2 instance(s)**
+- **Amazon Elastic Kubernetes Service (EKS)**
+- **On-premises AWS Outposts**
+
+We can run and manage our workloads with the *EMR Console*, *API*, *SDK* or *CLI* and orchestrate them using **Amazon Managed Workflows for Apache Airflow (MWAA)** or **AWS Step Functions**. For an *interactive* experience, **EMR Studio** or **SageMaker Studio** can be used.
 
 Amazon EMR also enables the transformation and movement of huge quantities of data into and out of other AWS data storage and databases, such as **Amazon S3** and **Amazon DynamoDB**.
 
@@ -40,53 +48,7 @@ Before launching an Amazon EMR cluster, the following actions must be completed:
 
 ## Creating Amazon EMR cluster
 
-Follow the key steps below to create an EMR cluster:
-
-1. Go to **Services** in the Management Console and select **EMR**. It will take us to the EMR's home screen.
-2. Click on **Create cluster**.
-3. Click **Go to advanced options** if we want to select specific frameworks or tools as shown in Figure 1 below.
-4. Configure **instance group** or **instance fleet** - We specify the configuration of the master, core and task nodes as an instances group or instance fleet.
-5. Configure **cluster nodes and instances**.
-6. something.
-
-|![Advanced options](/assets/images/posts/amazon-emr-advanced-options-all-frameworks.png "Adanced options")|
-|:-:|
-|<sup>*Figure 1: Amazon EMR - Adanced options.*</sup>|<br/><br/>
-
-|![Advanced options: Cluster Nodes and Instances](/assets/images/posts/amazon-emr-cluster-nodes-and-instances.png "Adanced options: Cluster Nodes and Instances")|
-|:-:|
-|<sup>*Figure 2: Amazon EMR - Adanced options: Cluster Nodes and Instances.*</sup>|<br/><br/>
-
-> **Step execution (optional):** A step is a unit of work we submit to the cluster. For instance, a step might contain one or more Hadoop or Spark jobs. We an also submit additional steps to a cluster after it is running. There are various step types: Streming program, Hive program, Spark application, Pig program, and custom JAR.
-
-### Create a cluster with instance fleets or uniform instance groups
-
-When creating an EMR cluster and specifying the configuration of the *master node*, *core nodes*, and *task nodes*, we have *one* of the two available configuration choices:
-
-- **Uniform instance groups**
-- **Instance fleets** 
-
-The configuration option we choose is *applicable to all nodes for the lifetime of the cluster*. It's important to note that in a cluster, instance fleets and instance groups *cannot coexist*. We can only choose *one* of these.
-
-#### Instance fleet
-
-The instance fleets configuration offers the widest variety of provisioning choices for Amazon EC2 instances. Each node type (master/core/task node) has a *single instance fleet*, and it is optional to use task instance fleet. **Up to 5 EC2 instance type** (General purpose instance type, compute optimized instance type, etc.) **per fleet**. If the cluster is created using the AWS CLI or Amazon EMR API, we can have **up to 30 EC2 instance types per fleet**.
-
-<!--
-|![Amazon EMR instance fleet](/assets/images/posts/amazon-emr-instance-fleet.png "Amazon EMR instance fleet")|
-|:-:|
-|<sup>*Figure 3: Amazon EMR - Instance fleet.*</sup>|<br/><br/>
--->
-
-#### Uniform instance groups
-
-Uniform instance groups offer a simpler setup than instance fleets. Each Amazon EMR cluster can include **up to 50 instance groups**: 
-
-- One *master instance group* that contains one Amazon EC2 instance.
-- A *core instance group* that contains one or more EC2 instances.
-- Up to 48 optional *task instance groups*.
-
-Each core and task instance group can contain any number of Amazon EC2 instances. We can scale each instance group manually by adding and removing Amazon EC2 instances, or we can set up automatic scaling.
+EMR is built upon a cluster, which is a collection of E2 instances. These instances are generally called *nodes*. There are *different types* of nodes in the cluster, each of which has different roles.
 
 ### Amazon EMR node types
 
@@ -133,6 +95,55 @@ We can utilize task nodes *to increase the processing capability of parallel com
 
 - Task node runs the actual data processing tasks.
 - But doesn't store the data.
+
+
+We've learned about the various types of nodes. Now follow the key steps outlined below to create an EMR cluster:
+
+1. Go to **Services** in the Management Console and select **EMR**. It will take us to the EMR's home screen.
+2. Click on **Create cluster**.
+3. Click **Go to advanced options** if we want to select specific frameworks or tools as shown in Figure 1 below.
+4. Configure **instance group** or **instance fleet** - We specify the configuration of the master, core and task nodes as an instances group or instance fleet.
+5. Configure **cluster nodes and instances**.
+6. something.
+
+|![Advanced options](/assets/images/posts/amazon-emr-advanced-options-all-frameworks.png "Adanced options")|
+|:-:|
+|<sup>*Figure 1: Amazon EMR - Adanced options.*</sup>|<br/><br/>
+
+|![Advanced options: Cluster Nodes and Instances](/assets/images/posts/amazon-emr-cluster-nodes-and-instances.png "Adanced options: Cluster Nodes and Instances")|
+|:-:|
+|<sup>*Figure 2: Amazon EMR - Adanced options: Cluster Nodes and Instances.*</sup>|<br/><br/>
+
+> **Step execution (optional):** A step is a unit of work we submit to the cluster. For instance, a step might contain one or more Hadoop or Spark jobs. We an also submit additional steps to a cluster after it is running. There are various step types: Streming program, Hive program, Spark application, Pig program, and custom JAR.
+
+### Create a cluster with instance fleets or uniform instance groups
+
+When creating an EMR cluster and specifying the configuration of the *master node*, *core nodes*, and *task nodes*, we have *one* of the two available configuration choices:
+
+- **Uniform instance groups**
+- **Instance fleets** 
+
+The configuration option we choose is *applicable to all nodes for the lifetime of the cluster*. It's important to note that in a cluster, instance fleets and instance groups *cannot coexist*. We can only choose *one* of these.
+
+#### Instance fleet
+
+The instance fleets configuration offers the widest variety of provisioning choices for Amazon EC2 instances. Each node type (master/core/task node) has a *single instance fleet*, and it is *optional* to use **task instance fleet**. **Up to 5 EC2 instance type** (General purpose instance type, compute optimized instance type, etc.) **per fleet**. If the cluster is created using the AWS CLI or Amazon EMR API, we can have **up to 30 EC2 instance types per fleet**.
+
+<!--
+|![Amazon EMR instance fleet](/assets/images/posts/amazon-emr-instance-fleet.png "Amazon EMR instance fleet")|
+|:-:|
+|<sup>*Figure 3: Amazon EMR - Instance fleet.*</sup>|<br/><br/>
+-->
+
+#### Uniform instance groups
+
+Uniform instance groups *offer a simpler setup* than instance fleets. Each Amazon EMR cluster can include **up to 50 instance groups**: 
+
+- One **master instance group** that contains **one** Amazon EC2 instance.
+- A **core instance group** that contains **one or more** EC2 instances.
+- **Up to 48** optional **task instance groups**.
+
+Each core and task instance group can contain any number of Amazon EC2 instances. We can scale each instance group manually by adding and removing Amazon EC2 instances, or we can set up automatic scaling.
 
 # Frequently asked questions (FAQ)
 
