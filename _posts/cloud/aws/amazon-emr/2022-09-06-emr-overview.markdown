@@ -41,6 +41,8 @@ The following are the use cases:
 
 # Getting started with Amazon EMR
 
+In this post, we'll look at how to set up and launch an Amazon EMR cluster on EC instances. It is beyond the scope of this post to look at how to set up an EMR cluster on EKS or on-premises with AWS Outposts.
+
 ## Prerequisite
 Before launching an Amazon EMR cluster, the following actions must be completed:
 
@@ -228,48 +230,48 @@ The steps that are shown below demonstrate how to include an inbound rule for SS
 1. Open the Amazon EMR console at https://console.aws.amazon.com/elasticmapreduce/.
 2. Choose **Clusters**.
 3. Choose the **Name** of the cluster we want to modify.
-4. Choose the **Security groups for Master** link under **Security and access**. Shown in *Figure 1* below.
-5. Choose **ElasticMapReduce-master** from the list. Shown in *Figure 2* below.
+4. Choose the **Security groups for Master** link under **Security and access**. Shown in *Figure 3* below.
+5. Choose **ElasticMapReduce-master** from the list. Shown in *Figure 4* below.
 6. Choose the **Inbound rules** tab and then **Edit inbound rules**.
 7. Check for an inbound rule that allows public access with the following settings. If it exists, choose **Delete** to remove it.
     - **Type** SSH
     - **Port** 22
     - **Source** Custom 0.0.0.0/0
 8. Scroll to the bottom of the list of rules and choose **Add Rule**.
-9. For Type, select SSH. Selecting SSH automatically enters **TCP** for Protocol and **22** for **Port Range**. Shown in *Figure 3* below.
+9. For Type, select SSH. Selecting SSH automatically enters **TCP** for Protocol and **22** for **Port Range**. Shown in *Figure 5* below.
 10. For source, select **My IP** to automatically add your IP address as the source address. You can also add a range of **Custom** trusted client IP addresses, or create additional rules for other clients. Many network environments dynamically allocate IP addresses, so you might need to update your IP addresses for trusted clients in the future.
 11. Choose **Save**.
 12. Optionally, choose **ElasticMapReduce-slave** from the list and repeat the steps above to allow SSH client access to core and task nodes.
 
 |![Security groups for Master](/assets/images/posts/select-master-sg.png)|
 |:-:|
-|<sup>*Figure 1: Security groups for Master under Security and access.*</sup>|<br/><br/>
+|<sup>*Figure 3: Security groups for Master under Security and access.*</sup>|<br/><br/>
 
 |![Edit ElasticMapReduce-master](/assets/images/posts/edit-emr-master-node-sg.png)|
 |:-:|
-|<sup>*Figure 2: Edit ElasticMapReduce-master*</sup>|<br/><br/>
+|<sup>*Figure 4: Edit ElasticMapReduce-master*</sup>|<br/><br/>
 
 |![Added SSH 22 to inbound rules](/assets/images/posts/allowed-ssh-22-emr-master-sg.png)|
 |:-:|
-|<sup>*Figure 3: Added SSH 22 to inbound rules*</sup>|<br/><br/>
+|<sup>*Figure 5: Added SSH 22 to inbound rules*</sup>|<br/><br/>
 
-Now we should be able to SSH into the master node using the below command. We can find the master node's public DNS from the **Summary** tab in the EMR console as shown in *Figure 5* below.
+Now we should be able to SSH into the master node using the below command. We can find the master node's public DNS from the **Summary** tab in the EMR console as shown in *Figure 7* below.
 
 ```bash
 ssh -i <key pair> hadoop@<EMR master public DNS>
 ```
 **Example:** `ssh -i my-emr-key.pem hadoop@ec2-xxxxxxx.compute-1.amazonaws.com`
 
-Excellent, we have successfully built, and connected to the EMR cluster using the AWS CLI, if we see the screen with the EMR name as seen below:
+If we see the screen as shown below in *Figure 7* with the name EMR in huge letter, it is wonderful because it indicates that we have successfully constructed and connected to the EMR cluster by using the AWS CLI.
 
 |![SSHed into EMR EC2 node](/assets/images/posts/emr-ssh-inti-ec2-node.png)|
 |:-:|
-|<sup>*Figure 4: SSHed into EMR EC2 node*</sup>|<br/><br/>
+|<sup>*Figure 6: SSHed into EMR EC2 node*</sup>|<br/><br/>
 
 
 |![Added SSH 22 to inbound rules](/assets/images/posts/emr-find-master-node-public-dns.png)|
 |:-:|
-|<sup>*Figure 5: Finding master node's public DNS*</sup>|<br/><br/>
+|<sup>*Figure 7: Finding master node's public DNS*</sup>|<br/><br/>
 
 
 # Understanding Amazon EMR security options
