@@ -6,6 +6,7 @@ subtitle: "Amazon EMR is a managed cluster platform that makes it easier to run 
 image: assets/images/posts-cover-images/amazon-emr.jpg
 author: senthil
 date: 2022-09-06 00:00:00 +0530
+last_modified_at: 2022-09-09 00:00:00 +0530
 tags: ["aws", "amazon-emr"]
 categories: amazon-emr
 featured: false
@@ -102,18 +103,28 @@ We can utilize task nodes *to increase the processing capability of parallel com
 - Task nodes are useful when we plan to increase our cluster capacity for a specific job and scale down after its completion.
 - But doesn't store the data i.e., do not have HDFS storage.
 
-We've learned about the various types of nodes. Now follow the key steps outlined below to create an EMR cluster:
+We've learned about the various types of nodes. Launching an Amazon EMR cluster can be accomplished in one of two methods, depending on our preferences and needs:
 
-1. Go to **Services** in the Management Console and select **EMR**. It will take us to the EMR's home screen.
-2. Click on **Create cluster**.
-3. Click **Go to advanced options** if we want to select specific frameworks or tools as shown in Figure 1 below.
-4. Select the type of **step** to be submitted to the EMR cluster (Optional).
-5. Configure **instance group** or **instance fleet** - We specify the configuration of the master, core and task nodes as an instances group or instance fleet.
-6. Select either one of the instance group configurations: **Uniform instance groups** or **instance fleet**.
-7. Configure **cluster nodes and instances**.
-8. Give a name to the cluster.
-9. Under *Security Options*, choose the EC2 key pair we created earlier.
-10. Click on *Create cluster* button.
+- Launch via the **AWS Management Console**
+- Launch via the **AWS Command Line Interface** (**AWS CLI**)
+
+### Launch via the AWS Management Console
+
+Follow the key steps outlined below to create an EMR cluster in AWS Management Console:
+
+1. Login into **AWS Management Console**.
+2. Go to **Services** and select **EMR**. It will take us to the EMR's home screen.
+3. Click on **Create cluster**.
+4. Click **Go to advanced options** if we want to select specific frameworks or tools as shown in Figure 1 below.
+5. Select the type of **step** to be submitted to the EMR cluster (Optional).
+6. Configure **instance group** or **instance fleet** - We specify the configuration of the master, core and task nodes as an instances group or instance fleet.
+7. Select either one of the instance group configurations: **Uniform instance groups** or **instance fleet**.
+8. Configure **cluster nodes and instances**.
+9. Give a name to the cluster.
+10. Under **Security Options**, choose the **EC2 key pair** we created earlier.
+11. Click on **Create cluster** button.
+
+It may take a few minutes to launch the EMR cluster after we have clicked the "Create cluster" button. The launch time is determined by a variety of factors, including the number of cluster nodes, the number of applications and frameworks that we have chosen, and so on.
 
 |![Advanced options](/assets/images/posts/amazon-emr-advanced-options-all-frameworks.png "Adanced options")|
 |:-:|
@@ -123,7 +134,7 @@ We've learned about the various types of nodes. Now follow the key steps outline
 |:-:|
 |<sup>*Figure 2: Amazon EMR - Adanced options: Cluster Nodes and Instances.*</sup>|<br/><br/>
 
-### Create a cluster with instance fleets or uniform instance groups
+#### Create a cluster with instance fleets or uniform instance groups
 
 When creating an EMR cluster and specifying the configuration of the *master node*, *core nodes*, and *task nodes*, we have *one* of the two available configuration choices:
 
@@ -132,7 +143,7 @@ When creating an EMR cluster and specifying the configuration of the *master nod
 
 The configuration option we choose is *applicable to all nodes for the lifetime of the cluster*. It's important to note that in a cluster, instance fleets and instance groups *cannot coexist*. We can only choose *one* of these.
 
-#### Instance fleet
+##### Instance fleet
 
 The instance fleets configuration offers the widest variety of provisioning choices for Amazon EC2 instances. Each node type (master/core/task node) has a *single instance fleet*, and it is *optional* to use **task instance fleet**. **Up to 5 EC2 instance type** (General purpose instance type, compute optimized instance type, etc.) **per fleet**. If the cluster is created using the AWS CLI or Amazon EMR API, we can have **up to 30 EC2 instance types per fleet**.
 
@@ -142,7 +153,7 @@ The instance fleets configuration offers the widest variety of provisioning choi
 |<sup>*Figure 3: Amazon EMR - Instance fleet.*</sup>|<br/><br/>
 -->
 
-#### Uniform instance groups
+##### Uniform instance groups
 
 Uniform instance groups *offer a simpler setup* than instance fleets. When we are creating an EMR cluster, we have the flexibility to group different instance types and assign *core* or *task* node roles to them. Because of this, we are not limited to choosing a single instance type for our whole cluster.
 
@@ -157,6 +168,109 @@ Each Amazon EMR cluster can include **up to 50 instance groups**:
 Each core and task instance group can contain any number of Amazon EC2 instances. We can scale each instance group manually by adding and removing Amazon EC2 instances, or we can set up automatic scaling.
 
 Having said that, instance groups give us much control and flexibility.
+
+### Launch via the AWS CLI
+
+We are now aware of how to create and launch an Amazon EMR cluster using the AWS Management Console. Now, let's create the same using the **AWS CLI**. 
+
+#### Prerequisites
+
+- IAM user
+- AWS CLI must be installed and configured via `aws configure` command on the client machine to connect to AWS services. Refer [here]({{ site.baseurl }}/aws/2022/aws-cli){:target="_blank"} to learn more about how to install and configure the AWS CLI.
+
+On the termical, type the following `aws` command:
+
+```shell
+$ aws emr create-cluster --name emr-cluster-demo \
+--use-default-roles \
+--release-label emr-6.7.0 \
+--instance-count 3 \
+--instance-type c4.large \
+--applications Name=Spark Name=Hadoop Name=Spark Name=Livy \
+--ec2-attributes KeyName=<NAME OF KEY PAIR WITHOUT .pem or .ppk EXTENSION> \
+--log-uri s3://<S3 BUCKET NAME>
+```
+
+#### Arguments
+
+Refer [here](https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html#create-cluster) for a complete list of arguments.
+
+- `--name`: Name of the EMR cluster.
+- `--user-default-roles`: Uses `EMR_DefaultRole` as default EMR role and uses `EMR_EC2_DefaultRole` as default EC2 instance profile.
+- `--release-label`: Create EMR cluster with the given EME version.
+- `--instance-count`: Build 1 *master node* and n number of *core nodes*. For instance, if the `instance-count` is `3`, then it builds with 1 master node and 2 core nodes.
+- `--instance-type`: EC2 instance type e.g. `m5.xlarge`.
+- `--applications Name=<application name>`: Installs the given applications or frameworks.
+- `--ec2-attributes KeyName=<key pair>`: KeyName is the EC2 key pair to connect to EC2 instance. **Do not** provide the key pair file extension such as `.pem` or `.ppk`.
+- `--log-uri`: Specifies the location in Amazon S3 to which log files are periodically written. If a value is not provided, logs files are not written to Amazon S3 from the master node and are lost if the master node terminates.
+
+When we run the above AWS CLI command, we get similar output shown below, which includes the *cluster id* and *cluster arn* that were created: 
+
+```bash
+{
+    "ClusterId": "j-2KMYIITE20AWG",
+    "ClusterArn": "arn:aws:elasticmapreduce:us-east-1:811587835183:cluster/j-2KMYIITE20AWG"
+}
+```
+
+Using the ClusterId that was obtained by the previous `emr create-cluster` command, we can use the following command to check the status of the newly created cluster and find out more about it:
+
+```bash
+aws emr describe-cluster --cluster-id <ClusterId>
+```
+
+### Authorize inbound traffic
+
+Before we connect to an Amazon EMR cluster, we must authorize inbound SSH traffic (**port 22**) from trusted clients. In order to do so, edit the managed security group rules for the nodes (master or core nodes) to which we want to connect.
+
+The steps that are shown below demonstrate how to include an inbound rule for SSH access inside the default `ElasticMapReduce-master` **security group**:
+
+1. Open the Amazon EMR console at https://console.aws.amazon.com/elasticmapreduce/.
+2. Choose **Clusters**.
+3. Choose the **Name** of the cluster we want to modify.
+4. Choose the **Security groups for Master** link under **Security and access**. Shown in *Figure 1* below.
+5. Choose **ElasticMapReduce-master** from the list. Shown in *Figure 2* below.
+6. Choose the **Inbound rules** tab and then **Edit inbound rules**.
+7. Check for an inbound rule that allows public access with the following settings. If it exists, choose **Delete** to remove it.
+    - **Type** SSH
+    - **Port** 22
+    - **Source** Custom 0.0.0.0/0
+8. Scroll to the bottom of the list of rules and choose **Add Rule**.
+9. For Type, select SSH. Selecting SSH automatically enters **TCP** for Protocol and **22** for **Port Range**. Shown in *Figure 3* below.
+10. For source, select **My IP** to automatically add your IP address as the source address. You can also add a range of **Custom** trusted client IP addresses, or create additional rules for other clients. Many network environments dynamically allocate IP addresses, so you might need to update your IP addresses for trusted clients in the future.
+11. Choose **Save**.
+12. Optionally, choose **ElasticMapReduce-slave** from the list and repeat the steps above to allow SSH client access to core and task nodes.
+
+|![Security groups for Master](/assets/images/posts/select-master-sg.png)|
+|:-:|
+|<sup>*Figure 1: Security groups for Master under Security and access.*</sup>|<br/><br/>
+
+|![Edit ElasticMapReduce-master](/assets/images/posts/edit-emr-master-node-sg.png)|
+|:-:|
+|<sup>*Figure 2: Edit ElasticMapReduce-master*</sup>|<br/><br/>
+
+|![Added SSH 22 to inbound rules](/assets/images/posts/allowed-ssh-22-emr-master-sg.png)|
+|:-:|
+|<sup>*Figure 3: Added SSH 22 to inbound rules*</sup>|<br/><br/>
+
+Now we should be able to SSH into the master node using the below command. We can find the master node's public DNS from the **Summary** tab in the EMR console as shown in *Figure 5* below.
+
+```bash
+ssh -i <key pair> hadoop@<EMR master public DNS>
+```
+**Example:** `ssh -i my-emr-key.pem hadoop@ec2-xxxxxxx.compute-1.amazonaws.com`
+
+Excellent, we have successfully built, and connected to the EMR cluster using the AWS CLI, if we see the screen with the EMR name as seen below:
+
+|![SSHed into EMR EC2 node](/assets/images/posts/emr-ssh-inti-ec2-node.png)|
+|:-:|
+|<sup>*Figure 4: SSHed into EMR EC2 node*</sup>|<br/><br/>
+
+
+|![Added SSH 22 to inbound rules](/assets/images/posts/emr-find-master-node-public-dns.png)|
+|:-:|
+|<sup>*Figure 5: Finding master node's public DNS*</sup>|<br/><br/>
+
 
 # Understanding Amazon EMR security options
 
@@ -181,6 +295,10 @@ YARN is used by the majority of Hadoop applications and frameworks in Amazon EMR
 EMR added a built-in YARN node **label feature** with the 5.19.0 release. With this feature, it labels core nodes with the `CORE` label, configures `yarn-site` and `capacity-schedulers` to utilize these labels, and ensures that the `ApplicationMaster` runs only these nodes.
 
 # Frequently asked questions (FAQ)
+
+## What exactly is meant by the term "key pair" when referring to Amazon EC2?
+
+A *key pair*, also called an *EC2 key pair*, consists of a **public key** and a **private key** that we use to prove our identity when connecting to an **Amazon EC2 instance** using SSH. We can create a key pair using the *AWS Management Console* or the *AWS CLI*. Amazon EC2 stores the public key on our EC2 instance (in an entry within `~/.ssh/authorized_keys` file), and we (client apps) store the private key.
 
 ## What is termination protection?
 
