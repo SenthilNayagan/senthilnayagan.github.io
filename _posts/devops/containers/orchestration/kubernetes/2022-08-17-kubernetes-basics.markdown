@@ -75,11 +75,40 @@ The core of Kubernetes' control plane is the API server called Kubernetes API. K
 
 The Kubernetes API lets us query and manipulate the state of API objects in Kubernetes such as Pods, Namespaces, ConfigMaps, and Events. The main implementation of the Kubernetes API server is the `kube-apiserver`. Since it is meant to extend horizontally, we are able to deploy many instances of the `kube-apiserver` in order to evenly distribute the load.
 
-#### Persistent data store (etcd)
+#### etcd (persistent data store)
 
 Persistent data storage is provided by [**etcd**](https://etcd.io/){:target="_blank"}, which is a distributed, reliable key-value store. It is a standalone open source tool, and Kubernetes communicates to it using the `kube-apiserver`.
 
 It stores the configuration information that is needed by the worker nodes as well as other data that is required to manage the cluster.
+
+#### kube-scheduler
+
+kube-scheduler is responsible for allocating new pods to the worker nodes. When the pods are assigned to a new worker node, the `kubelet` (node agent) running on the node retrieves the pod definition from the Kubernetes API. Then, the kubelet creates the required resources and containers in accordance with the pod specification.
+
+In other words, the scheduler is a component that runs inside the control plane and is responsible for distributing the resources and workload across the worker nodes.
+
+#### kube-controller-manager
+
+The Kubernetes controller manager is a daemon that consists of four different control loops that are referred to as controller processes. These controller processes keep an eye on the cluster's current state and try to change it so that it matches the desired state.
+
+The controllers that ship with Kubernetes are:
+
+- **Replication controller** - 
+- **Endpoints controller**
+- **Node controller** - manages the nodes. It restarts any node that shuts down.
+- **Serviceaccounts controller**
+
+Even though kube-controller-manager is composed of four separate processes, it runs as a single process in order to keep things as simple as possible.
+
+#### cloud-controller-manager
+
+The cloud-controller-manager is a separate component that connects the cluster to the API of the underlying cloud infrastructure. It runs only the controllers specific to the cloud provider, such as AWS, GCP, and so on. This way, the components interacting with our cloud provider are kept separate from the components that only interact with our cluster.
+
+The cloud-controller-manager consists of three controller processes, which are combined into a single process to reduce complexity:
+
+- **Node controller**
+- **Router controller**
+- **Service controller**
 
 # Kubernetes command-line tools
 
