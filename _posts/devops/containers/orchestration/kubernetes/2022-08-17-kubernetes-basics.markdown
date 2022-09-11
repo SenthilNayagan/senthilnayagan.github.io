@@ -55,7 +55,9 @@ The worker node(s) hosts the **Pods**. A pod represents one or more running cont
 
 ## What is a control plane and why do we need it?
 
-The control plane is the central nervous system of a Kubernetes cluster. It ensures that every component in the cluster is kept in the *desired state*. Desired state is one of the core concepts of Kubernetes. It's the state that we want the system to be in. The actual state, on the other hand, is the state that the system is actually in.
+The control plane is the central nervous system of a Kubernetes cluster. It ensures that every component in the cluster is kept in the *desired state*. 
+
+> **Desired state vs. actual state:** Desired state is one of the core concepts of Kubernetes. It's the state that we want the system to be in. The actual state, on the other hand, is the state that the system is actually in.
 
 Control plane receives data about *internal cluster events*, *external systems*, and *third-party applications*. It analyses the data, and based on that, it takes decisions and puts them into action. The control plane manages and maintains the worker nodes that hold the containerized applications.
 
@@ -89,13 +91,13 @@ In other words, the scheduler is a component that runs inside the control plane 
 
 #### kube-controller-manager
 
-The Kubernetes controller manager is a daemon that consists of four different control loops that are referred to as controller processes. These controller processes keep an eye on the cluster's current state and try to change it so that it matches the desired state.
+The Kubernetes controller manager is a daemon that consists of four different *control loops* that are referred to as controller processes. These controller processes keep an eye on the status of the different services deployed through the API and take corrective action if the *current state* doesn't match the *desired state*.
 
 The controllers that ship with Kubernetes are:
 
-- **Replication controller** - 
+- **Replication controller**
 - **Endpoints controller**
-- **Node controller** - manages the nodes. It restarts any node that shuts down.
+- **Namespace controller**
 - **Serviceaccounts controller**
 
 Even though kube-controller-manager is composed of four separate processes, it runs as a single process in order to keep things as simple as possible.
