@@ -129,7 +129,7 @@ Note that we don't need to manage each Pod directly. Pods are are managed by *co
 
 <!--Instead, we can make use of *workload resources* that will take care of managing a set of pods on our behalf. In order to ensure that the *state* we defined is maintained, these resources configure *controllers* that check to see that the right number and type of pods are running.-->
 
-Kubernetes comes with a number of built-in workload resources, including the following:
+Kubernetes comes with a number of built-in *workload resources*, including the following:
 
 - **Deployment**
 
