@@ -17,7 +17,9 @@ toc: true
 
 # What is Kubernetes?
 
-Kubernetes is a Google-developed open source **container orchestration platform** for **automating** the *deployment*, *scaling*, and *management of containerized applications* across a distributed cluster of nodes. Containerized applications are those that run *inside containers*. 
+Kubernetes is a Google-developed open source **container orchestration platform** for **automating** the *deployment*, *scaling*, and *management of containerized applications* across a distributed cluster of nodes. Containerized applications are those that run *inside containers*.
+
+> **Kubernetes supports various container runtimes:** Kubernetes supports multiple container runtimes, one of them being Docker, which is one of the most well-known container tools on the market.
 
 The name Kubernetes originates from Greek, meaning helmsman or pilot. Kubernetes is often shortened to **K8s**, which comes from the fact that there are eight letters between the "K" and the "s." Kubernetes has become the de facto standard for container orchestration.
 
@@ -57,7 +59,7 @@ The worker node(s) hosts the **Pods**. A pod represents one or more running cont
 
 The control plane is the central nervous system of a Kubernetes cluster. It ensures that every component in the cluster is kept in the *desired state*. 
 
-> **Desired state vs. actual state:** Desired state is one of the core concepts of Kubernetes. It's the state that we want the system to be in. The actual state, on the other hand, is the state that the system is actually in.
+> **Desired state vs. actual state:** Desired state is one of the core concepts of Kubernetes. It's the state that we want the system to be in. The desired state is defined in a Kubernetes resource. The actual state, on the other hand, is the state that the system is actually in.
 
 Control plane receives data about *internal cluster events*, *external systems*, and *third-party applications*. It analyses the data, and based on that, it takes decisions and puts them into action. The control plane manages and maintains the worker nodes that hold the containerized applications.
 
@@ -91,7 +93,12 @@ In other words, the scheduler is a component that runs inside the control plane 
 
 #### kube-controller-manager
 
-The Kubernetes controller manager is a daemon that consists of four different *control loops* that are referred to as controller processes. These controller processes keep an eye on the status of the different services deployed through the API and take corrective action if the *current state* doesn't match the *desired state*.
+The Kubernetes controller manager is a daemon that consists of four different *control loops* that are referred to as controller processes. A control loop is a kind of loop that does not terminate and is used to manage the state of the system. In order to achieve this goal, a controller loop is required to comprise two components:
+
+1. Snapshot of the current state of the system.
+2. Access to the desired state of the system.
+
+These controller processes keep an eye on the status of the different services deployed through the API and take corrective action if the *current state* doesn't match the *desired state*.
 
 The controllers that ship with Kubernetes are:
 
@@ -264,3 +271,55 @@ From an operational point of view, we need to be able to handle not just all of 
 ## What is the workload in Kubernetes?
 
 A workload is an *application* running on Kubernetes. On Kubernetes, our workload is always run within a collection of pods, regardless of whether it consists of a single component or several that work together.
+
+## What is the term "resource" used in Kubernetes?
+
+Anything we create in a Kubernetes cluster is considered a resource: **deployments**, **pods**, **services** and so on.
+
+## What Are Kubernetes watches?
+
+Getting the state of the resources using the **Kubernetes API** at a *certain point in time* isn't always enough when working with Kubernetes clusters, because these clusters are highly dynamic in nature. In most cases, we also want to *keep an eye on* these resources and track events as they happen.
+
+Regular pooling is one strategy that may be used. However, polling puts us at risk of missing events that take place in the interval between polling cycles. Additionally, when the number of resources that need to be monitored rises, this strategy will not scale up very effectively.
+
+TODO - How it's addressed by watches?
+
+## What is Kubernetes API?
+
+TODO
+
+## What are proxies in Kubernetes?
+
+KubeProxy is a network proxy that is implemented as a component of the Kubernetes Service. It operates on every node in the cluster. It maintains a record of the network rules that govern communication between pods located within and outside of the cluster. 
+
+TODO
+
+## What is Container Runtime Interface (CRI) in Kubernetes?
+
+In the early days of Kubernetes, the **Docker Engine** was the only **container runtime** that was supported. After some time, more container runtimes were made available, such as **rkt** and **hypernetes**, and each container runtime has it own strengths. It became evident that users of Kubernetes want a choice of runtimes that would work best for them.
+
+The **Container Runtime Interface** (**CRI**) was released (1.5 release) to allow that flexibility. It's a plugin interface which enables `kubelet` to use a wide variety of container runtimes *without the need to recompile*. For more information about CRI, refer [here](https://kubernetes.io/blog/2016/12/container-runtime-interface-cri-in-kubernetes/){:target="_blank"}.
+
+## What it mean by Kubernetes deprecating Docker?
+
+Docker as an underlying container runtime is being deprecated in favor of runtimes that use the **Container Runtime Interface** (**CRI**) created for Kubernetes. Note that Docker-produced images will continue to work in our cluster with all runtimes normally. Docker is still a useful tool for building containers, and the images that are produced as a result of executing `docker build` can still run in our Kubernetes cluster.
+
+The container runtime is responsible for pulling and running our container images. Docker is a popular choice for that runtime, but *Docker was not designed to be embedded inside Kubernetes*, and that causes a problem.
+
+Docker is not just a single piece; rather, it refers to a whole technology stack. It includes a component known as "containerd," which is a high-level container runtime by itself. Also, Docker has a lot of UX enhancements that make it really easy for humans to interact with when we are doing development work. However, these UI enhancements aren't required for Kubernetes, , because it isn’t a human.
+
+Kubernetes cluster has to use another tool called Dockershim to get at what it really needs, which is containerd. Kubernetes support for Docker via `dockershim` is now removed.
+
+### What is dockershim in Kubernetes and why was it removed from Kubernetes?
+
+The introduction of the Container Runtime Interface (CRI) was a great step forward in providing us with the flexibility to use any container runtime of our choice, but it did introduce a problem: Docker Engine was being used as a container runtime well before CRI was introduced, and Docker Engine is not compatible with CRI.
+
+> **What is the term "shim" in computing?** A shim is a small library that transparently intercepts and modifies calls to an API, usually for compatibility purposes.
+
+To solve this issue, a small software shim called **dockershim** was introduced as part of the **kubelet** component specifically to fill in the gaps that exist between Docker Engine and CRI, allowing cluster operators to continue using Docker Engine as their container runtime largely uninterrupted.
+
+However, this little software shim was never intended to be a long-term solution. Over the years, dockershim's existence has made the kubelet much more complicated than it needs to be. Unfortunately, this caused some concern among the community since the deprecation notice wasn't presented as clearly as it should have been.
+
+Kubernetes has published a [blog](https://kubernetes.io/blog/2020/12/02/dont-panic-kubernetes-and-docker/){:target="_blank"} post that includes a frequently asked questions section in an effort to allay the concerns of the community and clear up any misunderstandings on what Docker is and how containers function inside Kubernetes.
+
+Note that Docker is not going away, either as a tool or as a company.
