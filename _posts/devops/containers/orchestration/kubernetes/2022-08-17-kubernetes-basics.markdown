@@ -119,6 +119,23 @@ The cloud-controller-manager consists of three controller processes, which are c
 - **Router controller**
 - **Service controller**
 
+## Kubernetes concepts
+
+### Workloads
+
+An application that is being executed on Kubernetes is referred to as a workload. On Kubernetes, we will execute our workload inside of a *set of* **pods**, regardless of whether our workload consists of a single component or multiple that operate together. In Kubernetes, a Pod represents a set of running *containers* on our cluster.
+
+Note that we don't need to manage each Pod directly. Pods are are managed by *controllers* in the form of a *control loop*. A controller is responsible for monitoring the current state of a Kubernetes resource and and makes the requests necessary to change its state to the desired state.
+
+<!--Instead, we can make use of *workload resources* that will take care of managing a set of pods on our behalf. In order to ensure that the *state* we defined is maintained, these resources configure *controllers* that check to see that the right number and type of pods are running.-->
+
+Kubernetes comes with a number of built-in workload resources, including the following:
+
+- **Deployment**
+
+### Pod
+
+
 # Kubernetes command-line tools
 
 The command-line tools for Kubernetes are as follows:
