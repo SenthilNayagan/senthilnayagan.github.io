@@ -62,18 +62,38 @@ h1, h2, h3, h4, h5, h6 {
     min-width: 180px;
 }
 blockquote {
-    font-style: italic;
+    padding: 0.4rem 0.4rem 0.4rem 1rem;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    border-right: 1px solid #eee;
+    //border-radius: 0.25em;
+    border-radius: 8px;
+    background: #fff;
+    color: #000;
+
+    //margin-top: 0.5em;
+    //margin-bottom: 0.5em;
+    font-weight: 500;
+
+    //font-style: italic;
     font-size: 17px;
     position: relative;
-    border-left: 4px solid rgb(52, 109, 219);
-    margin-left: 30px;
-    padding-left: 15px;
-    color: rgba(0, 0, 0, .7);
+    //border-left: 4px solid rgb(52, 109, 219);
+    //margin-left: 30px;
+    //padding-left: 15px;
+    //color: rgba(0, 0, 0, .7);
     //background-color: rgb(255,255,255);
-    background: #f4f4f4;
-    cite {
-        font-weight:700;
-    }
+    //background: #f4f4f4;
+    //cite {
+        //font-weight:700;
+    //}
+
+    // Left vertical line
+    border-style: solid;
+    border-left-color: #428bca;
+    border-left-width: calc(max(0.5em,4px));
+    border-top-left-radius: calc(max(0.5em,4px));
+    border-bottom-left-radius: calc(max(0.5em,4px));
 }
 // animation
 .nav-icon, 
@@ -473,8 +493,12 @@ img, img:hover {
     code[class*="language-"], pre[class*="language-"] {
         font-size: 15px;
         margin-bottom: 30px;
-        background: #fff;
-        color: inherit;
+        //background: #fff;
+        background: #272822;
+        //color: inherit;
+        color: #f8f8f2;
+        border-radius: 8px;
+        text-shadow: none;
     }
     div.code-toolbar > .toolbar a, div.code-toolbar > .toolbar button, div.code-toolbar > .toolbar span {
         margin-right: 2px;
