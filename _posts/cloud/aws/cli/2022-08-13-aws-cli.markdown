@@ -10,6 +10,7 @@ tags: ["aws", "aws-cli"]
 categories: aws
 featured: false
 hidden: false
+toc: true
 ---
 
 # AWS command line interface

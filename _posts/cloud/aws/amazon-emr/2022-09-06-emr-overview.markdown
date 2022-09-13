@@ -30,6 +30,8 @@ We can run and manage our workloads with the *EMR Console*, *API*, *SDK* or *CLI
 
 Amazon EMR also enables the transformation and movement of huge quantities of data into and out of other AWS data storage and databases, such as **Amazon S3** and **Amazon DynamoDB**.
 
+<hr class="grey_line"/>
+
 # Amazon EMR use cases
 
 The following are the use cases:
@@ -38,6 +40,8 @@ The following are the use cases:
 - Build scalable data pipelines
 - Process real-time data streams
 - Accelerate data science and ML adoption
+
+<hr class="grey_line"/>
 
 # Getting started with Amazon EMR
 
@@ -273,6 +277,7 @@ If we see the screen as shown below in *Figure 7* with the name EMR in huge lett
 |:-:|
 |<sup>*Figure 7: Finding master node's public DNS*</sup>|<br/><br/>
 
+<hr class="grey_line"/>
 
 # Understanding Amazon EMR security options
 
@@ -286,6 +291,8 @@ In the **Security Options** section, we are provided with settings that allow us
 - **Security configuration:** This allows us to specify encryption and authentication options for our cluster. We need to create the configuration before creating the EMR cluster.
 - **EC2 security group:** EC2 security groups provide firewall security for our AWS services' inbound and outbound access. EMR establishes *two* security groups by default: one for the master node and another for the core and task nodes.
 
+<hr class="grey_line"/>
+
 # Amazon EMR and Apache YARN
 
 YARN is one of the most important parts of Hadoop clusters since it not only helps to *manage the resources of the cluster* but also *organizes the execution of jobs across multiple nodes*. The core concept behind YARN is to *split up* the functionalities of *resource management* and *job scheduling/monitoring* into *separate daemons*.
@@ -295,6 +302,8 @@ YARN is used by the majority of Hadoop applications and frameworks in Amazon EMR
 > **Note:** It is important to keep in mind that while using spot instances, the chances of task failure are high as they get terminated because of resource unavailability. EMR allows running the ApplicationMaster only on **core nodes** in order to make jobs more fault-tolerant. This is done so that the ApplicationMaster will not be terminated if a spot node is terminated, and the ApplicationMaster will be able to trigger the failed task in another node.
 
 EMR added a built-in YARN node **label feature** with the 5.19.0 release. With this feature, it labels core nodes with the `CORE` label, configures `yarn-site` and `capacity-schedulers` to utilize these labels, and ensures that the `ApplicationMaster` runs only these nodes.
+
+<hr class="grey_line"/>
 
 # Frequently asked questions (FAQ)
 

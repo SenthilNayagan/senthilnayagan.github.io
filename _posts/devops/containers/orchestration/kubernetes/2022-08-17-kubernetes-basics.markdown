@@ -43,6 +43,8 @@ Kubernetes provides us with:
 - **Self-healing**: Kubernetes restarts containers that fail, replaces containers, kills containers that don't respond to your user-defined health check, and doesn't expose them to clients until they are ready to serve.
 - **Secret and configuration management**: We are able to store and handle sensitive information with the help of Kubernetes. This includes passwords, OAuth tokens, and SSH keys. We can deploy and update secrets and application configuration without rebuilding our container images, and without exposing secrets in our stack configuration.
 
+<hr class="grey_line"/>
+
 # Kubernetes components
 
 Kubernetes cluster is made up of:
@@ -373,6 +375,8 @@ There are many ways to deploy these applications as a whole:
 From an operational point of view, we need to be able to handle not just all of these various kinds of packages or applications, but also a fleet of servers on which to host them. These servers need to be provisioned, networked, deployed, configured, kept up-to-date with security patches, monitored, and managed. This all takes a significant amount of time, technical expertise, and effort just to provide a platform to run applications on.
 
 ### Kubernetes configuration
+
+<hr class="grey_line"/>
 
 # Frequently asked questions (FAQ)
 

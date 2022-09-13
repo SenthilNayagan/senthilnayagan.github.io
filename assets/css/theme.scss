@@ -22,7 +22,7 @@ $enable-rounded: false;
 
 // general
 body, input, button, select, optgroup, textarea {   
-    font-family:Sen;
+    font-family: Sen;
 }
 body {
     line-height: 1.7;
@@ -62,38 +62,27 @@ h1, h2, h3, h4, h5, h6 {
     min-width: 180px;
 }
 blockquote {
-    padding: 0.4rem 0.4rem 0.4rem 1rem;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-    border-right: 1px solid #eee;
-    //border-radius: 0.25em;
+    padding: 0.1rem 0.1rem 0.1rem 1rem;
+
     border-radius: 8px;
     background: #fff;
     color: #000;
 
-    //margin-top: 0.5em;
-    //margin-bottom: 0.5em;
-    font-weight: 500;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    border-right: 1px solid #eee;
 
-    //font-style: italic;
     font-size: 17px;
+    font-weight: 500;
+    //font-style: italic;
     position: relative;
-    //border-left: 4px solid rgb(52, 109, 219);
-    //margin-left: 30px;
-    //padding-left: 15px;
-    //color: rgba(0, 0, 0, .7);
-    //background-color: rgb(255,255,255);
-    //background: #f4f4f4;
-    //cite {
-        //font-weight:700;
-    //}
 
     // Left vertical line
     border-style: solid;
     border-left-color: #428bca;
-    border-left-width: calc(max(0.5em,4px));
-    border-top-left-radius: calc(max(0.5em,4px));
-    border-bottom-left-radius: calc(max(0.5em,4px));
+    border-left-width: calc(max(0.5em, 4px));
+    border-top-left-radius: calc(max(0.5em, 4px));
+    border-bottom-left-radius: calc(max(0.5em, 4px));
 }
 // animation
 .nav-icon, 
