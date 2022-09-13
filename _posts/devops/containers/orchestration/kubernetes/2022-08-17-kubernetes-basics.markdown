@@ -185,9 +185,47 @@ spec:
         - containerPort: 80
 ```
 
+The `kubectl` command-line interface tool is the *alternative method* for working with labels. This comes in helpful when making minor adjustments to your resources. However, it is vital to keep in mind that the modifications we make will not be automatically reflected back to the configuration files we use.
+
+To add a label to an existing resource, we can use the following command:
+
+```bash
+# It creates a label “group” with a value of “temp”
+kubectl label pod/metadata-demo group=temp
+```
+
+To remove the label, use this command:
+
+```bash
+kubectl label pod/metadata-demo group-
+```
+
+### Label selectors
+
+TODO
+
 ### Annotations
 
 Annotations are another type of metadata we can use in Kubernetes. Like labels, annotations are key-value pairs. Annotation lets us associate arbitrary metadata with Kubernetes objects. Labels, on the other hand, can be used in the process of identifying and selecting items, but annotations cannot. Annotations are meant to be used to store any information about an object that doesn’t identify it.
+
+Similar to labels, annotations can be added in a number of different methods, the most common of which are via config files or the `kubectl` command line.
+
+For example, here's the configuration file for a Pod that has the annotation `imageregistry: https://hub.docker.com/`:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: annotations-demo
+  annotations:
+    imageregistry: "https://hub.docker.com/"
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    ports:
+    - containerPort: 80
+```
 
 # Kubernetes command-line tools
 
