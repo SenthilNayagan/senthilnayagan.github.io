@@ -121,6 +121,14 @@ The cloud-controller-manager consists of three controller processes, which are c
 
 ## Kubernetes concepts
 
+### Cluster
+
+A cluster is a collection of hosts or nodes that work together to offer computing, memory, storage, and networking resources. Kubernetes uses these resources to run the various workloads (applications).
+
+### Nodes
+
+A single computer or host is referred to as a node.  It may be a physical or virtual machine. Its primary function is to run pods. Each node in a Kubernetes cluster is responsible for running a number of Kubernetes components, including the **kubelet**, the **container runtime**, and the kube-proxy. Nodes are managed by a Kubernetes master. The nodes are Kubernetes's "worker bees," and they are responsible for doing all of the heavy lifting.
+
 ### Workloads
 
 An application that is being executed on Kubernetes is referred to as a workload. On Kubernetes, we will execute our workload inside of a *set of* **pods**, regardless of whether our workload consists of a single component or multiple that operate together. In Kubernetes, a Pod represents a set of running *containers* on our cluster.
@@ -135,6 +143,51 @@ Kubernetes comes with a number of built-in *workload resources*, including the f
 
 ### Pod
 
+In Kubernetes, the unit of work is referred to as a pod. Each pod contains one or more containers. Containers that are contained inside pods are always scheduled together and always run on the same machine. All of the containers that make up a pod share the same IP address and port space. They connect with one another through localhost or standard inter-process communication.
+
+In addition, all of the containers that are contained inside a pod have the ability to access shared local storage that is located on the node that is running the pod. By default, containers do not have access to either their local storage or any other storage. Volumes of storage must be mounted into each container inside the pod explicitly.
+
+Pods are a great way to manage groups of containers that are closely related, depend on each other, and need to work together on the same host to get their job done. It is essential to keep in mind that pods are thought to be *ephemeral* (short-live), disposable entities that may be discarded and replaced whenever it is convenient. Any pod storage is destroyed with its pod. Every pod is given a unique identifier, also known as a UID, so that we can distinguish between them if necessary.
+
+### Labels
+
+In Kubernetes, a label is a kind of metadata that can be attached to objects like pods and services in the form of a key-value pair. The purpose of a label is to help users *identify the characteristics of objects* in a way that is meaningful and relevant to them. However, labels do not directly change any functionality in the core system.
+
+Having said that, users will often need Kubernetes labels in order to identify Kubernetes objects and carry out helpful activities on those items. For example, consider a set of pods running on the Kubernetes cluster. Let's say it's necessary for us to delete all of the pods that are associated with the development environment. There is no simple method to determine which pods suit that description if labels are not assigned to them beforehand. As a result of this, locating each pod and deleting it can become challenging and time consuming.
+
+Note that the purpose of label is to identifying objects and not for attaching arbitrary metadata to objects.
+
+Labels are intentionally designed with particular limitations in mind: 
+
+- Each label that is attached to an object has to have its own *unique key*. 
+- The label key has two parts: *prefix8 and *name*. 
+- It is *not* required to use the prefix. 
+- In the event that prefix does exist, it must be a valid DNS subdomain and is denoted by the forward slash (/), which is separated from the name. 
+- The prefix must be 253 characters long at most. 
+- Names must start and end with an alphanumeric character (a-z, A-Z, 0-9) and contain only alphanumeric characters, dots, dashes, and underscores.
+- Values follow the same restrictions as names.
+
+One of the most common ways to add labels to our resources is to add them directly to our config files. We can specify label values at `metadata.lables` like below:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: metadata-demo
+  labels:
+    environment: demo
+    app: nginx
+spec:
+  containers:
+    - name: nginx
+      image: nginx:1.14.2
+      ports:
+        - containerPort: 80
+```
+
+### Annotations
+
+Annotations are another type of metadata we can use in Kubernetes. Like labels, annotations are key-value pairs. Annotation lets us associate arbitrary metadata with Kubernetes objects. Labels, on the other hand, can be used in the process of identifying and selecting items, but annotations cannot. Annotations are meant to be used to store any information about an object that doesn’t identify it.
 
 # Kubernetes command-line tools
 
