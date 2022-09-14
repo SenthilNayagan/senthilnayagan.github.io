@@ -62,27 +62,27 @@ h1, h2, h3, h4, h5, h6 {
     min-width: 180px;
 }
 blockquote {
-    padding: 0.4rem 0.4rem 0.4rem 1rem;
-
-    border-radius: 8px;
-    background: #fff;
-    color: #000;
-
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-    border-right: 1px solid #eee;
-
     font-size: 17px;
-    font-weight: 500;
     //font-style: italic;
-    position: relative;
+    color: rgba(0, 0, 0, .7);
+    background: #fff;
+    cite {
+        font-weight:700;
+    }
 
-    // Left vertical line
-    border-style: solid;
-    border-left-color: #428bca;
+    position: relative;
+    padding-left: 15px;
+    padding-right: 10px;
+    
+    border-radius: 8px;
+    //border-left-color: #428bca;
+    border-left: 4px solid rgb(66, 139, 202);
     border-left-width: calc(max(0.5em, 4px));
     border-top-left-radius: calc(max(0.5em, 4px));
     border-bottom-left-radius: calc(max(0.5em, 4px));
+
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 // animation
 .nav-icon, 
