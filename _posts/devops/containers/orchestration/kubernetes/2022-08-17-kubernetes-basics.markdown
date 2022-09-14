@@ -153,9 +153,13 @@ Pods are a great way to manage groups of containers that are closely related, de
 
 ### Labels
 
-In Kubernetes, a label is a kind of metadata that can be attached to objects like pods and services in the form of a key-value pair. The purpose of a label is to help users *identify the characteristics of objects* in a way that is meaningful and relevant to them. However, labels do not directly change any functionality in the core system.
+In Kubernetes, a label is a kind of *metadata* that can be attached to objects like pods and services in the form of a *key-value pair*. The purpose of a label is to help users *identify the characteristics of objects* in a way that is meaningful and relevant to them. In other words, labels can help describe meaningful and relevant information about an object. However, labels do not directly change or effect any functionality in the core system.
 
 Having said that, users will often need Kubernetes labels in order to identify Kubernetes objects and carry out helpful activities on those items. For example, consider a set of pods running on the Kubernetes cluster. Let's say it's necessary for us to delete all of the pods that are associated with the development environment. There is no simple method to determine which pods suit that description if labels are not assigned to them beforehand. As a result of this, locating each pod and deleting it can become challenging and time consuming.
+
+|![Figure 2: Labels in Kubernetes](/assets/images/posts/kubernetes-labels.png "Created by Author")|
+|:-:|
+|<sup>*Figure 2: Labels in Kubernetes - Two separate environments, labeled as production and development.*</sup>|<br/><br/>
 
 Note that the purpose of label is to identifying objects and not for attaching arbitrary metadata to objects.
 
@@ -204,7 +208,7 @@ kubectl label pod/metadata-demo group-
 
 ### Label selectors
 
-TODO
+Label selectors provide us the ability to filter objects based on their labels. For example, we can filter out all of the objects that have the label `env: production`.
 
 ### Annotations
 
