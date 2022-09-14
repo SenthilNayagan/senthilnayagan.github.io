@@ -435,3 +435,14 @@ However, this little software shim was never intended to be a long-term solution
 Kubernetes has published a [blog](https://kubernetes.io/blog/2020/12/02/dont-panic-kubernetes-and-docker/){:target="_blank"} post that includes a frequently asked questions section in an effort to allay the concerns of the community and clear up any misunderstandings on what Docker is and how containers function inside Kubernetes.
 
 Note that Docker is not going away, either as a tool or as a company.
+
+## Which container runtimes are supported by Kubernetes?
+
+In its early stages, Kubernetes only provided support for the Docker container runtime engine. However, it is not the case any more. Kubernetes now provides support for a variety of runtimes:
+
+- Docker via dockershim
+- rkt
+- CRI-O
+- Frakti
+- rktlet
+- CRI-containerd
