@@ -143,7 +143,7 @@ Given a string `str`, create a function that returns the first repeating charact
 - Input: str = "abcd"
 - Output: '\0'
 
-#### Solution 1 (Brute force solution):
+#### Solution 1 (Brute force solution)
 
 It's a brute force solution.
 
@@ -186,10 +186,90 @@ def first_repeating_character(str):
     return '\0'
 ```
 
+The below one uses index:
+
+```python
+# Using index
+def first_repeating_character(str):
+    visited = {}  # Dictionary as hash table
+    
+    for i in range(len(str)):
+        if visited.get(str[i]):  # O(1) for lookup
+            return str[i]
+        else:
+            visited[str[i]] = True  # O(1) for insertion
+    return '\0'
+```
+
 ##### Complexity
 
 - **Time complexity:** `O(n)` - We are fully traversing `str` once i.e., it does `n` iterations. However, the hash table lookup and insertion have an `O(1)` cost on average.
 - **Space complexity:** `O(n)` - Because of the hash table we used. In the worst case, every character needs to be inserted into the hash table. This case happens when each character is unique and we don't find a repeating character. Since we have `n` characters, the extra space would be `n`.
+
+<hr class="grey_line"/>
+
+### Remove duplicates in a string
+
+#### Problem:
+
+Given an array of integers `nums`, create a function that returns an array containing the values of `nums` without duplicates; the order doesn't matter.
+
+##### Example 1
+
+- Input: nums = [4, 2, 5, 3, 3, 1, 2, 4, 1, 5, 5, 5, 3, 1]
+- Output: [4, 2, 5, 3, 1]
+
+##### Example 2
+
+- Input: nums = [1, 1, 1, 1, 1, 1, 1, 1]
+- Output: [1]
+
+#### Solution 1 (Brute force solution)
+
+In this brute force solution we create an empty array, `output`. For each element of `nums`, we check if we didn't put in the `output` yet. If it's the case, we push it, and we continue.
+
+```python
+# Brute force approach
+def remove_duplicates(nums):
+    output = []
+
+    for element in nums:
+        if element not in output:
+            output.append(element)
+    return output
+
+
+if __name__ == "__main__":
+    print(remove_duplicates([4, 2, 5, 3, 3, 1, 2, 4, 1, 5, 5, 5, 3, 1]))  # returns [4, 2, 5, 3, 1]
+    print(remove_duplicates([1, 1, 1, 1, 1, 1, 1, 1]))  # returns [1]
+```
+
+##### Complexity
+
+- **Time complexity:** `O(n`<sup>`2`</sup>`)` - We always have to traverse our `output` array again and again to check if the element is present in it or not. In other words, for the `n` elements of `nums`, we are each time traversing the `output` array that can have `n` elements in the worst case. Thus, it gives us the complexity of `O(n`<sup>`2`</sup>`)`. 
+- **Space complexity:** `O(n)` - Because we are storing the output in a separate array.
+
+#### Solution 2 (Using sorting approach)
+
+It's a sorting approach.
+
+```python
+def remove_duplicates_sorted(nums):
+    if len(nums) == 0:
+        return []
+    
+    nums.sort()
+    output = [nums[0]]
+
+    for i in range(1, len(nums)):
+        if nums[i] != nums[i-1]:
+            output.append(nums[i])
+    return output
+```
+##### Complexity
+
+- **Time complexity:** `O(n long n)` - 
+- **Space complexity:** `O(n)` - 
 
 <hr class="grey_line"/>
 

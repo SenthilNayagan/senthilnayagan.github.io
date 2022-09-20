@@ -66,9 +66,15 @@ If an algorithm's time complexity is *constant*, its execution time remains the 
 
 ### Space complexity (Memory)
 
-Space complexity is primarily a computer area of concern. It corresponds to the amount of memory a computer uses.
+Space complexity is the amount of memory space that an algorithm or a problem takes during execution. Put simply, it corresponds to the amount of memory a program or algorithm uses. The memory here is required for storing the variables, data, temporary results, constants and many more. In other words, the space complexity is not only determined by the amount of storage space consumed by the algorithm or program, but it also takes into account the amount of storage space required for the input data.
 
-An effective algorithm must strike a balance between these two measures. For example, it might not matter if we have a super-fast algorithm if it uses up all the memory we have.
+#### Space complexity vs. auxiliary space
+
+People have a tendency to get space complexity and *auxiliary space* confused with one another. Let's get one thing out of the way first: they are two different terminology. Auxiliary space is the temporary space that our program allocates in order to solve the problem with respect to the amount of data that is supplied as input. Note that the size of the supplied *input data does not account* for this auxiliary space in any way. However, space complexity includes both auxililary space and space used input data.
+
+> Auxiliary space = Total space - Size of input data<br/>Space complexity = Auxiliary space + Size of input data
+
+An efficient algorithm must be able to achieve a balance between both time and space complexity measures. For example, it might not matter if we have a super-fast algorithm if it uses up all the memory we have.
 
 > **Ideal efficiency:** The most efficient algorithm could be one that performs all of its operations in the shortest time possible and uses the least amount of memory.
 
