@@ -37,9 +37,7 @@ Given an array of integers `nums` and an integer `k`, create a boolean function 
 - Output: true
 - Explanation: 1 + (-3) is equivalent to -2
 
-#### Solutions
-
-##### Solution 1 (Brute force solution)
+#### Solution 1 (Brute force solution)
 
 This solution follows brute force approach.
 
@@ -62,11 +60,13 @@ if __name__ == "__main__":
 
 ```
 
-###### Complexity
+##### Complexity
 - **Time complexity:** `O(n`<sup>`2`</sup>`)`
 - **Space complexity:** `O(1)`
 
-##### Solution 2 
+<hr class="grey_line"/>
+
+#### Solution 2 
 
 This approach begins by *sorting the numbers* and then reduces the amount of traversal needed. Since the numbers are sorted in ascending order, then:
 
@@ -91,11 +91,13 @@ def find_pair(nums, k):
     return False
 ```
 
-###### Complexity
+##### Complexity
 - **Time complexity:** `O(n log n)`
 - **Space complexity:** Depends on the sorting algorithm we use. For example, if it's `O(log n)`, then the space complexity of this algorithm is `O(long n)`.
 
-##### Solution 3 (Using hash table)
+<hr class="grey_line"/>
+
+#### Solution 3 (Using hash table)
 
 This solution uses hash table. The hash table is a powerful tool when solving coding problems because it has an `O(1)` lookup on average, so we can get the value of a certain key in `O(1)`. Also, it has an `O(1)` insertion on average, so we can insert an element in `O(1)`. 
 
@@ -111,12 +113,85 @@ def find_pair(nums, k):
     return False
 ```
 
-###### Complexity
+##### Complexity
+
 - **Time complexity:** `O(n)`
 - **Space complexity:** `O(n)` - We are using additional space for a hash table that can contain `n` elements in the worst case.
 
-The lookup and insertion are constant on average in has table. Hence, the `O(n)`. 
+The lookup and insertion are constant on average in this case. Hence, the `O(n)`. 
 
+<hr class="grey_line"/>
+
+### Find first repeating character in a given string
+
+#### Problem:
+
+Given a string `str`, create a function that returns the first repeating character. If such character doesn't exist, return the null character `'\0'`.
+
+##### Example 1
+
+- Input: str = "inside code"
+- Output: 'i'
+
+##### Example 2
+
+- Input: str = "programming"
+- Output: 'r'
+
+##### Example 3
+
+- Input: str = "abcd"
+- Output: '\0'
+
+#### Solution 1 (Brute force solution):
+
+It's a brute force solution.
+
+```python
+# Brute force approach
+def first_repeating_character(str):
+    for i in range(len(str)):
+        for j in range(i):
+            if str[i] == str[j]:
+                return str[i]
+    return '\0'   
+
+    
+if __name__ == "__main__":
+    print(first_repeating_character("inside code"))  # returns 'i'
+    print(first_repeating_character("programming"))  # returns 'r'
+    print(first_repeating_character("abcd"))  # returns '\0'
+```
+
+##### Complexity
+
+- **Time complexity:** `O(n`<sup>`2`</sup>`)` - For each character we are traversing `str` again using both outer and inner loops.
+- **Space complexity:** `O(1)` - We are using two integer variables (`i` and `j`). The extra space here is 2, which is a constant.
+
+<hr class="grey_line"/>
+
+#### Solution 2 (Using hash table)
+
+This solution uses hash table. The hash table is a powerful tool when solving coding problems because it has an `O(1)` lookup on average, so we can get the value of a certain key in `O(1)`. Also, it has an `O(1)` insertion on average, so we can insert an element in `O(1)`. 
+
+```python
+def first_repeating_character(str):
+    visited = {}  # Dictionary as hash table
+    
+    for chr in str:
+        if visited.get(chr):  # O(1) for lookup
+            return chr
+        else:
+            visited[chr] = True  # O(1) for insertion
+    return '\0'
+```
+
+##### Complexity
+
+- **Time complexity:** `O(n)` - We are fully traversing `str` once i.e., it does `n` iterations. However, the hash table lookup and insertion have an `O(1)` cost on average.
+- **Space complexity:** `O(n)` - Because of the hash table we used. In the worst case, every character needs to be inserted into the hash table. This case happens when each character is unique and we don't find a repeating character. Since we have `n` characters, the extra space would be `n`.
+
+<hr class="grey_line"/>
 
 # Conclusion
 
