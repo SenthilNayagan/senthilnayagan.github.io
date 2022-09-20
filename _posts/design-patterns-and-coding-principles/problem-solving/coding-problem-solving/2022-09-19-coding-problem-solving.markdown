@@ -64,7 +64,7 @@ if __name__ == "__main__":
 - **Time complexity:** `O(n`<sup>`2`</sup>`)`
 - **Space complexity:** `O(1)`
 
-<hr class="grey_line"/>
+Let's find a better solution than this one.
 
 #### Solution 2 
 
@@ -95,7 +95,7 @@ def find_pair(nums, k):
 - **Time complexity:** `O(n log n)`
 - **Space complexity:** Depends on the sorting algorithm we use. For example, if it's `O(log n)`, then the space complexity of this algorithm is `O(long n)`.
 
-<hr class="grey_line"/>
+Let's find a better solution than this one.
 
 #### Solution 3 (Using hash table)
 
@@ -168,7 +168,7 @@ if __name__ == "__main__":
 - **Time complexity:** `O(n`<sup>`2`</sup>`)` - For each character we are traversing `str` again using both outer and inner loops.
 - **Space complexity:** `O(1)` - We are using two integer variables (`i` and `j`). The extra space here is 2, which is a constant.
 
-<hr class="grey_line"/>
+Let's find a better solution than this one.
 
 #### Solution 2 (Using hash table)
 
@@ -246,8 +246,10 @@ if __name__ == "__main__":
 
 ##### Complexity
 
-- **Time complexity:** `O(n`<sup>`2`</sup>`)` - We always have to traverse our `output` array again and again to check if the element is present in it or not. In other words, for the `n` elements of `nums`, we are each time traversing the `output` array that can have `n` elements in the worst case. Thus, it gives us the complexity of `O(n`<sup>`2`</sup>`)`. 
-- **Space complexity:** `O(n)` - Because we are storing the output in a separate array.
+- **Time complexity:** `O(n`<sup>`2`</sup>`)` - The loop is traversing elements of `nums`, so it does `n` iterations, and at each iteration, we are checking if the element is not in `output`. Note that searching for an element in an unsorted array has an `O(n)` cost. 
+- **Space complexity:** `O(n)` - Because we are storing the output in a separate additional array that will contain `n` elements in the worst case, when there are no duplicates in `nums`.
+
+Let's find a better solution than this one.
 
 #### Solution 2 (Using sorting approach)
 
@@ -268,8 +270,28 @@ def remove_duplicates_sorted(nums):
 ```
 ##### Complexity
 
-- **Time complexity:** `O(n long n)` - 
-- **Space complexity:** `O(n)` - 
+- **Time complexity:** `O(n long n)` - Because we sorted the array
+- **Space complexity:** `O(n)`
+
+Let's find a better solution than this one.
+
+#### Solution 3 (Using hash table and without the need for sorting)
+
+This solution uses hash table. The hash table is a powerful tool when solving coding problems because it has an `O(1)` lookup on average, so we can get the value of a certain key in `O(1)`. Also, it has an `O(1)` insertion on average, so we can insert an element in `O(1)`. Also, this solution does not require the input data to be sorted.
+
+```python
+def remove_duplicates(nums):
+    visited = {}  # Dictionary as hash table
+
+    for element in nums:  # This iterates n times though!
+        visited[element] = True  # Overwrites the already present elements
+    return list(visited.keys())
+```
+
+##### Complexity
+
+- **Time complexity:** `O(n)` - Because we are traversing completely during worst case.
+- **Space complexity:** `O(n)` - Because of the hash map.
 
 <hr class="grey_line"/>
 

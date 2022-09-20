@@ -70,9 +70,11 @@ Space complexity is the amount of memory space that an algorithm or a problem ta
 
 #### Space complexity vs. auxiliary space
 
-People have a tendency to get space complexity and *auxiliary space* confused with one another. Let's get one thing out of the way first: they are two different terminology. Auxiliary space is the temporary space that our program allocates in order to solve the problem with respect to the amount of data that is supplied as input. Note that the size of the supplied *input data does not account* for this auxiliary space in any way. However, space complexity includes both auxililary space and space used input data.
+People have a tendency to get space complexity and **auxiliary space** confused with one another. Let's get one thing out of the way first: they are two different terminology. 
 
-> Auxiliary space = Total space - Size of input data<br/>Space complexity = Auxiliary space + Size of input data
+Auxiliary space is the temporary space that our program allocates in order to solve the problem with respect to the amount of data that is supplied as input. Note that the size of the supplied *input data does not account* for this auxiliary space in any way. However, space complexity includes both auxililary space and space used input data.
+
+> **Auxiliary space** = Total space - Size of input data<br/>**Space complexity** = Auxiliary space + Size of input data
 
 An efficient algorithm must be able to achieve a balance between both time and space complexity measures. For example, it might not matter if we have a super-fast algorithm if it uses up all the memory we have.
 
