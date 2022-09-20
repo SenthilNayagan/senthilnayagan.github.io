@@ -295,6 +295,101 @@ def remove_duplicates(nums):
 
 <hr class="grey_line"/>
 
+### Find the duplicate
+
+#### Problem:
+
+Given an array of integers `nums` that contains `n+1` elements between `1` and `n` inclusive, create a function that returns the duplicate element (the element that appears more than once).
+
+##### Assumptions:
+
+- There is only one duplicate number.
+- The duplicate number can be repeated more than once.
+
+> **Pigeonhole principle:** The pigeonhole principle states that if `n` items are put into `m` containers, with `n > m`, then at least one container must contain more than one item. In other words, at least 2 items share the same container. In this problem case, at least two elements have the same value i.e., duplicate values.
+
+##### Example 1
+
+- Input: nums = [4, 2, 1, 3, 1]
+- Output: 1
+
+##### Example 2
+
+- Input: nums = [1, 4, 2, 2, 5, 2]
+- Output: 2
+
+#### Solution 1 (Brute force solution)
+
+It's a brute force solution.
+
+```python
+# Brute force approach
+def find_duplicate(nums):
+    for i in range(len(nums)):
+        for j in range(i+1, len(nums)):
+            if nums[i] == nums[j]:
+                return nums[i]
+
+if __name__ == "__main__":
+    print(find_duplicate([4, 2, 1, 3, 1]))  # Returns 1
+    print(find_duplicate([1, 4, 2, 2, 5, 2]))  # Returns 2
+```
+
+##### Complexity
+
+- **Time complexity:** `O(n`<sup>`2`</sup>`)`
+- **Space complexity:** `O(1)`
+
+Let's find a better solution than this one.
+
+#### Solution 2 (Sorting approach)
+
+This solution uses sorting approach.
+
+```python
+def find_duplicate(nums):
+    nums.sort()
+    
+    for i in range(1, len(nums)):
+        if nums[i] == nums[i-1]:
+            return nums[i]
+```
+
+##### Complexity
+
+- **Time complexity:** `O(n log n)`
+- **Space complexity:** Depends on the sorting algorithm we use. For example, if it's `O(log n)`, then the space complexity of this algorithm is `O(log n)`.
+
+Let's find a better solution than this one. 
+
+#### Solution 3 (Using hash table)
+
+This solution uses hash table.
+
+```python
+def find_duplicate(nums):
+    visited = {}  # Dictionary as hash table
+
+    for element in nums:
+        if visited.get(element):
+            return element
+        else:
+            visited[element] = True
+    return False
+```
+##### Complexity
+
+- **Time complexity:** `O(n)` - Because we traversing the array once i.e., `n` times.
+- **Space complexity:** `O(n)` - Due to hash table.
+
+Let's find a better solution than this one.
+
+#### Solution 4 ()
+
+> **Floyd's cycle detection or tortoise and hare algorithm:**<br/>Floyd's cycle detection method is a pointer algorithm that employs just two pointers, going through the sequence at various speeds. It is also known as the tortoise and the hare algorithm. The objective of this algorithm is to establish whether or not the linked list contains a cycle.<br/><br/>First, we keep two pointers to the head node. At each iteration, we will move one of the points forward by two steps, while the other pointer will advance by one step. So we have two pointers, the tortoise and the hare. In practice, the tortoise is able to pull ahead by one distance unit, but the hare eventually gets within two distance units of it.
+
+<hr class="grey_line"/>
+
 # Conclusion
 
 In my opinion, solutions that are straightforward and simple are preferable to those that use the newest buzzword technology. Let's not get too excited about new products before discovering if they are flexible, useful, and have any adverse effects.
