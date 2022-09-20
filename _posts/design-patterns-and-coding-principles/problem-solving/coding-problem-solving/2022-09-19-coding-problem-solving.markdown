@@ -21,7 +21,7 @@ Having a talent for finding solutions to problems may accelerate our performance
 
 ### Find pair that sums up to "k"
 
-#### Problem:
+#### Problem
 
 Given an array of integers `nums` and an integer `k`, create a boolean function that checks if there are two elements in `nums` such that we get `k` when we add them together.
 
@@ -124,7 +124,7 @@ The lookup and insertion are constant on average in this case. Hence, the `O(n)`
 
 ### Find first repeating character in a given string
 
-#### Problem:
+#### Problem
 
 Given a string `str`, create a function that returns the first repeating character. If such character doesn't exist, return the null character `'\0'`.
 
@@ -210,7 +210,7 @@ def first_repeating_character(str):
 
 ### Remove duplicates in a string
 
-#### Problem:
+#### Problem
 
 Given an array of integers `nums`, create a function that returns an array containing the values of `nums` without duplicates; the order doesn't matter.
 
@@ -297,7 +297,7 @@ def remove_duplicates(nums):
 
 ### Find the duplicate
 
-#### Problem:
+#### Problem
 
 Given an array of integers `nums` that contains `n+1` elements between `1` and `n` inclusive, create a function that returns the duplicate element (the element that appears more than once).
 
@@ -384,9 +384,50 @@ def find_duplicate(nums):
 
 Let's find a better solution than this one.
 
-#### Solution 4 ()
+#### Solution 4 (Using floyd's cycle detection)
 
 > **Floyd's cycle detection or tortoise and hare algorithm:**<br/>Floyd's cycle detection method is a pointer algorithm that employs just two pointers, going through the sequence at various speeds. It is also known as the tortoise and the hare algorithm. The objective of this algorithm is to establish whether or not the linked list contains a cycle.<br/><br/>First, we keep two pointers to the head node. At each iteration, we will move one of the points forward by two steps, while the other pointer will advance by one step. So we have two pointers, the tortoise and the hare. In practice, the tortoise is able to pull ahead by one distance unit, but the hare eventually gets within two distance units of it.
+
+> **Note:** The below code throws array out of bound exception if any of the element value goes beyond the length of the array.
+
+```python
+def find_duplicate(nums):
+    tortoise = nums[0]
+    hare = nums[nums[0]]
+
+    while tortoise != hare:
+        tortoise = nums[tortoise]  # Is the index of the next node
+        hare = nums[nums[hare]]  # Moves by 2 nodes. It's the index of other node that comes after the next one
+    tortoise = 0  # Goes back to where it starts
+
+    while tortoise != hare:
+        tortoise = nums[tortoise]
+        hare = nums[hare]
+    return tortoise
+```
+##### Complexity
+
+- **Time complexity:** `O(n)` 
+- **Space complexity:** `O(1)`
+
+<hr class="grey_line"/>
+
+### Tree depth first search
+
+#### Problem
+
+Given a binary tree of integers `root`, create 3 functions to print the tree nodes in preorder, inorder, and postorder traversal.
+
+**Preorder:** Print the root value, then print the left subtree, then print the right subtree.
+**Inorder:** Print the left subtree, then print the root value, then print the right subtree.
+**Postorder:** Print the left subtree, then print the right subtree, then print the root value.
+
+It is important to keep in mind that the tree is not a linear data structure like an array or a linked list. Array has a starting point (first element), and an ending point (last element). To traverse an array, we can just start at the first element and move straightforwardly until the last element. 
+
+This, however, is not the case with trees, even if we do have a starting point, which is the root. Therefore, we need to figure out a means to go through all of the nodes in a tree. We have two main ways to do it:
+
+1. Do it via **BFS** (Breadth First Search) - We traverse the tree level-by-level, starting from the root towards the bottom.
+2. DO it via **DFS** (Depth First Search) - 
 
 <hr class="grey_line"/>
 
