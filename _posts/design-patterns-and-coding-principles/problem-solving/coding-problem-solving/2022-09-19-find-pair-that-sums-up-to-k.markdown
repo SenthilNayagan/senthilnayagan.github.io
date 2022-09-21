@@ -116,3 +116,5 @@ def find_pair(nums, k):
 - **Space complexity:** `O(n)` - We are using additional space for a hash table that can contain `n` elements in the worst case.
 
 The lookup and insertion are constant on average in this case. Hence, the `O(n)`. 
+
+<hr class="grey_line"/>
