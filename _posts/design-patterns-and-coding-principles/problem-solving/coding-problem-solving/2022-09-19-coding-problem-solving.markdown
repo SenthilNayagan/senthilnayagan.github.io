@@ -13,6 +13,8 @@ hidden: false
 toc: true
 ---
 
+> **Writing in progress:** If you have any suggestions for improving the content or notice any inaccuracies, please email me at [hello@senthilnayagan.com](mailto:hello@senthilnayagan.com). Thanks!
+
 # Overview
 
 Having a talent for finding solutions to problems may accelerate our performance and put us ahead of our contemporaries or colleagues. In general, the solutions to certain problems may be accomplished in the blink of an eye, while others might take much more time, even days. As a result, it is essential to approach the programming problems in the appropriate manner in order to save time and effort. Let's not attempt to solve the problem by using a **brute-force** approach.

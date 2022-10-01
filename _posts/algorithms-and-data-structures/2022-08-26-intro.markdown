@@ -37,7 +37,7 @@ Big O notation uses algebraic terms to describe the *complexity of our code*. It
 
 No mathematical knowledge is necessary to understand Big-O notation. Each Big-O notation defines a curve's (XY graph) shape. The shape of the curve represents the relationship between the *size* of a dataset (amount of data) and the *time* it takes to process that data.
 
-The performance of the following Big-O notations is ranked from best (`O(1)`) to worst (`O(n!)`). Here, the letter `n` represents the input size.
+The performance of the following Big-O notations is <mark>ranked from best (`O(1)`) to worst (`O(n!)`)</mark>. Here, the letter `n` represents the input size.
 
 - **O(1)** - **Constant complexity** that takes the same amount of space regardless of the input size.
 - **O(log n)** - **Logarithmic complexity**. It's better than `O(n)` and close to that of `O(1)`. Every time `n` (input size) increases by an amount `k`, the time or space increases by `k/2`. 
