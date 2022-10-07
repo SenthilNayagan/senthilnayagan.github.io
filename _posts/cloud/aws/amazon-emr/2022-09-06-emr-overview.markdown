@@ -30,6 +30,15 @@ We can run and manage our workloads with the *EMR Console*, *API*, *SDK* or *CLI
 
 Amazon EMR also enables the transformation and movement of huge quantities of data into and out of other AWS data storage and databases, such as **Amazon S3** and **Amazon DynamoDB**.
 
+## EMR file systems
+
+The following are the two primary file systems that are used with Amazon EMR. We specify which file system to use by the prefix of the URI used to access the data.
+
+- **HDFS** - Uses either `hdfs://` as prefix or no prefix
+- **EMRFS** - Uses `s3://` as prefix
+
+> **EMRFS file system:** EMRFS is an implementation of the Hadoop file system used for reading and writing regular files from Amazon EMR directly to Amazon S3.
+
 <hr class="grey_line"/>
 
 # Amazon EMR use cases
