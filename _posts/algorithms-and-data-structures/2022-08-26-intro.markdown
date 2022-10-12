@@ -47,7 +47,7 @@ The performance of the following Big-O notations is <mark>ranked from best (`O(1
 - **O(2^n)** - **Exponential complexity**
 - **O(n!)** - **Factorial complexity**
 
-## Algorithm efficiency
+## Efficiency of an algorithm
 
 A problem can be solved in more than one way. So, it is possible to come up with more than one solution or algorithm for a given problem. In such a case, we must compare them to determine which is the most effective.
 
@@ -118,19 +118,19 @@ TODO
 
 ## Asymptotic analysis
 
-## Frequently asked questions (FAQ)
+# Frequently asked questions (FAQ)
 
-### Array vs. linked list
+## Array vs. linked list
 
 Inserting an element at the beginning of the sequential list is way faster in the *linked list* than in the *array*.
 
-### O(1) vs. O(log(n))
+## O(1) vs. O(log(n))
 
 `O(log(n))` is more complex than `O(1)`. `O(1)` indicates that the execution time of an algorithm is *independent* of the size of the input, whereas `O(log n)` denotes that as input size `n` increases exponentially, the running time increases linearly.
 
 In some instances, `O(log(n))` may be faster than `O(1)`, but `O(1)` will outperform `O(log(n))` as `n` grows, because `O(1)` is independent of the input size `n`.
 
-### What is asymptotic analysis?
+## What is asymptotic analysis?
 
 Asymptotic analysis is the process of *calculating the execution or running time of an algorithm in mathematical units* in order to determine the program's limitations or run-time performance. Using asymptotic analysis, we can determine the *worst case*, *average case*, and *best case* execution times of an algorithm.
 
@@ -140,7 +140,7 @@ Following are the asymptotic notations for each of the three execution time case
 - **Average case** is represented by `Θ(n)` notation aka *Big-Theta*; represents *tight bound*.
 - **Best case** is represented by `Ω(n)` notation aka *Big-Omega*; represents *lower bound*.
 
-### What are the common approaches for developing algorithms?
+## What are the common approaches for developing algorithms?
 
 There are three common approaches for developing algorithms:
 
@@ -167,7 +167,15 @@ There are three common approaches for developing algorithms:
     - In dynamic programming, *sub-problems are interdependent*; therefore, the *results of subproblems are stored for future use* so that they do not need to be recalculated.
     - Before calculating the solution to a current subproblem, the *previous solutions are examined*. If any of the previously solved sub-problems are similar to the current one, the result of that sub-problem is utilized. Finally, the solution to the original problem is obtained by combining the solutions to the subproblems.
 
-### What operations are available for stacks?
+## How constant time differs from linear time?
+
+When it comes to time complexity, no matter how big the constant is and how slow the linear increase is, linear will at some point surpass (exceed) the constant.
+
+|![Figure 1: O(1) vs. O(s)](/assets/images/posts/o-of-s-vs-o-of-1.png)|
+|:-:|
+|<sup>*Figure 1: Time complexity - O(1) vs. O(s).*</sup>|<br/><br/>
+
+## What operations are available for stacks?
 
 The operations listed below can be performed on a stack:
 
