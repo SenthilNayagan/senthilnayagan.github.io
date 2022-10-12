@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Find pair that sums up to 'k'"
+title:  "Find pair that sums up to `k`"
 kicker: "Coding Problem Solving"
 author: senthil
 published_on: 2022-09-19 00:00:00 +0530
