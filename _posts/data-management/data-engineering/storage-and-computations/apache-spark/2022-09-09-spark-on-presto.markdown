@@ -39,6 +39,12 @@ Presto has both strengths and weaknesses.
 
 ## What is federated query engine?
 
-A federated query is a way to send a query statement across data stored in various external data sources, such as relational, non-relational, object, or custom data sources. The federated query engine runs in a completely decoupled architecture, with computing on one side, storage on the other, and the network in the middle.
+A federated query is a way to send a query statement across data stored in various external data sources, such as relational, non-relational, object, or custom data sources. The federated query engine runs in a completely decoupled architecture, with computing on one side and storage on the other side.
 
-What makes Query Federation such a game-changing breakthrough is its ability to simplify the process of accessing data from a variety of sources via the use of a single query. This is due to the fact that in the past, combining data from a variety of sources was a time-consuming and tedious procedure. In order to combine several data sources into a single, standardized format, you will need to use ETL operations.
+What makes Query Federation such a game-changing breakthrough is its ability to simplify the process of accessing data from a variety of sources via the use of a single query. This is due to the fact that in the past, combining data from a variety of sources was a time-consuming and tedious procedure. In order to combine several data sources into a single, standardized format, we will need to use ETL operations.
+
+Federated query engines are great for the infrequent analytics use cases where we can’t have the data in a single place and second-level performance isn’t important.
+
+# Why optimized data warehouses are faster than federated query engine?
+
+TODO

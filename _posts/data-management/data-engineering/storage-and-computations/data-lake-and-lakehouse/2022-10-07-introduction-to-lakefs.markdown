@@ -15,7 +15,9 @@ toc: true
 
 # What is lakeFS?
 
-lakeFS is distributed as a single binary that contains several logical services. lakeFS offers a git-like version control interface for data lakes so that it gives us the ability to manage our data lake in a manner that is similar to how we manage our code. 
+lakeFS is distributed as a single binary that contains several logical services. lakeFS offers a git-like version control interface for data lakes so that it gives us the ability to manage our data lake in a manner that is similar to how we manage our code.
+
+lakeFS adapts the best practices from the field of software engineering to the field of data engineering.
 
 ## Collaboration
 
