@@ -39,7 +39,7 @@ No mathematical knowledge is necessary to understand Big-O notation. Each Big-O 
 
 The performance of the following Big-O notations is <mark>ranked from best (`O(1)`) to worst (`O(n!)`)</mark>. Here, the letter `n` represents the input size.
 
-- **O(1)** - **Constant complexity** that takes the same amount of space regardless of the input size.
+- **O(1)** - **Constant complexity** that takes the *same* amount of space regardless of the input size.
 - **O(log n)** - **Logarithmic complexity**. It's better than `O(n)` and close to that of `O(1)`. Every time `n` (input size) increases by an amount `k`, the time or space increases by `k/2`. 
 - **O(n)** - **Linear complexity**. 
 - **O(n log n)** - **Log linear complexity**
@@ -69,7 +69,9 @@ If an algorithm's time complexity is *constant*, its execution time remains the 
 
 ### Space complexity (Memory)
 
-Space complexity is the amount of memory space that an algorithm or a problem takes during execution. Put simply, it corresponds to the amount of memory a program or algorithm uses. The memory here is required for storing the variables, data, temporary results, constants and many more. In other words, the space complexity is not only determined by the amount of storage space consumed by the algorithm or program, but it also takes into account the amount of storage space required for the input data.
+In an algorithm, time is not the only thing that matters. We may also worry about the amount of memory or space an algorithm requires. Space complexity is the amount of memory space that an algorithm or a problem takes during execution. Put simply, it corresponds to the amount of memory a program or algorithm uses. The memory here is required for storing the variables, data, temporary results, constants and many more. In other words, the space complexity is not only determined by the amount of storage space consumed by the algorithm or program, but it also takes into account the amount of storage space required for the input data.
+
+For example, creating an array of size n will require `O(n)` space. `O(n2)` space is required for a two-dimensional array of size `n x n`. 
 
 #### Space complexity vs. auxiliary space
 
@@ -174,6 +176,18 @@ When it comes to time complexity, no matter how big the constant is and how slow
 |![Figure 1: O(1) vs. O(s)](/assets/images/posts/o-of-s-vs-o-of-1.png)|
 |:-:|
 |<sup>*Figure 1: Time complexity - O(1) vs. O(s).*</sup>|<br/><br/>
+
+## What is amortized time complexity?
+
+Amortized time complexity occurs when an operation is extremely slow *once in a while* (occasionally) and has expensive worst-case time complexity, but the operations are faster the majority of the time. 
+
+In the case of a dynamic array, if its size reaches capacity, it immediately expands to double its original size. For example, if an array's starting size is 10, and it fills up, the size will be increased to 20.
+
+The following steps are taken when the dynamic array is filled:
+
+- Allocate memory for a larger array size, generally twice the size of the previous array. Its time complexity is `O(2n)`, where `n` is the size.
+- Copy all the contents of the old array to a new one. Its time complexity is `O(n)`.
+- Insert the new element. Its time complexity is `O(1)` for each insertion. 
 
 ## What operations are available for stacks?
 
