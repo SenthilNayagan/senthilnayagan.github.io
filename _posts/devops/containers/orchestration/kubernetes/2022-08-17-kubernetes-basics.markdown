@@ -33,6 +33,8 @@ When developers want to deploy an application on multiple computers, they use Ku
 |:-:|
 |<sup>*Figure 1: Kubernetes provides an abstraction on top of underlying infrastructure.*</sup>|<br/><br/>
 
+Having said that, Kubernetes enabled development teams to spend less time on technology and more time on capability.
+
 Kubernetes provides us with:
 
 - **Service discovery**: Kubernetes has the ability to expose a container by using either the DNS name or their own IP address.
@@ -384,9 +386,28 @@ From an operational point of view, we need to be able to handle not just all of 
 
 # Frequently asked questions (FAQ)
 
+## Can we have more than one container in a worker node?
+
+Yes. Each worker node holds one or more containers.
+
+## Where the pods are hosted?
+
+The worker node(s) hosts the Pods. 
+
 ## What is the workload in Kubernetes?
 
 A workload is an *application* running on Kubernetes. On Kubernetes, our workload is always run within a collection of pods, regardless of whether it consists of a single component or several that work together.
+
+## What is kubelet?
+
+Every worker node has a node agent called Kubelet that it runs. It oversees communicating with the master components and manages the running pods. Here are the key things that the Kubelet does:
+
+- Receiving pod specs
+- Downloading pod secrets from the API server
+- Mounting volumes
+- Running the pod's containers (via the configured runtime)
+- Reporting the status of the node and each pod
+- Running the container startup, liveness, and readiness probes
 
 ## What is the term "resource" used in Kubernetes?
 

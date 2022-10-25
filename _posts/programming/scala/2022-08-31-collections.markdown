@@ -24,6 +24,12 @@ Scala has a very rich collections library, located under the `scala.collection` 
 - **Mutable collections**
 - **Immutable collections**
 
+All collection classes are found in the following packages:
+
+- `scala.collection`
+- `scala.collection.immutable`
+- `scala.collection.mutable`
+
 > **Scala collections vs Java collections:** Scala collections are notably distinct from Java collections. For example, the Scala `List` class differs significantly from the Java `List` classes, including the immutable nature of the Scala `List`.
 
 ## Mutable collections
@@ -153,9 +159,9 @@ List(10, 7, 21, 8, 3, 17)
 
 ## What are the benefits of using Vector in Scala over List or other data structures?
 
-Vector is an immutable data structure introduced in version 2.8 of the Scala to address the inefficiencies of random access in other existing data structures. Vector is a persistent data structure using structural sharing.
+Vector is an immutable data structure introduced in version 2.8 of the Scala to address the inefficiencies of random access in other existing data structures. Vector is a persistent data structure using structural sharing. Random access is much better with vector, especially when the collection is big.
 
-## Implemention
+### Implemention
 
 Vector extends `AbstractSeq` and `IndexedSeq`, thus it provides constant-time (`O(1)`):
 
@@ -164,28 +170,34 @@ Vector extends `AbstractSeq` and `IndexedSeq`, thus it provides constant-time (`
 
 Vector is currently the default implementation of immutable `IndexedSeq`. Vector is implemented as a base-32 integer trie. There are `0` to `32` (`2`<sup>`5`</sup>) nodes at the root level, and there can be another `32` nodes connecting to each node at the root level. Thus, the second level can accommodate a maximum of `32*32` (`2`<sup>`10`</sup>) elements. Similarly, the third level will have  `32*32*32` (`2`<sup>`15`</sup>) elements, so and so forth. Thus, a Vector of five levels can hold up to `2`<sup>`30`</sup> elements. Accessing items from such a large collection requires traversing just five layers of nodes, making the process effectively constant time.
 
-## Performance
+### Performance
 
 For head access and iteration algorithms, a linear sequence collection will provide a little advantage over an indexed sequence. For all other purposes, an indexed sequence will perform much quicker, particularly in large collections.
 
-### Prepend and append 
+#### Prepend and append 
 
 As stated above, Vector is a persistent data structure using *structural sharing*. This method makes the append/prepend process almost as quick as any mutable data structure. When a new element is added by appending or prepending, the structure is modified via structure sharing and a new Vector is returned.
 
-### Random access and random updates
+#### Random access and random updates
 
 When it comes to random access and random updates, Vector excels in comparison to all other immutable collections. Due to its implementation of a trie data structure, accessing an element at any place in the tree involves traversing just a few levels and branches.
 
-### Head and tail access
+#### Head and tail access
 
 Head and tail element access is a further common procedure. As expected, accessing the beginning and end elements of an indexed tree data structure is a quick process. Note that `tail` command returns an iterable that contains all the elements without the first element.
 
-### Iteration
+#### Iteration
 
 Some algorithms need iterating over all collection components. Although traversing all of a Vector's elements is somewhat more complex than traversing a linked list.
 
 ## What is trie data structure?
 
-Trie (to be pronounced try) (aka digital tree) is an ordered tree data structure used for *storing* and *searching* a specific key from a set. A trie is also called a *digital tree* or *prefix tree*, which is a type of k-ary search tree. These keys are most often strings.
+Trie (to be pronounced as "try") (aka *d0igital tree*) is an ordered tree data structure used for *storing* and *searching* a specific key from a set. A trie is also called a *digital tree* or *prefix tree*, which is a type of *k-ary* search tree. These keys are most often strings.
 
 > **k-ary tree:** An m-ary tree (also known as **n-ary**, **k-ary**, or **k-way** tree) is a rooted tree in graph theory in which each node has no more than `m` children. For example, a **binary tree** has a max of 2 children (m = 2), and a **ternary tree** is another case with m = 3, which limits its children to three.
+ 
+ ## What is identity function?
+
+ An identity function is a basic function that takes one argument and the only thing it does is return the same argument value, unchanged i.e., f(x) = x. In other words, it's a function in which the output is the same as the input. The identity function is also known as an *identity map* or *identity relation*.
+ 
+ Just like zero is a neutral value for additions, an identity function is a nuetral value for higher-order-functions.
