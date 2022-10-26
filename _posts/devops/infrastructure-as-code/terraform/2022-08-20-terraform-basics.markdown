@@ -315,7 +315,7 @@ The syntax of the Terraform language consists of only a few basic elements:
 
 #### Blocks
 
-Refer [above](http://localhost:4000/terraform/2022/terraform-basics#blocks) for more details.
+Refer [above]({{ site.baseurl }}/terraform/2022/terraform-basics#blocks) for more details.
 
 #### Arguments
 

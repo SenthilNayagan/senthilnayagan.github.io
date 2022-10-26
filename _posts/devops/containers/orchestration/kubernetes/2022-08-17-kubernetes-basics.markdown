@@ -255,7 +255,7 @@ The Kubernetes command-line tool is known as `kubectl`. It allows us to run comm
 To verify that your cluster is working, use the following command:
 
 ```bash
-$ kubectl cluster-info
+kubectl cluster-info
 
 Kubernetes control plane is running at https://127.0.0.1:50918
 CoreDNS is running at https://127.0.0.1:50918/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
@@ -268,7 +268,7 @@ The above output of `kubectl cluster-info` command indicates that the control pl
 Now use the `kubectl` command to list all nodes in our cluster:
 
 ```bash
-$ kubectl get nodes
+kubectl get nodes
 
 NAME       STATUS   ROLES           AGE    VERSION
 minikube   Ready    control-plane   7h8m   v1.24.3
@@ -276,15 +276,43 @@ minikube   Ready    control-plane   7h8m   v1.24.3
 
 The above output shows a cluster with single node.
 
-> **Note:** Everything in Kubernetes is represented as an object, which can be obtained and manipulated via the RESTful API. The `kubectl get` command retrieves a list of objects of the specified  type from the API. In the above case, it's of type "node".
+> **Note:** Everything in Kubernetes is represented as an **object**, which can be obtained and manipulated via the RESTful API. The `kubectl get` command retrieves a list of objects of the specified type from the API. In the above case, it's of type "node".
 
 To see more detailed information about an object, we use the following command:
 
 ```bash
-$ kubectl describe node <name of the node>
+kubectl describe node <name of the node>
 ```
 
 Because it is such a large output, I have chosen to exclude the actual output that the `describe` command generates.
+
+To check the status of the pods for all the nNamespaces
+
+```bash
+kubectl get pods --all-namespaces
+```
+
+The output look like the ones shown below:
+
+```bash
+NAMESPACE              NAME                                         READY   STATUS    RESTARTS       AGE
+default                nicepod                                      1/1     Running   3 (45m ago)    45d
+kube-system            coredns-6d4b75cb6d-nsx8w                     1/1     Running   4 (45m ago)    45d
+kube-system            etcd-minikube                                1/1     Running   5 (45m ago)    45d
+kube-system            kube-apiserver-minikube                      1/1     Running   5 (45m ago)    45d
+kube-system            kube-controller-manager-minikube             1/1     Running   6 (45m ago)    45d
+kube-system            kube-proxy-8fhb9                             1/1     Running   4 (45m ago)    45d
+kube-system            kube-scheduler-minikube                      1/1     Running   6 (45m ago)    45d
+kube-system            storage-provisioner                          1/1     Running   16 (45m ago)   45d
+kubernetes-dashboard   dashboard-metrics-scraper-78dbd9dbf5-9xnmp   1/1     Running   3 (45m ago)    45d
+kubernetes-dashboard   kubernetes-dashboard-5fd5574d9f-bpqrz        1/1     Running   8 (45m ago)    45d
+```
+
+To check the physical and internal IP details of all the pods, use the following command:
+
+```bash
+kubectl get pods -n <namespace> -o wide
+```
 
 ## kind
 
@@ -292,12 +320,18 @@ Because it is such a large output, I have chosen to exclude the actual output th
 
 ## minikube
 
-Like `kind`, `minikube` is a tool that enables us to run Kubernetes on a local computer. In order for us to get a feel for Kubernetes, `minikube` runs a Kubernetes cluster with a *single node* on each of our individual computers (including Windows, macOS, and Linux PCs).
+Like `kind`, `minikube` is a tool that enables us to run Kubernetes on a *local computer*. In order for us to get a feel for Kubernetes, `minikube` runs a Kubernetes cluster with a *single node* on each of our individual computers (including Windows, macOS, and Linux PCs).
+
+### Minimum requirements to install minikube
+- 2 CPUs or more
+- 2GB of free memory
+- 20GB of free disk space
+- Container or virtual machine manager, such as: **Docker**, **Hyperkit**, **Hyper-V**, **KVM**, **Parallels**, **Podman**, **VirtualBox**, or **VMware Fusion/Workstation**
 
 To install the latest `minikube` stable release on on x86-64 macOS using Homebrew:
 
 ```bash
-$ brew install minikube
+brew install minikube
 ```
 
 ### Start our cluster
@@ -305,7 +339,7 @@ $ brew install minikube
 To start a single-node cluster:
 
 ```bash
-$ minikube start
+minikube start
 ```
 
 ### minikube dashboard
@@ -313,13 +347,13 @@ $ minikube start
 minikube has integrated support for the web-based dashboard. To access the web-based dashboard:
 
 ```bash
-$ minikube dashboard
+minikube dashboard
 ```
 
 This will enable the dashboard add-on, and open the proxy in the default web browser. If we we do not want to launch a web browser, we can instruct the dashboard command to instead merely output a URL as shown below:
 
 ```bash
-$ minikube dashboard --url
+minikube dashboard --url
 ```
 
 We can use dashboard to:
@@ -371,7 +405,7 @@ Docker Desktop for macOS and Windows comes preinstalled with a single-node Kuber
 minikube CLI supports macOS, Linux, and Windows. It just consists of a single executable binary file, which can be found in the minikube repository on [GitHub](https://github.com/kubernetes/minikube){:target="_blank"}. More information on how to install it for various operating systems can be found [here](https://minikube.sigs.k8s.io/docs/start/){:target="_blank"}.  
 
 ## Packing applications in containers
-These applications come in many different shapes and sizes. They begin by taking input, manipulating the data, and then providing the results. Application programs normally have a *language runtime*, *libraries* including external libraries, *configurations*, and *source code* as their primary components.
+Applications come in many different shapes and sizes. They begin by taking input, manipulating the data, and then providing the results. Application programs normally have a *language runtime*, *libraries* including external libraries, *configurations*, and *source code* as their primary components.
 
 There are many ways to deploy these applications as a whole:
 
@@ -400,7 +434,7 @@ A workload is an *application* running on Kubernetes. On Kubernetes, our workloa
 
 ## What is kubelet?
 
-Every worker node has a node agent called Kubelet that it runs. It oversees communicating with the master components and manages the running pods. Here are the key things that the Kubelet does:
+Every worker node has a *node agent* called Kubelet that it runs. It oversees communicating with the master components and manages the running pods. Here are the key things that the Kubelet does:
 
 - Receiving pod specs
 - Downloading pod secrets from the API server
@@ -471,3 +505,67 @@ In its early stages, Kubernetes only provided support for the Docker container r
 - Frakti
 - rktlet
 - CRI-containerd
+
+## How to SSH into minikube virtual machine?
+
+Use the following command to SSH into minikube VM:
+
+```bash
+minikube ssh
+
+uname -a
+logout
+```
+
+## How to deploy pods in minikube cluster?
+
+Let's create a pod and expose it on port 80:
+
+```bash
+kubectl create deployment hello --image=docker.io/nginx:1.23
+kubectl expose deployment hello --type=NodePort --port=8080
+```
+
+When the service is exposed as type `NodePort`, it is available to the host on some port. But we did not run the pod on the `8080` port. In the cluster, ports are mapped. We need the cluster IP and the exposed port in order to get to the service. 
+
+Use the following command to find the cluster IP:
+
+```bash
+minikube ip
+```
+
+To check if the pod is created, use the following command:
+
+```bash
+kubectl get pods
+```
+
+## How to start a cluster with multi nodes using minikube?
+
+We can start a cluster with multi nodes in the driver of our choice. In the below, we are starting a cluster with 2 nodes:
+
+```bash
+minikube start --nodes 2 -p multinode-demo
+```
+
+We can also check the status of your nodes:
+
+```bash
+minikube status -p multinode-demo
+```
+
+Output: 
+
+```plain
+multinode-demo
+type: Control Plane
+host: Running
+kubelet: Running
+apiserver: Running
+kubeconfig: Configured
+
+multinode-demo-m02
+type: Worker
+host: Running
+kubelet: Running
+```
