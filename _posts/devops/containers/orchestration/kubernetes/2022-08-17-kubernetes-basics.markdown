@@ -725,3 +725,13 @@ The following pods are running under "kube-system" namespace:
 - kube-proxy
 - kube-scheduler-minikube
 - storage-provisioner
+
+## What are Kubernetes objects?
+
+Kubernetes objects are persistent entities in the Kubernetes system. Kubernetes uses these entities to represent the state of our cluster. Specifically, they can describe:
+
+- What containerized applications are running (and on which nodes)
+- The resources available to those applications
+- The policies around how those applications behave, such as restart policies, upgrades, and fault-tolerance
+
+Once we've create the object, Kubernetes will keep working to make sure that object exists. By creating an object, we tell the Kubernetes system how we want our cluster's workload to look. This is the desired state of our cluster.
