@@ -3,7 +3,7 @@ layout: post
 title:  "Introduction to Apache Pinot"
 kicker: "APACHE PINOT"
 subtitle: "Apache Pinot is a real-time, distributed OLAP datastore that was built for low-latency, high-throughput analytics, making it perfect for user-facing analytical workloads."
-image: assets/images/posts-cover-images/elasticsearch.jpg
+image: assets/images/posts-cover-images/apache-pinot-intro.jpg
 author: senthil
 date: 2022-11-15 00:00:00 +0530
 tags: ["apache-pinot", "pinot", "olap", "olap-datastore"]
@@ -12,6 +12,8 @@ featured: false
 hidden: true
 toc: true
 ---
+
+> **Writing in progress:** If you have any suggestions for improving the content or notice any inaccuracies, please email me at [hello@senthilnayagan.com](mailto:hello@senthilnayagan.com). Thanks!
 
 # Overview
 
