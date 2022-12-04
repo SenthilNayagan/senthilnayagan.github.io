@@ -173,9 +173,11 @@ Brokers handle Pinot queries. They accept queries from clients and forward them 
 In this section, we will be performing the following activities:
 
 - Starting ZooKeeper
-- Starting Pinot controller
-- Starting Pinot broker
-- Starting Pinot server
+- Starting Pinot Controller
+- Starting Pinot Broker
+- Starting Pinot Server
+
+> **Quick start:** Pinot comes with QuickStart commands that let us run all of its components in a single process and import pre-built data sets. If we're new to Pinot, these QuickStarts are a good place to start.
 
 ## Starting ZooKeeper
 
@@ -185,9 +187,9 @@ We will start the ZooKeeper using the pinot-admin script (`pinot-admin.sh`), whi
 pinot-admin.sh StartZookeeper -zkPort 2181
 ```
 
-## Starting Pinot controller
+## Starting Pinot Controller
 
-Pinot controller hosts Apache Helix, and together they are responsible for managing all the other components of the cluster.
+Pinot Controller hosts Apache Helix, and together they are responsible for managing all the other components of the cluster.
 
 ```shell
 pinot-admin.sh StartController -zkAddress localhost:2181 -clusterName PinotCluster -controllerPort 9001
@@ -234,7 +236,7 @@ Below is the Swagger REST API page:
 |:-:|
 |<sup>*Figure 6: Swagger REST API Page.*</sup>|<br/><br/>|
 
-## Starting Pinot broker
+## Starting Pinot Broker
 
 Brokers handle Pinot queries. They accept queries from clients and forward them to the right servers (data servers). They gather results from the servers and combine them into a single response to send back to the client.
 
