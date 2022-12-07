@@ -168,93 +168,16 @@ Brokers handle Pinot queries. They accept queries from clients and forward them 
 |<sup>*Figure 3: Broker interaction with other components. Image Courtesy: https://docs.pinot.apache.org.*</sup>|<br/><br/>|
 
 
-# Get started with Pinot
+# Getting started with Pinot
 
-In this section, we will be performing the following activities:
+Apache Pinot can be run in any of the following:
 
-- Starting ZooKeeper
-- Starting Pinot Controller
-- Starting Pinot Broker
-- Starting Pinot Server
+- **locally** on our own computer 
+- in **Docker**
+- in **Kubernetes**
 
-> **Quick start:** Pinot comes with QuickStart commands that let us run all of its components in a single process and import pre-built data sets. If we're new to Pinot, these QuickStarts are a good place to start.
+Here, we'll discuss about [how to deploy and run Apache Pinot locally]({{ site.baseurl }}/apache-pinot/2022/running-apache-pinot-locally){:target="_blank"} on our computer as a standalone instance.
 
-## Starting ZooKeeper
-
-We will start the ZooKeeper using the pinot-admin script (`pinot-admin.sh`), which can be found in the Apache Pinot installed directory.
-
-```shell
-pinot-admin.sh StartZookeeper -zkPort 2181
-```
-
-## Starting Pinot Controller
-
-Pinot Controller hosts Apache Helix, and together they are responsible for managing all the other components of the cluster.
-
-```shell
-pinot-admin.sh StartController -zkAddress localhost:2181 -clusterName PinotCluster -controllerPort 9001
-```
-
-In the above command, we are starting the Pinot controller on port 9001. We can give any name to a cluster using the `-clusterName` option.
-
-Let's look at the ZooInspector tool to see what changes show up after starting the Pinot controller. We have a new cluster called PinotCluster which has cluster-level config properties.
-
-|![ZooInspector Tool: New Cluster, PinotCluster is showing up](/assets/images/posts/zooinspector-controller.png)|
-|:-:|
-|<sup>*Figure 4: ZooInspector Tool: New Cluster, PinotCluster is showing up.*</sup>|<br/><br/>|
-
-We have a participants directory that lists all of the cluster participants. So far, we only have the controller that we just started.
-
-Let's add another controller, and this time we'll use a different controller port, `9002`:
-
-```shell
-pinot-admin.sh StartController -zkAddress localhost:2181 -clusterName PinotCluster -controllerPort 9002
-```
-
-Let's get back to the ZooInspector tool. Our second controller can be found in the participant directory. In the controller directory, we can see a leader node, which tells us which of the two controllers is the lead controller. The lead controller has additional responsibilities, such as running some periodic maintenance and cleanup tasks in the background.
-
-|![ZooInspector Tool: Shows another controller under participant directory](/assets/images/posts/zooinspector-2nd-controller.png)|
-|:-:|
-|<sup>*Figure 3: ZooInspector Tool: Shows another controller under participant directory.*</sup>|<br/><br/>|
-
-Let's see what else our controller can do. Type `localhost:9001` into the web browser's address bar. This opens the dashboard for the Pinot cluster, which is shown below:
-
-|![Apache Pinot - Cluster Dashboard](/assets/images/posts/apache-pinot-cluster-dashboard.png)|
-|:-:|
-|<sup>*Figure 5: Apache Pinot - Cluster Dashboard.*</sup>|<br/><br/>|
-
-This dashboard has the following options:
-
-- **Cluster Manager**
-- **Query Console** - lets us run queries on the tables in our cluster.
-- **ZooKeeper Browser**
-- **Swagger REST API** - has admin endpoints to operate and manage the cluster. Here we can perform read/write/delete operations on other entities of a cluster.
-
-Below is the Swagger REST API page:
-
-|![Swagger REST API Page](/assets/images/posts/swagger-rest-api-screen.png)|
-|:-:|
-|<sup>*Figure 6: Swagger REST API Page.*</sup>|<br/><br/>|
-
-## Starting Pinot Broker
-
-Brokers handle Pinot queries. They accept queries from clients and forward them to the right servers (data servers). They gather results from the servers and combine them into a single response to send back to the client.
-
-Use the following command to start a Broker:
-
-```shell
-pinot-admin.sh StartBroker -zkAddress localhost:2181 -clusterName PinotCluster -brokerPort 7001
-```
-
-Let's also start another Broker using a different port, 7002:
-
-```shell
-pinot-admin.sh StartBroker -zkAddress localhost:2181 -clusterName PinotCluster -brokerPort 7002
-```
-
-|![ZooInspector with Brokers](/assets/images/posts/zooinspector-brokers.png)|
-|:-:|
-|<sup>*Figure 7: ZooInspector with Brokers.*</sup>|<br/><br/>|
 
 # Getting data into Pinot
 
