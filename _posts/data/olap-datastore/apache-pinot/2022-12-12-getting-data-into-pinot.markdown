@@ -22,7 +22,7 @@ Let's first briefly discuss Pinot's file system. The file system is an abstracti
 - **Azure Data Lake Storage**
 - **HDFS**
 
-By default, Pinot doesn't have a storage layer, so if the system crashes, none of the data that was sent will be saved. To store the generated segments permanently in a local or distributed file system, we will have to change how the controller and server are set up to add **deep store**.
+By default, Pinot doesn't have a storage layer, so if the system crashes, none of the data that was sent will be saved. To store the generated segments permanently in a local or distributed file system, we will have to change how the controller and server are configured to add **deep store**.
 
 > **Deep store:** The deep store is the permanent store for segment files. It is used to make backups and get them back (restore). A cluster's new server nodes will get a copy of the segment files from the deep store. If the local segment files on a server get damaged in some way, a new copy will be pulled down from the deep store when the server is restarted. Note that the deep store stores a compressed version of the segment files, and it usually doesn't have any indexes. These compressed files can be kept on a local or a distributed file system. 
 
@@ -218,6 +218,7 @@ As said above, Pinot supports a number of popular input formats when it comes to
 - **ORC**
 - **Protocol Buffers**
 
+Here is the [official documentation](https://docs.pinot.apache.org/basics/data-import/pinot-input-formats#supported-input-formats){:target="_blank"} to learn more about how to configure the properties of input formats.
 
 ### Ingesting offline data
 
