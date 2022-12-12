@@ -29,48 +29,44 @@ One of the best things about Pinot is that it has a pluggable architecture. The 
 
 |![Apache Pinot Overview](/assets/images/posts/pinot-overview.png)|
 |:-:|
-|<sup>*Figure 1: Apache Pinot Overview. Image Courtesy: https://docs.pinot.apache.org*</sup>|<br/><br/>|
+|<sup>*Figure 1: Apache Pinot Overview. Image Courtesy: https://docs.pinot.apache.org.*</sup>|<br/><br/>|
 
 # Pinot components
 
-## Cluster
+Pinot has two kinds of components: 
 
-Cluster is a set of nodes comprising of:
+- Logical components
+- Architectural components
 
-- Servers
-- Brokers
-- Controllers
-- Minions
+## Logical components
 
-Pinot uses [Apache Helix](https://helix.apache.org/){:target="_blank"} for cluster management. Helix is a framework for managing clusters. It handles resources that are replicated and partitioned in a distributed system. Helix uses ZooKeeper to store cluster state and metadata.
+Pinot cluster has the following logical components:
 
-### Cluster's logical view
+- **Tenant**
+- **Table**
+- **Segment**
 
 A logical view is another way to see what the cluster looks like:
 
-|![Pinot Cluster Logical View](/assets/images/posts/apache-pinot-cluster-logical-view.jpg)|
+|![Pinot Cluster's Logical View](/assets/images/posts/apache-pinot-logical-components.png)|
 |:-:|
-|<sup>*Figure 2: Pinot Cluster Logical View. Image Courtesy: https://docs.pinot.apache.org.*</sup>|<br/><br/>|
+|<sup>*Figure 2: Pinot Cluster's Logical View.*</sup>|<br/><br/>|
 
 - A cluster contains tenants
 - Tenants contain tables
 - Tables contain segments.
 
-#### Tenant
+### Tenant
 
-A tenant is a *logical* component of Apache Pinot. It’s simply a logical grouping of nodes (servers and brokers) with the same Helix tag. In our cluster, we have a default tenant called “default tenant.” When nodes are created in the cluster, they automatically get added to the default tenant.
+A tenant is a *logical* component of Apache Pinot. It’s simply a logical grouping of resources (servers and brokers) with the same Helix tag. So, tenant enable us to group resources that are used for isolation. In our cluster, we have a default tenant called “default tenant.” When nodes are created in the cluster, they automatically get added to the default tenant.
 
 Pinot has top-notch support for tenants so that *multi-tenancy* can work. Every table is associated with a server tenant and a broker tenant. This sets the nodes that will be used as servers and brokers by this table. This lets all of the tables for a certain use case be put together under a single tenant name.
 
 The idea of tenants is very important when Pinot is used for many different purposes and there is a need to set limits or separate tenants (isolation) in some way.
 
-#### Tables and segments
+### Table
 
-A table is a logical abstraction that represents a *collection of related data*. It is made up of rows and columns (known as documents in Pinot). A schema defines the table's columns, data types, and other metadata.
-
-Pinot breaks a table into multiple small chunks of data known as **segments** and stores these segments in a deep-store such as HDFS as well as Pinot servers. For offline tables, segments are built outside of pinot and uploaded using a distributed executor such as Apache Spark or Hadoop. For real-time tables, segments are built in a specific interval inside Pinot.
-
-In the Pinot cluster, a table is modeled as a [**Helix resource**](https://helix.apache.org/Concepts.html){:target="_blank"} and each segment of a table is modeled as a [**Helix Partition**](https://helix.apache.org/Concepts.html){:target="_blank"}.
+A table is a logical abstraction that represents a *collection of related data*. It is made up of rows and columns (known as documents in Pinot). This concept is similar to that of other databases. A schema defines the table's columns, data types, and other metadata.
 
 Pinot supports the following types of table:
 
@@ -78,13 +74,78 @@ Pinot supports the following types of table:
 - **Realtime** - Realtime tables ingest data from streams such as Kafka and build segments from the consumed data.
 - **Hybrid** - Under the hood, a hybrid Pinot table is made up of both real-time and offline tables. All tables in Pinot are of the Hybrid type by default.
 
-> The user who is querying the database doesn't need to know what kind of table it is. In the query, they only need to say the name of the table. Regardless of whether we have an offline table `myTable_OFFLINE`, a real-time table `myTable_REALTIME`, or a hybrid table containing both of these, the query will be:<br/><br/>`select count(*) from myTable`.<br/><br/>
+> The user who is querying the database doesn't need to know what kind of table it is. In the query, they only need to say the name of the table. Regardless of whether we have an offline table `myTable_OFFLINE`, a real-time table `myTable_REALTIME`, or a hybrid table containing both of these, the query will be:<br/><br/>`select count(*) from myTable`.<br/>
 
-**Table Configuration** is used to define the table properties, such as name, type, indexing, routing, retention etc. It is written in JSON format and is stored in ZooKeeper, along with the table schema.
+**Table configuration** is used to define the table properties, such as **name**, **type**, **indexing**, **routing**, **retention**, etc. It is written in JSON format and is stored in ZooKeeper, along with the table schema.
 
-### Cluster components
+### Segment
 
-Helix divides nodes into logical components based on their responsibilities:
+Pinot breaks a table into multiple small *chunks of data* known as **segments** and stores these segments in a deep-store such as HDFS as well as Pinot servers. 
+
+For offline tables, segments are built outside of pinot and uploaded using a distributed executor such as Apache Spark or Hadoop. For real-time tables, segments are built in a specific interval inside Pinot.
+
+In the Pinot cluster, a table is modeled as a [**Helix resource**](https://helix.apache.org/Concepts.html){:target="_blank"} and each segment of a table is modeled as a [**Helix Partition**](https://helix.apache.org/Concepts.html){:target="_blank"}.
+
+|![Tenant -> Tables -> Segments](/assets/images/posts/apache-pinot-tenant-table-segment.png)|
+|:-:|
+|<sup>*Figure 3: Tenant -> Tables -> Segments.*</sup>|<br/><br/>|
+
+
+## Architectural components
+
+A Pinot cluster is a set of nodes comprising of:
+
+- **Server**
+- **Broker**
+- **Controller**
+- **Minion**
+
+Pinot uses [**Apache Helix**](https://helix.apache.org/){:target="_blank"} for cluster management. Helix handles resources that are replicated and partitioned in a distributed system. Helix uses **ZooKeeper** to store cluster state and metadata.
+
+### Server
+
+Servers host (store) the data segments and serve queries based on the data they host. 
+
+There are two types of servers:
+
+- **Offline server**
+- **Real-time server**
+
+#### Offline server
+
+Offline servers download segments from the segment store so that they can host and serve queries. When a new segment is uploaded to the controller, the controller decides which servers will host the new segment and notifies them to download the segment from the segment store. When the servers get this notification, they download the segment file and put the segment on the server so that they can handle queries.
+
+|![Offline Server](/assets/images/posts/apache-pinot-offline-server-flow.jpg)|
+|:-:|
+|<sup>*Figure 4: Offline Server. Image Courtesy: https://docs.pinot.apache.org.*</sup>|<br/><br/>|
+
+#### Real-time server
+
+Real-time servers ingest directly from a real-time stream like Kafka. Based on certain thresholds, they make segments of the data that has been stored in-memory from time to time. Then, this segment is saved to the segment store.
+
+|![Real-time Server](/assets/images/posts/apache-pinot-realtime-server-flow.jpg)|
+|:-:|
+|<sup>*Figure 5: Real-time Server. Image Courtesy: https://docs.pinot.apache.org.*</sup>|<br/><br/>|
+
+### Broker
+
+Broker handles Pinot queries. They accept queries from clients and forward them to the right servers. They gather results from the servers and combine them into a single response to send back to the client.
+
+|![Broker interaction with other components](/assets/images/posts/apache-pinot-broker-interactions.jpg)|
+|:-:|
+|<sup>*Figure 6: Broker interaction with other components. Image Courtesy: https://docs.pinot.apache.org.*</sup>|<br/><br/>|
+
+### Controller
+
+The node that observes and controls the participant nodes. It is in charge of coordinating all cluster transitions and making sure that state constraints are met while keeping the cluster stable. **Pinot controllers** are modeled as controllers.
+
+The Pinot controller is really the brains of the cluster, and it takes care of cluster membership, figuring out what data is located on which server, and performing query routing. Pinot controller hosts Apache Helix (for cluster management), and together they are responsible for managing all the other components of the cluster.
+
+### Minion
+
+TODO
+
+<!--Helix divides nodes into logical components based on their responsibilities:
 
 #### Participant
 
@@ -94,36 +155,7 @@ The nodes that host resources (tasks) that are distributed and partitioned. **Pi
 
 The nodes that keep track of *current state* of each participant and use this information to access the resources. Spectators are notified when the state of the cluster changes (state of a participant, or that of a partition in a participant). **Pinot brokers** are modeled as spectators.
 
-#### Controller
 
-The node that observes and controls the participant nodes. It is in charge of coordinating all cluster transitions and making sure that state constraints are met while keeping the cluster stable. **Pinot controllers** are modeled as controllers.
-
-The Pinot controller is really the brains of the cluster, and it takes care of cluster membership, figuring out what data is located on which server, and performing query routing. Pinot controller hosts Apache Helix (for cluster management), and together they are responsible for managing all the other components of the cluster.
-
-## Server
-
-Servers host (store) the data segments and serve queries based on the data they host. 
-
-There are two types of servers:
-
-- **Offline server**
-- **Real-time server**
-
-### Offline server
-
-Offline servers download segments from the segment store so that they can host and serve queries. When a new segment is uploaded to the controller, the controller decides which servers will host the new segment and notifies them to download the segment from the segment store. When the servers get this notification, they download the segment file and put the segment on the server so that they can handle queries.
-
-|![Offline Server](/assets/images/posts/apache-pinot-offline-server-flow.jpg)|
-|:-:|
-|<sup>*Figure 3: Offline Server. Image Courtesy: https://docs.pinot.apache.org.*</sup>|<br/><br/>|
-
-### Real-time server
-
-Real-time servers ingest directly from a real-time stream like Kafka. Based on certain thresholds, they make segments of the data that has been stored in-memory from time to time. Then, this segment is saved to the segment store.
-
-|![Real-time Server](/assets/images/posts/apache-pinot-realtime-server-flow.jpg)|
-|:-:|
-|<sup>*Figure 4: Real-time Server. Image Courtesy: https://docs.pinot.apache.org.*</sup>|<br/><br/>|
 
 ## Table
 
@@ -158,28 +190,24 @@ The `tenants` section is where we define which tenant this table will belong to.
   }
 }
  ```
-
-## Brokers
-
-Brokers handle Pinot queries. They accept queries from clients and forward them to the right servers. They gather results from the servers and combine them into a single response to send back to the client.
-
-|![Broker interaction with other components](/assets/images/posts/apache-pinot-broker-interactions.jpg)|
-|:-:|
-|<sup>*Figure 3: Broker interaction with other components. Image Courtesy: https://docs.pinot.apache.org.*</sup>|<br/><br/>|
-
+ -->
 
 # Getting started with Pinot
 
-Apache Pinot can be run in any of the following:
+## Running Pinot components
+
+Apache Pinot can be run in any of the following environments:
 
 - **locally** on our own computer 
 - in **Docker**
 - in **Kubernetes**
 
-Here, we'll discuss about [how to deploy and run Apache Pinot locally]({{ site.baseurl }}/apache-pinot/2022/running-apache-pinot-locally){:target="_blank"} on our computer as a standalone instance.
+Here, we'll discuss about [how to deploy and run Apache Pinot locally]({{ site.baseurl }}/apache-pinot/2022/running-apache-pinot-locally){:target="_blank"} on our computer.
 
 
-# Getting data into Pinot
+## Getting data into Pinot
+
+There are multiple ways for importing data into Pinot. 
 
 To get the data into Pinot, we need a **Pinot schema** and a **Pinot table**. Data ingestion in Pinot involves the following steps:
 
@@ -190,7 +218,7 @@ Once the location is available to the controller, it can notify the servers to d
 
 > **Note:** Pinot provides runners for Spark out of the box. So we don't have to write a single line of code as users. We can also write runners for any other executor using the provided interfaces.
 
-## Pinot schema
+### Pinot schema
 
 The schema catagorizes columns into:
 
@@ -207,7 +235,7 @@ The schema catagorizes columns into:
 }
 ```
 
-### Schema dimensions
+#### Schema dimensions
 
 A sample schema with the dimensions (`dimensionFieldSpecs`) `studentID`, `firstName`, `lastName`, `gender`, and `subject` is shown below:
 
@@ -252,6 +280,8 @@ A sample schema with the dimensions (`dimensionFieldSpecs`) `studentID`, `firstN
   }
 }
 ```
+
+### Pinot table
 
 # Frequently asked questions (FAQ)
 
@@ -349,3 +379,8 @@ Here's a list of the clients available to query Pinot from your application:
 - Java client
 - Go client
 - JDBC client (coming soon)
+
+## What are the key takeaways for Apache Pinot?
+
+- We may not need it at all.
+- This isn't our system of record.

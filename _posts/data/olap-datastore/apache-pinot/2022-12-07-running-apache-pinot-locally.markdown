@@ -13,13 +13,13 @@ hidden: true
 toc: true
 ---
 
-Apache Pinot can be run in any of the following:
+Apache Pinot can be run in any of the following environments:
 
 - **locally** on our own computer 
 - in **Docker**
 - in **Kubernetes**
 
-Here, we'll discuss about how to deploy and run Apache Pinot *locally* on our computer as a standalone instance.
+Here, we'll discuss about how to deploy and run Apache Pinot *locally* on our computer.
 
 # Download Apache Pinot
 
@@ -51,6 +51,8 @@ cd apache-pinot-$PINOT_VERSION-bin
 # Launching Apache Pinot
 
 We can launch Apache Pinot either by using **Quick Start** or by launching all of its components **individually**, one at a time.
+
+> **Pinot launch script:** The `pinot-admin.sh` launch script can be found in the bin directory of Pinot. It can be used to start different Pinot components. If we run it without any arguments, it will show us all the commands we can use.
 
 ## Launching Apache Pinot using Quick Start
 
@@ -86,15 +88,15 @@ Before we start, make sure we've done everything on the following list:
 
 | # | Step | Link | 
 | ----| ---- |------| 
-| 1 | Download sample data and configs | <https://github.com/npawar/pinot-tutorial> | 
-| 2 | Download latest Apache Pinot release binary | <https://pinot.apache.org> |
-| 3 | Install Java 9 or higher | <https://openjdk.java.net> |
-| 4 | Install Apache Maven 3.5.0 or higher | <https://maven.apache.org> |
-| 5 | Setup ZooInspector | <https://github.com/zzhang5/zooinspector> |
+| 1 | Download **sample data** and configs | <https://github.com/npawar/pinot-tutorial> | 
+| 2 | Download latest **Apache Pinot** release binary | <https://pinot.apache.org> |
+| 3 | Install **Java 9** or higher | <https://openjdk.java.net> |
+| 4 | Install **Apache Maven**<sup>*</sup> 3.5.0 or higher | <https://maven.apache.org> |
+| 5 | Download **ZooInspector** | <https://github.com/zzhang5/zooinspector> |
 
-> **ZooInspector:** ZooInspector is a UI we can use for inspecting our *znode* structure. Every node in a ZooKeeper tree is refered to as a znode. Each time a znode's data changes, the version number increases. Znodes are the main enitity that a programmer access. Make sure to click the refresh button to reflect any changes.
+<sup>*</sup><small> Apache Maven is required to build and package ZooInspector tool.</small>
 
-> **Build and run ZooInspector**<br/>`git clone https://github.com/zzhang5/zooinspector.git`<br/>`cd zooinspector/`<br/>`mvn clean package`<br/><br/>`chmod +x target/zooinspector-pkg/bin/zooinspector.sh`<br/>`target/zooinspector-pkg/bin/zooinspector.sh`
+> **ZooInspector**<br>ZooInspector is a UI we can use for inspecting our *znode* structure. Every node in a ZooKeeper tree is refered to as a **znode**. Each time a znode's data changes, the version number increases. Znodes are the main enitity that a programmer access. Make sure to click the refresh button on the ZooInspector tool to see any changes.<br/><br/>Build and run ZooInspector:<br/>`git clone https://github.com/zzhang5/zooinspector.git`<br/>`cd zooinspector/`<br/>`mvn clean package`<br/><br/>`chmod +x target/zooinspector-pkg/bin/zooinspector.sh`<br/>`target/zooinspector-pkg/bin/zooinspector.sh`
 
 We'll put together a Pinot cluster with the following components:
 
@@ -116,7 +118,7 @@ We will do the following activities in the order they appear:
 We will start the ZooKeeper using the pinot-admin script (`pinot-admin.sh`), which can be found in the Apache Pinot installed directory. We uses the default ZooKeeper port, `2181`.
 
 ```bash
-bin/pinot-admin.sh StartZookeeper -zkPort 2181
+./bin/pinot-admin.sh StartZookeeper -zkPort 2181
 ```
 
 We can use ZooInspector tool to browse the ZooKeeper instance.
@@ -128,12 +130,12 @@ We can use ZooInspector tool to browse the ZooKeeper instance.
 
 ### Starting Pinot Controller
 
-Pinot Controller hosts **Apache Helix**, and together they are responsible for managing all the other components of the cluster.
+Pinot Controller hosts **Apache Helix**, and together they are responsible for managing all the other components of the cluster. Controller's default port is `9000`.
 
 #### Controller 1 on port 9001
 
 ```bash
-bin/pinot-admin.sh StartController \
+./bin/pinot-admin.sh StartController \
     -zkAddress localhost:2181 \
     -clusterName PinotCluster \
     -controllerPort 9001
@@ -142,13 +144,13 @@ bin/pinot-admin.sh StartController \
 #### Controller 2 on port 9002
 
 ```bash
-bin/pinot-admin.sh StartController \
+./bin/pinot-admin.sh StartController \
     -zkAddress localhost:2181 \
     -clusterName PinotCluster \
     -controllerPort 9002
 ```
 
-In the above commands, two Pinot controllers are started on ports `9001` and `9002`. We can give any name to a cluster using the `-clusterName` option.
+In the above commands, two Pinot controllers are started on ports `9001` and `9002`. We can give any name to a cluster using the `-clusterName` option. The controller will communicate to ZooKeeper when it starts up to register itself. Also, it will open port 9001 so that we can use its user interface (`localhost:9001`).
 
 Let’s look at the **ZooInspector** tool to see what changes show up after starting the Pinot controller. We have a new cluster called *PinotCluster* which has cluster-level config properties.
 
@@ -194,7 +196,7 @@ Brokers handle Pinot queries. They accept queries from clients and forward them 
 Use the following command to start a Broker:
 
 ```bash
-bin/pinot-admin.sh StartBroker \
+./bin/pinot-admin.sh StartBroker \
     -zkAddress localhost:2181 \
     -clusterName PinotCluster \
     -brokerPort 7001
@@ -203,7 +205,7 @@ bin/pinot-admin.sh StartBroker \
 Let's also start another Broker using a different port, `7002`:
 
 ```bash
-bin/pinot-admin.sh StartBroker \
+./bin/pinot-admin.sh StartBroker \
     -zkAddress localhost:2181 \
     -clusterName PinotCluster \
     -brokerPort 7002
@@ -220,12 +222,14 @@ Let's look at the ZooInspector tool again. Now, it shows two instances of the br
 Use the following commands to start two Pinot servers:
 
 ```bash
-bin/pinot-admin.sh StartServer \
+./bin/pinot-admin.sh StartServer \
     -zkAddress localhost:2181 \
     -clusterName PinotCluster \
     -serverPort 8001 -serverAdminPort 8011
+```
 
-bin/pinot-admin.sh StartServer \
+```bash
+./bin/pinot-admin.sh StartServer \
     -zkAddress localhost:2181 \
     -clusterName PinotCluster \
     -serverPort 8002 -serverAdminPort 8012
@@ -243,6 +247,6 @@ Kudos! The cluster has been set up now. Use Zooinspector to explore the cluster.
 |:-:|
 |<sup>*Figure 9: Pinot Dashboard with all services.*</sup>|<br/><br/>|
 
-From the dashboard, we can see that there are two controllers, two brokers, two servers, and one tenant.
+From the dashboard, we can see that there are two controllers, two brokers, two servers, and one tenant. The Pinot cluster is now up and running.
 
 > **Tenant** is a logical grouping of nodes (servers and brokers) with the same Helix tag. In our cluster, we have a default tenant called “default tenant.” When nodes are created in the cluster, they automatically get added to the default tenant.
