@@ -28,9 +28,15 @@ By default, Pinot doesn't have a storage layer, so if the system crashes, none o
 
 # Importing or ingesting data into Apache Pinot
 
-We can either ingest **offline data** or **realtime data** into Pinot. To get both offline and real-time data into Pinot, we need a Pinot schema and a Pinot table configuration.
+## Ingestion readiness
 
-## Pinot schema
+We can either ingest **offline data** or **realtime data** into Pinot. To get both offline and real-time data into Pinot, we need: 
+
+- **Pinot schema** 
+- **Pinot table configuration**
+- **Ingestion job spec**
+
+### Pinot schema
 
 Schema is used to define the names, data types, and other details for the columns in a Pinot table.
 
@@ -45,7 +51,7 @@ The Pinot schema is composed of:
 
 Pinot doesn't have strict rules about which of these categories these columns belong to. Instead, you can think of the categories as indications that Pinot can use to do internal optimizations. When we do segment merges and rollups, the categories are also important. Pinot uses the time and dimension fields to figure out which records to merge or roll up.
 
-### Data types
+#### Data types
 
 Data types determine the operations that can be performed on a column. Pinot supports the following data types:
 
@@ -62,7 +68,7 @@ Data types determine the operations that can be performed on a column. Pinot sup
 
 > **No explicit type exists for lists or arrays:** Pinot also works with columns that have lists or arrays of items, but there isn't a specific data type for these lists or arrays. We can instead say that a dimension column can take more than one value.
 
-### Sample schema
+#### Sample schema
 
 Here's an example of a Pinot schema for an `employee` table:
 
@@ -107,11 +113,17 @@ Here's an example of a Pinot schema for an `employee` table:
 }
 ```
 
-## Pinot table configuration
+### Pinot table configuration
 
-Table configuration is used to define the table properties, such as **name**, **type**, **indexing**, **routing**, **retention**, etc. It is written in JSON format and is stored in ZooKeeper, along with the table schema.
+Now that we know what our schema is, we can use table configuration to set up the table. Table configuration is used to define the table properties, such as **name**, **type**, **indexing**, **routing**, **retention**, etc. It is written in JSON format and is stored in ZooKeeper, along with the table schema.
 
-### Sample table configuration
+This table definition has the following information at a very high level:
+
+- How Pinot should create segments for this table.
+- Required configurations for indexing.
+- Table type, which is set to OFFLINE in this case.
+
+#### Sample table configuration
 
 A sample table configuration for an employee table is shown below. The `tableType` property shows us that it is an offline table.
 
@@ -137,11 +149,108 @@ A sample table configuration for an employee table is shown below. The `tableTyp
 }
 ```
 
-## Ingesting offline data
+### Ingestion job spec 
+
+So far, we have set up the schema and table configuration. Just one more configuration needs to be made, which is the ingestion job specification. In order to ingest data into Pinot, Pinot requires us to create an ingestion job specification file. The job spec can be in either YAML or JSON format. This spec file tells Pinot about: 
+
+- Where to find the raw data
+- Where to create the segments
+- Other ingestion-related configuration directives
+
+The following is the sample ingestion job spec file:
+
+```yaml
+executionFrameworkSpec:
+  name: 'standalone'
+  segmentGenerationJobRunnerClassName: 'org.apache.pinot.plugin.ingestion.batch.standalone.SegmentGenerationJobRunner'
+  segmentTarPushJobRunnerClassName: 'org.apache.pinot.plugin.ingestion.batch.standalone.SegmentTarPushJobRunner'
+  segmentUriPushJobRunnerClassName: 'org.apache.pinot.plugin.ingestion.batch.standalone.SegmentUriPushJobRunner'
+jobType: SegmentCreationAndTarPush
+inputDirURI: '$BASE_DIR/rawdata/'
+includeFileNamePattern: 'glob:**/*.csv'
+outputDirURI: '$BASE_DIR/segments/'
+overwriteOutput: true
+pinotFSSpecs:
+  - scheme: file
+    className: org.apache.pinot.spi.filesystem.LocalPinotFS
+recordReaderSpec:
+  dataFormat: 'csv'
+  className: 'org.apache.pinot.plugin.inputformat.csv.CSVRecordReader'
+  configClassName: 'org.apache.pinot.plugin.inputformat.csv.CSVRecordReaderConfig'
+tableSpec:
+  tableName: 'employee'
+pinotClusterSpecs:
+  - controllerURI: 'http://localhost:9001'
+```
+
+During ingestion, Pinot offers support for various popular input formats. By changing the format of the input, we can cut down on the time it takes to serialize and de-serialize and speed up the ingestion.
+
+The `recordReaderSpec` property in the ingestion job spec can be used to change the format of the input:
+
+```yaml
+recordReaderSpec:
+  dataFormat: 'csv'
+  className: 'org.apache.pinot.plugin.inputformat.csv.CSVRecordReader'
+  configClassName: 'org.apache.pinot.plugin.inputformat.csv.CSVRecordReaderConfig'
+  configs: 
+	key1 : 'value1'
+	key2 : 'value2'
+```
+
+The config consists of the following keys:
+
+- `dataFormat` - Name of the data format to consume.
+- `className` - This class is used for parsing the data.
+- `configClassName` - This class is used to parse the values mentioned in `configs`.
+- `configs` - Key value pair for format specific configs. We can skip this config.
+
+For more details about the job spec properties, refer [here](https://docs.pinot.apache.org/configuration-reference/job-specification#top-level-spec){:target="_blank"}.
+
+## Data ingestion
+
+As said above, Pinot supports a number of popular input formats when it comes to ingesting:
+
+- **CSV**
+- **JSON**
+- **Thrift**
+- **AVRO**
+- **Parquet**
+- **ORC**
+- **Protocol Buffers**
+
+
+### Ingesting offline data
 
 Segments for offline tables are constructed *outside of Pinot*, usually in Hadoop via map-reduce jobs and ingested into Pinot via REST API provided by the Controller. Pinot has libraries that can create Pinot segments from input files in AVRO, JSON, or CSV formats in a Hadoop job and send them to the controllers via REST APIs.
 
-## Ingesting realtime data
+When an offline segment is ingested, the controller looks up the table’s configuration and assigns the segment to the servers that host the table. Depending on how many replicas are set up for that table, it may put more than one server in charge of each segment.
 
-TODO
+> **Note:** Pinot supports different segment assignment strategies that are optimized for various use cases.
 
+Once segments are assigned, Pinot servers get notified via Helix to host or serve the segment. The segments are downloaded from the remote segment store to the local storage, where they are untarred/unzipped and mapped to memory. Helix lets brokers know that these segments are available once the server has loaded (memory-mapped) them. The brokers start to add the new segments for queries.
+
+> **Offline data segments are immutable:** Data in offline segments are immutable (rows cannot be added, deleted, or modified). However, segments may be replaced with data that has been changed.
+
+Pinot supports uploading offline segments to real-time tables. This is helpful when a user wants to start a real-time table with some initial data.
+
+### Ingesting realtime data
+
+Pinot servers ingest rows from data streams like Kafka and use them to build segments for realtime tables. As soon as a row is ingested from a stream, it is made available for query processing.
+
+A pinot table can be configured to use one of two ways to get data from streams:
+
+- `lowLevel` - This is the preferred mode of consumption. Pinot creates separate consumers at the partition-level for each partition.
+- `highLevel` - Pinot creates one stream-level consumer that consumes from all partitions. Each message consumed could be from any of the partitions of the stream.
+
+In either mode, the rows that are ingested are stored in volatile memory until one of the following happens:
+
+- A certain number of rows are consumed.
+- Consumption has been going on for a certain amount of time.
+
+When one of the above limits is reached, the servers do the following:
+
+- Pause consumption.
+- Persist the rows consumed so far into non-volatile storage.
+- Keep consuming new rows into volatile memory.
+
+The persisted rows form what we call a **completed segment**. This is different from a **consuming segment**, which resides in volatile memory.
