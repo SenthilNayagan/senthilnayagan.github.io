@@ -208,7 +208,7 @@ For more details about the job spec properties, refer [here](https://docs.pinot.
 
 ## Data ingestion
 
-As said above, Pinot supports a number of popular input formats when it comes to ingesting:
+As mentioned above, Pinot supports a number of popular *input* formats when it comes to ingesting. Here are the input formats that can be used:
 
 - **CSV**
 - **JSON**
@@ -218,11 +218,11 @@ As said above, Pinot supports a number of popular input formats when it comes to
 - **ORC**
 - **Protocol Buffers**
 
-Here is the [official documentation](https://docs.pinot.apache.org/basics/data-import/pinot-input-formats#supported-input-formats){:target="_blank"} to learn more about how to configure the properties of input formats.
+Refer the official documentation [here](https://docs.pinot.apache.org/basics/data-import/pinot-input-formats#supported-input-formats){:target="_blank"} to learn more about how to configure the properties of input formats.
 
 ### Ingesting offline data
 
-Segments for offline tables are constructed *outside of Pinot*, usually in Hadoop via map-reduce jobs and ingested into Pinot via REST API provided by the Controller. Pinot has libraries that can create Pinot segments from input files in AVRO, JSON, or CSV formats in a Hadoop job and send them to the controllers via REST APIs.
+Offline ingestion stores data in offline tables that are kept separate from realtime tables. Segments for offline tables are constructed *outside of Pinot*, usually in Hadoop via map-reduce jobs and ingested into Pinot via REST API provided by the Controller. Pinot has libraries that can create Pinot segments from input files in AVRO, JSON, or CSV formats in a Hadoop job and send them to the controllers via REST APIs.
 
 When an offline segment is ingested, the controller looks up the table’s configuration and assigns the segment to the servers that host the table. Depending on how many replicas are set up for that table, it may put more than one server in charge of each segment.
 
@@ -236,7 +236,9 @@ Pinot supports uploading offline segments to real-time tables. This is helpful w
 
 ### Ingesting realtime data
 
-Pinot servers ingest rows from data streams like Kafka and use them to build segments for realtime tables. As soon as a row is ingested from a stream, it is made available for query processing.
+When realtime data is ingested, it is stored in realtime tables. Pinot servers ingest rows from data streams like Kafka and use them to build segments for realtime tables. As soon as a row is ingested from a stream, it is made available for query processing. This is because events are instantly indexed in memory upon ingestion.
+
+> **Note:** The ingestion of events into the realtime table is not transactional, so replicas of the open segment are not immediately consistent or same.
 
 A pinot table can be configured to use one of two ways to get data from streams:
 

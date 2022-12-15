@@ -13,8 +13,6 @@ hidden: true
 toc: true
 ---
 
-> **Writing in progress:** If you have any suggestions for improving the content or notice any inaccuracies, please email me at [hello@senthilnayagan.com](mailto:hello@senthilnayagan.com). Thanks!
-
 # Overview
 
 Apache Pinot is a *real-time*, *distributed OLAP datastore* that was built for low-latency, high-throughput analytics, making it perfect for user-facing analytical workloads. It can ingest directly from streaming data sources like Apache Kafka and Amazon Kinesis and make the events available for querying right away. It can also ingest from batch data sources such as Hadoop HDFS, Amazon S3, Azure ADLS, and Google Cloud Storage.
@@ -48,7 +46,7 @@ Pinot cluster has the following logical components:
 
 A logical view is another way to see what the cluster looks like:
 
-|![Pinot Cluster's Logical View](/assets/images/posts/apache-pinot-logical-components.png)|
+|![Pinot Cluster's Logical View](/assets/images/posts/apache-pinot-cluster-logical-view.png)|
 |:-:|
 |<sup>*Figure 2: Pinot Cluster's Logical View.*</sup>|<br/><br/>|
 
@@ -72,7 +70,7 @@ Pinot supports the following types of table:
 
 - **Offline** - Offline tables ingest pre-built pinot-segments from external data stores. This is generally used for *batch ingestion*.
 - **Realtime** - Realtime tables ingest data from streams such as Kafka and build segments from the consumed data.
-- **Hybrid** - Under the hood, a hybrid Pinot table is made up of both real-time and offline tables. All tables in Pinot are of the Hybrid type by default.
+- **Hybrid** - Under the hood, a hybrid Pinot table is made up of both real-time and offline tables. All tables in Pinot are of the hybrid type by default.
 
 > The user who is querying the database doesn't need to know what kind of table it is. In the query, they only need to say the name of the table. Regardless of whether we have an offline table `myTable_OFFLINE`, a real-time table `myTable_REALTIME`, or a hybrid table containing both of these, the query will be:<br/><br/>`select count(*) from myTable`.<br/>
 
@@ -104,7 +102,7 @@ Pinot uses [**Apache Helix**](https://helix.apache.org/){:target="_blank"} for c
 
 ### Server
 
-Servers host (store) the data segments and serve queries based on the data they host. 
+Servers host (store) the data segments and serve queries based on the data they host. Pinot servers consume data directly from the Kafka topic. They are also indexing the data as they ingest it, and they serve queries on the data that they have.
 
 There are two types of servers:
 
@@ -129,7 +127,7 @@ Real-time servers ingest directly from a real-time stream like Kafka. Based on c
 
 ### Broker
 
-Broker handles Pinot queries. They accept queries from clients and forward them to the right servers. They gather results from the servers and combine them into a single response to send back to the client.
+Broker handles Pinot queries. They accept queries from clients and forward them to the right Pinot servers. They gather results from the servers and combine them into a single response to send back to the client.
 
 |![Broker interaction with other components](/assets/images/posts/apache-pinot-broker-interactions.jpg)|
 |:-:|
@@ -137,7 +135,7 @@ Broker handles Pinot queries. They accept queries from clients and forward them 
 
 ### Controller
 
-The node that observes and controls the participant nodes. It is in charge of coordinating all cluster transitions and making sure that state constraints are met while keeping the cluster stable. **Pinot controllers** are modeled as controllers.
+The node that observes and controls the participant nodes. In other words, the Pinot controller manages all the components of the Pinot cluster with the help of Apache Helix. It is in charge of coordinating all cluster transitions and making sure that state constraints are met while keeping the cluster stable. **Pinot controllers** are modeled as controllers.
 
 The Pinot controller is really the brains of the cluster, and it takes care of cluster membership, figuring out what data is located on which server, and performing query routing. Pinot controller hosts Apache Helix (for cluster management), and together they are responsible for managing all the other components of the cluster.
 
