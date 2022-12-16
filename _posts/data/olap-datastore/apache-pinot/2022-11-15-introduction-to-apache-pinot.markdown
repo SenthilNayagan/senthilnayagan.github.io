@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "Introduction to Apache Pinot"
+title:  "Apache Pinot joins hands with Kafka and Presto to provide low-latency, high-throughput user-facing analytics"
 kicker: "APACHE PINOT"
-subtitle: "Apache Pinot is a real-time, distributed OLAP datastore that was built for low-latency, high-throughput analytics, making it perfect for user-facing analytical workloads."
-image: assets/images/posts-cover-images/apache-pinot-intro.jpg
+subtitle: "Apache Pinot is a real-time, distributed OLAP datastore that was built for low-latency, high-throughput analytics, making it perfect for user-facing analytical workloads. Pinot joins hands with Kafka and Presto to provide user-facing analytics."
+image: assets/images/posts-cover-images/presto-pinot-kafka.png
 author: senthil
 date: 2022-11-15 00:00:00 +0530
 tags: ["apache-pinot", "pinot", "olap", "olap-datastore"]
@@ -13,11 +13,29 @@ hidden: true
 toc: true
 ---
 
-# Overview
+# Towards user-facing analytics
 
-Apache Pinot is a *real-time*, *distributed OLAP datastore* that was built for low-latency, high-throughput analytics, making it perfect for user-facing analytical workloads. It can ingest directly from streaming data sources like Apache Kafka and Amazon Kinesis and make the events available for querying right away. It can also ingest from batch data sources such as Hadoop HDFS, Amazon S3, Azure ADLS, and Google Cloud Storage.
+Real-time analytics have now become something that every business ought to do. It's the process of applying logic to data to get insights or draw conclusions *right away* so that better decisions can be made. "Real time" in real-time analytics means being able to get business insights *as soon as possible* after data (transactions) enters the system. With real-time analytics, businesses can act quickly. They can take advantage of chances and stop problems before they happen.
 
-At the heart of the system is a *columnar store* with smart indexing and pre-aggregation techniques for low latency. This makes Pinot the best choice for real-time analytics.
+As opposed to real-time analytics, batch-style analytics may take hours or even days to get results, depending on the volume of data and available computing resources. In batch-style analytics, jobs are generally scheduled to run at night or during non-business hours. So, it often provides us with insights *after the fact*. Most of the time, these batch-type insights are based on stale data (old information), so we can't rely on them. So no one anymore wants to do analytics in batches.
+
+In the world we live in now, everyone needs analytical data, not just business analysts or top-level executives. We call this kind of analytics "**user-facing analytics**." One good example of this is LinkedIn's "Who viewed your profile" feature, which lets all of its more than 700 million users slice and dice the information about who looked at their pages.
+
+In user-facing analytics, users won't put up with painfully slow analytics. When they can find insights in real-time, they are more open to a data-driven culture. So, we need a solution that can work for millions of users and offer fast, real-time insights. Businesses are working hard to speed up the steps needed to get enough data to answer everyone's questions. One such solution that comes to our rescue is "**Apache Pinot**."
+
+|![Evolution of Analytical Data](/assets/images/posts/transactional-data-vs-user-facing-analytical-data.png)|
+|:-:|
+|<sup>*Figure 1: Evolution of Analytical Data.*</sup>|<br/><br/>|
+
+Pinot joins hands with **Kafka** and **Presto** to provide low-latency, high-throughput user-facing analytics. We'll go through the reasons for using Kafka and Presto with Pinot, and how they complement each other.
+
+# A brief introduction to Apache Pinot
+
+Apache Pinot is a **real-time**, **distributed OLAP datastore** that was built for low-latency, high-throughput analytics, making it perfect for user-facing analytical workloads.
+
+It can ingest directly from streaming data sources like Apache Kafka and Amazon Kinesis and make the events available for querying right away. It can also ingest from batch data sources such as Hadoop HDFS, Amazon S3, Azure ADLS, and Google Cloud Storage.
+
+At the heart of the system is a *columnar store* equipped with advanced indexing and pre-aggregation techniques for low latency. This makes Pinot the best choice for real-time analytics.
 
 One of the best things about Pinot is that it has a pluggable architecture. The plugins make it easy to add support for any third-party system, such as an *execution framework*, a *filesystem*, or an *input format*. For example, there are plugins that make it easy to ingest in data and push it to our Pinot cluster:
 
@@ -27,9 +45,9 @@ One of the best things about Pinot is that it has a pluggable architecture. The 
 
 |![Apache Pinot Overview](/assets/images/posts/pinot-overview.png)|
 |:-:|
-|<sup>*Figure 1: Apache Pinot Overview. Image Courtesy: https://docs.pinot.apache.org.*</sup>|<br/><br/>|
+|<sup>*Figure 2: Apache Pinot Overview. Image Courtesy: https://docs.pinot.apache.org.*</sup>|<br/><br/>|
 
-# Pinot components
+# Taking a closer look into Pinot and its components
 
 Pinot has two kinds of components: 
 
@@ -48,7 +66,7 @@ A logical view is another way to see what the cluster looks like:
 
 |![Pinot Cluster's Logical View](/assets/images/posts/apache-pinot-cluster-logical-view.png)|
 |:-:|
-|<sup>*Figure 2: Pinot Cluster's Logical View.*</sup>|<br/><br/>|
+|<sup>*Figure 3: Pinot Cluster's Logical View.*</sup>|<br/><br/>|
 
 - A cluster contains tenants
 - Tenants contain tables
@@ -69,7 +87,7 @@ A table is a logical abstraction that represents a *collection of related data*.
 Pinot supports the following types of table:
 
 - **Offline** - Offline tables ingest pre-built pinot-segments from external data stores. This is generally used for *batch ingestion*.
-- **Realtime** - Realtime tables ingest data from streams such as Kafka and build segments from the consumed data.
+- **Real-time** - Real-time tables ingest data from streams such as Kafka and build segments from the consumed data.
 - **Hybrid** - Under the hood, a hybrid Pinot table is made up of both real-time and offline tables. All tables in Pinot are of the hybrid type by default.
 
 > The user who is querying the database doesn't need to know what kind of table it is. In the query, they only need to say the name of the table. Regardless of whether we have an offline table `myTable_OFFLINE`, a real-time table `myTable_REALTIME`, or a hybrid table containing both of these, the query will be:<br/><br/>`select count(*) from myTable`.<br/>
@@ -86,7 +104,7 @@ In the Pinot cluster, a table is modeled as a [**Helix resource**](https://helix
 
 |![Tenant -> Tables -> Segments](/assets/images/posts/apache-pinot-tenant-table-segment.png)|
 |:-:|
-|<sup>*Figure 3: Tenant -> Tables -> Segments.*</sup>|<br/><br/>|
+|<sup>*Figure 4: Tenant -> Tables -> Segments.*</sup>|<br/><br/>|
 
 
 ## Architectural components
@@ -115,7 +133,7 @@ Offline servers download segments from the segment store so that they can host a
 
 |![Offline Server](/assets/images/posts/apache-pinot-offline-server-flow.jpg)|
 |:-:|
-|<sup>*Figure 4: Offline Server. Image Courtesy: https://docs.pinot.apache.org.*</sup>|<br/><br/>|
+|<sup>*Figure 5: Offline Server. Image Courtesy: https://docs.pinot.apache.org.*</sup>|<br/><br/>|
 
 #### Real-time server
 
