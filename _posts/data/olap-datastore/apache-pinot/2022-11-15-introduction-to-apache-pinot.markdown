@@ -157,6 +157,8 @@ The node that observes and controls the participant nodes. In other words, the P
 
 The Pinot controller is really the brains of the cluster, and it takes care of cluster membership, figuring out what data is located on which server, and performing query routing. Pinot controller hosts Apache Helix (for cluster management), and together they are responsible for managing all the other components of the cluster.
 
+The Pinot controller has a user interface that lets us access and query Pinot tables. We can also use this user interface to add, edit, or delete schema and table configurations. We can access the user interface via controller's port (`http://localhost:9000`); port `9000` is the default controller's port.
+
 ### Minion
 
 TODO
@@ -207,6 +209,18 @@ The `tenants` section is where we define which tenant this table will belong to.
 }
  ```
  -->
+
+# Pinot's use cases and limitations
+
+## Use cases
+
+Pinot was built to execute real-time OLAP queries on massive amounts of streaming data and events with low latency. Pinot also supports batch use cases with a similar guarantee of low latency. It works well in situations where we need to do quick analytics, such as aggregations, on immutable data that's being received via real-time data ingestion. Also, Pinot is a great choice for querying time series data with lots of dimensions and metrics.
+
+## Limitations
+
+- Pinot is not a replacement for a database and should not be used as a source of truth.
+- Pinot is not a replacement for a search engine. 
+- Also, Pinot queries cannot span across multiple tables. Table joins and other operations may be accomplished using either the Trino-Pinot connector or the Presto-Pinot connector.
 
 # Getting started with Pinot
 
