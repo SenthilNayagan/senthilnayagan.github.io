@@ -58,11 +58,18 @@ post_class: post-template
 
 <!-- Subtitle -->
 <div class="article-post">
-{% if page.subtitle %}
-    <p></p>
-    <span style="font-weight: 50;">{{ page.subtitle }}</span>
-{% endif %}
-<hr class="grey_line"></hr>
+    {% if page.subtitle %}
+        <p></p>
+        <span style="font-weight: 50;">{{ page.subtitle }}</span>
+    {% endif %}
+    <hr class="grey_line"></hr>
+</div>
+
+<!-- Draft - Shows writing in progress -->
+<div class="article-post">
+    {% if page.draft %}
+        <span style="font-size: 90%; color:#CB4335;"><b>Writing in progress:</b> If you have any suggestions for improving the content or notice any inaccuracies, please email me at <a href="mailto:hello@senthilnayagan.com">hello@senthilnayagan.com</a>. Thanks!</span>        
+    {% endif %}
 </div>
 
 <!-- Featured Image -->

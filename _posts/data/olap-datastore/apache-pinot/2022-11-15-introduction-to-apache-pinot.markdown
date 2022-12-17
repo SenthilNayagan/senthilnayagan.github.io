@@ -11,6 +11,7 @@ categories: apache-pinot
 featured: false
 hidden: true
 toc: true
+draft: true
 ---
 
 # Towards user-facing analytics
@@ -96,16 +97,33 @@ Pinot supports the following types of table:
 
 ### Segment
 
-Pinot breaks a table into multiple small *chunks of data* known as **segments** and stores these segments in a deep-store such as HDFS as well as Pinot servers. 
+Pinot breaks a table into multiple small *chunks of data* known as **segments** that are distributed across Pinot servers. These segments can also be stored in a **deep store** such as HDFS. Pinot segment is a unit of *partitioning*, *replication*, and *query processing* that represents a subset of the input data along with the specified indices. By using Apache Helix, the Pinot controller defines how data is partitioned and replicated across servers. Using this information, the Pinot broker disperses queries to individual servers and gather them back together.
 
-For offline tables, segments are built outside of pinot and uploaded using a distributed executor such as Apache Spark or Hadoop. For real-time tables, segments are built in a specific interval inside Pinot.
+There are two types of segments:
+
+1. Mutable segments
+2. Immutable segments
+
+#### Mutable segments
+
+Mutable segments are those that are being stored in memory in the `CONSUMING` state. Each mutable segment organizes the incoming data into a columnar format and updates the needed indices, such as inverted or text indexes, in real time. The mutable segments are available for query processing right away, as they’re being built. Therefore, given the low ingestion overhead, Pinot provides the same level of data freshness as Kafka.
+
+#### Immutable segments
+
+Each server decides on its own when it is time to save the in-memory segments to disk, based on a set of criteria. Such on-disk segments are referred to as immutable segments.
+
+The criteria used for creating immutable segments can either be:
+
+- the amount of time elapsed since the segment was initially created
+- the number of rows consumed
+
+> **Note:** For offline tables, segments are built outside of pinot and uploaded using a distributed executor such as Apache Spark or Hadoop. For real-time tables, segments are built in a specific interval inside Pinot.
 
 In the Pinot cluster, a table is modeled as a [**Helix resource**](https://helix.apache.org/Concepts.html){:target="_blank"} and each segment of a table is modeled as a [**Helix Partition**](https://helix.apache.org/Concepts.html){:target="_blank"}.
 
 |![Tenant -> Tables -> Segments](/assets/images/posts/apache-pinot-tenant-table-segment.png)|
 |:-:|
 |<sup>*Figure 4: Tenant -> Tables -> Segments.*</sup>|<br/><br/>|
-
 
 ## Architectural components
 
