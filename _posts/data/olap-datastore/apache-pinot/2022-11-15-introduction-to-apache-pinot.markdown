@@ -14,7 +14,9 @@ toc: true
 draft: true
 ---
 
-# Towards user-facing analytics
+This post is for you if you are curious about Apache Pinot but are just getting started with it.
+
+# The evolution of analytics
 
 ## Batch analytics
 
