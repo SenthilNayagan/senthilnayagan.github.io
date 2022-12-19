@@ -9,8 +9,9 @@ date: 2022-11-15 00:00:00 +0530
 tags: ["apache-pinot", "pinot", "olap", "olap-datastore"]
 categories: apache-pinot
 featured: false
-hidden: true
+hidden: false
 toc: true
+draft: true
 ---
 
 # Towards user-facing analytics
@@ -174,9 +175,9 @@ Real-time servers ingest directly from a real-time stream like Kafka. Based on c
 
 Broker handles Pinot queries. They accept queries from clients and forward them to the right Pinot servers. They gather results from the servers and combine them into a single response to send back to the client.
 
-|![Broker interaction with other components](/assets/images/posts/apache-pinot-broker-interactions.jpg)|
+|![Broker interaction with other components](/assets/images/posts/apache-pinot-broker-interactions.png)|
 |:-:|
-|<sup>*Figure 8: Broker interaction with other components. Image Courtesy: https://docs.pinot.apache.org.*</sup>|<br/><br/>|
+|<sup>*Figure 8: Broker interaction with other components.*</sup>|<br/><br/>|
 
 ### Controller
 
