@@ -11,22 +11,27 @@ categories: apache-pinot
 featured: false
 hidden: true
 toc: true
-draft: true
 ---
 
 # Towards user-facing analytics
 
+## Batch analytics
+
+In the past, analytics were often performed in batches, resulting in high-latency analytics where queries returned responses based on data that was at least minutes, hours, or even days old, depending on the volume of data and available computing resources. The generation of **business intelligence** (**BI**) reports is one use case of batch analytics. Business intelligence uses historical data to report on business trends and answer strategic questions. In batch-style analytics, jobs are generally scheduled to run at night or during non-business hours. So, it often provides us with insights *after the fact*. Most of the time, these batch-type insights are based on stale data (old information), so we can't rely on them. So no one anymore wants to do analytics in batches.
+
+## Real-time analytics
+
 Real-time analytics have now become something that every business ought to do. It's the process of applying logic to data to get insights or draw conclusions *right away* so that better decisions can be made. "Real time" in real-time analytics means being able to get business insights *as soon as possible* after data (transactions) enters the system. With real-time analytics, businesses can act quickly. They can take advantage of chances and stop problems before they happen.
 
-As opposed to real-time analytics, batch-style analytics may take hours or even days to get results, depending on the volume of data and available computing resources. In batch-style analytics, jobs are generally scheduled to run at night or during non-business hours. So, it often provides us with insights *after the fact*. Most of the time, these batch-type insights are based on stale data (old information), so we can't rely on them. So no one anymore wants to do analytics in batches.
+## User-facing analytics
 
-In the world we live in now, everyone needs analytical data, not just business analysts or top-level executives. We call this kind of analytics "**user-facing analytics**." One good example of this is LinkedIn's "Who viewed your profile" feature, which lets all of its more than 700 million users slice and dice the information about who looked at their pages.
+In the world we live in now, everyone needs real-time analytical data, not just business analysts or top-level executives. We call this kind of analytics "**user-facing analytics**" also known as "**customer-facing analytics**." One good example of this is LinkedIn's "Who viewed your profile" feature, which lets all of its more than 700 million users slice and dice the information about who looked at their pages.
 
-In user-facing analytics, users won't put up with painfully slow analytics. When they can find insights in real-time, they are more open to a data-driven culture. So, we need a solution that can work for millions of users and offer fast, real-time insights. Businesses are working hard to speed up the steps needed to get enough data to answer everyone's questions. One such solution that comes to our rescue is "**Apache Pinot**."
+In user-facing analytics, users won't put up with painfully slow analytics. When they can find insights in real-time, they are more open to a data-driven culture. So, we need a solution that can scale to millions of users and offer fast, real-time insights. Businesses are working hard to speed up the steps needed to get enough data to answer everyone's questions. One such solution that comes to our rescue is "**Apache Pinot**."
 
-|![Evolution of Analytical Data](/assets/images/posts/transactional-data-vs-user-facing-analytical-data.png)|
+|![Batch Analytics to User-facing Analytics](/assets/images/posts/batch-analytics-to-user-facing-analytics.png)|
 |:-:|
-|<sup>*Figure 1: Evolution of Analytical Data.*</sup>|<br/><br/>|
+|<sup>*Figure 1: Batch Analytics to User-facing Analytics.*</sup>|<br/><br/>|
 
 Pinot joins hands with **Kafka** and **Presto** to provide low-latency, high-throughput user-facing analytics. We'll go through the reasons for using Kafka and Presto with Pinot, and how they complement each other.
 
@@ -50,6 +55,10 @@ One of the best things about Pinot is that it has a pluggable architecture. The 
 
 # Taking a closer look into Pinot and its components
 
+|![Pinot Architecture](/assets/images/posts/apache-pinot-architecture.png)|
+|:-:|
+|<sup>*Figure 3: Pinot Architecture.*</sup>|<br/><br/>|
+
 Pinot has two kinds of components: 
 
 - Logical components
@@ -67,7 +76,7 @@ A logical view is another way to see what the cluster looks like:
 
 |![Pinot Cluster's Logical View](/assets/images/posts/apache-pinot-cluster-logical-view.png)|
 |:-:|
-|<sup>*Figure 3: Pinot Cluster's Logical View.*</sup>|<br/><br/>|
+|<sup>*Figure 4: Pinot Cluster's Logical View.*</sup>|<br/><br/>|
 
 - A cluster contains tenants
 - Tenants contain tables
@@ -123,7 +132,7 @@ In the Pinot cluster, a table is modeled as a [**Helix resource**](https://helix
 
 |![Tenant -> Tables -> Segments](/assets/images/posts/apache-pinot-tenant-table-segment.png)|
 |:-:|
-|<sup>*Figure 4: Tenant -> Tables -> Segments.*</sup>|<br/><br/>|
+|<sup>*Figure 5: Tenant -> Tables -> Segments.*</sup>|<br/><br/>|
 
 ## Architectural components
 
@@ -149,17 +158,17 @@ There are two types of servers:
 
 Offline servers download segments from the segment store so that they can host and serve queries. When a new segment is uploaded to the controller, the controller decides which servers will host the new segment and notifies them to download the segment from the segment store. When the servers get this notification, they download the segment file and put the segment on the server so that they can handle queries.
 
-|![Offline Server](/assets/images/posts/apache-pinot-offline-server-flow.jpg)|
+|![Offline Server shows Batch Ingestion](/assets/images/posts/apache-pinot-batch-ingestion.png)|
 |:-:|
-|<sup>*Figure 5: Offline Server. Image Courtesy: https://docs.pinot.apache.org.*</sup>|<br/><br/>|
+|<sup>*Figure 6: Offline Server shows Batch Ingestion.*</sup>|<br/><br/>|
 
 #### Real-time server
 
 Real-time servers ingest directly from a real-time stream like Kafka. Based on certain thresholds, they make segments of the data that has been stored in-memory from time to time. Then, this segment is saved to the segment store.
 
-|![Real-time Server](/assets/images/posts/apache-pinot-realtime-server-flow.jpg)|
+|![Real-time Ingestion](/assets/images/posts/apache-pinot-realtime-ingestion.png)|
 |:-:|
-|<sup>*Figure 5: Real-time Server. Image Courtesy: https://docs.pinot.apache.org.*</sup>|<br/><br/>|
+|<sup>*Figure 7: Real-time Ingestion.*</sup>|<br/><br/>|
 
 ### Broker
 
@@ -167,7 +176,7 @@ Broker handles Pinot queries. They accept queries from clients and forward them 
 
 |![Broker interaction with other components](/assets/images/posts/apache-pinot-broker-interactions.jpg)|
 |:-:|
-|<sup>*Figure 6: Broker interaction with other components. Image Courtesy: https://docs.pinot.apache.org.*</sup>|<br/><br/>|
+|<sup>*Figure 8: Broker interaction with other components. Image Courtesy: https://docs.pinot.apache.org.*</sup>|<br/><br/>|
 
 ### Controller
 
@@ -179,7 +188,7 @@ The Pinot controller has a user interface that lets us access and query Pinot ta
 
 ### Minion
 
-TODO
+I'm not going into Minion details here. If you'd like to learn more about Minion, check out the official document [here](https://docs.pinot.apache.org/basics/components/minion){:target="_blank"}.
 
 <!--Helix divides nodes into logical components based on their responsibilities:
 
@@ -238,9 +247,11 @@ Pinot was built to execute real-time OLAP queries on massive amounts of streamin
 
 - Pinot is not a replacement for a database and should not be used as a source of truth.
 - Pinot is not a replacement for a search engine. 
-- Also, Pinot queries cannot span across multiple tables. Table joins and other operations may be accomplished using either the Trino-Pinot connector or the Presto-Pinot connector.
+- Also, Pinot queries cannot span across multiple tables. Table joins and other operations, such as a large amount of data shuffling, may be accomplished using either the Trino-Pinot connector or the Presto-Pinot connector.
 
-# Getting started with Pinot
+# Getting started with Pino
+
+This section describes how to launch a Pinot cluster and ingest data into it.
 
 ## Running Pinot components
 
@@ -250,86 +261,11 @@ Apache Pinot can be run in any of the following environments:
 - in **Docker**
 - in **Kubernetes**
 
-Here, we'll discuss about [how to deploy and run Apache Pinot locally]({{ site.baseurl }}/apache-pinot/2022/running-apache-pinot-locally){:target="_blank"} on our computer.
-
+[Read more]({{ site.baseurl }}/apache-pinot/2022/running-apache-pinot-locally){:target="_blank"} to find out how to deploy and run Apache Pinot locally on our computer.
 
 ## Getting data into Pinot
 
-There are multiple ways for importing data into Pinot. 
-
-To get the data into Pinot, we need a **Pinot schema** and a **Pinot table**. Data ingestion in Pinot involves the following steps:
-
-- Read data and generate compressed segment files from input
-- Upload the compressed segment files to output location
-
-Once the location is available to the controller, it can notify the servers to download the segment files and populate the tables. Any distributed executor, such as Hadoop, Spark, Flink, etc., can be used to do the steps above.
-
-> **Note:** Pinot provides runners for Spark out of the box. So we don't have to write a single line of code as users. We can also write runners for any other executor using the provided interfaces.
-
-### Pinot schema
-
-The schema catagorizes columns into:
-
-- **Dimensions** (dimensionFieldSpecs)
-- **Metrics** (metricFieldSpecs)
-- **Time** (timeFieldSpecs)
-
-```text
-{
-  "schemaName": "sample",
-  "dimensionFieldSpecs": [..]
-  "metricFieldSpecs": [..]
-  "timeFieldSpecs": {..}
-}
-```
-
-#### Schema dimensions
-
-A sample schema with the dimensions (`dimensionFieldSpecs`) `studentID`, `firstName`, `lastName`, `gender`, and `subject` is shown below:
-
-```json
-{
-  "schemaName": "sample",
-  "dimensionFieldSpecs": [
-    {
-      "name": "studentID",
-      "dataType": "INT"
-    },
-    {
-      "name": "firstName",
-      "dataType": "STRING"
-    },
-    {
-      "name": "lastName",
-      "dataType": "STRING"
-    },
-    {
-      "name": "gender",
-      "dataType": "STRING"
-    },
-    {
-      "name": "subject",
-      "dataType": "STRING"
-    }
-  ],
-  "metricFieldSpecs": [
-    {
-      "name": "score",
-      "dataType": "STRING"
-    }
-  ],
-  "timeFieldSpecs": {
-    "incomingGranularitySpec": {
-      "name": "timestamp",
-      "dataType": "LONG",
-      "timeFormat": "EPOCH",
-      "timeType": "MILLISECONDS"
-    }
-  }
-}
-```
-
-### Pinot table
+There are multiple ways of importing data into Pinot. [Read more]({{ site.baseurl }}/apache-pinot/2022/getting-data-into-pinot){:target="_blank"}.
 
 # Frequently asked questions (FAQ)
 
