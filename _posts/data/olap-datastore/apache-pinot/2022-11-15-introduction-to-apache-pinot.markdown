@@ -14,7 +14,7 @@ toc: true
 draft: true
 ---
 
-This post is for you if you are curious about Apache Pinot but are just getting started with it. In this post, we'll talk a little more about Apache Pinot to help you understand the components that make up a Pinot cluster. We will also get hands-on experience by running samples that include both streaming and batch data imports into Pinot and then analytical query executions. 
+This post is for you if you are curious about Apache Pinot but are just getting started with it. We'll go a little deeper into Apache Pinot to help you understand the components that make up a Pinot cluster. We will also get hands-on experience by running samples that include both streaming and batch data imports into Pinot and then analytical query executions. 
 
 # The evolution of analytics
 
