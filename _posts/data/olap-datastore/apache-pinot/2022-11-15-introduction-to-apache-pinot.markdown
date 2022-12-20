@@ -300,7 +300,7 @@ There are multiple ways of importing data into Pinot. [Read more]({{ site.baseu
 - **Throughput:** Should support millions of concurrent users querying the data.
 - **Data freshness:** Insights must be fresh (current), up to date, and relevant.
 
-## What is queries per second (QPS?
+## What is queries per second (QPS)?
 
 Queries per second (QPS) is a way to measure how many searches a system for obtaining information, like a search engine or a database, gets in one second. The term is often used for any request-response system, in which case it should be called **requests per second** (**RPS**).
 
