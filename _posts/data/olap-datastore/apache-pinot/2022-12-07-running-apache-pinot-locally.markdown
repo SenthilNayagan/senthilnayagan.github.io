@@ -56,12 +56,12 @@ We can launch Apache Pinot either by using **Quick Start** or by launching all o
 
 ## Launching Apache Pinot using Quick Start
 
-Pinot comes with `QuickStart` commands that let us run all of its components in a *single process* and import pre-built data sets. If we’re new to Pinot, these QuickStarts are a good place to start.
+Pinot comes with `QuickStart` commands that let us run all of its components in a *single process* and import pre-built data sets. If you are new to Pinot, these QuickStarts are a good place to start.
 
-For instance, the following quick-start launches Apache Pinot with a baseball dataset pre-loaded:
+The following quick-start launches Apache Pinot with a set of sample data, schemas, and table configurations already loaded into it. 
 
 ```bash
-./bin/pinot-admin.sh QuickStart -type batch
+./bin/pinot-admin.sh QuickStart
 ```
 
 The above quick-start command does the following:

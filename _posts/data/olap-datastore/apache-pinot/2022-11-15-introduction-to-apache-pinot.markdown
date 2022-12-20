@@ -24,11 +24,11 @@ In the past, analytics were often performed in batches, resulting in high-latenc
 
 ## Real-time analytics
 
-Real-time analytics have now become something that every business ought to do. It's the process of applying logic to data to get insights or draw conclusions *right away* so that better decisions can be made. "Real time" in real-time analytics means being able to get business insights *as soon as possible* after data (transactions) enters the system. Having access to analytics in real time is important for day-to-day operations, financial intelligence, triaging incidents, and allowing businesses to act quickly. The most crucial benefit of real-time analytics is that it allows you to take opportunities and stop problems before they happen.
+Real-time analytics has now become something that every business ought to do. It's the process of applying logic to data to get insights or draw conclusions *right away* so that better decisions can be made. "Real-time" in real-time analytics means being able to get business insights *as soon as possible* after data (transactions) enters the system. Having access to analytics in real-time is important for day-to-day operations, financial intelligence, triaging incidents, and allowing businesses to act quickly. The most crucial benefit of real-time analytics is that it allows you to take opportunities and stop problems before they happen.
 
 ## User-facing analytics
 
-In the world we live in now, everyone needs real-time analytical data, not just business analysts or top-level executives. We call this kind of analytics "**user-facing analytics**" also known as "**customer-facing analytics**." One good example of this is LinkedIn's "Who viewed your profile" feature, which lets all of its more than 700 million users slice and dice the information about who looked at their pages. Uber created the UberEats Restaurant Manager app to give restaurant owners real-time insights on their order data. This is yet another excellent example of how the best use of user-facing real-time analytics improved the end-user experience. 
+In the world we live in now, everyone needs real-time analytical data, not just business analysts or top-level executives. We call this kind of analytics "**user-facing analytics**" also known as "**customer-facing analytics**." One good example of this is LinkedIn's "Who viewed your profile" feature, which lets all of its more than 700 million users slice and dices the information about who looked at their pages. Uber created the UberEats Restaurant Manager app to give restaurant owners real-time insights into their order data. This is yet another excellent example of how the best use of user-facing real-time analytics improved the end-user experience. 
 
 In user-facing analytics, users won't put up with painfully slow analytics. When they can find insights in real-time, they are more open to a data-driven culture. So, we need a solution that can scale to millions of users and offer fast, real-time insights. Businesses are working hard to speed up the steps needed to get enough data to answer everyone's questions. One such solution that comes to our rescue is "**Apache Pinot**."
 
@@ -62,11 +62,11 @@ Now, the question comes: **Can't Pinot just do what it's supposed to do without 
 
 Presto and Pinot are distinct technologies, yet they actually complement each other quite well for conducting and storing ad-hoc data analytics. Presto supports SQL, but users can't use it to get to fresh aggregated data. Pinot, on the other hand, can give us *second-level data freshness*, but it doesn't support flexible queries.
 
-> **Second-level data freshness:** Second-level data freshness is the amount of time between when the organization gets the data and when it can be used for in-depth analytics.
+> **Second-level data freshness:** Second-level data freshness is the amount of time between when the organisation gets the data and when it can be used for in-depth analytics.
 
 |![Pinot vs. Presto](/assets/images/posts/pinot-vs-presto.png)|
 |:-:|
-|<sup>*Figure 2: Pinot vs. Presto.*</sup>|<br/><br/>|
+|<sup>*Figure 3: Pinot vs. Presto.*</sup>|<br/><br/>|
 
 ## Need for Kafka
 
@@ -78,7 +78,7 @@ In the following sections, we will go over how Pinot leverages Kafka and Presto,
 
 |![Pinot Architecture](/assets/images/posts/apache-pinot-architecture.png)|
 |:-:|
-|<sup>*Figure 3: Pinot Architecture.*</sup>|<br/><br/>|
+|<sup>*Figure 4: Pinot Architecture.*</sup>|<br/><br/>|
 
 Pinot has two kinds of components: 
 
@@ -97,11 +97,11 @@ A logical view is another way to see what the cluster looks like:
 
 |![Pinot Cluster's Logical View](/assets/images/posts/apache-pinot-cluster-logical-view.png)|
 |:-:|
-|<sup>*Figure 4: Pinot Cluster's Logical View.*</sup>|<br/><br/>|
+|<sup>*Figure 5: Pinot Cluster's Logical View.*</sup>|<br/><br/>|
 
 - A cluster contains tenants
 - Tenants contain tables
-- Tables contain segments.
+- Tables contain segments
 
 ### Tenant
 
@@ -153,7 +153,7 @@ In the Pinot cluster, a table is modeled as a [**Helix resource**](https://helix
 
 |![Tenant -> Tables -> Segments](/assets/images/posts/apache-pinot-tenant-table-segment.png)|
 |:-:|
-|<sup>*Figure 5: Tenant -> Tables -> Segments.*</sup>|<br/><br/>|
+|<sup>*Figure 6: Tenant -> Tables -> Segments.*</sup>|<br/><br/>|
 
 ## Architectural components
 
@@ -181,7 +181,7 @@ Offline servers download segments from the segment store so that they can host a
 
 |![Offline Server shows Batch Ingestion](/assets/images/posts/apache-pinot-batch-ingestion.png)|
 |:-:|
-|<sup>*Figure 6: Offline Server shows Batch Ingestion.*</sup>|<br/><br/>|
+|<sup>*Figure 7: Offline Server shows Batch Ingestion.*</sup>|<br/><br/>|
 
 #### Real-time server
 
@@ -189,7 +189,7 @@ Real-time servers ingest directly from a real-time stream like Kafka. Based on c
 
 |![Real-time Ingestion](/assets/images/posts/apache-pinot-realtime-ingestion.png)|
 |:-:|
-|<sup>*Figure 7: Real-time Ingestion.*</sup>|<br/><br/>|
+|<sup>*Figure 8: Real-time Ingestion.*</sup>|<br/><br/>|
 
 ### Broker
 
@@ -197,7 +197,7 @@ Broker handles Pinot queries. They accept queries from clients and forward them 
 
 |![Broker interaction with other components](/assets/images/posts/apache-pinot-broker-interactions.png)|
 |:-:|
-|<sup>*Figure 8: Broker interaction with other components.*</sup>|<br/><br/>|
+|<sup>*Figure 9: Broker interaction with other components.*</sup>|<br/><br/>|
 
 ### Controller
 
@@ -274,7 +274,7 @@ Pinot was built to execute real-time OLAP queries on massive amounts of streamin
   - It also cannot handle a large amount of data shuffle. 
   - Table joins and other operations, such as a large amount of data shuffling, may be accomplished using either the Trino-Pinot connector or the Presto-Pinot connector.
 
-# Getting started with Pino
+# Getting started with Pinot
 
 This section describes how to launch a Pinot cluster and ingest data into it.
 

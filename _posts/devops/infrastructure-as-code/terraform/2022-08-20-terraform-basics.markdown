@@ -21,13 +21,13 @@ Infrastructure as Code (IaC) refers to the *process of managing and provisioning
 
 Configuration files that describe our infrastructure are produced by IaC. Changes and sharing of configurations are made simpler as a result. An IaC process produces the same environment every time it deploys, just as the same source code always generates the same binary.
 
-## It's version control
+## It's a version control
 
 Version control is an important aspect of IaC, and our configuration files, like any other software source code file, can be under source control.
 
 ## The difficulty of manually managing infrastructure
 
-Managing IT infrastructure was traditionally a manual process where deployment team would physically install and configure servers. Unsurprisingly, this manual process would frequently result in a number of issues.
+Managing IT infrastructure was traditionally a manual process where the deployment team would physically install and configure servers. Unsurprisingly, this manual process would frequently result in several issues.
 
 ## Uses "declarative" definition files
 
@@ -45,7 +45,7 @@ The first major benefit of IaC is its speed. We can quickly set up your entire i
 
 Manual processes are prone to errors. Infrastructure as a code solves this problem by making the configuration files the single source of truth. That way, we can be certain that the same configurations will be deployed repeatedly and without error.
 
-### Traceability with the help of version control system
+### Traceability with the help of a version control system
 
 We have full traceability of the changes made to each configuration because we can version IaC configuration files like any other source code file, which allows us to save time troubleshooting the problem.
 
@@ -73,7 +73,7 @@ Below are the core Terraform concepts:
 
 ### Blocks
 
-Block are *containers* for other content, and they typically represent the configuration of an object, such as a *resource*. The block body is delimited by the `{` and `}` characters.
+Blocks are *containers* for other content, and they typically represent the configuration of an object, such as a *resource*. The block body is delimited by the `{` and `}` characters.
 
 Blocks have:
 
@@ -120,7 +120,7 @@ The Terraform language uses a limited number of top-level block types, which are
 
 ### Providers
 
-Terraform makes use of *providers* to connect the Terraform engine to the supported cloud platform. Other than a cloud platform, there are other things that can be considered a provider, such as platform-as-a-service (PaaS) (e.g., Kubernetes) and other software-as-a-service (SaaS). 
+Terraform makes use of *providers* to connect the Terraform engine to the supported cloud platform. Other than a cloud platform, other things can be considered a provider, such as platform-as-a-service (PaaS) (e.g., Kubernetes) and other software-as-a-service (SaaS). 
 
 It's a *Terraform plugin* that serves as a *translation layer*, allowing Terraform to communicate with a variety of cloud providers, databases, and services.
 
@@ -134,7 +134,7 @@ Terraform's most popular providers, including major cloud providers:
 
 Each provider adds a set of *resource types* and/or *data sources* that Terraform can manage. Every resource type is implemented by a provider; Terraform cannot manage any infrastructure without providers.
 
-#### Where providers come from?
+#### Where do providers come from?
 
 The [Terraform Registry](https://registry.terraform.io/browse/providers){:target="_blank"} is the primary directory of publicly available Terraform providers, hosting providers for the majority of major infrastructure platforms.
 
@@ -148,12 +148,12 @@ resource "<PROVIDER>_<TYPE>" "<NAME>" {
 }
 ```
 
-The PROVIDER above is the name of the *prodiver* (e.g., aws). The TYPE is the type of *resource* to create in that provider (e.g., instance, which represents an EC2 instance). The NAME is the *identifier* we can use throughout the Terraform code to refer to this resource. The CONFIG consists of one or more arguments that are specific to that resource (e.g., ami = "ami-1fc93908a9403"). 
+The PROVIDER above is the name of the *provider* (e.g., aws). The TYPE is the type of *resource* to create in that provider (e.g., instance, which represents an EC2 instance). The NAME is the *identifier* we can use throughout the Terraform code to refer to this resource. The CONFIG consists of one or more arguments that are specific to that resource (e.g., ami = "ami-1fc93908a9403"). 
 
 For instance, the **aws_instance** resource has many different arguments, but for now, we only need to set the following:
 
 - **`ami`**: The Amazon Machine Image (AMI) to run on the EC2 instance.
-- **`instance_type`**: The type of EC2 Instance that will be used. Each EC2 Instance type has a different amount of CPU, memory, disk space, and networking capacity. We uses `t2.micro` instance. T2 instances are available to use in the [AWS Free Tier](http://aws.amazon.com/free){:target="_blank"}, which includes 750 hours of Linux and Windows `t2.micro` instances each month for one year for new AWS customers.
+- **`instance_type`**: The type of EC2 Instance that will be used. Each EC2 Instance type has a different amount of CPU, memory, disk space, and networking capacity. We use `t2.micro` instance. T2 instances are available to use in the [AWS Free Tier](http://aws.amazon.com/free){:target="_blank"}, which includes 750 hours of Linux and Windows `t2.micro` instances each month for one year for new AWS customers.
 
 An example of a simple configuration is as follows:
 
