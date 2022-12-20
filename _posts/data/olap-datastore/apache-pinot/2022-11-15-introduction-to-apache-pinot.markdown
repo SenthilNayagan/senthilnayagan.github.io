@@ -36,16 +36,6 @@ In user-facing analytics, users won't put up with painfully slow analytics. When
 |:-:|
 |<sup>*Figure 1: Batch Analytics to User-facing Analytics.*</sup>|<br/><br/>|
 
-Pinot joins hands with **Kafka** and **Presto** to provide low-latency, high-throughput user-facing analytics. We'll go through the reasons for using Kafka and Presto with Pinot, and how they complement each other.
-
-Presto and Pinot are distinct technologies, yet they actually complement each other quite well for conducting and storing ad-hoc data analytics. Presto supports SQL, but users can't use it to get to fresh aggregated data. Pinot, on the other hand, can give us *second-level data freshness*, but it doesn't support flexible queries.
-
-> **Second-level data freshness:** Second-level data freshness is the amount of time between when the organization gets the data and when it can be used for in-depth analytics.
-
-<!--|![Pinot vs. Presto](/assets/images/posts/pinot-vs-presto.png)|
-|:-:|
-|<sup>*Figure 2: Pinot vs. Presto.*</sup>|<br/><br/>|-->
-
 # A brief introduction to Apache Pinot
 
 Apache Pinot is a **real-time**, **distributed OLAP datastore** that was built for low-latency, high-throughput analytics, making it perfect for user-facing analytical workloads.
@@ -63,6 +53,24 @@ One of the best things about Pinot is that it has a pluggable architecture. The 
 |![Apache Pinot Overview](/assets/images/posts/pinot-overview.png)|
 |:-:|
 |<sup>*Figure 2: Apache Pinot Overview. Image Courtesy: https://docs.pinot.apache.org.*</sup>|<br/><br/>|
+
+# Pinot joins hands with Presto and Kafka
+
+Now, the question comes: **Can't Pinot just do what it's supposed to do without help from Kafka and Presto?** Due to some limitations, Pinot depends on Kafka and Presto to provide user-facing analytics with high throughput and low latency. We’ll go through the reasons for using Kafka and Presto with Pinot, and how they complement each other.
+
+## Need for Presto
+
+Presto and Pinot are distinct technologies, yet they actually complement each other quite well for conducting and storing ad-hoc data analytics. Presto supports SQL, but users can't use it to get to fresh aggregated data. Pinot, on the other hand, can give us *second-level data freshness*, but it doesn't support flexible queries.
+
+> **Second-level data freshness:** Second-level data freshness is the amount of time between when the organization gets the data and when it can be used for in-depth analytics.
+
+|![Pinot vs. Presto](/assets/images/posts/pinot-vs-presto.png)|
+|:-:|
+|<sup>*Figure 2: Pinot vs. Presto.*</sup>|<br/><br/>|
+
+## Need for Kafka
+
+TODO
 
 # Taking a closer look into Pinot and its components
 
