@@ -248,9 +248,13 @@ Pinot was built to execute real-time OLAP queries on massive amounts of streamin
 
 ## Limitations
 
-- Pinot is not a replacement for a database and should not be used as a source of truth.
-- Pinot is not a replacement for a search engine. 
-- Also, Pinot queries cannot span across multiple tables. Table joins and other operations, such as a large amount of data shuffling, may be accomplished using either the Trino-Pinot connector or the Presto-Pinot connector.
+- Pinot is not a replacement for a database and should not be used as a source of truth. Pinot is not a replacement for a search engine.
+
+### SQL query limitations:
+  - Pinot does not fully support ANI-SQL at this time. 
+  - It doesn't allow cross-table queries (using JOINs) as well as nested queries. 
+  - It also cannot handle a large amount of data shuffle. 
+  - Table joins and other operations, such as a large amount of data shuffling, may be accomplished using either the Trino-Pinot connector or the Presto-Pinot connector.
 
 # Getting started with Pino
 
