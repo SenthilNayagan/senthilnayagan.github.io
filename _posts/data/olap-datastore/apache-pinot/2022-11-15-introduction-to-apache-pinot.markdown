@@ -44,7 +44,7 @@ It can ingest directly from streaming data sources like Apache Kafka and Amazon 
 
 At the heart of the system is a *columnar store* equipped with advanced indexing and pre-aggregation techniques for low latency. This makes Pinot the best choice for real-time analytics.
 
-One of the best things about Pinot is that it has a pluggable architecture. The plugins make it easy to add support for any third-party system, such as an *execution framework*, a *filesystem*, or an *input format*. For example, there are plugins that make it easy to ingest in data and push it to our Pinot cluster:
+One of the best things about Pinot is that it has a pluggable architecture. The plugins make it easy to add support for any third-party system, such as an *execution framework*, a *filesystem*, or an *input format*. For example, some plugins make it easy to ingest data and push it to our Pinot cluster:
 
 - `pinot-batch-ingestion-spark`
 - `pinot-s3`
@@ -60,7 +60,7 @@ Now, the question comes: **Can't Pinot just do what it's supposed to do without 
 
 ## Need for Presto
 
-Presto and Pinot are distinct technologies, yet they actually complement each other quite well for conducting and storing ad-hoc data analytics. Presto supports SQL, but users can't use it to get to fresh aggregated data. Pinot, on the other hand, can give us *second-level data freshness*, but it doesn't support flexible queries.
+Presto and Pinot are distinct technologies, yet they complement each other quite well for conducting and storing ad-hoc data analytics. Presto supports SQL, but users can't use it to get fresh aggregated data. Pinot, on the other hand, can give us *second-level data freshness*, but it doesn't support flexible queries.
 
 > **Second-level data freshness:** Second-level data freshness is the amount of time between when the organisation gets the data and when it can be used for in-depth analytics.
 
