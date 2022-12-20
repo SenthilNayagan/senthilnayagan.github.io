@@ -28,13 +28,13 @@ Real-time analytics have now become something that every business ought to do. I
 
 ## User-facing analytics
 
-In the world we live in now, everyone needs real-time analytical data, not just business analysts or top-level executives. We call this kind of analytics "**user-facing analytics**" also known as "**customer-facing analytics**." One good example of this is LinkedIn's "Who viewed your profile" feature, which lets all of its more than 700 million users slice and dice the information about who looked at their pages.
+In the world we live in now, everyone needs real-time analytical data, not just business analysts or top-level executives. We call this kind of analytics "**user-facing analytics**" also known as "**customer-facing analytics**." One good example of this is LinkedIn's "Who viewed your profile" feature, which lets all of its more than 700 million users slice and dice the information about who looked at their pages. Uber created the UberEats Restaurant Manager app to give restaurant owners real-time insights on their order data. This is yet another excellent example of how the best use of user-facing real-time analytics improved the end-user experience. 
 
 In user-facing analytics, users won't put up with painfully slow analytics. When they can find insights in real-time, they are more open to a data-driven culture. So, we need a solution that can scale to millions of users and offer fast, real-time insights. Businesses are working hard to speed up the steps needed to get enough data to answer everyone's questions. One such solution that comes to our rescue is "**Apache Pinot**."
 
-|![Batch Analytics to User-facing Analytics](/assets/images/posts/batch-analytics-to-user-facing-analytics.png)|
+|![The Evolution of Analytics](/assets/images/posts/batch-analytics-to-user-facing-analytics.png)|
 |:-:|
-|<sup>*Figure 1: Batch Analytics to User-facing Analytics.*</sup>|<br/><br/>|
+|<sup>*Figure 1: The Evolution of Analytics.*</sup>|<br/><br/>|
 
 # A brief introduction to Apache Pinot
 
@@ -70,7 +70,9 @@ Presto and Pinot are distinct technologies, yet they actually complement each ot
 
 ## Need for Kafka
 
-TODO
+Apache Kafka has become the industry standard for real-time event streaming because it flawlessly addresses the issue of real-time ingestion of data with high velocity, volume, and variability. Integrating Kafka with Pinot makes the event streams available for querying in real-time. This allows segments to be available for query processing as they’re being built.
+
+In the following sections, we will go over how Pinot leverages Kafka and Presto, making it perfect for user-facing analytical workloads at scale.
 
 # Taking a closer look into Pinot and its components
 
