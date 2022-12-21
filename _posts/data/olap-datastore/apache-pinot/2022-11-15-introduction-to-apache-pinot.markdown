@@ -149,7 +149,7 @@ The criteria used for creating immutable segments can either be:
 
 > **Note:** For offline tables, segments are built outside of pinot and uploaded using a distributed executor such as Apache Spark or Hadoop. For real-time tables, segments are built in a specific interval inside Pinot.
 
-In the Pinot cluster, a table is modeled as a [**Helix resource**](https://helix.apache.org/Concepts.html){:target="_blank"} and each segment of a table is modeled as a [**Helix Partition**](https://helix.apache.org/Concepts.html){:target="_blank"}.
+A table is represented as a [**Helix resource**](https://helix.apache.org/Concepts.html){:target="_blank"} in the Pinot cluster, and each segment of a table is represented as a [**Helix Partition**](https://helix.apache.org/Concepts.html){:target="_blank"}.
 
 |![Tenant -> Tables -> Segments](/assets/images/posts/apache-pinot-tenant-table-segment.png)|
 |:-:|

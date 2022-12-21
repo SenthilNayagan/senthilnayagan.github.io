@@ -28,6 +28,12 @@ By default, Pinot doesn't have a storage layer, so if the system crashes, none o
 
 # Importing or ingesting data into Apache Pinot
 
+The following Pinot architectural diagram shows how batch and real-time ingestions use different data flows:
+
+|![Pinot Architecture](/assets/images/posts/apache-pinot-architecture.png)|
+|:-:|
+|<sup>*Figure 1: Pinot Architecture.*</sup>|<br/><br/>|
+
 ## Ingestion readiness
 
 We can either ingest **offline data** or **realtime data** into Pinot. To get both offline and real-time data into Pinot, we need: 
