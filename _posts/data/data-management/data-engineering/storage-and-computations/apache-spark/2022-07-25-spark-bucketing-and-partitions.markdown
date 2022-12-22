@@ -10,11 +10,14 @@ tags: ["apache-spark", "partition", "bucketing"]
 categories: apache-spark
 featured: false
 hidden: false
+draft: true
 ---
 
-> **Writing in progress:** If you have any suggestions for improving the content or notice any inaccuracies, please email me at [hello@senthilnayagan.com](mailto:hello@senthilnayagan.com). Thanks!
-
 Partitioning and bucketing are used to improve the reading of data by reducing the cost of shuffles, the need for serialization, and the amount of network traffic.
+
+# Partitioning in Spark
+
+Apache Spark's **speed** in processing huge amounts of data is one of its primary selling points. Spark's speed comes from its ability to allow developers to run multiple tasks *in parallel* across hundreds of machines in a cluster or across multiple cores on a desktop. It's all possible because Apache Spark **RDDs** serve as the *main interface*. These RDDs are partitioned and run in parallel behind the scenes.
 
 # Bucketing in Spark
 
