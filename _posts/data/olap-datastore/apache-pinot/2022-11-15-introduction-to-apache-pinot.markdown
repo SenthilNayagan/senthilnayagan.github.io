@@ -14,7 +14,7 @@ toc: true
 draft: true
 ---
 
-This post is for you if you are curious about Apache Pinot but are just getting started with it. We'll go a little deeper into Apache Pinot to help you understand the components that make up a Pinot cluster. We will also get hands-on experience by running samples that include both streaming and batch data imports into Pinot and then analytical query executions. 
+This post is for you if you are curious about Apache Pinot but are just getting started with it. We'll go a little deeper into Apache Pinot to help you understand the components that make up a Pinot cluster. We will also get hands-on experience by running samples that include both streaming and batch data imports into Pinot and then analytical query executions.
 
 # The evolution of analytics
 
@@ -36,6 +36,8 @@ In user-facing analytics, users won't put up with painfully slow analytics. When
 |:-:|
 |<sup>*Figure 1: The Evolution of Analytics.*</sup>|<br/><br/>|
 
+---
+
 # A brief introduction to Apache Pinot
 
 Apache Pinot is a **real-time**, **distributed OLAP datastore** that was built for low-latency, high-throughput analytics, making it perfect for user-facing analytical workloads.
@@ -53,6 +55,8 @@ One of the best things about Pinot is that it has a pluggable architecture. The 
 |![Apache Pinot Overview](/assets/images/posts/pinot-overview.png)|
 |:-:|
 |<sup>*Figure 2: Apache Pinot Overview. Image Courtesy: https://docs.pinot.apache.org.*</sup>|<br/><br/>|
+
+---
 
 # Pinot joins hands with Presto and Kafka
 
@@ -73,6 +77,8 @@ Presto and Pinot are distinct technologies, yet they complement each other quite
 Apache Kafka has become the industry standard for real-time event streaming because it flawlessly addresses the issue of real-time ingestion of data with high velocity, volume, and variability. Integrating Kafka with Pinot makes the event streams available for querying in real-time. This allows segments to be available for query processing as they’re being built.
 
 In the following sections, we will go over how Pinot leverages Kafka and Presto, making it perfect for user-facing analytical workloads at scale.
+
+---
 
 # Taking a closer look into Pinot and its components
 
@@ -258,6 +264,8 @@ The `tenants` section is where we define which tenant this table will belong to.
  ```
  -->
 
+ ---
+
 # Pinot's use cases and limitations
 
 ## Use cases
@@ -273,6 +281,8 @@ Pinot was built to execute real-time OLAP queries on massive amounts of streamin
   - It doesn't allow cross-table queries (using JOINs) as well as nested queries. 
   - It also cannot handle a large amount of data shuffle. 
   - Table joins and other operations, such as a large amount of data shuffling, may be accomplished using either the Trino-Pinot connector or the Presto-Pinot connector.
+
+---
 
 # Getting started with Pinot
 
@@ -291,6 +301,8 @@ Apache Pinot can be run in any of the following environments:
 ## Getting data into Pinot
 
 There are multiple ways of importing data into Pinot. [Read more]({{ site.baseurl }}/apache-pinot/2022/getting-data-into-pinot){:target="_blank"}.
+
+---
 
 # Frequently asked questions (FAQ)
 

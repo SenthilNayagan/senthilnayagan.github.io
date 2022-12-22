@@ -11,6 +11,7 @@ categories: apache-spark
 featured: false
 hidden: false
 draft: true
+toc: true
 ---
 
 Partitioning and bucketing are used to improve the reading of data by reducing the cost of shuffles, the need for serialization, and the amount of network traffic.
@@ -44,8 +45,27 @@ Spark generally does a good job splitting data into partitons to ensure parallel
 To get us started with partitioning, here are some fundamentals:
 
 - Every node (worker) in a Spark cluster contains one or more partitions of any size.
-- By default, the number of partitions is set to the total number of cores on all the executor nodes.
+- By default, the number of partitions is set to the total number of cores on all the executor nodes. This is the most effective method for determining the total number of spark partitions in an RDD.
 - The number of partitions in Spark is configurable.
+- Only one partition is processed by one executor at a time, so the size and number of partitions handed to the executor are directly proportional to the time it takes to complete them.
+
+## Types of partitioning
+
+Apache Spark supports two types of partitioning:
+
+- **Hash partitioning**
+- **Range partitioning**
+
+Partitioning decisions are influenced by a wide variety of factors, including:
+
+- Available resources (CPU, memory, and network)
+- Transformation used to derive RDD - 
+
+## How do we get the right number of partitions?
+
+TODO
+
+---
 
 # Bucketing in Spark
 
