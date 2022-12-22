@@ -17,7 +17,25 @@ Partitioning and bucketing are used to improve the reading of data by reducing t
 
 # Partitioning in Spark
 
-Apache Spark's **speed** in processing huge amounts of data is one of its primary selling points. Spark's speed comes from its ability to allow developers to run multiple tasks *in parallel* across hundreds of machines in a cluster or across multiple cores on a desktop. It's all possible because Apache Spark **RDDs** serve as the *main interface*. These RDDs are partitioned and run in parallel behind the scenes.
+Apache Spark's **speed** in processing huge amounts of data is one of its primary selling points. Spark's speed comes from its ability to allow developers to run multiple tasks *in parallel* and *independently* across hundreds of machines in a cluster or across multiple cores on a desktop. It's all possible because Apache Spark **RDDs** serve as the *main interface*. These RDDs are partitioned and run in parallel behind the scenes.
+
+If RDDs are too large to fit on a single node, they must be partitioned (distributed) across many nodes. Apache Spark *automatically* partitions RDDs and distributes them across different nodes. Partitions are the fundamental building blocks of parallelism in Apache Spark. We can think of "partition" as a subset of our data.
+
+|![Data Partitioned](/assets/images/posts/apache-spark-data-partitions.png)|
+|:-:|
+|<sup>*Figure 1: Data Partitioned.*</sup>|<br/><br/>|
+
+Spark is a distributed computing system, so it can operate on data partitons in parallel. A transformation or any sort of computation on a data partitons is called a **task** and each task generally takes place on one Spark core. Optimal partitioning in Spark strikes a balance between read performance and write performance.
+
+Please take the following considerations into account:
+
+- Too many partitions can slow down the time it takes to read and force Spark to create more tasks to process the data, which could cause the driver to get an "out of memory" error.
+- Overly large partitions can even cause executor "out of memory" errors.
+- On the other hand, a lack of or few partitions may indicate that Spark's parallelism is not being fully utilized, resulting in long computation and write times.
+
+Spark generally does a good job splitting data into partitons to ensure parallelism and efficient computing. However, when dealing with very large data sets, it is sometimes necessary to manually adjust partitions to ensure optimal performance. As a rule of thumb, 128 megabytes is a good size for a data partition when dealing with data sets above 1 gigabyte. That is, **# Partitions = Dataset Size (mb) / 128 mb**.
+
+
 
 # Bucketing in Spark
 
