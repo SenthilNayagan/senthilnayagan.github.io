@@ -32,7 +32,10 @@ Spark is a distributed computing system, so it can operate on data partitons in 
 
 Please take the following considerations into account:
 
-- **Too many partitions:** Too many partitions can slow down the time it takes to read and force Spark to create more tasks to process the data, which could cause the driver to get an "out of memory" error. Overly large partitions can even cause executor "out of memory" errors.
+- **Too many partitions:** Too many partitions can slow down the time it takes to read and force Spark to create more tasks to process the data, which could cause the driver to get an "out of memory" error.
+- **Too many small partitions** could waste a lot of time because the cluster would spend more time coordinating tasks and sending data between workers than actually doing the job. 
+- **Overly large partitions** can even cause executor "out of memory" errors.
+- Using a **small number of large partitions** may leave some worker cores idle. If one of the workers is falling behind the other, we may have to wait a long time for the last task to be completed. If a worker goes down, we'll have to reprocess a huge amount of data.
 - **Few or lack of partitions:** On the other hand, a lack of or few partitions may indicate that Spark's parallelism is not being fully utilized, resulting in long computation and write times. Furthermore, having few partitions may result in skewed data and inefficient resource use.
 - **Data skewness:** We refer to data as "skewed" when it is not evenly distributed among workers. In Apache Spark, transformations like `join`, `groupBy`, and `orderBy` change data partitioning, which results in data skewness. Common effects of skewed data include the following:
     - **Slow running stages or tasks:** Certain operations will take very long to complete because of the huge volume of data that a particular worker must process.
@@ -66,11 +69,20 @@ Partitioning decisions are influenced by a wide variety of factors, including:
 - Available resources (CPU, memory, and network)
 - Transformation used to derive RDD - 
 
-## How do we get the right number of partitions?
+## How do we get the right partitions?
 
-Apache Spark can only run a single concurrent task for every partition of an RDD, up to the number of available cores in our cluster (and probably 2 to 3 times that). Hence, it is common practice to choose a good number of partitions equal to or more than the number of executors to maximize parallelism. By calling `sc.defaultParallelism` we can get the default level of parallelism defined on `SparkContext`. The maximum size of a partition is limited by how much memory an executor has.
+### Recommended number of partitions
+Apache Spark can only run a single concurrent task for every partition of an RDD, up to the number of available cores in our cluster (and probably 2 to 3 times that). Hence, it is common practice to choose a good number of partitions equal to or more than the number of executors to maximize parallelism. For example, if we have eight worker nodes and each node has four CPU cores, we may set the number of partitions to be anywhere from 64 (2 x 8 x 4) to 96 (3 x 8 x 4).
 
-Understanding and carefully choosing the right operators for actions like `reduceByKey` or `aggregateByKey` so that our driver is not put under pressure and the tasks are properly executed on executors.
+By calling `sc.defaultParallelism` we can get the default level of parallelism defined on `SparkContext`. The maximum size of a partition is limited by how much memory an executor has.
+
+### Recommended partition size
+
+The average partition size ranges from 100 MB to 1000 MB. For instance, if we have 30 GB of data to be processed, there should be anywhere between 30 (30 gb / 1000 mb) and 300 (30 gb / 100 mb) partitions.
+
+### Other factors to be considered
+
+It is important to understand and carefully choose the right operators for actions like `reduceByKey` or `aggregateByKey` so that our driver is not put under pressure and the tasks are properly executed on executors. 
 
 When data is skewed, it is recommended to use an appropriate key that can spread the load evenly. Sometimes, it may not be clear which re-partitioning key should be used to make sure data is evenly distributed. In these situations, we can use methods like **salting**, which involves adding a new fake or random key and using it along with the current key for better distribution of data. This is how it works: `saltKey = actualJoinKey + randomFakeKey`.
 
