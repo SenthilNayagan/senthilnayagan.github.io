@@ -24,11 +24,11 @@ Partitioning can also deliver a significant speed benefit by reducing the amount
 
 If RDDs are too large to fit on a single node, they must be partitioned (distributed) across many nodes. Apache Spark *automatically* partitions RDDs and distributes them across different nodes. Partitions are the fundamental building blocks of parallelism in Apache Spark. We can think of "partition" as a subset of our data.
 
-|![Data Partitioned](/assets/images/posts/apache-spark-data-partitions.png)|
+|![Data Partitioned by Spark](/assets/images/posts/apache-spark-data-partitions.png)|
 |:-:|
-|<sup>*Figure 1: Data Partitioned.*</sup>|<br/><br/>|
+|<sup>*Figure 1: Data Partitioned by Spark.*</sup>|<br/><br/>|
 
-Spark is a distributed computing system, so it can operate on data partitons in parallel. A transformation or any sort of computation on a data partitons is called a **task** and each task generally takes place on one Spark core. Optimal partitioning in Spark strikes a balance between read performance and write performance.
+Spark is a distributed computing system, so it can operate on data partitons in parallel. A transformation or any sort of computation on a data partitons is called a **task** and each task generally takes place on one core. As there is one task for every partition, the total number of tasks is the same as the total number of partitions. Optimal partitioning in Spark strikes a balance between read performance and write performance.
 
 Please take the following considerations into account:
 
