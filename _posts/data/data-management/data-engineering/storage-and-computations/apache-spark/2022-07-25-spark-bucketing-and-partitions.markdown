@@ -51,10 +51,15 @@ To get us started with partitioning, here are some fundamentals:
 
 ## Types of partitioning
 
-Apache Spark supports two types of partitioning:
+Apache Spark supports two types of partitioning strategies:
 
 - **Hash partitioning** (Default partition)
 - **Range partitioning**
+
+Let's understand the rationale for the need for a variety of partitioning strategies. A suitable data partitioning strategy will enable us to reduce the skew in the data. Keep in mind that Spark limits the size of a partition to 2 GB, although there may be cases when a single key includes several relevant records that add up to more than 2 GB in total. If we have partitioned our data on that specific key, then we are going to have problems shuffling that data; we will get errors. So, picking the right partitioning strategy is very important. It also helps us get the best performance out of different operations like `join` and `groupby`.
+
+Choosing the right partitioning strategy will help us to co-locate the data. The term "collate the data" refers to the fact that data that is processed together is also stored together. By doing so, we may avoid redistributing data around the cluster every time we do a `groupby` or `join` operation.
+
 
 Partitioning decisions are influenced by a wide variety of factors, including:
 
