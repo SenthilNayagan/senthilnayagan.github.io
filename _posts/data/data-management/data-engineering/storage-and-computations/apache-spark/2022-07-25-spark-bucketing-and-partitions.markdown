@@ -53,7 +53,7 @@ To get us started with partitioning, here are some fundamentals:
 
 Apache Spark supports two types of partitioning:
 
-- **Hash partitioning**
+- **Hash partitioning** (Default partition)
 - **Range partitioning**
 
 Partitioning decisions are influenced by a wide variety of factors, including:
@@ -63,7 +63,11 @@ Partitioning decisions are influenced by a wide variety of factors, including:
 
 ## How do we get the right number of partitions?
 
-TODO
+Apache Spark can only run a single concurrent task for every partition of an RDD, up to the number of available cores in our cluster (and probably 2 to 3 times that). Hence, it is common practice to choose a good number of partitions equal to or more than the number of executors to maximize parallelism. By calling `sc.defaultParallelism` we can get the default level of parallelism defined on `SparkContext`. The maximum size of a partition is limited by how much memory an executor has.
+
+Understanding and carefully choosing the right operators for actions like `reduceByKey` or `aggregateByKey` so that our driver is not put under pressure and the tasks are properly executed on executors.
+
+When data is skewed, it is recommended to use an appropriate key that can spread the load evenly. Sometimes, it may not be clear which re-partitioning key should be used to make sure data is evenly distributed. In these situations, we can use methods like **salting**, which involves adding a new fake or random key and using it along with the current key for better distribution of data. This is how it works: `saltKey = actualJoinKey + randomFakeKey`.
 
 ---
 
