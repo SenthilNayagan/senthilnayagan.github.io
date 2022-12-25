@@ -12,7 +12,7 @@ featured: false
 hidden: false
 ---
 
-Before we get into *envelop encryption*, let's go over some of the fundamentals of encryption/decyption.
+Before we get into *envelop encryption*, let's go over some of the fundamentals of encryption/decryption.
 
 #### Key material
 
