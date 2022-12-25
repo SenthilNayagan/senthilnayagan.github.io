@@ -18,11 +18,17 @@ Partitioning and bucketing are used to improve the reading of data by reducing t
 
 # Partitioning in Spark
 
-Apache Spark's **speed** in processing huge amounts of data is one of its primary selling points. Spark's speed comes from its ability to allow developers to run multiple tasks *in parallel* and *independently* across hundreds of machines in a cluster or across multiple cores on a desktop. It's all possible because Apache Spark **RDDs** serve as the *main interface*. These RDDs are partitioned and run in parallel behind the scenes.
+Apache Spark's **speed** in processing huge amounts of data is one of its primary selling points. Spark's speed comes from its ability to allow developers to run multiple tasks *in parallel* and *independently* across hundreds of machines in a cluster or across multiple cores on a desktop. It's all possible because Apache Spark **RDDs** serve as the *main interface*. These RDDs are *partitioned* and run in parallel behind the scenes.
 
-Partitioning can also deliver a significant speed benefit by reducing the amount of data to be shuffled across the network.
+So, what exactly is the partition in Spark? Spark organizes data into smaller pieces called "partitions",  each of which is kept on a separate node in the cluster. Each partition is an atomic chunk of data. We can think of partition as a subset of our data. Simply said, it's a subset of the superset.
 
-If RDDs are too large to fit on a single node, they must be partitioned (distributed) across many nodes. Apache Spark *automatically* partitions RDDs and distributes them across different nodes. Partitions are the fundamental building blocks of parallelism in Apache Spark. We can think of "partition" as a subset of our data.
+## Parallelism
+
+Partitions are the fundamental building blocks of parallelism in Apache Spark. Spark's parallelism enables developers to parallelly execute several tasks across a large number of nodes in a cluster.
+
+## Co-location
+
+Partitioning can also deliver a significant speed benefit by reducing the amount of data to be shuffled across the network. If RDDs are too large to fit on a single node, they must be partitioned (distributed) across many nodes. Apache Spark *automatically* partitions RDDs and distributes them across different nodes.
 
 |![Data Partitioned by Spark](/assets/images/posts/apache-spark-data-partitions.png)|
 |:-:|
@@ -44,19 +50,63 @@ Please take the following considerations into account:
 
 Spark generally does a good job splitting data into partitons to ensure parallelism and efficient computing. However, when dealing with very large data sets, it is sometimes necessary to manually adjust partitions to ensure optimal performance. As a rule of thumb, 128 megabytes is a good size for a data partition when dealing with data sets above 1 gigabyte. That is, **# Partitions = Dataset Size (mb) / 128 mb**.
 
-
 To get us started with partitioning, here are some fundamentals:
 
 - Every node (worker) in a Spark cluster contains one or more partitions of any size.
-- By default, the number of partitions is set to the total number of cores on all the executor nodes. This is the most effective method for determining the total number of spark partitions in an RDD.
+- By default, Spark tries to set the number of partitions automatically based on the total number of cores on all the executor nodes. This is the most effective method for determining the total number of spark partitions in an RDD. However, we can manually set it by passing it as a second parameter to `parallelize` (for example, `sc.parallelize(data, 10)`). 
 - The number of partitions in Spark is configurable.
 - Only one partition is processed by one executor at a time, so the size and number of partitions handed to the executor are directly proportional to the time it takes to complete them.
 
 ## Types of partitioning
 
+We bring in the data, transform it, and then either write it somewhere else or display it on our console or screen. This allows us to further divide Spark partitions into three categories. 
+
+- **Input partition** - Control the size of the partition using `spark.sql.files.maxPartitionBytes`
+- **Output partition** - Control the size of the partition using `coalesce` (to reduce partition) and `repartition` (to reduce or increase partition)
+- **Shuffle partition** - Control the partition count using `spark.sql.shuffle.partitions`
+
+### Input partition
+
+When a job is submitted for processing, each data partition is sent to the specific executors. Each executor processes one partition at a time. Hence, the time it takes each executor to process data is directly proportional to the size and number of partitions. The more partitions there are, the more work will be distributed (shuffled) among the executors. There will also be fewer partitions. This means that processing will be done faster and in larger chunks.
+
+#### What influences the input partition?
+
+Since the input partition is a critical parameter for performance, how should we control the size of the partition? There is a property in Spark called `spark.sql.files.maxPartitionBytes`. This property can actually control the number of bytes that are packed into a single partition, and if we want to check the number of partitions, we can do it by using the method `getNumPartitions()`.
+
+By using the aforementioned property and method, we can know the default number of partitions being created and then modify it to our liking. We want to control the size of the partitions because we don't want too much data shuffled around. Because each partition is sent to an executor, the number of partitions determines how much data is shuffled around.
+
+### Output partition
+
+Output partition is essential whenever we are reading data for further processing. If there are several partitions, data will be spread over many files, making it more time-consuming to search for specific criteria in the first query. Whenever our job is finished and we are writing back the data, at that point, the output partition determines the number of files that will get returned to our disk. The larger the number of partitions, the larger the number of files. The total number of files generated is directly proportional to the number of output partitions.
+
+Also, our memory utilization will be higher while processing the metadata table, as it contains several partitions. Having said that, the output partition influences how we write the data back into the disk after the job is completed.
+
+#### What influences the output partition?
+
+There are two methods that can influence the way our data is written:
+
+- `repartition` - The repartitioning operation *reduces* or *increases* the number of partitions. This is a costly operation that involves shuffling all the data over the network and redistributing it so that it is spread out evenly. Data is serialized, transferred, and then de-serialized throughout this process.
+- `coalesce` - The coalesce operation uses existing partitions and *reduces* (doesn't increase) the number of partitions to minimize the amount of data that's shuffled. Coalesce results in partitions that contain different amounts of data. In most cases, the coalesce runs faster than the repartition operation.
+
+By using `coalesce` and `repartition`, we can limit the output to a certain number of files or tasks.
+
+### Shuffle partition
+
+In cases of wide transformations, where data is required from other partitions, Spark performs a data shuffle. We can't avoid making such wide transformations, but we can reduce the impact on performance by configuring parameters. Wide transformations use shuffle partitions to shuffle data. We can control the shuffle partition using `spark.sql.shuffle.partitions`.
+
+> **Note:** The number of partitions is fixed at 200 regardless of the data's size or the number of executors.
+
+#### How to set shuffle partition?
+
+When the data is small, the number of partitions should be reduced; otherwise, too many partitions containing less data will be created, resulting in too many tasks with less data to process.
+
+When working with a big dataset, it may be beneficial to increase the shuffle partition from the default value of 200.
+
+## Spark partitioning strategies 
+
 Apache Spark supports two types of partitioning strategies:
 
-- **Hash partitioning** (Default partition)
+- **Hash partitioning** (Default)
 - **Range partitioning**
 
 Let's understand the rationale for the need for a variety of partitioning strategies. A suitable data partitioning strategy will enable us to reduce the skew in the data. Keep in mind that Spark limits the size of a partition to 2 GB, although there may be cases when a single key includes several relevant records that add up to more than 2 GB in total. If we have partitioned our data on that specific key, then we are going to have problems shuffling that data; we will get errors. So, picking the right partitioning strategy is very important. It also helps us get the best performance out of different operations like `join` and `groupby`.
@@ -85,6 +135,10 @@ The average partition size ranges from 100 MB to 1000 MB. For instance, if we ha
 It is important to understand and carefully choose the right operators for actions like `reduceByKey` or `aggregateByKey` so that our driver is not put under pressure and the tasks are properly executed on executors. 
 
 When data is skewed, it is recommended to use an appropriate key that can spread the load evenly. Sometimes, it may not be clear which re-partitioning key should be used to make sure data is evenly distributed. In these situations, we can use methods like **salting**, which involves adding a new fake or random key and using it along with the current key for better distribution of data. This is how it works: `saltKey = actualJoinKey + randomFakeKey`.
+
+## Hive partition vs. Spark partition
+
+Hive partition is not the same as Spark partition. The two are completely different. They are both subsets of the superset, but a Spark partition is a piece of data that has been broken down so that it can be processed in parallel in memory. Hive partition is in disk storage and persistence.
 
 ---
 
