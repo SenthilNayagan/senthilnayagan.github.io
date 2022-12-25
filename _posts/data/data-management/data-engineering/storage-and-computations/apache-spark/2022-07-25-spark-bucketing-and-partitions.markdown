@@ -71,7 +71,9 @@ When a job is submitted for processing, each data partition is sent to the speci
 
 #### What influences the input partition?
 
-Since the input partition is a critical parameter for performance, how should we control the size of the partition? There is a property in Spark called `spark.sql.files.maxPartitionBytes`. This property can actually control the number of bytes that are packed into a single partition, and if we want to check the number of partitions, we can do it by using the method `getNumPartitions()`.
+Since the input partition is a critical parameter for performance, how should we control the size of the partition? Spark has a property called `spark.sql.files.maxPartitionBytes` that can be used to control the number of bytes that are packed into a single partition when reading files, and if we want to check the number of partitions, we can do it by using the method `rdd.getNumPartitions()`. The another alternative method to get the number of partitions is `rdd.partitions.size()`.
+
+> **Note:** The default value for `spark.sql.files.maxPartitionBytes` property is 134217728 (128 MB). In the event that the size of either the input file block or a single partition is more than 128 MB, Spark will split the read into multiple partitions. This configuration is effective only when using file-based sources such as Parquet, JSON and ORC.
 
 By using the aforementioned property and method, we can know the default number of partitions being created and then modify it to our liking. We want to control the size of the partitions because we don't want too much data shuffled around. Because each partition is sent to an executor, the number of partitions determines how much data is shuffled around.
 
