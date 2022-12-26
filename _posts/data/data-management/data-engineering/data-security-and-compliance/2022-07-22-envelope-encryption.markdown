@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Envelope Encryption"
+title:  "Envelope Encryption - Putting Your Encryption Key in an Envelope Is the Safer Option"
 kicker: "Data Governance"
 subtitle: "Envelope encryption is a way of encrypting plaintext data using a key and then encrypting that key using an another key. This strategy is intended not just to make things more secure but also to enhance performance."
 image: assets/images/posts-cover-images/envelope-encryption.jpg

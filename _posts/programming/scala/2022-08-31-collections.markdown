@@ -15,7 +15,7 @@ toc: true
 
 # Introduction to collections
 
-A collection is an object in programming that *groups multiple elements into a single unit*. A collection is comparable to a container that can hold various items. A collection has an underlying data structure that is used to *store*, *manipulate*, and *retrieve* aggregate data in an *efficient manner*. When collections are used, readability and maintenance of code are enhanced.
+A collection is an object in programming that *groups multiple elements into a single unit*. It's comparable to a container that can hold various items. A collection has an underlying data structure that is used to *store*, *manipulate*, and *retrieve* aggregate data in an *efficient manner*. When collections are used, readability and maintenance of the code are enhanced.
 
 # Collections in Scala
 
@@ -30,7 +30,7 @@ All collection classes are found in the following packages:
 - `scala.collection.immutable`
 - `scala.collection.mutable`
 
-> **Scala collections vs Java collections:** Scala collections are notably distinct from Java collections. For example, the Scala `List` class differs significantly from the Java `List` classes, including the immutable nature of the Scala `List`.
+> **Scala collections vs Java collections:** Scala collections are notably distinct from Java collections. For example, the Scala `List` class differs significantly from the Java `List` class, including the immutable nature of the Scala `List`.
 
 ## Mutable collections
 
@@ -66,7 +66,7 @@ buf2.mapInPlace(_ * 2)
 buf2 // ArrayBuffer(0, 2, 4, 6, 10, 12, 16, 18)
 ```
 
-## What are *trasnformer* methods?
+## What are *transformer* methods?
 
 Transformer methods are collection methods that transform an input collection into a new output collection based on an algorithm we provide. 
 
@@ -192,12 +192,12 @@ Some algorithms need iterating over all collection components. Although traversi
 
 ## What is trie data structure?
 
-Trie (to be pronounced as "try") (aka *d0igital tree*) is an ordered tree data structure used for *storing* and *searching* a specific key from a set. A trie is also called a *digital tree* or *prefix tree*, which is a type of *k-ary* search tree. These keys are most often strings.
+Trie (to be pronounced as "try") is an ordered tree data structure used for *storing* and *searching* a specific key from a set. A trie is also called a *digital tree* or *prefix tree*, which is a type of *k-ary* search tree. These keys are most often strings.
 
 > **k-ary tree:** An m-ary tree (also known as **n-ary**, **k-ary**, or **k-way** tree) is a rooted tree in graph theory in which each node has no more than `m` children. For example, a **binary tree** has a max of 2 children (m = 2), and a **ternary tree** is another case with m = 3, which limits its children to three.
  
- ## What is identity function?
+## What is identity function?
 
- An identity function is a basic function that takes one argument and the only thing it does is return the same argument value, unchanged i.e., f(x) = x. In other words, it's a function in which the output is the same as the input. The identity function is also known as an *identity map* or *identity relation*.
+An identity function is a basic function that takes one argument and the only thing it does is return the same argument value, unchanged i.e., `f(x) = x`. In other words, it's a function in which the output is the same as the input. The identity function is also known as an *identity map* or *identity relation*.
  
- Just like zero is a neutral value for additions, an identity function is a nuetral value for higher-order-functions.
+Just like zero is a neutral value for additions, an identity function is a nuetral value for higher-order-functions.

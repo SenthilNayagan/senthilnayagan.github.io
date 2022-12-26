@@ -20,21 +20,23 @@ Apache Airflow is, at its core, an open-source *batch* task scheduler. It's a pl
 
 # How to set SLA in Airflow
 
-SLA stands for service-level agreement. It's a contract between a service provider and its customer that outlines the level of service expected by the customer and guaranteed by the vendor. In the context of Airflow, an SLA is the maximum amount of time a task or a DAG should take to complete. It serves to notify us if our DAG or tasks are taking longer than expected to complete.
+SLA stands for **service-level agreement**. It's a *contract* between a service provider and its customer that outlines *the level of service expected by the customer and guaranteed by the vendor*. 
 
-> Note that SLAs are set to the DAG execution date rather than the task start time.
+In the context of Airflow, an SLA is the maximum amount of time a task or a DAG should take to complete. It serves to notify us if our DAG or tasks are taking longer than expected to complete.
+
+> **Note:** SLAs are set to the DAG execution date rather than the task start time.
 
 # SLA misses
 
-An SLA miss occurs if a task or DAG is not finished within the allotted time for the SLA. If an SLA is missed, an email alert is sent detailing the list of tasks that missed their SLA. Additionally, the event is also logged in the database and made available in the web UI. The web UI gives us broad details about which task failed to meet the SLA and when. Additionally, it shows if an email was sent after the SLA failed.
+An SLA miss occurs if a task or DAG is not finished within the allotted time for the SLA. 
 
 When SLAs are breached, Airflow can perform the following:
 
-- Sends an email alert notification
-- Logs the event in the database
-- Invokes the callback function via `sla_miss_callback`.
+- **Sends an email alert notification**
+- **Logs the event in the database** - the event is also logged in the database and made available in the web UI. The web UI gives us broad details about which task failed to meet the SLA and when. Additionally, it shows if an email was sent after the SLA failed.
+- **Invokes the callback function** via `sla_miss_callback`.
 
-> It should be noted that only scheduled tasks will be checked against the SLA. An SLA miss won't be triggered by manually initiated tasks!
+> **Note:** It should be noted that only scheduled tasks will be checked against the SLA. An SLA miss won't be triggered by manually initiated tasks!
 
 # Defining SLAs
 
@@ -80,7 +82,7 @@ Note that milliseconds and microseconds available, but those wouldn't apply to A
 
 ### Cancelling or failing the task
 
-Timeouts can help cancel or fail a task if it takes longer than the allotted time. If we want to cancel a task after a certain runtime is reached, we can set the execution_timeout attribute to a `datetime.timedelta` value that represents the longest permitted duration.
+Timeouts can help cancel or fail a task if it takes longer than the allotted time. If we want to cancel a task after a certain runtime is reached, we can set the `execution_timeout` attribute to a `datetime.timedelta` value that represents the longest permitted duration.
 
 Having said that, the maximum duration permitted for each execution is managed by the property `execution_timeout`. If it's breached, the task times out and `AirflowTaskTimeout` is raised.
 
