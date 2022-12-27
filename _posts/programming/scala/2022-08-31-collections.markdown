@@ -159,7 +159,7 @@ List(10, 7, 21, 8, 3, 17)
 
 ## What are the benefits of using Vector in Scala over List or other data structures?
 
-Vector is an immutable data structure introduced in version 2.8 of the Scala to address the inefficiencies of random access in other existing data structures. Vector is a persistent data structure using structural sharing. Random access is much better with vector, especially when the collection is big.
+Vector is an immutable data structure introduced in version 2.8 of the Scala to address the inefficiencies of random access in other existing data structures. Vector is a persistent data structure using **structural sharing**. Random access is much better with vector, especially when the collection is big.
 
 ### Implemention
 
