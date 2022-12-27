@@ -43,3 +43,17 @@ TODO
 TODO
 
 ## What is stateful?
+
+TODO
+
+### Advantages of stateful
+
+TODO
+
+### Disadvantages of stateful
+
+TODO
+
+# Conclusions
+
+TODO
