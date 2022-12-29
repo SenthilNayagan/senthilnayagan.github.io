@@ -17,13 +17,15 @@ toc: true
 
 Nginx (pronounced "engine x") is free and open source software that may serve as:
 
-- Web server
+- Web/HTTP server
 - Reverse proxy
 - Load balancer
 - Mail proxy
 - HTTP cache
 
 The initial goal was to develop a fast and reliable web server, in particular to address the **C10K** problem. The C10k problem is the inability of a server to handle a high number of concurrent connections (the 10K) before running out of available resources.
+
+> **Web server vs. HTTP server:** Web servers and HTTP servers are almost synonymous, with just a few minor distinctions. The term "web server" is more generic or broad. The term "HTTP server" often refers to a software implementation of the server part of the protocol (HTTP protocol). A web server typically uses more than one protocol, and HTTP is one of them. To communicate with clients such as web browsers, the HTTP server employs the HTTP protocol. Since web servers use the HTTP protocol to serve clients, one could say that the HTTP server is contained within the web server.
 
 In addition to its HTTP server capabilities, NGINX can also function as a proxy server for email (IMAP, POP3, and SMTP) and a reverse proxy and load balancer for HTTP, TCP, and UDP servers.
 
@@ -110,7 +112,9 @@ upstream sample.server.com {
 }
 ```
 
-In the above case, the name of the upstream is `sample.server.com`. A server's ID address and other parameters can be specified in an additional directive called `server`, that is contained inside the upstream. Default `upstream` use weighted round-robin balancing method. According to the above example, every three requests will be distributed as follows: Two requests go to server1 (172.42.42.10), and the other request goes to server2 (172.42.42.20). Any time a server is unable to fulfill a request, the request is sent to the next available server. This process continues until all available servers have been exhausted. If no servers responded successfully, the client will receive the result of the communication with the last server.
+In the above case, the name of the upstream is `sample.server.com`. A server's ID address and other parameters can be specified in an additional directive called `server`, that is contained inside the upstream. Default `upstream` use weighted round-robin balancing method. 
+
+According to the above example, every three requests will be distributed as follows: Two requests go to server1 (172.42.42.10), and the other request goes to server2 (172.42.42.20). Any time a server is unable to fulfill a request, the request is sent to the next available server. This process continues until all available servers have been exhausted. If no servers responded successfully, the client will receive the result of the communication with the last server.
 
 ---
 
