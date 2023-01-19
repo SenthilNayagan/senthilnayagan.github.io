@@ -3,7 +3,7 @@ name: "Senthil Nayagan"
 title: "Senthil Nayagan"
 description: "This is my tech blog where I explore various programming concepts. I’m also making up stories about design and coding principles. I'm striving to make all of my posts as simple as possible while yet providing sufficient information for you to grasp the concepts."
 logo: 'assets/images/logo.png'
-favicon: 'assets/images/logo_solid_bg.png'
+favicon: 'assets/images/logo.png'
 baseurl: ""
 disqus: 'senthilnayagan'
 mailchimp-list: 'https://gmail.us17.list-manage.com/subscribe?u=155954fdd35cc37fcbfab134a&id=acc42a78d4'
