@@ -18,44 +18,37 @@
             <h2 class="card-title">
                 <a class="text-dark" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
                 {% if post.rating %}
-                <div class="mb-2 mt-2 font-weight-normal">
-                {% include star_rating_postbox.html %}
-                </div>
+                    <div class="mb-2 mt-2 font-weight-normal">
+                        {% include star_rating_postbox.html %}
+                    </div>
                 {% endif %}
             </h2>
-            <h4 class="card-text">{{ post.subtitle | strip_html | truncatewords:30 }}</h4>
+            <span class="card-text">{{ post.subtitle | strip_html | truncatewords:50 }}</span>
         </div>
-        <div class="card-footer bg-white">
-            <div class="wrapfooter">
-                <!--
-                {% if post.author %}
-                <span class="meta-footer-thumb">
-                {% if author.avatar %}
-                <img class="author-thumb" src="{{site.baseurl}}/{{ author.avatar }}" alt="{{ author.display_name }}">
-                {% else %}
-                <img class="author-thumb" src="https://www.gravatar.com/avatar/{{ author.gravatar }}?s=250&d=mm&r=x" alt="{{ author.display_name }}">
-                {% endif %}
-                </span>
-                <span class="author-meta">
-                <span class="post-name font-weight-bold">{{ author.display_name }}</span> 
-                {% endif %}
-                -->
-                <span class="post-date">{{ post.date | date_to_string | date: "%b %-d, %Y" }} - {% include read-time.html %}</span>
-                </span>
-                <div class="clearfix"></div>
-                <!-- Tags -->
+        {% if post.author %}
+            <div class="card-footer d-flex align-items-center mt-4" style="font-size: 85%">
                 <div>
-                    <ul class="tags">
-                        {% assign sortedTags = post.tags | sort %}
-                        {% for tag in sortedTags %}
-                        <li>
-                            <a class="smoothscroll" href="{{ site.baseurl }}/tags#{{ tag | replace: " ","-" }}">{{ tag }}</a>
-                        </li>
-                        {% endfor %}
-                    </ul>                    
+                    <img class="author-thumb" src="https://www.gravatar.com/avatar/{{ author.gravatar }}?s=250&d=mm&r=x" alt="{{ author.display_name }}">
+                </div>
+                <div class="post-name">
+                    <b>{{ author.display_name }}</b><br/>
+                    <span>{{ post.date | date_to_string | date: "%b %-d, %Y" }} - {% include read-time.html %}</span>
                 </div>
             </div>
-        </div>
+        {% endif %}
+        <div class="clearfix"></div>
+
+        <!-- Tags -->
+        <div class="card-footer">
+            <ul class="tags">
+                {% assign sortedTags = post.tags | sort %}
+                {% for tag in sortedTags %}
+                <li>
+                    <a class="smoothscroll" href="{{ site.baseurl }}/tags#{{ tag | replace: " ","-" }}">{{ tag }}</a>
+                </li>
+                {% endfor %}
+            </ul>                    
+        </div>        
     </div>
 </div>
 <!-- end post -->

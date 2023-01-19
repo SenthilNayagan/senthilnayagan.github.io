@@ -1,4 +1,23 @@
-/* PrismJS 1.19.0
+@font-face {
+	font-family: "IBM Plex Mono";
+	font-weight: 400;
+	font-style: normal;
+	src: url("../fonts/ibmplexmono-latin-400-roman.woff2") format('woff2');
+}
+@font-face {
+	font-family: "IBM Plex Mono";
+	font-weight: 500;
+	font-style: normal;
+	src: url("../fonts/ibmplexmono-latin-500-roman.woff2") format('woff2');
+}
+@font-face {
+	font-family: "IBM Plex Mono";
+	font-weight: 700;
+	font-style: normal;
+	src: url("../fonts/ibmplexmono-latin-700-roman.woff2") format('woff2');
+}
+
+ /* PrismJS 1.19.0
 https://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascript+diff+git+go+graphql+groovy+haml+handlebars+json+liquid+markup-templating+ruby&plugins=line-numbers+file-highlight+show-language+jsonp-highlight+command-line+toolbar+copy-to-clipboard+download-button+match-braces+diff-highlight+filter-highlight-all+treeview */
 /**
  * prism.js default theme for JavaScript, CSS and HTML
@@ -11,14 +30,14 @@ pre[class*="language-"] {
 	color: black;
 	background: none;
 	text-shadow: 0 1px white;
-	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-family: 'IBM Plex Mono', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 	font-size: 1em;
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
 	word-break: normal;
 	word-wrap: normal;
-	line-height: 1.5;
+	line-height: 22.304px;
 
 	-moz-tab-size: 4;
 	-o-tab-size: 4;

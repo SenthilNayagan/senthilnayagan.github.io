@@ -67,14 +67,16 @@
     <!-- Site Logo/Name -->
     <a class="navbar-brand" href="{{ site.baseurl }}/">
         <img src="{{ site.baseurl }}/{{ site.logo }}" alt="{{ site.name }}">
-    </a>  
+    </a>
+      
+    <hr class="grey_line"></hr>
 
     <!-- Site Tag or Title -->
-    {% if page.url == '/' %}
+    <!--{% if page.url == '/' %}
         <p class="sitetag">
             {{ site.description }}
         </p>
-    {% endif %}
+    {% endif %}-->
     
     <!-- Content -->
     <div class="main-content">
@@ -84,7 +86,7 @@
     {% if site.mailchimp-list %}
     <!-- Newsletter -->
     <div class="newsletter text-center">
-        <span class="h4"><!--<img src="{{ site.baseurl }}/{{ site.logo }}" class="newsletter-logo" alt="{{site.title}}"> &nbsp;-->If you like my <b>posts</b> and don't want to miss any of them, sign up for my newsletter.</span>
+        <span class="h4"><!--<img src="{{ site.baseurl }}/{{ site.logo }}" class="newsletter-logo" alt="{{site.title}}"> &nbsp;-->If you like my posts and don't want to miss any of them, sign up for my newsletter.</span>
         <form action="{{site.mailchimp-list}}" method="post" name="mc-embedded-subscribe-form" class="wj-contact-form validate" target="_blank" novalidate>
             <div class="mc-field-group d-inline-flex">
             <input type="email" placeholder="Your e-mail" name="EMAIL" class="required email" id="mce-EMAIL" autocomplete="on" required>
@@ -101,7 +103,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-sm-12 text-center text-lg-left">
-                Copyright © {{ site.time | date: "%Y" }} {{ site.name }} | <a href="{{ site.baseurl }}/privacy-policy.html">Privacy Policy</a> | Made with <b>Jekyll</b> and hosted on <b>GitHub Pages</b> | This website DOES NOT use cookies.
+                Copyright © {{ site.time | date: "%Y" }} <b>{{ site.name }}</b> | <a href="{{ site.baseurl }}/privacy-policy.html">Privacy Policy</a> | Made with <b>Jekyll</b> and hosted on <b>GitHub Pages</b> | This website DOES NOT use cookies.
             </div>
             <div class="col-md-6 col-sm-12 text-center text-lg-right">    
                 The vector graphics used here are designed by <a target="_blank" href="https://www.freepik.com">Freepik</a>.

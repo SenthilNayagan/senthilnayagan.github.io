@@ -4,9 +4,6 @@ title: "Privacy Policy"
 permalink: "/privacy-policy.html"
 ---
 
-<!-- Home Icon -->
-{% include home-icon.html %}
-
 This blog takes your privacy seriously. To better protect your privacy we provide this privacy policy notice explaining the way your personal information is collected and used.
 
 Please do not hesitate to [contact us]({{site.baseurl}}/contact.html) if you have further concerns or seek extra information about our Privacy Policy.

@@ -4,9 +4,6 @@ title: "Comment Policy"
 permalink: "/comment-policy.html"
 ---
 
-<!-- Home Icon -->
-{% include home-icon.html %}
-
 Written by **Disqus**. Refer the official comment policy [here](https://help.disqus.com/en/articles/1717097-comment-policy){:target="_blank"}.
 
 This comment policy is a place for the author to set the tone of his/her community and lay a foundation for what is acceptable. They also provide a reference for making moderation decisions. If the author ever needs to ban a member or remove a comment, the author will be able to refer those members to the pre-determined community guidelines that they may have failed to follow.

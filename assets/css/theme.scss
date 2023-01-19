@@ -4,13 +4,20 @@
 
 $brown: #B59F62;
 $teal: #40FFDC;
-$blue: #346DDB;
+//$blue: #346DDB;
+$blue: #6b97ff;
 $black: #111;
 $bluish-cyan: #257D98;
 $orangy-red: #fa735d;
 $primary: $blue;
 $dark:    $black;
 $author: #90b4ff;
+//$grey-bg: #F8F9F9;
+//$grey-bg: #f7f7f7;
+$grey-bg: #f2f2f2;
+$background-color: #fff;
+$text-color: #17181e;
+
 $enable-rounded: false;
 
 @import "bootstrap/functions";
@@ -19,15 +26,55 @@ $enable-rounded: false;
 @import 'bootstrap/bootstrap';
 @import 'stars';
 
+@font-face {
+    font-family: "Fira Sans";
+    font-weight: 400;
+    font-style: normal;
+    src: url("../fonts/firasans-latin-400-roman.woff2") format('woff2');
+}
+@font-face {
+    font-family: "Fira Sans";
+    font-weight: 400;
+    font-style: italic;
+    src: url("../fonts/firasans-latin-400-italic.woff2") format('woff2');
+}
+@font-face {
+    font-family: "Fira Sans";
+    font-weight: 700;
+    font-style: normal;
+    src: url("../fonts/firasans-latin-700-roman.woff2") format('woff2');
+}
+
+@font-face {
+    font-family: "IBM Plex Mono";
+    font-weight: 400;
+    font-style: normal;
+    src: url("../fonts/ibmplexmono-latin-400-roman.woff2") format('woff2');
+}
+@font-face {
+    font-family: "IBM Plex Mono";
+    font-weight: 500;
+    font-style: normal;
+    src: url("../fonts/ibmplexmono-latin-500-roman.woff2") format('woff2');
+}
+@font-face {
+    font-family: "IBM Plex Mono";
+    font-weight: 700;
+    font-style: normal;
+    src: url("../fonts/ibmplexmono-latin-700-roman.woff2") format('woff2');
+}
+  
 
 // general
 body, input, button, select, optgroup, textarea {   
-    font-family: Sen;
+    //font-family: Sen;
+    font-family: "Fira Sans", Sans-fallback;
+    color: $text-color;
+    color-scheme: light;
 }
 body {
     line-height: 1.7;
-    background: #f4f4f4;
-    //background: #F4F5F7;
+    background: $background-color;
 }
 a {
     color: darken($primary, 24%);
@@ -41,7 +88,8 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
 }
 .site-content {
-    padding-top: 5px;
+    //padding-top: 5px;
+    padding-top: 0;
 }
 .sitetag {
     font-weight: 700;    
@@ -63,10 +111,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 blockquote {
     //padding: 0.75rem 1rem 0.75rem 1rem;
-    font-size: 17px;
+    font-size: 18px;
     //font-style: italic;
     color: rgba(0, 0, 0, .7);
-    background: #fff;
+    //background: #fff;
+    background: $grey-bg;
     cite {
         font-weight:700;
     }
@@ -78,9 +127,10 @@ blockquote {
     border-radius: 8px;
     //border-left-color: #428bca;
     border-left: 4px solid rgb(66, 139, 202);
-    border-left-width: calc(max(0.5em, 4px));
-    border-top-left-radius: calc(max(0.5em, 4px));
-    border-bottom-left-radius: calc(max(0.5em, 4px));
+    //border-left: 4px solid rgb(66, 139, 202);
+    //border-left-width: calc(max(0.5em, 4px));
+    //border-top-left-radius: calc(max(0.5em, 4px));
+    //border-bottom-left-radius: calc(max(0.5em, 4px));
 
     margin-top: 1.25rem;
     margin-bottom: 1.25rem;
@@ -131,9 +181,11 @@ img, img:hover {
 }
 // menu
 .navbar-brand img {
-    max-height:90px;
-    margin-bottom:5px;
-    margin-top:5px;
+    //max-height:90px;
+    max-height: 60px;
+    //margin-bottom: 10px;
+    //margin-top:5px;
+    //margin-top: 0;
 }
 .sidebar {
     position: fixed;
@@ -143,7 +195,8 @@ img, img:hover {
     height: 100%;
     border-right: solid rgba(0, 0, 0, 0.07) 1px;
     z-index: 1022;
-    background: #fff;
+    //background: #fff;
+    background: $grey-bg;
 }
 .nav-icon {
     position: fixed;
@@ -257,14 +310,15 @@ img, img:hover {
     color: #333;
     padding: 0;
     display: flex;
-    align-items:center;
+    align-items: center;
     .author-thumb {
-        width:40px;
-        border-radius:50%;
+        width: 50px;
+        border-radius: 50%;
         margin-right: 7px;
     }
     .card {
-        border: 0;
+        border-color: $grey-bg;
+        background: $grey-bg;
         border-radius: 10px;
         &:hover {           
            .card-title a { 
@@ -290,21 +344,23 @@ img, img:hover {
     .card-text {
         font-weight: 400;
         font-size: 16px;
-        line-height: 1.8;
-        margin-top: 15px;
+        //line-height: 1.2;
+        //margin-top: 15px;
     }
     .card-footer {
         font-size: 14px;
         border-top: 0;
         padding: 1rem 1.25rem;
         border-radius: 10px;
+        background: $grey-bg;
         a {
             color: inherit;
-            font-weight: 700;
+            //font-weight: 700;
+            font-weight: 400;
         }
     }
     .post-date {
-        float:right;
+        //float:right;
         margin-top: 10px;
     }
     .img-thumb {
@@ -327,7 +383,8 @@ img, img:hover {
         font-size: 1em;
         padding: 0;
         .card-title {
-            font-size: 28px;
+            font-size: 18px;
+            //font-size: 28px;
         }
         .img-thumb {
             object-fit: cover;
@@ -404,7 +461,8 @@ img, img:hover {
             color: #fff;
             padding: 4px 20px;
             margin-left: -5px;
-            background:$primary;
+            //background: #3d5977;
+            background: #346DDB;
             border-left: 1px solid;
             font-weight: 700;
         }
@@ -477,11 +535,21 @@ img, img:hover {
         margin-bottom: 30px;
     }
     code {
-        font-size: 15px;
-        color: #e83e8c;
+        //color: #e83e8c;
+        font-family: 'IBM Plex Mono', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+        //color: rgba(0, 0, 0, 0.7);
+        color: rgb(199, 37, 78);
+        color-scheme: light;
+        display: inline;
+        //background-color: rgb(242, 242, 242);
+        //background-color: #EAEDED;
+        background-color: rgb(249, 242, 244);
+        box-sizing: border-box;
+        font-weight: 400;
+        line-height: 20.992px;
     }
     code[class*="language-"], pre[class*="language-"] {
-        font-size: 15px;
+        font-size: 16px;
         margin-bottom: 30px;
         //background: #fff;
         background: #272822;
@@ -547,7 +615,7 @@ img, img:hover {
     }
     margin-top: 120px;
     .badge {
-        font-size: 15px;
+        font-size: 16px;
         padding: 5px 7px;
         display: inline-block;
         margin: 0 3px;
@@ -636,7 +704,7 @@ body.active-side {
     padding: 30px;
     border-top: 1px solid $gray-200;
     font-size: 15px;
-    background: #fff;
+    background: $grey-bg;
 }
 
 //responsive tweaks
@@ -752,7 +820,8 @@ body.active-side {
         font-size: 18px;
     }
     .article-post {
-        font-size: 15px;
+        //font-size: 16px;
+        font-size: 18px;
     }
     .wrap-search {
         .fa-search {
@@ -786,7 +855,9 @@ ul.tags li {
 }
 ul.tags li a {
     align-items: center;
-    background-color: #e8f0fe;
+    //background-color: #e8f0fe;
+    background-color: rgba(76, 73, 203, 0.15);
+    font-family: "Noto Sans Display", Helvetica Neue, Helvetica, Arial, sans-serif;
     border-radius: 5px;
     padding: 5px 5px;
     font-size: small;

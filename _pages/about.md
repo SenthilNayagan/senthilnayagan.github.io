@@ -7,10 +7,7 @@ image: https://www.gravatar.com/avatar/6fc127cda8cd99830932538a58dc6173?s=350
 imageshadow: true
 ---
 
-<!-- Home Icon -->
-{% include home-icon.html %}
-
-My name is **Senthil Nayagan**. I am a seasoned IT professional with years of expertise in designing and building complex business solutions with open-source technologies. I've been working in the field of data engineering for the past few years. If I were to describe myself in a few words, I would say that I am a Data Engineer by profession, a Rustacean by interest, and an avid Content Creator at present.
+Thanks for dropping by! My name is **Senthil Nayagan**. I am a seasoned IT professional with years of expertise in designing and building complex business solutions with open-source technologies. I've been working in the field of data engineering for the past few years. If I were to describe myself in a few words, I would say that I am a Data Engineer by profession, a Rustacean by interest, and an avid Content Creator at present.
 
 This is my tech blog where I explore various programming concepts. I'm also making up stories about design and coding principles. I'm attempting to make all of my posts as clear as possible while yet providing sufficient information for you to grasp the concepts.
 
@@ -20,12 +17,11 @@ If you like my stories or have suggestions for their improvement, please feel fr
 
 Happy learning!
 
+**Senthil Nayagan**<br/>
+<sup>Founder and Content Creator, **towardsdata.dev**.</sup>
+
 **Email:** [hello@senthilnayagan.com](mailto:hello@senthilnayagan.com)<br/>
 **Twitter:** [SenthilNayagan](https://twitter.com/SenthilNayagan){:target="_blank"}<br/>
+**Instagram:** [senthilnayagan](https://www.instagram.com/senthilnayagan){:target="_blank"}<br/>
 **LinkedIn:** [senthilnayagan](https://www.linkedin.com/in/senthilnayagan){:target="_blank"}<br/>
 **GitHub:** [SenthilNayagan](https://github.com/SenthilNayagan){:target="_blank"}
-
-<!--
-<a target="_blank" href="https://bootstrapstarter.com/jekyll-theme-memoirs/" class="btn btn-dark"> Get Memoirs for Jekyll &rarr;</a>
--->
-
