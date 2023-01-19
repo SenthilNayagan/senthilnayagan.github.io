@@ -73,7 +73,8 @@ body, input, button, select, optgroup, textarea {
     color-scheme: light;
 }
 body {
-    line-height: 1.7;
+    //line-height: 1.7;
+    line-height: 27px;
     background: $background-color;
 }
 a {
@@ -537,8 +538,7 @@ img, img:hover {
     code {
         //color: #e83e8c;
         font-family: 'IBM Plex Mono', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-        //color: rgba(0, 0, 0, 0.7);
-        color: rgb(199, 37, 78);
+        color: rgb(55, 71, 79);
         color-scheme: light;
         display: inline;
         //background-color: rgb(242, 242, 242);
