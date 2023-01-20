@@ -9,8 +9,8 @@ published_on: 2023-01-20 00:00:00 +0530
 tags: ["scala", "asynchronous", "async", "asynchronouse-programming", "scala-async"]
 categories: scala
 featured: false
-hidden: false
-toc: false
+hidden: true
+toc: true
 draft: true
 ---
 
@@ -38,9 +38,23 @@ Every program has one or more threads of execution, which can be used to carry o
 
 A thread has the following three components:
 
-- A **program counter** (PC)
 - Set of **registers**
+- A **program counter** (PC)
 - A **stack space**
+
+#### Reister
+
+Registers are a type of high-speed storing memory that are part of the computer processor (CPU). An instruction, a storage address, or any other type of data could be stored in a register. A register must be large enough to hold an instruction; for instance, on a 64-bit computer, a register must be 64 bits long.
+
+A processor often contains several kinds of registers, which can be classified based on the values they can store or the instructions that can be executed on them. Some of the most common registers used are as follows:
+
+- **Program counter**
+- **Accumulator**
+- **Address register**
+- **Data register**
+- **Temporary register**
+- **Input register**
+- **Output register**
 
 ### Motivation
 
