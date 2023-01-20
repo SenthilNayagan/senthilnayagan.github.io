@@ -73,8 +73,8 @@ body, input, button, select, optgroup, textarea {
     color-scheme: light;
 }
 body {
-    //line-height: 1.7;
-    line-height: 27px;
+    line-height: 1.7;
+    //line-height: 27px;
     background: $background-color;
 }
 a {
@@ -128,13 +128,12 @@ blockquote {
     border-radius: 8px;
     //border-left-color: #428bca;
     border-left: 4px solid rgb(66, 139, 202);
-    //border-left: 4px solid rgb(66, 139, 202);
     //border-left-width: calc(max(0.5em, 4px));
     //border-top-left-radius: calc(max(0.5em, 4px));
     //border-bottom-left-radius: calc(max(0.5em, 4px));
 
-    margin-top: 1.25rem;
-    margin-bottom: 1.25rem;
+    //margin-top: 1.25rem;
+    //margin-bottom: 3.25rem;
 }
 // animation
 .nav-icon, 
@@ -182,8 +181,7 @@ img, img:hover {
 }
 // menu
 .navbar-brand img {
-    //max-height:90px;
-    max-height: 60px;
+    max-height: 35px;
     //margin-bottom: 10px;
     //margin-top:5px;
     //margin-top: 0;
