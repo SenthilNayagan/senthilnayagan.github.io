@@ -24,7 +24,9 @@ In the past, analytics were often performed in batches, resulting in high-latenc
 
 ## Real-time analytics
 
-Real-time analytics has now become something that every business ought to do. It's the process of applying logic to data to get insights or draw conclusions *right away* so that better decisions can be made. "Real-time" in real-time analytics means being able to get business insights *as soon as possible* after data (transactions) enters the system. Having access to analytics in real-time is important for day-to-day operations, financial intelligence, triaging incidents, and allowing businesses to act quickly. The most crucial benefit of real-time analytics is that it allows us to take opportunities and stop problems before they happen.
+Real-time analytics has now become something that every business ought to do. It's the process of applying logic to data to get insights or draw conclusions *right away* so that better decisions can be made at the right time. Put simply, it aids in helping us make the *right decisions at the right time*. 
+
+"Real-time" in real-time analytics means being able to get business insights *as soon as possible* after data (transactions) enters the system. Having access to analytics in real-time is important for day-to-day operations, financial intelligence, triaging incidents, and allowing businesses to act quickly. The most crucial benefit of real-time analytics is that it allows us to take opportunities and stop problems before they happen.
 
 ## User-facing analytics
 

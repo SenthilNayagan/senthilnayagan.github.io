@@ -7,7 +7,9 @@ image: https://www.gravatar.com/avatar/6fc127cda8cd99830932538a58dc6173?s=350
 imageshadow: true
 ---
 
-Thanks for dropping by! My name is **Senthil Nayagan**. I am a seasoned IT professional with years of expertise in designing and building complex business solutions with open-source technologies. I've been working in the field of data engineering for the past few years. If I were to describe myself in a few words, I would say that I am a Data Engineer by profession, a Rustacean by interest, and an avid Content Creator at present.
+Thanks for dropping by! My name is **Senthil Nayagan**. I am a seasoned IT professional with years of expertise in designing and building complex business solutions. I enjoy working with open-source technologies. They are open and free to all. They encourage the free exchange of thoughts. I appreciate the freedom they provide. We (developers) are able to engage in ways that wouldn't be possible otherwise. In the end, they deal with our common problems.
+
+I've been working in the field of data engineering for the past few years. If I were to describe myself in a few words, I would say that I am a Data Engineer by profession, a Rustacean by interest, and an avid Content Creator at present.
 
 This is my tech blog where I explore various programming concepts. I'm also making up stories about design and coding principles. I'm attempting to make all of my posts as clear as possible while yet providing sufficient information for you to grasp the concepts.
 
