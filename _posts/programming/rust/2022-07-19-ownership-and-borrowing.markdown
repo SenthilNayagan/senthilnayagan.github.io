@@ -97,7 +97,7 @@ Our approach to figuring out how to prevent memory leaks will vary depending on 
 
 Memory leaks and memory unsafety are the two types of issues that have received the greatest attention in terms of prevention and remediation. It's important to note that fixing one does not automatically fix the other.
 
-|![Figure 1: Memory unsafety vs. memory leaks](/assets/images/posts/memory-unsafety-vs-memory-leaks.png)|
+|![Figure 1: Memory unsafety vs. memory leaks](/assets/images/posts/memory-unsafety-vs-memory-leaks.png){: width="90%" }|
 |:-:|
 |<sup>*Figure 1: Memory unsafety vs. memory leaks.*</sup>|<br/><br/>
 
@@ -206,13 +206,13 @@ Some languages provide *garbage collection*, which looks for memory that is no l
 
 Having said that, one gives efficient memory management *control*, while the other provides higher *safety* by eliminating dangling references and memory leaks. Rust combines the benefits of both worlds.
 
-|![Figure 2: Rust has better control over memory management and provide higher safety with no memory issues](/assets/images/posts/rust-stands-out.png)|
+|![Figure 2: Rust has better control over memory management and provide higher safety with no memory issues](/assets/images/posts/rust-stands-out.png){: width="60%" }|
 |:-:|
 |<sup>*Figure 2: Rust has better control over memory management and provide higher safety with no memory issues.*</sup>|<br/><br/>
 
 Rust takes a different approach to things than the other two, based on an ownership model with a set of rules that the compiler verifies to ensure memory safety. The program will not compile if any of these rules are violated. In fact, ownership replaces runtime garbage collection with compile-time checks for memory safety.
 
-|![Explicit memory management vs. Implicit memory management vs. Rust’s ownership model](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/s9a98dekos4krj9o6ikx.png)|
+|![Explicit memory management vs. Implicit memory management vs. Rust’s ownership model](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/s9a98dekos4krj9o6ikx.png){: width="95%" }|
 |:-:|
 |<sup>*Explicit memory management vs. Implicit memory management vs. Rust’s ownership model.*</sup>|<br/><br/>
 
@@ -302,7 +302,7 @@ To put it in other words, the metadata is kept on the stack while the actual dat
 
 When we assign `s1` to `s2`, the `String` metadata is copied, meaning we copy the pointer, the length, and the capacity that are on the stack. We do not copy the data on the heap that the pointer refers to. The data representation in memory looks like the one below:
 
-|![Figure 6: Variable `s2` gets a copy of the pointer, length, and capacity of `s1`](/assets/images/posts/rust-ownership-fig-6.png)|
+|![Figure 6: Variable `s2` gets a copy of the pointer, length, and capacity of `s1`](/assets/images/posts/rust-ownership-fig-6.png){: width="90%" }|
 |:-:|
 |<sup>*Figure 6: Variable `s2` gets a copy of the pointer, length, and capacity of `s1`.*</sup>|<br/><br/>
 

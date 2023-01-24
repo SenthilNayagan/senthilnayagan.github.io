@@ -23,7 +23,7 @@
                 <i class="fab fa-linkedin-in"></i>
             </a>
         </li>
-        <li class="ml-1 mr-1">
+        <!--<li class="ml-1 mr-1">
             <a target="_blank" href="http://news.ycombinator.com/submitlink?u={{ page.url | absolute_url }}" onclick="window.open(this.href, 'width=550,height=435');return false;">
                 <i class="fab fa-y-combinator"></i>
             </a>
@@ -37,7 +37,17 @@
             <a target="_blank" href="https://api.whatsapp.com/send?text={{ page.title }}%20{{ page.url | absolute_url }}" onclick="window.open(this.href, 'width=550,height=435');return false;">
                 <i class="fab fa-whatsapp"></i>
             </a>
-        </li> 
+        </li>-->
+        <li class="ml-1 mr-1">
+            <a href="#" onclick="copyToClipboard()">
+                <i class="fas fa-link"></i>
+            </a>
+            <script>
+                function copyToClipboard() { 
+                   window.navigator.clipboard.writeText(`{{ page.url | absolute_url }}`);
+                }
+            </script>
+        </li>         
         <!--
         {% if page.comments != false %}
             <ul>

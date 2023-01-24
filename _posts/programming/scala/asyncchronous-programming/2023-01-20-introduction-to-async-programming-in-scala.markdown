@@ -16,7 +16,7 @@ draft: true
 
 # Overview
 
-Because it might be difficult to understand at first, "asynchronous" is a topic that both beginner and seasoned developers frequently pay less attention to or totally avoid. Another reality is that we frequently work toward achieving the desired program results without paying as much attention to identifying the most effective means of achieving those results. Naturally, when we think of the intended result, the lines of instructions or statements are the first that come to mind. We begin with a statement-focused approach as opposed to a performance-focused one.
+Because it might be difficult to understand at first, "asynchronous" is a topic that both beginners and seasoned developers frequently pay less attention to or totally avoid. Another reality is that we frequently work toward achieving the desired program results without paying as much attention to identifying the most effective means of achieving those results. Naturally, when we think of the intended result, the lines of instructions or statements are the first that come to mind. We begin with a statement-focused approach as opposed to a performance-focused one.
 
 Let's first understand certain fundamentals before moving on to the concept of asynchronous programming:
 
@@ -26,21 +26,25 @@ Let's first understand certain fundamentals before moving on to the concept of a
 
 ## What is a thread in programming?
 
-An application can construct multiple *execution paths* very easily by using threads.  A thread itself is not a program or application. This means, unlike a program, a thread cannot run on its own. A thread is the smallest and most lightweight *sequence of instructions* intended to be scheduled and executed by an operating system component called a *scheduler* independently of the parent process. Simply put, a thread is a sequential flow of tasks within a process. We can think of a process as a container where more than one thread runs. 
+A program or an application *starts*, *executes a series of instructions*, and *ends*. This is referred to as a program's life cycle. With a single-core processor, the instructions are carried out in a traditional monolithic manner: sequentially, one after the other. As multi-core computers become more common these days, a programme can construct *multiple execution paths* very easily by using *threads*.
+
+|![Figure 1: An application's life cycle](/assets/images/posts/a-program-starts-executes-ends.png){: width="80%" }{: style="float: center" }|
+|:-:|
+|<sup>*Figure 1: An application's life cycle.*</sup>|<br/><br/>
+
+A thread itself is not a program or application. This means, unlike a program, a thread cannot run on its own. A thread is the smallest and most lightweight *sequence of instructions* intended to be scheduled and executed by an operating system component called a *scheduler* independently of the parent process. Simply put, **a thread is a sequential flow of tasks within a process**. We can think of a process as a container where more than one thread runs. 
 
 **It's like french fries in a box, where the fries are threads and the box is the process** :-)
 
-|![steam-fish-1](/assets/images/posts/fries-in-a-box.png){: width="40%" }{: style="float: center" }|
+|![Figure 2: French fries in a box](/assets/images/posts/fries-in-a-box.png){: width="40%" }{: style="float: center" }|
 |:-:|
-|<sup>*Figure 1: French fries in a box.*</sup>|<br/><br/>
+|<sup>*Figure 2: French fries in a box.*</sup>|<br/><br/>
 
 From a thread perspective, there is a possibility of only one french fry in a box, though we don't like it and definitely want more. It's referred to as a **single-threaded process**.
 
-> **Program vs. process:** I often use the terms "program" and "process" interchangeably. Please be aware that these terms are not the same in practice.<br/><br/>A program is a passive (not active) entity that contains the set of instructions that are used to carry out particular tasks. These instructions are stored in a file or files in secondary memory, such as a disk.<br/><br/>When a program is executed, an active instance of the program is launched in the primary memory (RAM). This active instance is referred to as a process.
+> **Program vs. process:** I often use the terms "program" and "process" interchangeably. Please be aware that these terms are not the same in practice.<br/><br/>A program is a passive (not active) entity that contains the set of instructions that are used to carry out particular tasks. These instructions are stored in a file or files in secondary memory, such as a disk.<br/><br/>A program *starts*, *executes a series of instructions*, and *ends*. When a program is executed, an active instance of the program is launched in the primary memory (RAM). This active instance is referred to as a process.
 
-Having said that, a program under execution is referred to as a process, and a threat is a fundamental unit of execution. Since a thread deals solely with the execution of tasks, we can also say that **a thread is a fundamental unit of CPU utilisation**.
-
-A program *starts*, *executes a series of instructions*, and *ends*. At any given time during the runtime of the program there is a single point of execution.
+Having said that, a program under execution is referred to as a process, and **a threat is a fundamental unit of execution**. Since a thread deals solely with the execution of tasks, we can also say that **a thread is a fundamental unit of CPU utilisation**.
 
 Every program has one or more threads of execution, which can be used to carry out various tasks concurrently or almost concurrently. As mentioned above, usually the operating system itself manages these threads of execution, scheduling them to run on the available cores and *preemptively* interrupting (stoping) them as necessary. Are we saying "stop the running threads"? Yes, you got it right. The need for interruption will be discussed further down, but first, let's understand what *preemption* in threading means.
 
@@ -85,7 +89,13 @@ TODO
 
 A single-threaded process (a process with only one thread of execution) follows a single sequence of control while executing, but a multi-threaded process has several sequences of control and is thus able to perform multiple independent tasks concurrently. The aim of multithreading is to split a single process into multiple threads as opposed to starting a whole new process. Multithreading is used to achieve real parallelism and improve the performance of the application.
 
-Each thread in a multi-threaded process has its own program counter, stack, and set of registers, but they all share common code, data, and some structures like open files.
+|![Figure 3: Single-threaded process vs. multi-threaded process](/assets/images/posts/single-threaded-vs-multi-threaded-processes.png){: width="100%" }|
+|:-:|
+|<sup>*Figure 3: Single-threaded process vs. multi-threaded process.*</sup>|<br/><br/>
+
+Each thread in a multi-threaded process has its own **program counter**, **stack**, and **set of registers**, but they all share common **code**, **data**, and **OS resources** like open files.
+
+> **Process-based multitasking**: There are two distinct types of multitasking: process-based and thread-based. The distinction between the two must be understood. As mentioned earlier, a process is essentially an active program (under execution). A process-based multitasking is a capability that enables our computer to run two or more programs concurrently. For instance, using an IDE or text editor while running any compiler is possible with process-based multitasking. In process-based multitasking, an entire program itself is the smallest unit of code that can be managed by the OS scheduler. While thread-based multitasking takes care of the details, process-based multitasking deals with the big picture.
 
 ### Motivation
 
