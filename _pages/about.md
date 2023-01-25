@@ -22,8 +22,9 @@ Happy learning!
 **Senthil Nayagan**<br/>
 <sup>Founder and Content Creator, **towardsdata.dev**.</sup>
 
-**Email:** [hello@senthilnayagan.com](mailto:hello@senthilnayagan.com)<br/>
-**Twitter:** [SenthilNayagan](https://twitter.com/SenthilNayagan){:target="_blank"}<br/>
-**Instagram:** [senthilnayagan](https://www.instagram.com/senthilnayagan){:target="_blank"}<br/>
-**LinkedIn:** [senthilnayagan](https://www.linkedin.com/in/senthilnayagan){:target="_blank"}<br/>
-**GitHub:** [SenthilNayagan](https://github.com/SenthilNayagan){:target="_blank"}
+<i class="fas fa-envelope"></i>&nbsp;&nbsp;[hello@senthilnayagan.com](mailto:hello@senthilnayagan.com)<br/>
+<i class="fab fa-mastodon"></i>&nbsp;&nbsp;[@SenthilNayagan](https://fosstodon.org/@SenthilNayagan){:target="_blank"}<br/> 
+<i class="fab fa-twitter"></i>&nbsp;&nbsp;[@SenthilNayagan](https://twitter.com/SenthilNayagan){:target="_blank"}<br/>
+<i class="fab fa-instagram"></i>&nbsp;&nbsp;[senthilnayagan](https://www.instagram.com/senthilnayagan){:target="_blank"}<br/>
+<i class="fab fa-linkedin"></i>&nbsp;&nbsp;[senthilnayagan](https://www.linkedin.com/in/senthilnayagan){:target="_blank"}<br/>
+<i class="fab fa-github"></i>&nbsp;&nbsp;[SenthilNayagan](https://github.com/SenthilNayagan){:target="_blank"}
