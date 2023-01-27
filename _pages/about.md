@@ -3,7 +3,8 @@ layout: page
 title: Hello there... It's a pleasure to meet you!
 permalink: /about
 comments: false
-image: https://www.gravatar.com/avatar/6fc127cda8cd99830932538a58dc6173?s=350
+--image: https://www.gravatar.com/avatar/6fc127cda8cd99830932538a58dc6173?s=350
+image: assets/images/author/senthilnayagan-464x457.jpg
 imageshadow: false
 ---
 
