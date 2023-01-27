@@ -11,6 +11,7 @@ include: ["_pages"]
 permalink: /:categories/:year/:title
 email: hello@senthilnayagan.com
 contact-me: https://formspree.io/f/xzbwdbnl
+author: https://www.gravatar.com/avatar/6fc127cda8cd99830932538a58dc6173?s=250&d=mm&r=x
 
 # Authors
 authors:
