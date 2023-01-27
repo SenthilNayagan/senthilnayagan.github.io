@@ -4,7 +4,7 @@ title: Hello there... It's a pleasure to meet you!
 permalink: /about
 comments: false
 image: https://www.gravatar.com/avatar/6fc127cda8cd99830932538a58dc6173?s=350
-imageshadow: true
+imageshadow: false
 ---
 
 Thanks for dropping by! My name is **Senthil Nayagan**. I am a seasoned IT professional with years of expertise in designing and building complex business solutions. I enjoy working with open-source technologies. They are open and free to all. They encourage the free exchange of thoughts. I appreciate the freedom they provide. We (developers) are able to engage in ways that wouldn't be possible otherwise. In the end, they deal with our common problems.
