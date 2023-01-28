@@ -38,110 +38,114 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 	</noscript>
 
-<!-- Begin Sidebar Navigation -->
-<div class="sidebar">    
-</div>   
-<div class="nav-icon">
-    <div class="hamburger-bar"></div>
-</div>
-<div id="blackover-nav" class="blackover"></div>
-<nav id="menu">
-    <ul>
-        <h4>Navigation</h4>
-        <!--<li><a href="{{ site.baseurl }}/">Home</a></li>-->
-        <li><a href="{{ site.baseurl }}/tags">Tags</a></li>
-        <li><a href="{{ site.baseurl }}/about">About me</a></li>
-        <!--<li><a href="{{ site.baseurl }}/authors">Contributors <span class="badge badge-primary">new</span></a></li>-->
-        <li><a href="{{ site.baseurl }}/authors">Contributors</a></li>
-        <li><a href="{{ site.baseurl }}/contact">Contact me</a></li>       
-    </ul>   
-</nav>
+    <!-- Back to top icon/button -->
+    <script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+    <script>addBackToTop()</script>
 
-{% include search-lunr.html %}
-<!-- End Sidebar Navigation -->
-
-<div class="site-content {% if page.url == '/' %} firstpage {% endif %}">
-
-<div class="container">
-    <!-- Site Logo/Name -->
-    <a class="navbar-brand" href="{{ site.baseurl }}/">
-        <img src="{{ site.baseurl }}/{{ site.logo }}" alt="{{ site.name }}">
-    </a>
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="https://fosstodon.org/@SenthilNayagan" target="_blank" style="color:#616A6B; font-size: 25px;">
-        <i class="fab fa-mastodon"></i>
-    </a>
-    &nbsp;&nbsp;
-    <a href="https://twitter.com/SenthilNayagan" target="_blank" style="color: #616A6B; font-size: 25px;">
-        <i class="fab fa-twitter"></i>
-    </a>
-    &nbsp;&nbsp;
-    <a href="https://www.instagram.com/senthilnayagan" target="_blank" style="color: #616A6B; font-size: 25px;">
-        <i class="fab fa-instagram"></i>
-    </a> 
-    &nbsp;&nbsp;
-    <a href="https://www.linkedin.com/in/senthilnayagan" target="_blank" style="color: #616A6B; font-size: 25px;">
-        <i class="fab fa-linkedin"></i>
-    </a>          
-    <hr class="grey_line"></hr>
-
-    <!-- Site Tag or Title -->
-    <!--{% if page.url == '/' %}
-        <p class="sitetag">
-            {{ site.description }}
-        </p>
-    {% endif %}-->
-    
-    <!-- Content -->
-    <div class="main-content">
-        {{ content }}
+    <!-- Begin Sidebar Navigation -->
+    <div class="sidebar">    
+    </div>   
+    <div class="nav-icon">
+        <div class="hamburger-bar"></div>
     </div>
+    <div id="blackover-nav" class="blackover"></div>
+    <nav id="menu">
+        <ul>
+            <h4>Navigation</h4>
+            <!--<li><a href="{{ site.baseurl }}/">Home</a></li>-->
+            <li><a href="{{ site.baseurl }}/tags">Tags</a></li>
+            <li><a href="{{ site.baseurl }}/about">About me</a></li>
+            <!--<li><a href="{{ site.baseurl }}/authors">Contributors <span class="badge badge-primary">new</span></a></li>-->
+            <li><a href="{{ site.baseurl }}/authors">Contributors</a></li>
+            <li><a href="{{ site.baseurl }}/contact">Contact me</a></li>       
+        </ul>   
+    </nav>
 
-    {% if site.mailchimp-list %}
-    <!-- Newsletter -->
-    <div class="newsletter text-center">
-        <span class="h4"><!--<img src="{{ site.baseurl }}/{{ site.logo }}" class="newsletter-logo" alt="{{site.title}}"> &nbsp;-->If you like my posts and don't want to miss any of them, sign up for my newsletter.</span>
-        <form action="{{site.mailchimp-list}}" method="post" name="mc-embedded-subscribe-form" class="wj-contact-form validate" target="_blank" novalidate>
-            <div class="mc-field-group d-inline-flex">
-            <input type="email" placeholder="Your e-mail" name="EMAIL" class="required email" id="mce-EMAIL" autocomplete="on" required>
-            <input type="submit" value="Subscribe" name="subscribe" class="heart">
-            </div>
-        </form>
-    </div>
-    {% endif %}
-    
-</div>
+    {% include search-lunr.html %}
+    <!-- End Sidebar Navigation -->
 
-<!-- Begin Footer -->
-<footer class="footer">
+    <div class="site-content {% if page.url == '/' %} firstpage {% endif %}">
+
     <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-sm-12 text-center text-lg-left">
-                Copyright © {{ site.time | date: "%Y" }} <b>{{ site.name }}</b> | <a href="{{ site.baseurl }}/privacy-policy.html">Privacy Policy</a> | Made with <b>Jekyll</b> and hosted on <b>GitHub Pages</b> | This website DOES NOT use cookies.
-            </div>
-            <div class="col-md-6 col-sm-12 text-center text-lg-right">    
-                The vector graphics used here are designed by <a target="_blank" href="https://www.freepik.com">Freepik</a>.
+        <!-- Site Logo/Name -->
+        <a class="navbar-brand" href="{{ site.baseurl }}/">
+            <img src="{{ site.baseurl }}/{{ site.logo }}" alt="{{ site.name }}">
+        </a>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="https://fosstodon.org/@SenthilNayagan" target="_blank" style="color:#616A6B; font-size: 25px;">
+            <i class="fab fa-mastodon"></i>
+        </a>
+        &nbsp;&nbsp;
+        <a href="https://twitter.com/SenthilNayagan" target="_blank" style="color: #616A6B; font-size: 25px;">
+            <i class="fab fa-twitter"></i>
+        </a>
+        &nbsp;&nbsp;
+        <a href="https://www.instagram.com/senthilnayagan" target="_blank" style="color: #616A6B; font-size: 25px;">
+            <i class="fab fa-instagram"></i>
+        </a> 
+        &nbsp;&nbsp;
+        <a href="https://www.linkedin.com/in/senthilnayagan" target="_blank" style="color: #616A6B; font-size: 25px;">
+            <i class="fab fa-linkedin"></i>
+        </a>          
+        <hr class="grey_line"></hr>
+
+        <!-- Site Tag or Title -->
+        <!--{% if page.url == '/' %}
+            <p class="sitetag">
+                {{ site.description }}
+            </p>
+        {% endif %}-->
+        
+        <!-- Content -->
+        <div class="main-content">
+            {{ content }}
+        </div>
+
+        {% if site.mailchimp-list %}
+        <!-- Newsletter -->
+        <div class="newsletter text-center">
+            <span class="h4"><!--<img src="{{ site.baseurl }}/{{ site.logo }}" class="newsletter-logo" alt="{{site.title}}"> &nbsp;-->If you like my posts and don't want to miss any of them, sign up for my newsletter.</span>
+            <form action="{{site.mailchimp-list}}" method="post" name="mc-embedded-subscribe-form" class="wj-contact-form validate" target="_blank" novalidate>
+                <div class="mc-field-group d-inline-flex">
+                <input type="email" placeholder="Your e-mail" name="EMAIL" class="required email" id="mce-EMAIL" autocomplete="on" required>
+                <input type="submit" value="Subscribe" name="subscribe" class="heart">
+                </div>
+            </form>
+        </div>
+        {% endif %}
+        
+    </div>
+
+    <!-- Begin Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 text-center text-lg-left">
+                    Copyright © {{ site.time | date: "%Y" }} <b>{{ site.name }}</b> | <a href="{{ site.baseurl }}/privacy-policy.html">Privacy Policy</a> | Made with <b>Jekyll</b> and hosted on <b>GitHub Pages</b> | This website DOES NOT use cookies.
+                </div>
+                <div class="col-md-6 col-sm-12 text-center text-lg-right">    
+                    The vector graphics used here are designed by <a target="_blank" href="https://www.freepik.com">Freepik</a>.
+                </div>
             </div>
         </div>
-    </div>
-</footer>
-<!-- End Footer -->
+    </footer>
+    <!-- End Footer -->
 
-</div> <!-- /.site-content -->
+    </div> <!-- /.site-content -->
 
-<!-- Scripts (if you need bootstrap.js, please add it yourself. I didn't use it for performance reasons, it was not needed in this theme) -->
+    <!-- Scripts (if you need bootstrap.js, please add it yourself. I didn't use it for performance reasons, it was not needed in this theme) -->
 
-<script src="{{ site.baseurl }}/assets/js/prism.js"></script>
+    <script src="{{ site.baseurl }}/assets/js/prism.js"></script>
 
-<script src="{{ site.baseurl }}/assets/js/theme.js"></script>
+    <script src="{{ site.baseurl }}/assets/js/theme.js"></script>
 
-{% if site.lazyimages == "enabled" %}
-<script src="{{ site.baseurl }}/assets/js/lazyload.js"></script>
-{% endif %}
+    {% if site.lazyimages == "enabled" %}
+    <script src="{{ site.baseurl }}/assets/js/lazyload.js"></script>
+    {% endif %}
 
-{% if page.layout == 'post' %}
-<script id="dsq-count-scr" src="//{{site.disqus}}.disqus.com/count.js"></script>
-{% endif %}
+    {% if page.layout == 'post' %}
+    <script id="dsq-count-scr" src="//{{site.disqus}}.disqus.com/count.js"></script>
+    {% endif %}
 
 </body>
 </html>

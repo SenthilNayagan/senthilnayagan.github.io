@@ -32,7 +32,7 @@ A program or an application *starts*, *executes a series of instructions*, and *
 |:-:|
 |<sup>*Figure 1: An application's life cycle.*</sup>|<br/><br/>
 
-A thread itself is not a program or application. This means, unlike a program, a thread cannot run on its own. A thread is the smallest and most lightweight *sequence of instructions* intended to be scheduled and executed by an operating system component called a *scheduler* independently of the parent process. Simply put, **a thread is a sequential flow of tasks within a process**. We can think of a process as a container where more than one thread runs. 
+A thread itself is not a program or application. This means, unlike a program, a thread cannot run on its own. A thread is the smallest and most lightweight *sequence of instructions* intended to be scheduled and executed by an operating system component called a *scheduler* independently of the parent process. Simply put, **a thread is a sequential flow of tasks within a process**. We can think of a process as a container where one or more threads run. 
 
 **It's like french fries in a box, where the fries are threads and the box is the process** :-)
 
@@ -40,13 +40,13 @@ A thread itself is not a program or application. This means, unlike a program, a
 |:-:|
 |<sup>*Figure 2: French fries in a box.*</sup>|<br/><br/>
 
-From a thread perspective, there is a possibility of only one french fry in a box, though we don't like it and definitely want more. It's referred to as a **single-threaded process**.
+From a thread perspective, there is a possibility of only one french fry in a box, though we don't like it and definitely want more. It's referred to as a **single-threaded process**. Having said that, **every process has at least one thread**.
 
 > **Program vs. process:** I often use the terms "program" and "process" interchangeably. Please be aware that these terms are not the same in practice.<br/><br/>A program is a passive (not active) entity that contains the set of instructions that are used to carry out particular tasks. These instructions are stored in a file or files in secondary memory, such as a disk.<br/><br/>A program *starts*, *executes a series of instructions*, and *ends*. When a program is executed, an active instance of the program is launched in the primary memory (RAM). This active instance is referred to as a process.
 
 Having said that, a program under execution is referred to as a process, and **a threat is a fundamental unit of execution**. Since a thread deals solely with the execution of tasks, we can also say that **a thread is a fundamental unit of CPU utilisation**.
 
-Every program has one or more threads of execution, which can be used to carry out various tasks concurrently or almost concurrently. As mentioned above, usually the operating system itself manages these threads of execution, scheduling them to run on the available cores and *preemptively* interrupting (stoping) them as necessary. Are we saying "stop the running threads"? Yes, you got it right. The need for interruption will be discussed further down, but first, let's understand what *preemption* in threading means.
+Every program has one or more threads of execution, which can be used to carry out various tasks *concurrently* or *almost concurrently*. As mentioned above, usually the operating system itself manages these threads of execution, scheduling them to run on the available cores and *preemptively* interrupting (stoping) them as necessary. Are we saying "stop the running threads"? Yes, you got it right. The need for interruption will be discussed further down, but first, let's understand what *preemption* in threading means.
 
 **Preemption** in computing is the act of temporarily interrupting (stoping) an executing task with the intention of resuming it later from where it left off. 
 
@@ -57,8 +57,7 @@ Typically, this interruption is done by an external scheduler with no assistance
 A thread comprises the following components:
 
 - A **thread ID**
-- Set of **registers**
-- A **program counter** (PC)
+- Set of **registers**, including a **program counter** (PC)
 - A **stack space**
 
 Apart from these, a thread shares with other threads belonging to the same process: 
@@ -67,11 +66,21 @@ Apart from these, a thread shares with other threads belonging to the same proce
 - its **data**
 - **other operating system resources**, such as open files and signals
 
-#### Register
+#### Registers
 
-Registers are a type of high-speed storing memory that are part of the computer processor (CPU). An instruction, a storage address, or any other type of data could be stored in a register. A register must be large enough to hold an instruction; for instance, on a 64-bit computer, a register must be 64 bits long.
+Registers are a type of high-speed, small amout of memory storage *contained withtin the computer processor (CPU)*. 
 
-A processor often contains several kinds of registers, which can be classified based on the values they can store or the instructions that can be executed on them. Some of the most common registers used are as follows:
+|![Figure 3: Registers are part of CPU](/assets/images/posts/cpu-components.png){: width="50%" }{: style="float: center" }|
+|:-:|
+|<sup>*Figure 3: Registers are part of CPU.*</sup>|<br/><br/>
+
+The processor makes use of these registers to store small amounts of data that are needed during processing, such as:
+
+- Current instruction being decoded
+- Address of the next instruction to be executed
+- Results of calculations
+
+A register must be large enough to hold an instruction; for instance, on a 64-bit computer, a register must be 64 bits long. A processor often contains several kinds of registers, which can be classified based on the values they can store or the instructions that can be executed on them. The number of registers used by different processors varies, although the majority of them have some—if not all—of the following:
 
 - **Program counter**
 - **Accumulator**
