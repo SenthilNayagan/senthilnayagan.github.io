@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Hello there... It's a pleasure to meet you!
+title: Hello there! 👋 It's a pleasure to meet you!
 permalink: /about
 comments: false
 --image: https://www.gravatar.com/avatar/6fc127cda8cd99830932538a58dc6173?s=350
@@ -23,9 +23,18 @@ Happy learning!
 **Senthil Nayagan**<br/>
 <sup>Founder and Content Creator, **towardsdata.dev**.</sup>
 
-<i class="fas fa-envelope"></i>&nbsp;[hello@senthilnayagan.com](mailto:hello@senthilnayagan.com)<br/>
-<i class="fab fa-mastodon"></i>&nbsp;[SenthilNayagan](https://fosstodon.org/@SenthilNayagan){:target="_blank"}<br/>
-<i class="fab fa-twitter"></i>&nbsp;[SenthilNayagan](https://twitter.com/SenthilNayagan){:target="_blank"}<br/>
-<i class="fab fa-instagram"></i>&nbsp;[senthilnayagan](https://www.instagram.com/senthilnayagan){:target="_blank"}<br/> 
-<i class="fab fa-linkedin"></i>&nbsp;[senthilnayagan](https://www.linkedin.com/in/senthilnayagan){:target="_blank"}<br/>
-<i class="fab fa-github"></i>&nbsp;[SenthilNayagan](https://github.com/SenthilNayagan){:target="_blank"}
+**Email:** [hello@senthilnayagan.com](mailto:hello@senthilnayagan.com)<br/>
+**Mastodon:** [SenthilNayagan](https://fosstodon.org/@SenthilNayagan){:target="_blank"}<br/>
+**Twitter:** [SenthilNayagan](https://twitter.com/SenthilNayagan){:target="_blank"}<br/>
+**Instagram:** [senthilnayagan](https://www.instagram.com/senthilnayagan){:target="_blank"}<br/> 
+**LinkedIn:** [senthilnayagan](https://www.linkedin.com/in/senthilnayagan){:target="_blank"}<br/>
+**GitHub:** [SenthilNayagan](https://github.com/SenthilNayagan){:target="_blank"}
+
+<!--
+<span style="color:#616A6B;"><i class="fa fa-envelope"></i></span>&nbsp;&nbsp;[hello@senthilnayagan.com](mailto:hello@senthilnayagan.com)<br/>
+<span style="color:#616A6B;"><i class="fa-brands fa-mastodon"></i></span>&nbsp;&nbsp;[SenthilNayagan](https://fosstodon.org/@SenthilNayagan){:target="_blank"}<br/>
+<span style="color:#616A6B;"><i class="fa-brands fa-twitter"></i></span>&nbsp;&nbsp;[SenthilNayagan](https://twitter.com/SenthilNayagan){:target="_blank"}<br/>
+<span style="color:#616A6B;"><i class="fa-brands fa-square-instagram"></i></span>&nbsp;&nbsp;[senthilnayagan](https://www.instagram.com/senthilnayagan){:target="_blank"}<br/>
+<span style="color:#616A6B;"><i class="fa-brands fa-linkedin"></i></span>&nbsp;&nbsp;[senthilnayagan](https://www.linkedin.com/in/senthilnayagan){:target="_blank"}<br/>
+<span style="color:#616A6B;"><i class="fa-brands fa-mastodon"></i></span>&nbsp;&nbsp;[SenthilNayagan](https://github.com/SenthilNayagan){:target="_blank"}
+-->
