@@ -20,16 +20,39 @@ comments: false
                 {% endif %}
                 <p class="mt-4 mb-0 small text-center">
                     {% if author[1].email %}
-                        <a class="d-inline-block mx-1 text-dark" href="mailto:{{ author[1].email }}"><i class="fa fa-envelope"></i></a>
+                        <a class="d-inline-block mx-1 text-dark" href="mailto:{{ author[1].email }}">
+                            <span style="color:#616A6B;">
+                                <i class="fa fa-envelope"></i>
+                            </span>
+                        </a>
                     {% endif %}
                     {% if author[1].web %}
-                        <a target="_blank" class="d-inline-block mx-1 text-dark" href="{{ author[1].web }}"><i class="fa fa-link"></i></a> 
+                        <a target="_blank" class="d-inline-block mx-1 text-dark" href="{{ author[1].web }}">
+                            <span style="color:#616A6B;">
+                                <i class="fa-solid fa-window-maximize"></i>
+                            </span>
+                        </a> 
+                    {% endif %}
+                    {% if author[1].mastodon %}
+                        <a target="_blank" class="d-inline-block mx-1 text-dark" href="{{ author[1].mastodon }}">
+                            <span style="color:#616A6B;">
+                                <i class="fa-brands fa-mastodon"></i>
+                            </span>
+                        </a>
+                    {% endif %}                    
+                    {% if author[1].twitter %}
+                        <a target="_blank" class="d-inline-block mx-1 text-dark" href="{{ author[1].twitter }}">
+                            <span style="color:#616A6B;">
+                                <i class="fa-brands fa-twitter"></i>
+                            </span>
+                        </a>
                     {% endif %}
                     {% if author[1].twitter %}
-                        <a target="_blank" class="d-inline-block mx-1 text-dark" href="{{ author[1].twitter }}"><i class="fab fa-twitter"></i></a>
-                    {% endif %}
-                    {% if author[1].twitter %}
-                        <a target="_blank" class="d-inline-block mx-1 text-dark" href="{{ author[1].instagram }}"><i class="fab fa-instagram"></i></a>
+                        <a target="_blank" class="d-inline-block mx-1 text-dark" href="{{ author[1].instagram }}">
+                            <span style="color:#616A6B;">
+                                <i class="fa-brands fa-square-instagram"></i>
+                            </span>
+                        </a>
                     {% endif %}
                 </p>
             </div>
