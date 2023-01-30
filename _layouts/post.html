@@ -28,38 +28,40 @@ post_class: post-template
             </div>            
             <div>
                 <b>{{ author.display_name }}</b>
-                {% if author.web %}
-                    &nbsp;
-                    <a target="_blank" href="{{ author.web }}" style="text-decoration: none;">
-                        <span style="color: #616A6B;">
-                            <i class="fa-solid fa-window-maximize"></i>
-                        </span>                        
-                    </a>
-                {% endif %}                     
-                {% if author.mastodon %}
-                    &nbsp;
-                    <a target="_blank" href="{{ author.mastodon }}" style="text-decoration: none;">
-                        <span style="color: #616A6B;">
-                            <i class="fa-brands fa-mastodon"></i>
-                        </span>                         
-                    </a>                
-                {% endif %}                
-                {% if author.twitter %}
-                    &nbsp;
-                    <a target="_blank" href="{{ author.twitter }}" style="text-decoration: none;">
-                        <span style="color: #616A6B;">
-                            <i class="fa-brands fa-twitter"></i>
-                        </span>
-                    </a>                
-                {% endif %}
-                {% if author.instagram %}
-                    &nbsp;
-                    <a target="_blank" href="{{ author.instagram }}" style="text-decoration: none;">
-                        <span style="color: #616A6B;">
-                            <i class="fa-brands fa-square-instagram"></i>
-                        </span>
-                    </a>                
-                {% endif %}                
+                {% if page.author_contacts %}
+                    {% if author.web %}
+                        &nbsp;
+                        <a target="_blank" href="{{ author.web }}" style="text-decoration: none;">
+                            <span style="color: #616A6B;">
+                                <i class="fa-solid fa-window-maximize"></i>
+                            </span>                        
+                        </a>
+                    {% endif %}                     
+                    {% if author.mastodon %}
+                        &nbsp;
+                        <a target="_blank" href="{{ author.mastodon }}" style="text-decoration: none;">
+                            <span style="color: #616A6B;">
+                                <i class="fa-brands fa-mastodon"></i>
+                            </span>                         
+                        </a>                
+                    {% endif %}                
+                    {% if author.twitter %}
+                        &nbsp;
+                        <a target="_blank" href="{{ author.twitter }}" style="text-decoration: none;">
+                            <span style="color: #616A6B;">
+                                <i class="fa-brands fa-twitter"></i>
+                            </span>
+                        </a>                
+                    {% endif %}
+                    {% if author.instagram %}
+                        &nbsp;
+                        <a target="_blank" href="{{ author.instagram }}" style="text-decoration: none;">
+                            <span style="color: #616A6B;">
+                                <i class="fa-brands fa-square-instagram"></i>
+                            </span>
+                        </a>                
+                    {% endif %}
+                {% endif %}                    
                 <br/> 
                 <span class="post-date"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time></span>           
                 {% if page.last_modified_at %}
