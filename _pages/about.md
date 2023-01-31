@@ -26,9 +26,9 @@ Blogging is more than just writing notes. It demands a great deal of work to ens
 
 This is my tech blog, where I explore various programming concepts. I'm also making up stories about design and coding principles. I'm attempting to make all of my posts as clear as possible while yet providing sufficient information for you to grasp the concepts. Personally, I like writing technical blogs. Blogging has been an excellent way for me to learn new things and share them with others. Through blogging, I not only share my knowledge with others who are interested in my areas of expertise, but I also share it with myself, in the most clear terms possible.
 
-### Hobbies and interests
+### Hobbies and interests <i class="fa-brands fa-youtube"></i> <i class="fa-solid fa-headphones"></i> <i class="fa-solid fa-gamepad"></i> <i class="fa-solid fa-car"></i>
 
-I have a lot of interests and hobbies. Street photography, collecting outdated paper money, making jingles, etc. are just a few. I will write about them in detail sooner.
+I have a lot of interests and hobbies. Street photography, collecting old paper money, making jingles, exploring gadgets, etc. are just a few. I will write about them in detail sooner.
 
 Well accomplished if you've made it this far <i class="fa-solid fa-face-smile"></i> 
 
