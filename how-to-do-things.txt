@@ -45,3 +45,6 @@ https://cloudcannon.com/blog/why-the-web-is-turning-away-from-wordpress/
 https://docs.github.com/en/get-started/quickstart/github-flow
 
 Copy URL: https://www.redhat.com/en/topics/automation/what-is-infrastructure-as-code-iac
+
+How to do spoilers?
+<span class="spoiler">My hidden paragraph here.</span>

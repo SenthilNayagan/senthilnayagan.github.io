@@ -102,7 +102,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 .bigradius {
-    border-radius: 40px;
+    border-radius: 5px;
 }
 .mb-neg-30 {
     margin-bottom:-30px;
@@ -865,4 +865,36 @@ ul.tags li a:hover {
     background: rgba(76, 73, 203, 0.15);;
     color: #0047f0;
     text-decoration: none;
+}
+
+.spoiler {
+    color: transparent;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    transition: all .4s;
+    cursor: pointer;
+    position: relative;
+}
+
+.spoiler:after {
+    position: absolute;
+    opacity: 0;
+    content: 'Click to reveal spoiler';
+    top: 45%;
+    left: calc(50% - 100px);
+    text-shadow: none;
+    background: #222;
+    color: #fff;
+    display: inline-block;
+    font-size: 13px;
+    line-height: 1;
+    padding: 2px 3px;
+    width: 150px;
+    font-family: Arial;
+    text-align: center;
+    border-radius: 3px;
+    transition: all .4s;
+}
+
+.spoiler:hover:after {
+    opacity: 1;
 }
