@@ -10,7 +10,7 @@ imageshadow: false
 
 ## About me <i class="fa-solid fa-bullhorn"></i>
 
-My name is **Senthil Nayagan**. I am a seasoned IT professional with years of expertise in designing and building complex business solutions. I've been working in the field of data engineering for the past few years. If I were to describe myself in a few words, I would say that I am a Data Engineer by profession, a Rustacean by interest, and an avid Content Creator at present. Currently, I am based in Chennai, India.
+My name is **Senthil Nayagan**. I am a seasoned IT professional with years of expertise in designing and building complex business solutions. I've been working in the field of Data Engineering for the past few years. If I were to describe myself in a few words, I would say that I am a Data Engineer by profession, a Rustacean by interest, and an avid tech-blog writer at present. Currently, I am based in Chennai, India.
 
 ### Open-source software (OSS) and the community <i class="fa-solid fa-people-group"></i>
 

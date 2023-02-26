@@ -15,7 +15,7 @@ toc: false
 
 # What is indexing in database?
 
-Indexing in a database is a technique that makes use of data structures in order to reduce reduce the amount of time needed to search for item(s) within a table in a database. It helps in faster data retrieval from the database table. Additionally, it allows us to reduce the number of rows or records that need to be  analyzed.
+Indexing in a database is a special *data structure* that enables *quick access* to specific information without having to read the whole data of a given table in the database. Having quick access implies taking *less time* to find anything on a table. Having said that, it allows us to reduce the number of rows or records that need to be analyzed.
 
 Let's say we have a table called `Employee`, and two of its fields are named `Employee_Id` and `Employee_Name`. On this table, we wish to run the select query shown in the following example:
 
