@@ -43,7 +43,7 @@ The goal of data governance is to establish *trust in data*. Trustworthy data is
 
 ## Data quality
 
-We can accomplish data quality by using data governance. Data quality is focused on making sure that the data complies to our data quality dimensions such as *accuracy*, *completeness*, *validity*, *timeliness*, *consistency*, and so on. To put it simply, data quality guarantees that we have high-quality data.
+We can accomplish data quality by using data governance. Data quality is focused on making sure that the data complies with our **data quality dimensions** such as *accuracy*, *completeness*, *validity*, *timeliness*, *consistency*, and *uniqueness*. To put it simply, data quality guarantees that we have high-quality data.
 
 We can figure out the data quality by looking at its source, i.e., where it came from (e.g., was it entered by humans, who often make mistakes?). A *sense of ownership* is one method for improving data quality—making sure the business unit responsible for generating the data also owns the quality of that data. 
 
