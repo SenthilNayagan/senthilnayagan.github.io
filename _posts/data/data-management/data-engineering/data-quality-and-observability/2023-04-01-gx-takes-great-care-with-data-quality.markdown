@@ -72,7 +72,7 @@ Before we continue, it's crucial to understand the various concepts and terms us
 
 GX provides better connectivity with a wide variety of data sources and data manipulation frameworks like Apache Spark and Pandas. It provides a **unified Datasource API** that *connects* and *interacts* across multiple data sources. The term "unified" denotes that the Datasource API remains the same across all data sources, such as PostgreSQL, CSV filesystems, and others. This unified Datasource API makes working with all data sources very convenient. Having said that, our primary tool for connecting to data is the Datasource.
 
-Under the hood, Datasources uses a **Data Connector** and an **Execution Engine** to connect to a wide variety of external data sources and perform computation, respectively. The Datasource provides an interface for a Data connector and an Execution Engine to work together. Each Datasource must have an Execution Engine and one or more Data Connectors configured. Thanks to the unified Datasource API,once a Datasource is configured, we will be able to operate with the Datasource's API rather than needing a different API for each possible data backend we may be working with.
+Under the hood, Datasources uses a **Data Connector** and an **Execution Engine** to connect to a wide variety of external data sources and perform computation, respectively. The Datasource provides an interface for a Data connector and an Execution Engine to work together. Each Datasource must have an Execution Engine and one or more Data Connectors configured. Thanks to the unified Datasource API, once a Datasource is configured, we will be able to operate with the Datasource's API rather than needing a different API for each data source we may be working with.
 
 ### Data Connector
 
@@ -88,14 +88,91 @@ Execution Engine provides computing resources that will be used to perform Valid
 
 ## Data Asset
 
-A Data Asset is a collection of records within a Datasource. Often, Data Assets are tied to already-existing data that has a name (e.g., "the UserEvents table"). **Data Assets slice the data one step further** (e.g., “new records for each day within the UserEvents table.”). 
+A Data Asset is a *logical* collection of records within a Datasource. Often, Data Assets are tied to already-existing data that has a name (e.g., "the UserEvents table"). **Also, Data Assets can slice the data one step further** (subsets) (e.g., “new records for month within the UserEvents table.”). Great Expectations protects the quality of Data Assets.
 
-Further Data Asset examples are:
+More Data Asset examples are:
 
 - In a SQL database, a Data Asset may be the rows from a table grouped by the week.
 - In an S3 bucket or filesystem, a Data Asset may be the files matching a particular regex pattern.
 
-We can define multiple Data Assets built from the same underlying data source to support different workflows.
+We can define multiple Data Assets built from the same underlying data source to support different workflows or use cases. To put it simply, the same data can be in multiple Data Assets. For instance, we may have different **Expectations** of the same raw data for different purposes.
+
+Not all records in a Data Asset need to be available at the same time or same place. A Data Asset could be built from:
+
+- Streaming data that is never stored
+- Incremental deliveries
+- Incremental updates
+- Analytic queries
+- Replacement deliveries or from a one-time snapshot
+
+That implies that a Data Asset is a logical concept. So no matter where the data comes from originally, Great Expectations validates **batches** of data.
+
+## Batch
+
+A Batch is a discrete selection or subset of records from a Data Asset. Providing a **Batch Request** to a Datasource results in the creation of a Batch. **A Batch adds metadata to precisely identify the specific data included in the Batch**. With the help of these metadata, a Batch can be identified by a collection of parameters, such as *the date of delivery*, *the value of a field*, *the time of validation*, or *access control permissions*. 
+
+## Batch Request
+
+A Batch Request is sent to a **Datasource** in order to create a **Batch**. A Batch Request contains all the necessary details to query the underlying data. A Batch Request will return all matching Batches if it finds more than one that satisfy the requirements of the user-provided `batch identifiers`. A Batch Request is always used when Great Expectations builds a Batch.
+
+When a Batch Request is passed to a Datasource, the Datasource will use its Data Connector to build a **Batch Spec**, which is an Execution Engine-specific description of the Batch. Datasource's Execution Engine will use this Batch Spec to return a Batch of data.
+
+We will rarely need to access an existing Batch Request. Instead, we often find ourself defining a Batch Request in a configuration file, or passing in parameters to create a Batch Request which we will then pass to a Datasource. Once we receive a Batch back, it is unlikely we will ever need to reference to the Batch Request that generated it. In fact, if the Batch Request was part of a configuration, Great Expectations will simply initialize a new copy rather than load an existing one when the Batch Request is needed.
+
+### How to create a Bad Request
+
+Batch Requests are instances of either a `RuntimeBatchRequest` or a `BatchRequest`. A BatchRequest can be defined by passing a dictionary with the necessary parameters when a BatchRequest is initialized.
+
+```python
+from great_expectations.core.batch import BatchRequest
+
+batch_request_parameters = {
+  'datasource_name': 'getting_started_datasource',
+  'data_connector_name': 'default_inferred_data_connector_name',
+  'data_asset_name': 'yellow_tripdata_sample_2019-01.csv',
+  'limit': 1000
+}
+
+batch_request=BatchRequest(**batch_request_parameters)
+```
+
+## Data Context
+
+A Data Context is the **primary entry point for a Great Expectations**. Our Data Context provides us with methods to configure our Stores, plugins, and Data Docs. It also provides the methods needed to create, configure, and access our Datasources, Expectations, Profilers, and Checkpoints. In addition to all of that, it internally manages our Metrics, Validation Results, and the contents of your Data Docs for us. Expectations, Profilers, Checkpoints, Metrics, and Validation Results will all be covered in greater depth later on.
+
+## Expectation
+
+An Expectation is a **test assertion that we can run against our data under test**. Like unit test assertions in most of the programming languages, Expectations provide a flexible, declarative language for describing expected behavior. Unlike traditional unit tests, **Great Expectations applies Expectations to data instead of code**. As an example, we could define an Expectation that states that a column has no null values. Great Expectations would then compare our data to that Expectation and report if a null value was found.
+
+## Expectation Suite
+
+Expectations are grouped into Expectation Suites, which can be stored and retrieved using an **Expectation Store**. The most critical aspect of Great Expectation is creating Expectation, or Expectation Suites. Note that a local configuration for an Expectation Store will be added automatically to `great_expectations.yml` when we initialize our Data Context for the first time. We can change this configuration to work with different **Stores**.
+
+Generally, we will not need to interact with an Expectation Store directly. Instead, our Data Context will use an Expectation Store to store and retrieve Expectation Suites behind the scenes. This means, we most likely use convenience methods in our Data Context to retrieve Expectation Suites.
+
+## Expectation Store
+
+Expectation Stores allow us to store and retrieve Expectation Suites. These Stores can be accessed and configured through the Data Context, but entries are added to them when we save an Expectation Suite.
+
+## Store
+
+A Store is a connector to store and retrieve information about metadata in Great Expectations. Great Expectations supports a variety of Stores for different purposes, but the most common Stores are: 
+
+- **Expectation Stores** - Used to store and retrieve information about collections of test assertions about data.
+- **Validations Stores** - Used to store and retrieve information about objects generated when data is Validated against an Expectation Suite.
+- **Checkpoint Stores** - 
+- **Metric Stores** 
+- **Evaluation Parameter Stores**
+- **Data Docs Stores**
+
+## Checkpoint
+
+In a production deployment of Great Expectations, a Checkpoint serves as the primary means for validating data. Checkpoints provide a convenient abstraction for bundling the Validation of a Batch (or Batches) of data against an Expectation Suite (or several), as well as the Actions that should be taken after the validation.
+
+Checkpoints have their own Store which is used to persist their configurations to YAML files. These configurations can be committed to version control.
+
+A Checkpoint uses a **Validator** to run one or more Expectation Suites against one or more Batches provided by one or more Batch Requests. Running a Checkpoint produces Validation Results and will result in optional Actions being performed if they are configured to do so.
+
 
 # Great Expectations in detail
 
