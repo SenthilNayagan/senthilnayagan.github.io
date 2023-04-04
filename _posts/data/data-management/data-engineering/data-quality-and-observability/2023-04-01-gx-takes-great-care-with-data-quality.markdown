@@ -74,6 +74,26 @@ GX provides better connectivity with a wide variety of data sources and data man
 
 Under the hood, Datasources uses a **Data Connector** and an **Execution Engine** to connect to a wide variety of external data sources and perform computation, respectively. The Datasource provides an interface for a Data connector and an Execution Engine to work together. Each Datasource must have an Execution Engine and one or more Data Connectors configured. Thanks to the unified Datasource API, once a Datasource is configured, we will be able to operate with the Datasource's API rather than needing a different API for each data source we may be working with.
 
+### Creating a new Datasource through the CLI
+
+Run the below command to create a new Datasource:
+
+```bash
+great_expectations datasource new
+```
+
+The above command will bring up the following prompt:
+
+```text
+What data would you like Great Expectations to connect to?
+    1. Files on a filesystem (for processing with Pandas or Spark)
+    2. Relational database (SQL)
+: 1
+```
+
+We can get data either from filesystem using Pandad/Spark or from relational database. 
+
+
 ### Data Connector
 
 Datasource leverages the Data Connector, which facilitates access to external data sources such as databases, filesystems, and cloud storage. A Data Connector is an integral element of a Datasource. 
@@ -119,7 +139,7 @@ When a Batch Request is passed to a Datasource, the Datasource will use its Da
 
 We will rarely need to access an existing Batch Request. Instead, we often find ourself defining a Batch Request in a configuration file, or passing in parameters to create a Batch Request which we will then pass to a Datasource. Once we receive a Batch back, it is unlikely we will ever need to reference to the Batch Request that generated it. In fact, if the Batch Request was part of a configuration, Great Expectations will simply initialize a new copy rather than load an existing one when the Batch Request is needed.
 
-### How to create a Bad Request
+### How to create a Batch Request
 
 Batch Requests are instances of either a `RuntimeBatchRequest` or a `BatchRequest`. A BatchRequest can be defined by passing a dictionary with the necessary parameters when a BatchRequest is initialized.
 
@@ -142,7 +162,11 @@ A Data Context is the **primary entry point for a Great Expectations**. Our Data
 
 ## Expectation
 
-An Expectation is a **test assertion that we can run against our data under test**. Like unit test assertions in most of the programming languages, Expectations provide a flexible, declarative language for describing expected behavior. Unlike traditional unit tests, **Great Expectations applies Expectations to data instead of code**. As an example, we could define an Expectation that states that a column has no null values. Great Expectations would then compare our data to that Expectation and report if a null value was found.
+An Expectation is a **test assertion that we can run against our data under test**. Like unit test assertions in most of the programming languages, Expectations provide a flexible, *declarative language* for describing expected behavior. Unlike traditional unit tests, **Great Expectations applies Expectations to data instead of code**. 
+
+Each Expectation is a declarative test assertion about the expected format, content, or behavior of our data under test. The **test assertions are both human-readable and machine-verifiable assertions**. Great Expectations comes with many [built-in](https://greatexpectations.io/expectations/){:target="_blank"} Expectations, and we can also develop our own custom Expectations.
+
+As an example, we could define an Expectation that states that a column has no null values. Great Expectations would then compare our data to that Expectation and report if a null value was found.
 
 ## Expectation Suite
 
@@ -150,13 +174,30 @@ Expectations are grouped into Expectation Suites, which can be stored and retrie
 
 Generally, we will not need to interact with an Expectation Store directly. Instead, our Data Context will use an Expectation Store to store and retrieve Expectation Suites behind the scenes. This means, we most likely use convenience methods in our Data Context to retrieve Expectation Suites.
 
+### Creating Expectations Suite
+
+The below shows how to create an Expectations Suite using the CLI. Run the below command from Data Context:
+
+```bash
+great_expectations suite new
+```
+
+The above command will bring up the following prompt:
+
+```text
+How would you like to create your Expectation Suite?
+    1. Manually, without interacting with a sample Batch of data (default)
+    2. Interactively, with a sample Batch of data
+    3. Automatically, using a Data Assistant
+```
+
 ## Expectation Store
 
 Expectation Stores allow us to store and retrieve Expectation Suites. These Stores can be accessed and configured through the Data Context, but entries are added to them when we save an Expectation Suite.
 
 ## Store
 
-A Store is a connector to store and retrieve information about metadata in Great Expectations. Great Expectations supports a variety of Stores for different purposes, but the most common Stores are: 
+A Store is a location to store and retrieve information about metadata in Great Expectations. Great Expectations supports a variety of Stores for different purposes, but the most common Stores are: 
 
 - **Expectation Stores** - Used to store and retrieve information about collections of test assertions about data.
 - **Validations Stores** - Used to store and retrieve information about objects generated when data is Validated against an Expectation Suite.
@@ -167,12 +208,72 @@ A Store is a connector to store and retrieve information about metadata in Great
 
 ## Checkpoint
 
-In a production deployment of Great Expectations, a Checkpoint serves as the primary means for validating data. Checkpoints provide a convenient abstraction for bundling the Validation of a Batch (or Batches) of data against an Expectation Suite (or several), as well as the Actions that should be taken after the validation.
+In a production deployment of Great Expectations, a Checkpoint serves as the primary means for validating data. Checkpoints provide a convenient abstraction for bundling the Validation of a Batch (or Batches) of data against an Expectation Suite (or several), as well as the Actions (optional) that should be taken after the validation.
 
 Checkpoints have their own Store which is used to persist their configurations to YAML files. These configurations can be committed to version control.
 
 A Checkpoint uses a **Validator** to run one or more Expectation Suites against one or more Batches provided by one or more Batch Requests. Running a Checkpoint produces Validation Results and will result in optional Actions being performed if they are configured to do so.
 
+### Creating a Checkpoint
+
+#### 1. Using CLI to open a Jupyter Notebook for creating a new Checkpoint
+
+The Great Expectations CLI has a convenience method that will open a Jupyter Notebook to easily configure and save our Checkpoint. Run the following CLI command from our Data Context:
+
+```bash
+great_expectations checkpoint new my_checkpoint
+```
+We can replace `my_checkpoint` in the above command with whatever name we would like to associate with the Checkpoint we will be creating. After running this command, a Jupyter Notebook will open, which will guide us through the procedure for creating a Checkpoint. We can modify the default setup of this Jupyter Notebook to fit our use case.
+
+
+### 2. Editing the Checkpoint configuration
+The following shows the minimum required Checkpoint configuration generated by Jupyter Notebook, which uses the `SimpleCheckpoint class` that takes care of some defaults. The following example shows the YAML configuration as a Python string.
+
+```python
+config = """
+name: my_checkpoint  # This is populated by the CLI.
+config_version: 1
+class_name: SimpleCheckpoint
+validations:
+  - batch_request:
+      datasource_name: my_datasource  # Update this value.
+      data_connector_name: my_data_connector  # Update this value.
+      data_asset_name: MyDataAsset  # Update this value.
+      data_connector_query:
+        index: -1
+    expectation_suite_name: my_suite  # Update this value.
+"""
+```
+
+We need to replace the names `my_datasource`, `my_data_connector`, `MyDataAsset` and `my_suite` with the respective **Datasource**, **Data Connector**, **Data Asset**, and **Expectation Suite** names we have configured in our `great_expectations.yml`.
+
+### 3. Validating and testing our configuration
+
+We can use the following Python statement to validate the contents of our `config` yaml string mentioned above:
+
+```python
+context.test_yaml_config(yaml_config=config)
+```
+
+Here, `context` represents Data Context object. When executed, `test_yaml_config(...)` will instantiate the passing component and run through a self-check procedure to verify that the component works as expected.
+
+In the case of a Checkpoint, this means:
+
+- Verifying that the Checkpoint class with the given configuration, if valid, can be instantiated.
+- Printing warnings in case the configuration is invalid or incomplete.
+- Raise error if our configuration was not set up correctly.
+
+### 4. Storing our Checkpoint configuration
+
+After we are satisfied with our Checkpoint configuration, we can store it in our Checkpoint Store.
+
+### 5. Running our Checkpoint and opening Data Docs
+
+Before running a Checkpoint, make sure that all classes and Expectation Suites referred to in the configuration exist. We can use the below Python statement to run our Checkpoint.
+
+```python
+context.run_checkpoint(...)
+```
 
 # Great Expectations in detail
 
