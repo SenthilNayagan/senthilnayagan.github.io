@@ -46,7 +46,7 @@ Similar to unit testing in software engineering, data testing has to become a re
 
 There are various data quality tools—both commercial and open source—that are currently on the market. This blog focuses on one of the hand-picked open source data quality tools called **Great Expectations**, among other open source tools
 
-I took into account the following factors while evaluating the open source data quality tools:
+I've taken into account the following factors while evaluating the open source data quality tools:
 
 - Is the tool **able to deal with all six data quality dimensions**?
 - **How easy is it for both data engineers and data analysts** to learn how to write data quality checks or tests and get good at them quickly?
@@ -56,7 +56,7 @@ I took into account the following factors while evaluating the open source data 
 - The **rate at which the tool is evolving and gaining new capabilities**.
 - Last but not least, which one of them is **more widely used across enterprises**?
 
-Let's take a closer look at Great Expectations to see how it might assist us in obtaining reliable data.
+Let's take a closer look at **Great Expectations** to see how it might assist us in obtaining reliable data.
 
 # Introduction to Great Expectations (GX)
 
@@ -66,7 +66,39 @@ Unlike traditional unit tests, GX applies tests to data instead of code. To put 
 
 > **Profiling**, or **data profiling**, is the process of examining, analyzing, and creating useful summaries of data that aid in the discovery of data quality issues.
 
+The best part about Great Expectations is that, unlike other data quality tools, **we do not need to write the configuration**. Instead, Great Expectations comes with the Jupyter Notebook, which will help us generate various configurations for us.
+
 Before we continue, it's crucial to understand the various concepts and terms used in Great Expectations.
+
+## Data Context
+
+A Data Context is the **primary entry point for a Great Expectations**. Our Data Context provides us with methods to configure our Stores, plugins, and Data Docs. It also provides the methods needed to create, configure, and access our Datasources, Expectations, Profilers, and Checkpoints. In addition to all of that, it internally manages our Metrics, Validation Results, and the contents of your Data Docs for us. Expectations, Profilers, Checkpoints, Metrics, and Validation Results will all be covered in greater depth later on.
+
+### Create our Data Context
+
+Use the following Python statement to create a new Data Context:
+
+```python
+import great_expectations as gx
+
+context = gx.get_context()
+
+# The below statement is the same as above with a variable-type annotation. 
+# It's a more clean way of coding.
+# context: gx.DataContext = gx.get_context()
+```
+
+### Load our Data Context
+
+Load an on-disk Data Context via:
+
+```python
+import great_expectations as gx
+
+context = gx.get_context(
+    context_root_dir='path/to/my/context/root/directory/great_expectations'
+)
+```
 
 ## Datasource
 
@@ -74,7 +106,27 @@ GX provides better connectivity with a wide variety of data sources and data man
 
 Under the hood, Datasources uses a **Data Connector** and an **Execution Engine** to connect to a wide variety of external data sources and perform computation, respectively. The Datasource provides an interface for a Data connector and an Execution Engine to work together. Each Datasource must have an Execution Engine and one or more Data Connectors configured. Thanks to the unified Datasource API, once a Datasource is configured, we will be able to operate with the Datasource's API rather than needing a different API for each data source we may be working with.
 
-### Creating a new Datasource through the CLI
+### Data Connector
+
+Datasource leverages the Data Connector, which facilitates access to external data sources such as databases, filesystems, and cloud storage. A Data Connector is an integral element of a Datasource. 
+
+### Execution Engine
+
+Execution Engine provides computing resources that will be used to perform Validation. Great Expectations can take advantage of different Execution Engines, such as **Pandas**, **Spark**, or **SqlAlchemy**.
+
+Various Execution Engine's class names are listed below. We will discuss in the later section where we will use these Execution Engine classes.
+
+- **Pandas** - `PandasExecutionEngine`
+- **Spark** - `SparkDFExecutionEngine`
+- **SqlAlchemy** - `SqlAlchemyExecutionEngine`
+
+The following shows the high-level workflow:
+
+|![Figure 1: Datasource - How it works?](/assets/images/posts/gx-datasource-how-it-works.png "Created by Author"){: width="80%" }|
+|:-:|
+|<sup>*Figure 1: Datasource - How it works?*</sup>|<br/><br/>
+
+### Create a new Datasource through the CLI
 
 Run the below command to create a new Datasource:
 
@@ -91,20 +143,70 @@ What data would you like Great Expectations to connect to?
 : 1
 ```
 
-We can get data either from filesystem using Pandad/Spark or from relational database. 
+We can get data either: 
 
+- From the filesystem (a file-based Datasource) using Pandas or Spark
+- From a relational database
 
-### Data Connector
+#### File-based Datasource
 
-Datasource leverages the Data Connector, which facilitates access to external data sources such as databases, filesystems, and cloud storage. A Data Connector is an integral element of a Datasource. 
+For file-based Datasource, the configuration contains an `InferredAssetFilesystemDataConnector`, which will add a **Data Asset** for each file in the base directory we provided. It also contains a `RuntimeDataConnector`, which can accept file paths. Note that we can customize it as we wish.
 
-### Ececution Engine
+In the case of Spark as the processing engine, the following is the Datasource configuration (as a Python string):
 
-Execution Engine provides computing resources that will be used to perform Validation. Great Expectations can take advantage of different Execution Engines, such as Pandas, Spark, or SqlAlchemy.
+```python
+datasource_yaml = f"""
+name: {"my_datasource"}
+class_name: Datasource
+execution_engine:
+  class_name: SparkDFExecutionEngine
+data_connectors:
+  default_inferred_data_connector_name:
+    class_name: InferredAssetFilesystemDataConnector
+    base_directory: ../data
+    default_regex:
+      group_names:
+        - data_asset_name
+      pattern: (.*)
+  default_runtime_data_connector_name:
+    class_name: RuntimeDataConnector
+    assets:
+      my_runtime_asset_name:
+        batch_identifiers:
+          - runtime_batch_identifier_name
+"""
+```
 
-|![Figure 1: Datasource - How it works?](/assets/images/posts/gx-datasource-how-it-works.png "Created by Author"){: width="80%" }|
-|:-:|
-|<sup>*Figure 1: Datasource - How it works?*</sup>|<br/><br/>
+### Test our Datasource configuration
+
+Use `context.test_yaml_config(...)` to test our Datasource configuration as shown below:
+
+```python
+context.test_yaml_config(yaml_config=datasource_yaml)
+```
+
+In the above Python statement, `context` is the Data Context object, which can be created as follows:
+
+```python
+import great_expectations as gx
+
+context = gx.get_context()
+
+# The below statement is the same as above with a variable-type annotation. 
+# It's a more clean way of coding.
+# context: gx.DataContext = gx.get_context()
+```
+
+### Save our Datasource configuration
+
+Here we save our Datasource in our Data Context once we are satisfied with the configuration using the following Python statement:
+
+```python
+from great_expectations.cli.datasource import sanitize_yaml_and_save_datasource
+
+sanitize_yaml_and_save_datasource(context, example_yaml, overwrite_existing=False)
+```
+Note that `overwrite_existing` defaults to False, but we can change it to True if we wish to overwrite the configuration. Please note that if we wish to include comments we must add them directly to our `great_expectations.yml`.
 
 ## Data Asset
 
@@ -147,18 +249,14 @@ Batch Requests are instances of either a `RuntimeBatchRequest` or a `BatchReques
 from great_expectations.core.batch import BatchRequest
 
 batch_request_parameters = {
-  'datasource_name': 'getting_started_datasource',
+  'datasource_name': 'my_datasource',
   'data_connector_name': 'default_inferred_data_connector_name',
-  'data_asset_name': 'yellow_tripdata_sample_2019-01.csv',
-  'limit': 1000
+  'data_asset_name': 'my-data-under-test.csv',
+  'limit': 1000  # Optional
 }
 
 batch_request=BatchRequest(**batch_request_parameters)
 ```
-
-## Data Context
-
-A Data Context is the **primary entry point for a Great Expectations**. Our Data Context provides us with methods to configure our Stores, plugins, and Data Docs. It also provides the methods needed to create, configure, and access our Datasources, Expectations, Profilers, and Checkpoints. In addition to all of that, it internally manages our Metrics, Validation Results, and the contents of your Data Docs for us. Expectations, Profilers, Checkpoints, Metrics, and Validation Results will all be covered in greater depth later on.
 
 ## Expectation
 
@@ -170,11 +268,11 @@ As an example, we could define an Expectation that states that a column has no n
 
 ## Expectation Suite
 
-Expectations are grouped into Expectation Suites, which can be stored and retrieved using an **Expectation Store**. The most critical aspect of Great Expectation is creating Expectation, or Expectation Suites. Note that a local configuration for an Expectation Store will be added automatically to `great_expectations.yml` when we initialize our Data Context for the first time. We can change this configuration to work with different **Stores**.
+**Expectations are grouped into Expectation Suites**, which can be stored and retrieved using an **Expectation Store**. The most critical aspect of Great Expectation is creating Expectation, or Expectation Suites. Note that a local configuration for an Expectation Store will be added automatically to `great_expectations.yml` when we initialize our Data Context for the first time. We can change this configuration to work with different **Stores**.
 
 Generally, we will not need to interact with an Expectation Store directly. Instead, our Data Context will use an Expectation Store to store and retrieve Expectation Suites behind the scenes. This means, we most likely use convenience methods in our Data Context to retrieve Expectation Suites.
 
-### Creating Expectations Suite
+### Create a new Expectations Suite
 
 The below shows how to create an Expectations Suite using the CLI. Run the below command from Data Context:
 
@@ -191,13 +289,9 @@ How would you like to create your Expectation Suite?
     3. Automatically, using a Data Assistant
 ```
 
-## Expectation Store
-
-Expectation Stores allow us to store and retrieve Expectation Suites. These Stores can be accessed and configured through the Data Context, but entries are added to them when we save an Expectation Suite.
-
 ## Store
 
-A Store is a location to store and retrieve information about metadata in Great Expectations. Great Expectations supports a variety of Stores for different purposes, but the most common Stores are: 
+A Store is a **location to store and retrieve information about metadata** in Great Expectations. Great Expectations supports a variety of Stores for different purposes, but the most common Stores are: 
 
 - **Expectation Stores** - Used to store and retrieve information about collections of test assertions about data.
 - **Validations Stores** - Used to store and retrieve information about objects generated when data is Validated against an Expectation Suite.
@@ -205,6 +299,43 @@ A Store is a location to store and retrieve information about metadata in Great 
 - **Metric Stores** 
 - **Evaluation Parameter Stores**
 - **Data Docs Stores**
+
+## Expectation Store
+
+Expectation Stores allow us **to store and retrieve Expectation Suites**. These Stores can be accessed and configured through the Data Context, but entries are added to them when we save an Expectation Suite.
+
+## Validator
+
+A Validator is the object responsible **for running an Expectation Suite against data**. In other words, we use a Validator to access and interact with your data. Checkpoints, in particular, use Validators when running an Expectation Suite against a Batch Request. However, we can also use our Data Context to get a Validator to use outside a Checkpoint - for instance, to create Expectations interactively in a Jupyter Notebook.
+
+Also, we can use the Validator to verify our Datasource. To verify a new Datasource, we can load data from it into a Validator using a Batch Request.
+
+Note that **Validators don't require additional configuration**. Provide one with an Expectation Suite and a Batch Request, and it will work out of the box!
+
+### Instantiate our Validator
+
+The code shows how to instantiate a Validator:
+
+```python
+from great_expectations.core.batch import BatchRequest
+
+expectation_suite_name = "insert_the_name_of_your_suite_here"
+
+# Setting Batch Request configuration
+batch_request_parameters = {
+  'datasource_name': 'my_datasource',
+  'data_connector_name': 'default_inferred_data_connector_name',
+  'data_asset_name': 'my-data-under-test.csv',
+  'limit': 1000  # Optional
+}
+
+validator = context.get_validator(
+    batch_request=BatchRequest(**batch_request_parameters),
+    expectation_suite_name=expectation_suite_name
+)
+```
+
+After we get our Validator instantiated, we can call `validator.head()` to confirm that it contains the data that we expect.
 
 ## Checkpoint
 
@@ -214,9 +345,9 @@ Checkpoints have their own Store which is used to persist their configurations t
 
 A Checkpoint uses a **Validator** to run one or more Expectation Suites against one or more Batches provided by one or more Batch Requests. Running a Checkpoint produces Validation Results and will result in optional Actions being performed if they are configured to do so.
 
-### Creating a Checkpoint
+### Create a Checkpoint
 
-#### 1. Using CLI to open a Jupyter Notebook for creating a new Checkpoint
+#### Using CLI to open a Jupyter Notebook for creating a new Checkpoint
 
 The Great Expectations CLI has a convenience method that will open a Jupyter Notebook to easily configure and save our Checkpoint. Run the following CLI command from our Data Context:
 
@@ -226,7 +357,7 @@ great_expectations checkpoint new my_checkpoint
 We can replace `my_checkpoint` in the above command with whatever name we would like to associate with the Checkpoint we will be creating. After running this command, a Jupyter Notebook will open, which will guide us through the procedure for creating a Checkpoint. We can modify the default setup of this Jupyter Notebook to fit our use case.
 
 
-### 2. Editing the Checkpoint configuration
+### Edit the existing Checkpoint configuration
 The following shows the minimum required Checkpoint configuration generated by Jupyter Notebook, which uses the `SimpleCheckpoint class` that takes care of some defaults. The following example shows the YAML configuration as a Python string.
 
 ```python
@@ -247,7 +378,7 @@ validations:
 
 We need to replace the names `my_datasource`, `my_data_connector`, `MyDataAsset` and `my_suite` with the respective **Datasource**, **Data Connector**, **Data Asset**, and **Expectation Suite** names we have configured in our `great_expectations.yml`.
 
-### 3. Validating and testing our configuration
+### Validate and test our Checkpoint configuration
 
 We can use the following Python statement to validate the contents of our `config` yaml string mentioned above:
 
@@ -263,11 +394,11 @@ In the case of a Checkpoint, this means:
 - Printing warnings in case the configuration is invalid or incomplete.
 - Raise error if our configuration was not set up correctly.
 
-### 4. Storing our Checkpoint configuration
+### Store our Checkpoint configuration
 
 After we are satisfied with our Checkpoint configuration, we can store it in our Checkpoint Store.
 
-### 5. Running our Checkpoint and opening Data Docs
+### Run our Checkpoint and open the Data Docs
 
 Before running a Checkpoint, make sure that all classes and Expectation Suites referred to in the configuration exist. We can use the below Python statement to run our Checkpoint.
 
