@@ -68,11 +68,52 @@ Unlike traditional unit tests, GX applies tests to data instead of code. To put 
 
 The best part about Great Expectations is that, unlike other data quality tools, **we do not need to write the configuration**. Instead, Great Expectations comes with the Jupyter Notebook, which will help us generate various configurations for us.
 
-Before we continue, it's crucial to understand the various concepts and terms used in Great Expectations.
+At a high level, there are four stages in Great Expectations:
+
+1. **Setup**
+2. **Connect to Data**
+3. **Create Expectations**
+4. **Validate Data**
+
+|![Figure 1: Four stages of Great Expectations](/assets/images/posts/gx-four-stages.png "Created by Author"){: width="90%" }|
+|:-:|
+|<sup>*Figure 1: Four stages of Great Expectations.*</sup>|<br/><br/>
+
+Various activities go into each stage as shown below. We will go into great detail on each of these activities later on. For now, it's crucial to understand the various concepts and terms used in Great Expectations. 
+
+|![Figure 2: Various activities go into each stage](/assets/images/posts/gx-stages-and-activities.png "Created by Author")|
+|:-:|
+|<sup>*Figure 2: Various activities go into each stage.*</sup>|<br/><br/>
+
 
 ## Data Context
 
 A Data Context is the **primary entry point for a Great Expectations**. Our Data Context provides us with methods to configure our Stores, plugins, and Data Docs. It also provides the methods needed to create, configure, and access our Datasources, Expectations, Profilers, and Checkpoints. In addition to all of that, it internally manages our Metrics, Validation Results, and the contents of your Data Docs for us. Expectations, Profilers, Checkpoints, Metrics, and Validation Results will all be covered in greater depth later on.
+
+Data Context can be initialized using the CLI, created, loaded, and saved for future use.
+
+### Initialize our Data Context with the CLI
+
+The simplest way to create a new Data Context is by using Great Expectations' CLI. Run the following command from the directory where we wish to initialize Great Expectations:
+
+```bash
+great_expectations init
+```
+
+The above command causes Great Expectations to create the directory structure and configuration files required for us to go on. Great Expectations will create a new directory with the following structure:
+
+```text
+great_expectations
+    |-- great_expectations.yml
+    |-- expectations
+    |-- checkpoints
+    |-- plugins
+    |-- .gitignore
+    |-- uncommitted
+        |-- config_variables.yml
+        |-- data_docs
+        |-- validations
+```
 
 ### Create our Data Context
 
@@ -81,7 +122,7 @@ Use the following Python statement to create a new Data Context:
 ```python
 import great_expectations as gx
 
-context = gx.get_context()
+context = gx.get_context()  # Creating a DataContext object
 
 # The below statement is the same as above with a variable-type annotation. 
 # It's a more clean way of coding.
@@ -100,11 +141,25 @@ context = gx.get_context(
 )
 ```
 
+### Save the Data Context for future use
+
+We obtained a temporary, in-memory **Ephemeral Data Context** from `gx.get context()` since we had not previously initialized a Filesystem Data Context (using `great_expectations init`) or specified a path at which to create one (via `gx.get_context(context_root_dir='path/great_expectations')`).
+
+To save this Data Context for future use, we will convert it to a Filesystem Data Context:
+
+```python
+context = context.convert_to_file_context()
+```
+
+We can also provide the path to a specific folder where we want the Filesystem Data Context to be initialized.
+
 ## Datasource
 
 GX provides better connectivity with a wide variety of data sources and data manipulation frameworks like Apache Spark and Pandas. It provides a **unified Datasource API** that *connects* and *interacts* across multiple data sources. The term "unified" denotes that the Datasource API remains the same across all data sources, such as PostgreSQL, CSV filesystems, and others. This unified Datasource API makes working with all data sources very convenient. Having said that, our primary tool for connecting to data is the Datasource.
 
-Under the hood, Datasources uses a **Data Connector** and an **Execution Engine** to connect to a wide variety of external data sources and perform computation, respectively. The Datasource provides an interface for a Data connector and an Execution Engine to work together. Each Datasource must have an Execution Engine and one or more Data Connectors configured. Thanks to the unified Datasource API, once a Datasource is configured, we will be able to operate with the Datasource's API rather than needing a different API for each data source we may be working with.
+Under the hood, Datasources uses a **Data Connector** and an **Execution Engine** to connect to a wide variety of external data sources and perform computation, respectively. The Datasource provides an interface for a Data connector and an Execution Engine to work together. Each Datasource must have an Execution Engine and one or more Data Connectors configured. 
+
+Thanks to the unified Datasource API, once a Datasource is configured, we will be able to operate with the Datasource's API rather than needing a different API for each data source we may be working with.
 
 ### Data Connector
 
@@ -122,9 +177,9 @@ Various Execution Engine's class names are listed below. We will discuss in the 
 
 The following shows the high-level workflow:
 
-|![Figure 1: Datasource - How it works?](/assets/images/posts/gx-datasource-how-it-works.png "Created by Author"){: width="80%" }|
+|![Figure 3: Datasource - How it works?](/assets/images/posts/gx-datasource-how-it-works.png "Created by Author"){: width="80%" }|
 |:-:|
-|<sup>*Figure 1: Datasource - How it works?*</sup>|<br/><br/>
+|<sup>*Figure 3: Datasource - How it works?*</sup>|<br/><br/>
 
 ### Create a new Datasource through the CLI
 
@@ -255,16 +310,132 @@ batch_request_parameters = {
   'limit': 1000  # Optional
 }
 
-batch_request=BatchRequest(**batch_request_parameters)
+batch_request = BatchRequest(**batch_request_parameters)
 ```
 
 ## Expectation
 
 An Expectation is a **test assertion that we can run against our data under test**. Like unit test assertions in most of the programming languages, Expectations provide a flexible, *declarative language* for describing expected behavior. Unlike traditional unit tests, **Great Expectations applies Expectations to data instead of code**. 
 
-Each Expectation is a declarative test assertion about the expected format, content, or behavior of our data under test. The **test assertions are both human-readable and machine-verifiable assertions**. Great Expectations comes with many [built-in](https://greatexpectations.io/expectations/){:target="_blank"} Expectations, and we can also develop our own custom Expectations.
+Each Expectation is a declarative test assertion about the expected format, content, or behavior of our data under test. The **test assertions are both human-readable and machine-verifiable assertions**. 
+
+> **Expectation Gallery:** Great Expectations comes with many [built-in](https://greatexpectations.io/expectations/){:target="_blank"} Expectations, and we can also develop our own custom Expectations.
 
 As an example, we could define an Expectation that states that a column has no null values. Great Expectations would then compare our data to that Expectation and report if a null value was found.
+
+### Various ways of creating Expectations
+
+There are a few workflows we can follow when creating Expectations. These workflows represent various ways of creating Expectations.
+
+There are **four** potential ways to create Expectations as shown below:
+
+1. **Interactive workflow** (with inspecting data) (Recommended)
+2. **Data Assistant workflow** (with inspecting data) (Recommended)
+3. **Manually define our Expectations** (without inspecting data)
+4. **Custom scripts**
+
+#### Interactive workflow
+
+In this workflow, we will be working in a Python interpreter or Jupyter Notebook. In this case, we will navigate to our Data Context's root directory in our terminal, where we will use the CLI to launch a Jupyter Notebook, which will assist us in the process. We will use a Validator and call expectations methods on it to define Expectations in an Expectation Suite. When we have finished, we will save that Expectation Suite in our Expectation Store.
+
+Use the CLI to begin the interactive process of creating Expectations. From the root folder of our Data Context, enter the following command:
+
+```bash
+great_expectations suite new
+```
+
+This will bring up the following prompt:
+
+```text
+How would you like to create your Expectation Suite?
+    1. Manually, without interacting with a sample Batch of data (default)
+    2. Interactively, with a sample Batch of data
+    3. Automatically, using a Data Assistant
+:
+```
+
+To start the Interactive Mode workflow, enter 2. Note that we can skip the above prompt by including the flag `--interactive` in our command-line input:
+
+```bash
+great_expectations suite new --interactive
+```
+
+#### Data Assistant workflow
+
+In this workflow, we will use a Data Assistant to generate Expectations based on some input data. In this case, we will be working in a Python environment, so we will need to load or create our Data Context as an instantiated object. Next, we will create a Batch Request to specify the data we would like to Profile with our Data Assistant. 
+
+##### Create a Batch Request
+This is how we create a `BatchRequest`:
+
+```python
+from great_expectations.core.batch import BatchRequest
+
+batch_request_parameters = {
+  'datasource_name': 'my_datasource',
+  'data_connector_name': 'default_inferred_data_connector_name',
+  'data_asset_name': 'my-data-under-test.csv',
+  'limit': 1000  # Optional
+}
+
+batch_request = BatchRequest(**batch_request_parameters)
+```
+
+> **Caution:** The Onboarding Data Assistant will run a high volume of queries against our Datasource. Data Assistant performance can vary significantly depending on the number of Batches, count of records per Batch, and network latency. It is recommended that we start with a smaller BatchRequest if we find that Data Assistant runtimes are too long.
+
+##### Run the Onboarding Data Assistant
+
+Next, run the Onboarding Data Assistant. Running a Data Assistant is as simple as calling the `run(...)` method for the appropriate assistant. There are numerous parameters available for the `run(...)` method of the Onboarding Data Assistant. For instance, the `exclude_column_names` parameter allows us to provide a list columns that should not be Profiled. In addition, we can also use other parameters, such as `include_column_names`, `include_column_name_suffixes`, and `cardinality_limit_mode`.
+
+The following code shows how to run the Onboarding Assistant.
+
+```python
+data_assistant_result = context.assistants.onboarding.run(
+    batch_request = multi_batch_all_years_batch_request,
+    exclude_column_names = [col1, col2, col3],
+)
+```
+
+##### Save our Expectation Suite
+
+Once we have executed the Onboarding Data Assistant's `run(...)` method and generated Expectations for our data, we need to load them into our Expectation Suite and save them. We will do this by using the Data Assistant result:
+
+```python
+expectation_suite = data_assistant_result.get_expectation_suite(
+    expectation_suite_name=expectation_suite_name
+)
+```
+
+And once the Expectation Suite has been retrieved from the Data Assistant result, we can save it like so:
+
+```python
+context.add_or_update_expectation_suite(expectation_suite=expectation_suite)
+```
+
+#### Manually define our Expectations
+
+This workflow is for advanced users who want to manually (**without inspecting data**) define the Expectations by writing the configurations. While source data is not necessary for this approach, a thorough understanding of the Expectations configurations is necessary.
+
+Create Expectation Configurations as shown below:
+
+```python
+expectation_configuration = ExpectationConfiguration(
+   expectation_type = "expect_column_values_to_be_in_set",
+   kwargs = {
+      "column": "transaction_type",
+      "value_set": ["purchase", "refund", "upgrade"]
+   },
+)
+```
+
+Then, add the Expectation to the suite as shown below:
+
+```python
+suite.add_expectation(expectation_configuration = expectation_configuration)
+```
+
+#### Custom scripts
+
+Some advanced users have also taken advantage of this workflow, and have written custom methods that allow them to generate Expectations based on the metadata associated with their source data systems.
 
 ## Expectation Suite
 
@@ -300,7 +471,7 @@ A Store is a **location to store and retrieve information about metadata** in Gr
 - **Evaluation Parameter Stores**
 - **Data Docs Stores**
 
-## Expectation Store
+### Expectation Store
 
 Expectation Stores allow us **to store and retrieve Expectation Suites**. These Stores can be accessed and configured through the Data Context, but entries are added to them when we save an Expectation Suite.
 
@@ -330,8 +501,8 @@ batch_request_parameters = {
 }
 
 validator = context.get_validator(
-    batch_request=BatchRequest(**batch_request_parameters),
-    expectation_suite_name=expectation_suite_name
+    batch_request = BatchRequest(**batch_request_parameters),
+    expectation_suite_name = expectation_suite_name
 )
 ```
 
