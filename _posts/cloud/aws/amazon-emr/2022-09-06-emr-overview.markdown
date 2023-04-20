@@ -314,7 +314,7 @@ EMR added a built-in YARN node **label feature** with the 5.19.0 release. With t
 
 <hr class="grey_line"/>
 
-# Frequently asked questions (FAQ)
+# Frequently asked questions (FAQs)
 
 ## What exactly is meant by the term "key pair" when referring to Amazon EC2?
 

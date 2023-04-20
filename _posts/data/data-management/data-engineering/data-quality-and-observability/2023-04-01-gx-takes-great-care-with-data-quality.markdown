@@ -44,9 +44,9 @@ Similar to unit testing in software engineering, data testing has to become a re
 
 ### Data quality tools
 
-There are various data quality tools—both commercial and open source—that are currently on the market. This blog focuses on one of the hand-picked open source data quality tools called **Great Expectations**, among other open source tools
+There are various data quality tools—both commercial and open source—that are currently on the market. This blog focuses on one of the hand-picked open source data quality tools called **Great Expectations**, among other open source tools.
 
-I've taken into account the following factors while evaluating the open source data quality tools:
+We've taken into account the following factors while evaluating the open source data quality tools:
 
 - Is the tool **able to deal with all six data quality dimensions**?
 - **How easy is it for both data engineers and data analysts** to learn how to write data quality checks or tests and get good at them quickly?
@@ -117,7 +117,7 @@ great_expectations
 
 ### Create our Data Context
 
-Use the following Python statement to create a new Data Context:
+Use the following Python statements to create a new Data Context:
 
 ```python
 import great_expectations as gx
@@ -129,7 +129,7 @@ context = gx.get_context()  # Creating a DataContext object
 # context: gx.DataContext = gx.get_context()
 ```
 
-### Load our Data Context
+### Load the existing Data Context
 
 Load an on-disk Data Context via:
 
@@ -163,7 +163,40 @@ Thanks to the unified Datasource API, once a Datasource is configured, we will b
 
 ### Data Connector
 
-Datasource leverages the Data Connector, which facilitates access to external data sources such as databases, filesystems, and cloud storage. A Data Connector is an integral element of a Datasource. 
+Datasource leverages the Data Connector, which facilitates access to external data sources such as databases, filesystems, and cloud storage. A Data Connector is an integral element of a Datasource.
+
+Great Expectations provides **three** types of DataConnector classes:
+
+- **InferredAssetDataConnectors**
+- **ConfiguredAssetDataConnectors**
+- **RuntimeDataConnector**
+
+#### InferredAssetDataConnectors
+
+- Infers `data_asset_name` by using a regex that takes advantage of patterns that exist in the filename or folder structure.
+
+#### ConfiguredAssetDataConnector
+
+- It allows us to specify that we have multiple **Data Assets** in a Datasource, but also requires an explicit listing of each Data Asset we want to connect to.
+- Allows users to have the most fine-tuning, and requires an explicit listing of each Data Asset we want to connect to.
+
+There are different Data Connector classes that exist both for `InferredAssetDataConnectors` and `ConfiguredAssetDataConnector`:
+
+- `InferredAssetFilesystemDataConnector` and `ConfiguredAssetFilesystemDataConnector`
+- `InferredAssetFilePathDataConnector` and `ConfiguredAssetFilePathDataConnector`
+- `InferredAssetAzureDataConnector` and `ConfiguredAssetAzureDataConnector`
+- `InferredAssetGCSDataConnector` and `ConfiguredAssetGCSDataConnector`
+- `InferredAssetS3DataConnector` and `ConfiguredAssetS3DataConnector`
+- `InferredAssetSqlDataConnector` and `ConfiguredAssetSqlDataConnector`
+- `InferredAssetDBFSDataConnector` and `ConfiguredAssetDBFSDataConnector`
+
+InferredAssetDataConnectors and ConfiguredAssetDataConnectors are used to define Data Assets and their associated **data_references**. A Data Asset is an abstraction that can consist of one or more data_references. For instance, we might have a `yellow_tripdata` Data Asset containing information about taxi rides, which consists of twelve data_references.
+
+#### RuntimeDataConnector
+
+- A `RuntimeDataConnector` is a special kind of Data Connector that enables us to use a `RuntimeBatchRequest` to provide a Batch's data directly at runtime.
+- The `RuntimeBatchRequest` can wrap either an in-memory dataframe, filepath, or SQL query, and must include batch identifiers that uniquely identify the data. For example, a `run_id` from an AirFlow DAG run.
+- The batch identifiers that must be passed in at runtime are specified in the RuntimeDataConnector's configuration.
 
 ### Execution Engine
 
@@ -198,7 +231,7 @@ What data would you like Great Expectations to connect to?
 : 1
 ```
 
-We can get data either: 
+We can get data either way: 
 
 - From the filesystem (a file-based Datasource) using Pandas or Spark
 - From a relational database
@@ -232,12 +265,46 @@ data_connectors:
 """
 ```
 
+### Create a Filesystem Datasource (Python)
+
+A Filesystem Datasource can be created with two pieces of information:
+
+- `name`: The name by which the Datasource will be referenced in the future
+- `base_directory`: The path to the folder containing the files the Datasource will be used to connect to
+
+```python
+datasource_name = "my_spark_datasource"
+raw_data_files = "./data"
+```
+
+Next, pass both data source name and data directory path as parameters when we create our Datasource:
+
+```python
+datasource = context.sources.add_spark_filesystem(
+    name = datasource_name, 
+    base_directory = raw_data_files
+  )
+```
+
+This creates a `SparkFilesystemDatasource` object shown below:
+
+```python
+SparkFilesystemDatasource(
+	type='spark_filesystem', 
+	name='my_spark_datasource', 
+	id=None, 
+	assets={}, 
+	base_directory=PosixPath('data'), 
+	data_context_root_directory=None
+)
+```
+
 ### Test our Datasource configuration
 
 Use `context.test_yaml_config(...)` to test our Datasource configuration as shown below:
 
 ```python
-context.test_yaml_config(yaml_config=datasource_yaml)
+context.test_yaml_config(yaml_config = datasource_yaml)
 ```
 
 In the above Python statement, `context` is the Data Context object, which can be created as follows:
@@ -259,7 +326,7 @@ Here we save our Datasource in our Data Context once we are satisfied with the c
 ```python
 from great_expectations.cli.datasource import sanitize_yaml_and_save_datasource
 
-sanitize_yaml_and_save_datasource(context, example_yaml, overwrite_existing=False)
+sanitize_yaml_and_save_datasource(context, datasource_yaml, overwrite_existing=False)
 ```
 Note that `overwrite_existing` defaults to False, but we can change it to True if we wish to overwrite the configuration. Please note that if we wish to include comments we must add them directly to our `great_expectations.yml`.
 
@@ -331,7 +398,7 @@ There are **four** potential ways to create Expectations as shown below:
 
 1. **Interactive workflow** (with inspecting data) (Recommended)
 2. **Data Assistant workflow** (with inspecting data) (Recommended)
-3. **Manually define our Expectations** (without inspecting data)
+3. **Manually define our Expectations** (without inspecting data) (Default)
 4. **Custom scripts**
 
 #### Interactive workflow
@@ -382,6 +449,18 @@ batch_request = BatchRequest(**batch_request_parameters)
 
 > **Caution:** The Onboarding Data Assistant will run a high volume of queries against our Datasource. Data Assistant performance can vary significantly depending on the number of Batches, count of records per Batch, and network latency. It is recommended that we start with a smaller BatchRequest if we find that Data Assistant runtimes are too long.
 
+##### Prepare a new Expectation Suite
+
+Preparing a new Expectation Suite is done with the Data Context's `add_or_update_expectation_suite(...)` method as shown below:
+
+```python
+expectation_suite_name = "my_onboarding_assistant_suite"
+
+expectation_suite = context.add_or_update_expectation_suite(
+    expectation_suite_name = expectation_suite_name
+)
+```
+
 ##### Run the Onboarding Data Assistant
 
 Next, run the Onboarding Data Assistant. Running a Data Assistant is as simple as calling the `run(...)` method for the appropriate assistant. There are numerous parameters available for the `run(...)` method of the Onboarding Data Assistant. For instance, the `exclude_column_names` parameter allows us to provide a list columns that should not be Profiled. In addition, we can also use other parameters, such as `include_column_names`, `include_column_name_suffixes`, and `cardinality_limit_mode`.
@@ -390,8 +469,9 @@ The following code shows how to run the Onboarding Assistant.
 
 ```python
 data_assistant_result = context.assistants.onboarding.run(
-    batch_request = multi_batch_all_years_batch_request,
-    exclude_column_names = [col1, col2, col3],
+    batch_request = batch_request,
+    exclude_column_names = [col3, col6, col9],
+    include_column_names = [col1, col2, col4, col5, col7, col8, col10]
 )
 ```
 
@@ -401,14 +481,82 @@ Once we have executed the Onboarding Data Assistant's `run(...)` method and gene
 
 ```python
 expectation_suite = data_assistant_result.get_expectation_suite(
-    expectation_suite_name=expectation_suite_name
+    expectation_suite_name = expectation_suite_name
 )
 ```
 
-And once the Expectation Suite has been retrieved from the Data Assistant result, we can save it like so:
+Once the Expectation Suite has been retrieved from the Data Assistant result, we can save it as shown below:
 
 ```python
-context.add_or_update_expectation_suite(expectation_suite=expectation_suite)
+context.add_or_update_expectation_suite(expectation_suite = expectation_suite)
+```
+
+##### Test our Expectation Suite with a SimpleCheckpoint
+
+To verify that our Expectation Suite is working, we can use a `SimpleCheckpoint` with the Expectation Suite and Batch Request that we have already defined:
+
+```python
+checkpoint_config = {
+    "class_name": "SimpleCheckpoint",
+    "validations": [
+        {
+            "batch_request": batch_request,
+            "expectation_suite_name": expectation_suite_name,
+        }
+    ],
+}
+```
+
+Once we have our `SimpleCheckpoint`'s configuration defined, we can instantiate a SimpleCheckpoint and run it. We can check the `"success"` key of the `SimpleCheckpoint`'s results to verify that our Expectation Suite worked.
+
+```python
+checkpoint = SimpleCheckpoint(
+    f"my_{expectation_suite_name}",
+    context,
+    **checkpoint_config,
+)
+
+checkpoint_result = checkpoint.run()
+
+assert checkpoint_result["success"] is True
+```
+
+##### Plot and inspect the Data Assistant's calculated Metrics and produced Expectations
+
+To see Batch-level visualizations of Metrics computed by the Onboarding Data Assistant run:
+
+```python
+data_assistant_result.plot_metrics()
+```
+
+To see all Metrics computed by the Onboarding Data Assistant run:
+
+```python
+data_assistant_result.metrics_by_domain
+```
+
+To plot the Expectations produced, and the associated Metrics calculated by the Onboarding Data Assistant run:
+
+```python
+data_assistant_result.plot_expectations_and_metrics()
+```
+
+> **Note:** If no Expectation was produced by the Data Assistant for a given Metric, neither the Expectation nor the Metric will be visualized by the `plot_expectations_and_metrics()` method.
+
+To see the Expectations produced and grouped by Domain run:
+
+```python
+data_assistant_result.show_expectations_by_domain_type(
+    expectation_suite_name = expectation_suite_name
+)
+```
+
+To see the Expectations produced and grouped by Expectation type run:
+
+```python
+data_assistant_result.show_expectations_by_expectation_type(
+    expectation_suite_name = expectation_suite_name
+)
 ```
 
 #### Manually define our Expectations
@@ -477,7 +625,7 @@ Expectation Stores allow us **to store and retrieve Expectation Suites**. These 
 
 ## Validator
 
-A Validator is the object responsible **for running an Expectation Suite against data**. In other words, we use a Validator to access and interact with your data. Checkpoints, in particular, use Validators when running an Expectation Suite against a Batch Request. However, we can also use our Data Context to get a Validator to use outside a Checkpoint - for instance, to create Expectations interactively in a Jupyter Notebook.
+A Validator is the object responsible **for running an Expectation Suite against data**. In other words, we use a Validator to access and interact with our data. Checkpoints, in particular, use Validators when running an Expectation Suite against a Batch Request. However, we can also use our Data Context to get a Validator to use outside a Checkpoint - for instance, to create Expectations interactively in a Jupyter Notebook.
 
 Also, we can use the Validator to verify our Datasource. To verify a new Datasource, we can load data from it into a Validator using a Batch Request.
 
@@ -598,3 +746,54 @@ GX and its associated dependencies will be installed by `pip` when we run the ab
 
 Let's get into the fundamentals of writing test cases, validating them against the data, and generating test reports.
 
+The following shows various steps in the order they are given. Each step consists of a series of required and optional actions.
+
+```text
+Data Context
+  |-- Initialize a Data Context with the CLI
+  |-- Create a DataContext object
+  |-- Load the existing Data Context
+  |-- Save the Data Context for future use
+
+Datasource
+  |-- Create a new Datasource through the CLI
+        |-- Filesystem datasource via Pandas or Spark
+        |-- Relational database
+  |-- Test our Datasource configuration (Optional)
+  |-- Save our Datasource configuration (Stored in great_expectations.yml)
+
+Data Asset (Subset of Datasource) (Optional)
+  |-- Add a Data Asset to the Datasource
+
+Batch Request
+  |-- Create a Batch Request (Has Datasource details)
+  |-- Create a Batch Request from Data Asset (In case of Data Asset)
+
+Expectation and Expectation Suite
+  |-- Create via interactive workflow (With inspecting data) (Recommended)
+  |-- Create via Data Assistant workflow (With inspecting data) (Recommended)
+  	    |-- Create a Batch Request (Has Datasource details)
+  	    |-- Prepare a new Expectation Suite
+  	    |-- Run the Onboarding Data Assistant (Uses Batch Request)
+  	    |-- Save our Expectation Suite
+  	    |-- Test our Expectation Suite with a SimpleCheckpoint
+  	    |-- Plot and inspect the Data Assistant's calculated Metrics and produced Expectations
+  |-- Manually define our Expectations (Without inspecting data) (Default)
+  |-- Custom scripts
+
+Validator
+  |-- Instantiate our Validator (Passing Batch Request and Expection Suite)
+
+Checkpoint
+  |-- Create a new Checkpoint using CLI to open a Jupyter Notebook
+  |-- Edit the existing Checkpoint configuration
+  |-- Validate and test our Checkpoint configuration
+  |-- Store our Checkpoint configuration
+  |-- Run our Checkpoint and open the Data Docs
+```
+
+# Frequently asked questions (FAQs)
+
+## How `gx.get_context()` works?
+
+Load an on-disk Data Context from a `great_expectations.yml` configuration via the `get_context()` command.
