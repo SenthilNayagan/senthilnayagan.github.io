@@ -24,9 +24,11 @@ We often think about coding when we consider OSS contributions. Writing code may
 
 Blogging is more than just writing notes. It demands a great deal of work to ensure that the content we put together reaches the target developers as simply and clearly as possible.
 
-### My tech blog <i class="fa-solid fa-window-maximize"></i>
+Personally, I like writing technical blogs. Blogging has been an excellent way for me to learn new things and share them with others. Through blogging, I not only share my knowledge with others who are interested in my areas of expertise, but I also share it with myself, in the most clear terms possible.
 
-This is my tech blog, where I explore various programming concepts. I'm also making up stories about design and coding principles. I'm attempting to make all of my posts as clear as possible while yet providing sufficient information for you to grasp the concepts. Personally, I like writing technical blogs. Blogging has been an excellent way for me to learn new things and share them with others. Through blogging, I not only share my knowledge with others who are interested in my areas of expertise, but I also share it with myself, in the most clear terms possible.
+### My blog <i class="fa-solid fa-window-maximize"></i>
+
+This is my personal blog, where I make up stories about my personal thoughts, design and coding principles, and a variety of topics related to data engineering and analytics, which is my primary area of interest. I'm attempting to make all of my posts as clear as possible while yet providing sufficient information for you to grasp the concepts.
 
 ### Hobbies and interests <i class="fa-solid fa-film"></i> <i class="fa-solid fa-headphones"></i> <i class="fa-solid fa-gamepad"></i> <i class="fa-solid fa-car"></i>
 
