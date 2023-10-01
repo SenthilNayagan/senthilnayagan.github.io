@@ -49,7 +49,7 @@ I have reported this matter (sent an email to customer service and tweeted about
 |:-:|
 |<sup>*Figure 3: Hathway's acknowledgement.*</sup>|<br/><br/>
 
-## Leason learned!
+## Takeaways
 
 In this digital world, a great deal of action just goes unnoticed and unperceived by us. When we choose to participate in anything, be sure to thoroughly read any contracts or agreements before signing them. Don't stop there. Most importantly, we must periodically check to see how they (with whom we signed) are acting in accordance with the terms of our original agreement.
 
