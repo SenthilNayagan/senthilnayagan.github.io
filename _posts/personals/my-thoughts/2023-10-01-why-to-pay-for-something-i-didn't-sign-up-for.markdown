@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Dear Hathway, I no longer want to pay an AMC fee every month that you want to take from me covertly!"
+title:  "Dear Hathway, Why should I pay for something I didn't sign up for?"
 kicker: "Personal encounters"
 subtitle: "Even if the amount taken from us may seem small, when it is done 'covertly'—without our consent—it is a very serious concern, and we should do all in our power to put a stop to it. We, as customers, don't want to pay the extra charge under the guise of 'Annual Maintenance Cost', which we didn't sign up for."
 image: assets/images/posts-cover-images/hathway-no-openness-with-its-customers.jpg
@@ -14,7 +14,7 @@ featured: true
 hidden: false
 ---
 
-# Dear Hathway: I don't want to continue making monthly payments for an AMC plan that you want to take from us "covertly"!
+# Don't want to continue making monthly payments for an AMC that you want to take from us "covertly"!
 
 Just to give you a brief background on **Hathway**, it is one of the Internet Service Providers (ISPs) in India, offering high-speed broadband services across many cities.
 
