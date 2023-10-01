@@ -32,15 +32,26 @@ When I asked the customer service representatives about this, they responded tha
 
 > What's the likely chance of returning this collected money in case the customer terminates the contract or connection for any reason and there isn't a need to use it to fix their router issue? 
 
-This might not be a major deal given the small sum that is being collected each month, but the lack of transparency between Hathyway and its customers is a big deal!
+This might not be a major deal given the small sum that is being collected each month, but the lack of transparency between Hathyway and its customers is a big deal! We choose corporate vendors over local ones because of their openness (transparency) and sense of trust. But if these corporate providers are not transparent, where should we go?
 
-I no longer desire to choose or pay for this AMC plan on a monthly basis. If this is the way Hathway works without being transparent with its customers, I am happy to terminate my connection and look for other providers.
+## My reactions
+
+No matter how little the amount per month is, I no longer wish to pay for this AMC plan. I value trust more highly than money. If this is the way Hathway works without being transparent with its customers, I am happy to disconnect my connection and look for other providers.
 
 I have reported this matter (sent an email to customer service and tweeted about it) and also opened a ticket with them to opt out of this so-called AMC plan.
 
+|![Figure 2: My initial tweet.](/assets/images/posts/my-tweet-to-hathway.png){: width="70%" }|
+|:-:|
+|<sup>*Figure 2: My initial tweet.*</sup>|<br/><br/>
+
+
+|![Figure 3: Hathway's acknowledgement.](/assets/images/posts/acknowledgement-from-hathway.png){: width="70%" }|
+|:-:|
+|<sup>*Figure 3: Hathway's acknowledgement.*</sup>|<br/><br/>
+
 ## Leason learned!
 
-In this digital world, a great deal of action just goes unnoticed and unperceived by us. When we choose to participate in anything, be sure to thoroughly read any contracts or agreements before signing them. Most importantly, we must periodically check to see how they (with whom we signed) are acting in accordance with the terms of our original agreement.
+In this digital world, a great deal of action just goes unnoticed and unperceived by us. When we choose to participate in anything, be sure to thoroughly read any contracts or agreements before signing them. Don't stop there. Most importantly, we must periodically check to see how they (with whom we signed) are acting in accordance with the terms of our original agreement.
 
 
 
