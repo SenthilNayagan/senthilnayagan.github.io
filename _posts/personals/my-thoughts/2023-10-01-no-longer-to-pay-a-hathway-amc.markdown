@@ -1,20 +1,20 @@
 ---
 layout: post
-title:  "Dear Hathway, I no longer want to pay an AMC fee every month, which you want to take from me covertly!"
-kicker: "Personal experience"
+title:  "Dear Hathway, I no longer want to pay an AMC fee every month that you want to take from me covertly!"
+kicker: "Personal encounters"
 subtitle: "Even if the amount taken from us may seem small, when it is done 'covertly'—without our consent—it is a very serious concern, and we should do all in our power to put a stop to it. We, as customers, don't want to pay the extra charge under the guise of 'Annual Maintenance Cost', which we didn't sign up for."
 image: assets/images/posts-cover-images/hathway-no-openness-with-its-customers.jpg
 imageshadow: true
 toc: false
 author: senthil
 date: 2023-10-01 00:000:00 +0530
-tags: [ "hathway", "hathway-broadband", "openness", "customer-care", "trust" ]
-categories: personal-experience
+tags: [ "hathway", "hathway-broadband", "openness", "customer-care", "trust", "transparency" ]
+categories: personal-encounters
 featured: true
 hidden: false
 ---
 
-# Dear Hathway: I don't want to continue making monthly payments for an AMC plan, which you want to take from me "covertly" !
+# Dear Hathway: I don't want to continue making monthly payments for an AMC plan, which you want to take from us "covertly" !
 
 Just to give you a brief background on **Hathway**, it is one of the Internet Service Providers (ISPs) in India, offering high-speed broadband services across many cities.
 
