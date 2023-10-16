@@ -11,7 +11,7 @@ date: 2023-10-01 00:000:00 +0530
 tags: [ "hathway", "hathway-broadband", "openness", "customer-care", "trust", "transparency" ]
 categories: personal-encounters
 featured: true
-hidden: false
+hidden: true
 ---
 
 # Don't want to continue making monthly payments for an AMC that you want to take from us "covertly"!
